@@ -1,6 +1,15 @@
 <?php
 
 return [
+    'fichaTecnica' => 'Datasheet',
+    'fichaBocais' => 'Nozzles List',
+    'bocaisComprar' => 'Nozzles to buy',
+    'totalAcomprar' => 'Total to buy',
+    'bocal_1' => 'Bocal 1',
+    'bocal_2' => 'Bocal 2',
+    'funcionamento_pivo' => 'Pivot Operation',
+    'editar_ficha_tecnica_sucesso' => 'Changes to <b>Technical Data</b> successfully saved!',
+    'mapaBocal' => 'Original Nozzle Map',
     'ftPivoCentralDiagnostico' => 'CENTRAL PIVOT DATA SHEET - DIAGNOSTIC',
     'proprietario' => 'Owner',
     'propriedade' => 'Property',
@@ -40,6 +49,9 @@ return [
     'comprimento' => 'Length',
     'hf' => 'HF',
     'pressao' => 'Pressure',
+    'pressaoInicial' => 'Initial Pressure',
+    'pressaoFinal' => 'Final Pressure',
+    'perdaPressao' => 'Pressure Loss',
     'velocidade' => 'Velocity',
     'alturaMonometrica' => 'Monometric Height',
     'conjuntoMotoBomba' => 'Pump set',
@@ -62,7 +74,7 @@ return [
     'nao' => 'No',
     'bombeamento' => 'Pumping',
     'comprimentoSuccao' => 'Suction length',
-    'diametroSuccao' => 'Suction ϕ',
+    'diametroSuccao' => 'Suction diam.',
     'materialSuccao' => 'Suction mat.',
     'alturaSuccao' => 'Suction height',
     'marca' => 'Brand',
@@ -138,4 +150,17 @@ return [
     'conclusao18' => 'With the completion of the recommended adjustments, the equipment will work with proper Uniformity, Pressurization and loading index. Therefore, all adjustments must strictly follow the recommendation of the Irriger Consultants. The nozzle exchange must follow the exact order, according to the attached list. If there is any doubt in this regard, contact our team to instruct the farm team in this process. After making the adjustments, we request that you contact our responsible Consultant to have a final check of the process.',
     'texto_uniformidade_7' => 'After adjustments, the center pivot blade will be :lamina mm/ :horas h ',
 
+    'bocais' => 'Nozz.',
+    'espacamento' => 'Spac.',
+    'valvula' => 'Valv.',
+    'numTubos' => 'Nº Tubes: ',
+    'numerosEmissores' => 'Nº',
+
+    'atualizaou_fichatecnica' => 'A new Technical Sheet will be generated.',
+
+    'pivo_central' => 'Center Pivot',
+    'pressao_centro' => 'Pressure at the Center',
+    'area_efetiva' => 'Effective Area',
+    'tudo_novo' => 'All new?',
+    'total_bocais' => 'Total Nozzles'
 ];

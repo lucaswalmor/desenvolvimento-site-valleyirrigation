@@ -1,8 +1,10 @@
 <?php
 
 return [
-    'teste' => 'Teste',
-    'pivoCentral' => 'Pivo Central',
+    'informacoes_gerais' => 'Informações Gerais',
+    'consideracoes' => 'Considerações',
+    'parte_aerea' => 'Parte Aérea',
+    'pivoCentral' => 'Pivô Central',
     'informacoesGerais' => 'Informações Gerais',
     'dataAfericao' => 'Data de Aferição',
     'tempoFuncionamento' => 'Tempo de Funcionamento',
@@ -17,6 +19,8 @@ return [
     'custoMedio' => 'Custo Médio',
     'parteAerea' => 'Parte Aérea',
     'marcaModeloEmissores' => 'Marca/Modelo Emissores',
+    'cadastro_afericao_sucesso' => 'Cadastro de <b>Aferição</b> realizado com sucesso!',
+    'editar_afericao_sucesso' => 'Alterações na <b>Aferição</b> salvas com sucesso!',
     
     'i-wob-up3' => 'I-WOB UP3',
     'fabrimar' => 'Fabrimar',
@@ -138,6 +142,7 @@ return [
     'problema63' => 'Sem manômetro na bomba',
     'problema64' => 'Manômetro com defeito',
     'problema65' => 'Vibrações e ruídos anormais',
+    'problema66' => 'Funcionamento Adequado',
 
     'hidraulica' => 'Hidráulica',
     'pressaoCentro' => 'Pressão no Centro',
@@ -155,7 +160,7 @@ return [
     'potencia' => 'Potência (cv)',
     'vazao' => 'Vazão (m3/h)',
     'modelo' => 'Modelo',
-    'bomba' => 'Bomba',
+    'bomba' => 'Conj. MB ',
     'bocais' => 'Bocais',
     'alcanceCanhao' => 'Alcance canhão (m)',
     'motor' => 'Motor',
@@ -166,8 +171,9 @@ return [
     'voltar' => 'VOLTAR',
     'numLancesSemBalanco' => 'N° de lances (Sem o balanço)',
 
-
-    'afericao' => 'Aferição',
+    'afericoes' => 'Aferições',
+    'afericao' => 'Informações do Pivô',
+    'cadastrar_lance' => 'REGISTER SPAN',
     'lance' => 'Lance ',
     'numeroTubos' => 'Numero de Tubos ',
     'numeroEmissores' => 'Número de Emissores',
@@ -175,13 +181,14 @@ return [
     'tipoValvula' => 'Tipo de Válvula',
     'motorredutor' => 'Motorredutor',
 
-    'emissores' => 'EMISSORES',
+    'emissores' => 'Emissores',
     'balanco' => 'Balanço',
     'emissor' => 'Emissor ',
     'saida1' => 'Saída 1',
     'saida2' => 'Saída 2',
     'espacamento' => 'Espaçamento',
     'psi' => 'PSI',
+    'defaultSpace' => 'Espaçamento (Padrão para Emissores)',
 
 
     'afericoesFazenda' => 'Aferições da fazenda :fazenda',
@@ -209,7 +216,6 @@ return [
     'laminaMedia' => 'Lamina Média',
 
     'erro' => 'Erro',
-    'aviso' => 'Aviso',
     'sucesso' => 'Sucesso',
     'atencao' => 'Atenção',
     'selecione_fazenda' => 'Selecione uma fazenda para acessar este recurso',
@@ -229,7 +235,10 @@ return [
 
     //Velocidade Aferição
     'velocidadeAfericao' => 'Aferição da velocidade',
+    'velocidade100' => 'Velocidade 100%',
     'testeVelo100' => 'Teste de velocidade (100%)',
+    'cadastro_velocidade_sucesso' => 'Cadastro de <b>Aferição da velocidade</b> realizado com sucesso!',
+    'editar_velocidade_sucesso' => 'Alterações na <b>Aferição da velocidade</b> salvas com sucesso!',
     'distanciaM' => 'Distância',
     'afericao01' => 'Aferição 01',
     'afericao02' => 'Aferição 02',
@@ -259,6 +268,7 @@ return [
     'movimentadoSegundos' => 'Movimentado',
     'paradoSegundos' => 'Parado',
     'percentimetro' => 'Percentímetro',
+    'afericaoPercentimetro' => 'Aferição do Percentímetro',
     'velocidadeProjeto' => 'Projeto',
     'velocidadeMedido' => 'Medido',
     'velocidadeVariacao' => 'Variação',
@@ -290,13 +300,16 @@ return [
     '1/4Volta' => '1/4 Volta',
     'estimativaCusto' => 'Estimativa de custo',
     'velocidade' => 'Velocidade',
+    'combinedArea' => 'Área Total Conjugada',
+    'calcCombinedArea' => 'Calcular Área Conjugada',
+    'calcDepthArea' => 'Calcular Lâmina Conjugada',
+    'depthArea' => 'Lâmina Total Conjugada',
 
     //Área de análise
     'area_analise' => 'Área de análise',
 
     //Cadastro Adutora
-    'cadastroAdutora' => 'CADASTRO DE ADUTORA',
-    'bombeamento' => 'Bombeamento',
+    'cadastroAdutora' => 'Cadastro de Adutora',
     'tipoInstalacao' => 'Tipo de Instalação',
     'direta' => 'Direta',
     'afogada' => 'Afogada',
@@ -314,10 +327,10 @@ return [
     'lagoa' => 'Lagoa',
     'poco' => 'Poço',
     'trechos' => 'Trechos',
-    'tipoCano' => 'Tipo de Cano',
+    'tipoCano' => 'Tipo de Tubo',
     'diametro' => 'Diâmetro',
-    'hw' => 'HW',
-    'numeroCanos' => 'Número de Canos',
+    'hw' => 'Coef. Rugosidade',
+    'numeroCanos' => 'Número de linhas',
     'comprimento' => 'Comprimento',
     'desnivel' => 'Desnível',
     'altitude' => 'Altitude',
@@ -327,7 +340,6 @@ return [
     'aluminio' => 'Alumínio',
     'ferro' => 'Ferro',
     'aco' => 'Aço',
-    'tipoCano' => 'Tipo de Cano',
     'addTrecho' => 'Adicionar Trecho',
     'fechar' => 'Fechar',
     'altitudeNivelAgua' => 'Altitude Nível de Água',
@@ -337,7 +349,11 @@ return [
     'numero_canos' => 'Número de Canos',
 
     //BOMBEAMENTOS
-    'cadastroBombeamento' => 'CADASTRO DE BOMBEAMENTO',
+
+    'bombeamento' => 'Conjunto Motor Bomba',
+    'cadastro_Bombeamento_sucesso' => 'Cadastro de <b>Conjunto Motor Bomba</b> realizado com sucesso!',
+    'editar_Bombeamento_sucesso' => 'Alterações na <b>Conjunto Motor Bomba</b> salvas com sucesso!',
+    'editarBomba' => 'Conj. MB',
     'materialSuccao' => 'Material de Sucção',
     'acoSac' => 'AÇO SAC',
     'AZ' => 'AZ',
@@ -358,6 +374,7 @@ return [
     'tensao' => 'Tensão',
     'comprimentoSuccao' => 'Comprimento de Sucção',
     'diametroSuccao' => 'Diâmetro de Sucção',
+    'alturaSuccao' => 'Altura de Sucção',
     'numeroRotores' => 'Número de Rotores',
     'diametroRotor' => 'Diâmetro do Rotor',
     'rendimentoBomba' => 'Rendimento da Bomba',
@@ -374,6 +391,8 @@ return [
     'fase2' => 'Fase 2',
     'fase3' => 'Fase 3',
     'indice_carregamento' => 'Índice de Carregamento',
+    'bombaInexistente' => 'Precisa gerar Conjunto Motor Bomba!',
+
 
     'continuar' => 'Continuar',
     'concluido' => 'Concluído',
@@ -381,31 +400,32 @@ return [
     'bloqueado' => 'Bloqueado',
     'finalizar' => 'Finalizar',
     'visualizarMapa' => 'Ver o Mapa Original',
+    'cadastro_mapaOriginal_sucesso' => 'Cadastro do <b>Mapa Original</b> realizado com sucesso!',
+    'recalculo_mapaOriginal_sucesso' => '<b>Mapa Original</b> recalculado com sucesso !',
+    'editar_emissores_mapaOriginal_sucesso' => 'Alteração de <b>Emissores</b> salvas com sucesso!',
     'completo' => 'Completo',
     'realizeVelocidadeParaAcessar' => 'Realize o Cadastro de Velocidade para acessar este recurso',
     'visualizar' => 'Visualizar',
     'realizeOperacoesMapaOriginal' => 'Para acessar este recurso é necessário ter completado o mapa de bocais',
     'realizeTodasAsEtapas' => 'Para acessar este recurso, todas as etapas anteriores devem ser concluídas',
-    'mapaBocais' => 'Mapa de Bocais',
+    'mapaBocais' => 'Mapa de Bocal',
     'mapaOriginal' => 'Mapa Original',
     'relatorioVelocidade' => 'Relatório Velocidade',
     'fichaTecnica' => 'Ficha Técnica',
 
-
-    'cadastrarAdutora' => 'Cadastrar Adutora',
     'ja_existe_adutora' => 'Já existe um cadastro de adutora para esta aferição !',
     'aviso' => 'Aviso',
     'erro_db' => 'Houve um problema na tentativa de gravar os dados, por favor, tente novamente mais tarde !',
     'adutora_vazia' => 'Adicione ao menos 1 trecho para salvar!',
     'erro_processamento' => 'Houve um erro interno e por isto não foi possível atender a solicitação, por favor, tente novamente mais tarde !',
-    'cadastro_adutora_realizado_sucesso' => 'Cadastro de adutora realizado com sucesso !',
+    'cadastro_adutora_realizado_sucesso' => 'Cadastro de <b>Adutora</b> realizado com sucesso!',
+    'edicao_adutora_realizado_sucesso' => 'Alterações na <b>Adutora</b> salvas com sucesso!',
     'edicaoSucesso' => 'Alterações aplicadas com sucesso !',
     'erroAdutora' => 'Não foi possível atender a sua solicitação !', 
     'selecioneFazendaAfericao' => 'Esta aferição não pertence a fazenda selecionada !',
     'graficoUniformidade' => "Gráfico de Uniformidade",
     'atualizarMapa' => 'Atualizar Mapa',
-    'editarBombeamento' => 'EDITAR BOMBEAMENTO',
-    'statusAfericao' => 'STATUS DA AFERIÇÃO',
+    'statusAfericao' => 'Status da Aferição',
     'titulo_alerta_nome_pivo' => 'Este pivô já possui aferição !',
     'texto_alerta_nome_pivo' => 'Caso continue, a aferição anterior deste pivô será arquivada !',
 
@@ -429,3 +449,4 @@ return [
     'posicao' => 'Posição',
 
 ];
+

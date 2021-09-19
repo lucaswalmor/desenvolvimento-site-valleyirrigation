@@ -6,17 +6,19 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Classes\Sistema\Pivo;
 use App\Classes\Constantes\Notificacao;
+use Auth;
 
 class PivoController extends Controller
 {
-    public function getListaDePivos(Request $req){
+    public function managerPivot(Request $req)
+    {
         $filtro = $req->all();
         $pivos = array();
         // Busca distinta dos fabricantes.
         $fabricantes = Pivo::select('fabricante')->distinct('fabricante')->get();
         
         if(empty($filtro['filtro'])){
-            $pivos = Pivo::select('id','fabricante', 'nome', 'espacamento')->paginate(30);
+            $pivos = Pivo::select('id','fabricante', 'nome', 'espacamento')->paginate(10);
         }else{
             $pivos = Pivo::select('id','fabricante', 'nome', 'espacamento')
             ->where(function ($query) use ($filtro){
@@ -35,56 +37,69 @@ class PivoController extends Controller
                     $query->where('vazao', '<=', ($filtro['vazao_max']));
                 }*/
             })
-            ->paginate(30);
+            ->paginate(10);
         }
 
         foreach($pivos as $Pivo){
             $Pivo['espacamento'] = number_format($Pivo['espacamento'],2,",",".");
             
         }
-        return view('sistema.pivos.gerenciar', compact('pivos', 'filtro', 'fabricantes'));
+        return view('sistema.pivos.gerenciar', compact('pivos', 'fabricantes'));
     }    
 
-    public function getInfosPivo($id){
-        $Pivo = Pivo::find($id);
-        return $Pivo;
-    }
+    public function searchPivot(Request $request) 
+    {
+        $pivos = [];
+        
+        if(empty($request['filter'])) {
+            $pivos = Pivo::select('id','fabricante', 'nome', 'espacamento')
+            ->where(function ($query) use ($request){
+                if (!empty($request['filter'])) {
+                    $query->orWhere('nome', 'like', '%'.$request['filter'].'%')
+                        ->orWhere('fabricante', 'like', '%'.$request['filter'].'%')
+                        ->orWhere('espacamento', 'like', '%'.$request['filter'].'%');
+                }
+            })->paginate(10);
+        } else {
+            $pivos = Pivo::select('id','fabricante', 'nome', 'espacamento')->orderBy('created_at')
+            ->where(function ($query) use ($request){
+                if (!empty($request['filter'])) {
+                    $query->orWhere('nome', 'like', '%'.$request['filter'].'%')
+                        ->orWhere('fabricante', 'like', '%'.$request['filter'].'%')
+                        ->orWhere('espacamento', 'like', '%'.$request['filter'].'%');
+                }
+            })->paginate(10);
+        }
+        return view('sistema.pivos.gerenciar', compact('pivos'));
+    }    
 
-    public function cadastrarPivo()
+    public function createPivot()
     {
         return view('sistema.pivos.cadastrar');
     }
 
-    public function salvarPivo(Request $req){
+    public function savePivot(Request $req){
         Pivo::create($req->all());
-        Notificacao::gerarAlert('pivos.sucesso', 'pivos.inserido_sucesso', 'success');
-        return redirect()->route('pivos.gerenciar');
+        Notificacao::gerarAlert('', 'pivos.cadastro_pivo_sucesso', 'success');
+        return redirect()->route('manager_pivot');
     }
-    public function editarPivo($id){
+    public function editPivot($id){
         $pivos = Pivo::find($id);
         return view('sistema.pivos.editar', compact('pivos'));
     }
 
-    public function editaPivo(Request $req){
+    public function updatePivot(Request $req){
         $dados = $req->all();
         Pivo::find($dados['id'])->update($dados);
-        Notificacao::gerarAlert('pivos.sucesso', 'pivos.editado_sucesso', 'info');
-        return redirect()->route('pivos.gerenciar');
+        Notificacao::gerarAlert('', 'pivos.editar_pivo_sucesso', 'success');
+        return redirect()->route('manager_pivot');
     }
-
-    // public function removerPivo($id){
-    //     //Validar Fazendas
-    //     Pivo::find($id)->delete();
-    //     //Notificacao::gerarAlert('proprietarios.falha', 'proprietarios.remocao_falha', 'danger');
-    //     Notificacao::gerarAlert('pivos.sucesso', 'pivos.remocao_sucesso', 'info');
-    //     return redirect()->back();
-    // }
-
-    public function destroy($id)
+    
+    public function delete($id)
     {
         $delete = Pivo::find($id);
         $delete->delete();
-        return redirect()->route('pivos.gerenciar')->with('Sucesso', 'Foi deletado');
+        return redirect()->route('manager_pivot')->with('Sucesso', 'Foi deletado');
     }
 
     public function ajaxAtualizaSaidas(){

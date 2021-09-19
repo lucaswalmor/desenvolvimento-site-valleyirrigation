@@ -1,0 +1,34 @@
+/* TELA INICIAL */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.entregaTecnica-checkbox {
+    padding-top: 10px;
+}
+
+.entregaTecnica-checkbox div label {
+    cursor: pointer;
+}
+
+.accordion .card .card-header {
+    background: none;
+    border: none;
+}
+
+.accordion .card .card-header .btn-header-link {
+    display: block;
+    text-align: left;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.accordion .card .card-header .btn-header-link:after {
+    font-family: 'FontAwesome'; 
+    content: "\f078";
+    float: left;
+    padding-right: 10px;
+}
+
+.accordion .card .card-header .btn-header-link.collapsed:after {
+    content: "\f077";
+}

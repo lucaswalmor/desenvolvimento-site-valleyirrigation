@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'informacoes_gerais' => 'General information',
+    'consideracoes' => 'Considerations',
+    'parte_aerea' => 'Aerial',
     'teste' => 'Test',
     'pivoCentral' => 'Central Pivot',
     'informacoesGerais' => 'General Informations',
@@ -17,6 +20,8 @@ return [
     'custoMedio' => 'Energy Cost',
     'parteAerea' => 'Overhead',
     'marcaModeloEmissores' => 'Brand/Pivot Emitters',
+    'cadastro_afericao_sucesso' => '<b>Measurement</b> registration completed successfully!',
+    'editar_afericao_sucesso' => '<b>Measurement</b> changes successfully saved!',
     
     'i-wob-up3' => 'I-WOB UP3',
     'fabrimar' => 'Fabrimar',
@@ -48,6 +53,10 @@ return [
     'vazaoPivo' => 'Pivot Flow',
     'consideracoes' => 'Considerations',
     'equipPossuiProblemas' => ' Equipment have problems?',
+    'combinedArea' => 'Total Conjugated Area',
+    'calcCombinedArea' => 'Calculate Conjugate Area',
+    'calcDepthArea' => 'Calculate Conjugate Depth',
+    'depthArea' => 'Depth Total Conjugated',
     
     'torreCentral' => 'Central Tower',
     'problema1' => 'Leakage',
@@ -138,6 +147,7 @@ return [
     'problema63' => 'Without gauge at pump',
     'problema64' => 'Defective pressure gauge',
     'problema65' => 'Vibrations and abnormal noise',
+    'problema66' => 'Proper Operation',
 
     'hidraulica' => 'Hydraulic',
     'pressaoCentro' => 'Pressure in center',
@@ -165,8 +175,8 @@ return [
     'voltar' => 'BACK',
     'numLancesSemBalanco' => 'Number of spans (Without Overhang)',
 
-
-    'afericao' => 'MEASUREMENT',
+    'afericoes' => 'Measurements',
+    'afericao' => 'Pivot Information',
     'lance' => 'Span ',
     'numeroTubos' => 'Number of Tubes ',
     'numeroEmissores' => 'Outlet numbers',
@@ -174,6 +184,7 @@ return [
     'tipoValvula' => 'Type of Valve',
     'motorredutor' => 'Gearbox',
 
+    'cadastrar_emissores' => 'Register Issuers',
     'emissores' => 'ISSUERS',
     'balanco' => 'Balance',
     'emissor' => 'Issuer ',
@@ -181,6 +192,7 @@ return [
     'saida2' => 'Exit 2',
     'espacamento' => 'Spacing',
     'psi' => 'PSI',
+    'defaultSpace' => 'Spacing (Default Spacing for Issuers)',
 
 
     'afericoesFazenda' => 'Measurements of Farm  :fazenda',
@@ -227,7 +239,10 @@ return [
 
     //Velocidade Aferição
     'velocidadeAfericao' => 'Speed ​​measurement',
+    'velocidade100' => 'Speed 100%',
     'testeVelo100' => 'Speed ​​Test (100%)',
+    'cadastro_velocidade_sucesso' => '<b>Speed ​​Measurement</b> registration completed successfully!',
+    'editar_velocidade_sucesso' => '<b>Speed Gauge</b> changes successfully saved!',
     'distanciaM' => 'Distance',
     'afericao01' => 'Measurement 01',
     'afericao02' => 'Measurement 02',
@@ -295,6 +310,7 @@ return [
     //Cadastro Adutora
     'cadastroAdutora' => 'Register Water Mains',
     'bombeamento' => 'Pumping',
+    'cadastroItemBombeamento' => 'Register Pumping Item',
     'tipoInstalacao' => 'Instalation Type',
     'direta' => 'Direct',
     'afogada' => 'Drowned',
@@ -312,10 +328,10 @@ return [
     'lagoa' => 'Lagoon',
     'poco' => 'Well',
     'trechos' => 'Parts',
-    'tipoCano' => 'Pipe Type',
+    'tipoCano' => 'Tube Type',
     'diametro' => 'Diameter',
     'hw' => 'HW',
-    'numeroCanos' => 'Number of Pipes',
+    'numeroCanos' => 'Number of Lines',
     'comprimento' => 'Lenght',
     'desnivel' => 'Gap',
     'altitude' => 'Suction height',
@@ -335,7 +351,10 @@ return [
     'numero_canos' => 'Number of Pipes',
 
     //BOMBEAMENTOS
-    'cadastroBombeamento' => 'REGISTER PUMPING',
+    'bombeamento' => 'Pump Motor Set',
+    'cadastro_Bombeamento_sucesso' => 'Registration of <b>Motor Pump Set</b> successfully completed!',
+    'editar_Bombeamento_sucesso' => 'Alterações na <b>Conjunto Motor Bomba</b> salvas com sucesso!',
+    'editarBomba' => 'Edit Pump',
     'materialSuccao' => 'Suction Material',
     'acoSac' => 'AÇO SAC',
     'AZ' => 'AZ',
@@ -356,6 +375,7 @@ return [
     'tensao' => 'Voltage',
     'comprimentoSuccao' => 'Suction Lenght',
     'diametroSuccao' => 'Suction Diameter',
+    'alturaSuccao' => 'Suction Height',
     'numeroRotores' => 'Number of Rotors',
     'diametroRotor' => 'Rotor Diameter',
     'rendimentoBomba' => 'Pump Efficiency',
@@ -372,6 +392,7 @@ return [
     'fase2' => 'Phase 2',
     'fase3' => 'Phase 3',
     'indice_carregamento' => 'Percent. Load',
+    'bombaInexistente' => 'You need to generate Pump Motor Set!',
 
     'continuar' => 'Continue',
     'concluido' => 'Completed',
@@ -379,6 +400,9 @@ return [
     'bloqueado' => 'Blocked',
     'finalizar' => 'End',
     'visualizarMapa' => 'Open Original Map',
+    'cadastro_mapaOriginal_sucesso' => 'Registration of the <b>Original Map</b> successfully completed!',
+    'recalculo_mapaOriginal_sucesso' => '<b>Original Map</b> successfully recalculated!',
+    'editar_emissores_mapaOriginal_sucesso' => 'Change <b>Issuers</b> successfully saved!',
     'completo' => 'Completed',
     'realizeVelocidadeParaAcessar' => 'Perform Speed Registration to access this feature',
     'visualizar' => 'View',
@@ -389,23 +413,21 @@ return [
     'relatorioVelocidade' => 'Speed Report',
     'fichaTecnica' => 'Datasheet',
 
-
-    'cadastrarAdutora' => 'Register Adductor',
     'ja_existe_adutora' => 'There is already an adductor registration for this measurement!',
     'aviso' => 'Warning',
     'erro_db' => 'There was a problem trying to write the data, please try again later!',
     'adutora_vazia' => 'Add at least 1 excerpt to save!',
     'erro_processamento' => 'There was an internal error and we were unable to fulfill the request, please try again later!',
-    'cadastro_adutora_realizado_sucesso' => 'Adductor registration successfully completed!',
+    'cadastro_adutora_realizado_sucesso' => '<b>Adductor</b> registration successfully completed!',
+    'edicao_adutora_realizado_sucesso' => 'Changes to <b>Adductor</b> successfully saved!',
     'edicaoSucesso' => 'Successfully applied changes !',
     'erroAdutora' => 'We were unable to fulfill your request !',    
     'selecioneFazendaAfericao' => 'This measurement does not belong to the selected farm!',
     'graficoUniformidade' => "Uniformity Chart",
     'atualizarMapa' => 'Refresh Map',
-    'editarBombeamento' => 'EDIT PUMPING',
-    'statusAfericao' => 'MEASUREMENT STATUS',
+    'editarBombeamento' => 'Edit Pumping',
+    'statusAfericao' => 'Measurement Status',
 
-    'statusAfericao' => 'STATUS OF AFFERITION',
     'titulo_alerta_nome_pivo' => 'This pivot already has measurement !',
     'texto_alerta_nome_pivo' => 'If you continue, the previous measurement of this pivot will be archived!',
     //Mensagem para modal dos cards

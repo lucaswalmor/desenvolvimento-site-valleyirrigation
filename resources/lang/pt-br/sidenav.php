@@ -39,7 +39,8 @@ return [
     'linear' => 'Linear',
     'pivo_central' => 'Pivô Central',
     'pivo_rebocavel' => 'Pivô Rebocável',
-    'pivos' => 'Pivôs',
+    'pivos' => 'Pivô - Marca/Modelo',
 
     'projetos' => 'Projetos',
+    'revendas' => 'Revendas'
 ];

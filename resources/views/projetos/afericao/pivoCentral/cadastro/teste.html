@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="checkbox" name="teste" id="teste"> teste
+
+    <div id="teste2">
+        <input type="text" id="teste3">
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+        $("#teste").on("click", function (){
+            var isDisabled = $("#teste2 input").is(':disabled');
+            if (isDisabled) {
+                $("#teste2 input").prop('disabled', false);
+            } else {
+                $("#teste2 input").prop('disabled', true);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -8,6 +8,8 @@ return [
     'supervisor' => 'Supervisor',
     'assistente' => 'Asistente',
     
+    'cadastro_usuario_sucesso' => '¡Registro de <b> Usuario </b> completado con éxito!',
+    'editar_usuario_sucesso' => '<b> Cambios de usuario </b> guardados correctamente.',
     'informacoes_pessoais' => 'Informaciones personales',
     'cadastro_usuario' => 'REGISTRO DE USUARIO',
     'nome' => 'Nombre',
@@ -36,7 +38,7 @@ return [
     'atualizar' => 'Actualizar',
     'fechar' => 'Cerca', 
 
-    'editar_usuario' => 'Editar Usuario',
+    'usuarios' => 'Usuarios',
     'informe_senha_alt' => 'Ingrese una contraseña SOLAMENTE si la cambia',
     'ativo' => 'Activo',
     'inativo' => 'Inactivo',
@@ -48,7 +50,6 @@ return [
     'nao_filtrar' => 'No lo filtres',
     'opcional' => 'Opcional',
 
-    'usuarios' => 'USUARIOS',
     'senhasNaoBatem' => 'Las contraseñas ingresadas son diferentes !',
 
 ];

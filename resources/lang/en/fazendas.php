@@ -20,8 +20,8 @@ return [
 
     'sucesso'=>'Success',
     'erro'=>'Ops, something went wrong',
-    'cadastro_sucesso'=>'Farm successfully registered!',
-    'atualizada_sucesso'=>'Farm informations changed successfully !',
+    'cadastro_fazenda_sucesso' => '<b>Farm</b> registration successfully completed!',
+    'editar_fazenda_sucesso' => '<b>Farm</b> changes successfully saved!',
     'removida_sucesso'=>'Farm successfully removed !',
     'erro_solicitacao'=>'We were unable to process your request !',
 
@@ -35,10 +35,10 @@ return [
     'assistente_ja_cadastrado_fazenda'=>'This assistant is already registered on this farm.',
     'fazenda_nao_encontrada'=>'Farm not found !',
     'aviso'=>'Warning',
-    
-    'fazendas'=>'FARMS',
-    'fazenda'=>'FARM',
 
+    'fazendas'=>'Farms',
+    'fazendasDisponiveis' => 'AVAILABLE FARMS',
+    'pesquisarFazenda' => 'Search a farm',
     'assistente_removido_sucesso'=>'Assistant removed from farm successfully !',
     
     'acoes_fazenda' => 'Farm Actions',

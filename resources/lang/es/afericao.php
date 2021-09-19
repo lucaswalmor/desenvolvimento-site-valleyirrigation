@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'informacoes_gerais' => 'Informaciones generales',
+    'consideracoes' => 'Consideraciones',
+    'parte_aerea' => 'Aéreo',
     'teste' => 'Test',
     'pivoCentral' => 'Pivote Central',
     'informacoesGerais' => 'Información general',
@@ -17,7 +20,9 @@ return [
     'custoMedio' => 'Costo energético',
     'parteAerea' => 'Gastos generales',
     'marcaModeloEmissores' => 'Emisores de marca / pivote',
-    
+    'cadastro_afericao_sucesso' => '¡Registro de <b> Medición </b> completado con éxito!',
+    'editar_afericao_sucesso' => '¡Los cambios de <b> medición </b> se guardaron correctamente!',
+
     'i-wob-up3' => 'I-WOB UP3',
     'fabrimar' => 'Fabrimar',
     'nelson' => 'Nelson',
@@ -48,14 +53,18 @@ return [
     'vazaoPivo' => 'Flujo de pivote',
     'consideracoes' => 'Consideraciones',
     'equipPossuiProblemas' => ' El equipo tiene problemas?',
-    
+    'combinedArea' => 'Área Total Conjugada',
+    'calcCombinedArea' => 'Calcular el Area Conjugada',
+    'calcDepthArea' => 'Calculate el Profundidad Conjugada',
+    'depthArea' => 'El Profundidad Total Conjugada',
+
     'torreCentral' => 'Torre central',
     'problema1' => 'Fuga',
     'problema2' => 'Sin medidor',
     'problema3' => 'Manómetro defectuoso',
     'problema4' => 'Cableado expuesto',
     'problema5' => 'Acumulación de suciedad circundante.',
-    
+
     'valvulaPSI' => 'Válvula (PSI)',
     'problema6' => 'Sin núcleo',
     'problema7' => 'Roto',
@@ -63,7 +72,7 @@ return [
     'problema9' => 'Obstrucción en válvulas reguladoras de presión.',
     'problema10' => 'Sin reguladores de presión en muchos puntos de venta.',
     'problema11' => 'Válvulas con una vida útil excedida',
-    
+
     //'parteAerea' => 'Gastos generales',
     'problema12' => 'Fuga de la manga',
     'problema13' => 'Taponamiento de las boquillas a lo largo del techo',
@@ -80,7 +89,7 @@ return [
     'problema24' => 'Tensión inadecuada de los cables colgantes.',
     'problema25' => 'Patinaje pivote excesivo',
     'problema26' => 'Cambios de hoja de voladizo inadecuados',
-    
+
     'canhaoFinal' => 'Pistola final',
     'problema27' => 'Problema de angulación',
     'problema28' => 'No hay reguladores de presión en la pistola final.',
@@ -125,12 +134,12 @@ return [
     'problema55' => 'Manómetro defectuoso',
     'problema56' => 'Vibraciones y ruidos anormales.',
 
-    
+
     'motorAuxiliar' => 'Motor auxiliar',
     'problema57' => 'Desarmado del motor',
     'problema58' => 'Vibraciones y ruidos anormales.',
     'problema59' => 'Fuga de aceite del motor diesel',
-    
+
     'bombaAuxiliar' => 'Bomba auxiliar',
     'problema60' => 'Fugas excesivas en la junta',
     'problema61' => 'Válvula de compuerta defectuosa',
@@ -138,6 +147,7 @@ return [
     'problema63' => 'Sin medidor en la bomba',
     'problema64' => 'Manómetro defectuoso',
     'problema65' => 'Vibraciones y ruidos anormales.',
+    'problema66' => 'Operación adecuada',
 
     'hidraulica' => 'Hidráulica',
     'pressaoCentro' => 'Presión en el centro',
@@ -165,8 +175,8 @@ return [
     'voltar' => 'ESPALDA',
     'numLancesSemBalanco' => 'Número de tramos (sin voladizo)',
 
-
-    'afericao' => 'MEDICIÓN',
+    'afericoes' => 'Mediciones',
+    'afericao' => 'Información de Pivote',
     'lance' => 'Lapso ',
     'numeroTubos' => 'Numero de tubos ',
     'numeroEmissores' => 'Números de salida',
@@ -174,6 +184,7 @@ return [
     'tipoValvula' => 'Tipo de válvula',
     'motorredutor' => 'Caja de cambios',
 
+    'cadastrar_emissores' => 'REGISTRAR EMISORES',
     'emissores' => 'EMISORES',
     'balanco' => 'Equilibrar',
     'emissor' => 'Editor ',
@@ -181,6 +192,7 @@ return [
     'saida2' => 'Salida 2',
     'espacamento' => 'Espaciado',
     'psi' => 'PSI',
+    'defaultSpace' => 'Espacios (Estándar para los Emisores)',
 
 
     'afericoesFazenda' => 'Afecciones agrícolas :fazenda',
@@ -224,12 +236,15 @@ return [
     'afericaoPendente' => 'Hay una medida pendiente en la granja.',
     'continuarAfericao' => 'Continuar medición',
     'realizadaDia' => ' celebrado el día ',
-    
+
 
 
     //Velocidade Aferição
     'velocidadeAfericao' => 'Medida de velocidad',
+    'velocidade100' => 'Velocidad 100%',
     'testeVelo100' => 'Prueba de velocidad (100%)',
+    'cadastro_velocidade_sucesso' => '¡Registro de <b> Medida de velocidad </b> completado con éxito!',
+    'editar_velocidade_sucesso' => '¡Los cambios en <b> Speed ​​Gauge </b> se guardaron correctamente!',
     'distanciaM' => 'Distancia',
     'afericao01' => 'Medición 01',
     'afericao02' => 'Medición 02',
@@ -297,6 +312,7 @@ return [
     //Cadastro Adutora
     'cadastroAdutora' => 'REGISTRO DEL ADDUCTOR',
     'bombeamento' => 'Bombeo',
+    'cadastroItemBombeamento' => 'Registrar artículo de bombeo',
     'tipoInstalacao' => 'Tipo de instalación',
     'direta' => 'Directo',
     'afogada' => 'Ahogado',
@@ -317,7 +333,7 @@ return [
     'tipoCano' => 'Tipo de tubería',
     'diametro' => 'Diámetro',
     'hw' => 'HW',
-    'numeroCanos' => 'Numero de tubos',
+    'numeroCanos' => 'Número de Líneas',
     'comprimento' => 'Longitud',
     'desnivel' => 'Brecha',
     'altitude' => 'Altitud',
@@ -337,7 +353,10 @@ return [
     'numero_canos' => 'Numero de tubos',
 
     //BOMBEAMENTOS
-    'cadastroBombeamento' => 'REGISTRO DE BOMBEO',
+    'bombeamento' => 'Conjunto Motor Bomba',
+    'cadastro_Bombeamento_sucesso' => '¡Registro de <b> Grupo Motobomba </b> completado con éxito!',
+    'editar_Bombeamento_sucesso' => '¡Los cambios en el <b> Conjunto de Motor de la bomba </b> se guardaron correctamente!',
+    'editarBomba' => 'Editar Bomba',
     'materialSuccao' => 'Material de succión',
     'acoSac' => 'AÇO SAC',
     'AZ' => 'AZ',
@@ -358,6 +377,7 @@ return [
     'tensao' => 'Tensión',
     'comprimentoSuccao' => 'Longitud de succión',
     'diametroSuccao' => 'Diámetro de succión',
+    'alturaSuccao' => 'Altura de succión',
     'numeroRotores' => 'Numero de rotores',
     'diametroRotor' => 'Diámetro del rotor',
     'rendimentoBomba' => 'Rendimiento de la bomba',
@@ -374,6 +394,7 @@ return [
     'fase2' => 'Fase 2',
     'fase3' => 'Fase 3',
     'indice_carregamento' => 'Carga pencentual',
+    'bombaInexistente' => '¡Necesitas generar un conjunto de motor de bomba!',
 
     'continuar' => 'Continuar',
     'concluido' => 'Hecho',
@@ -381,6 +402,9 @@ return [
     'bloqueado' => 'Bloqueado',
     'finalizar' => 'Terminar',
     'visualizarMapa' => 'Ver el mapa original',
+    'cadastro_mapaOriginal_sucesso' => '¡Registro del <b> Mapa Original </b> completado con éxito!',
+    'recalculo_mapaOriginal_sucesso' => '<b> Mapa Original </b> recalculado correctamente.',
+    'editar_emissores_mapaOriginal_sucesso' => '¡Cambie <b> Emisores </b> guardados correctamente!',
     'completo' => 'Completa',
     'realizeVelocidadeParaAcessar' => 'Realizar registro de velocidad para acceder a esta función',
     'visualizar' => 'Vista previa',
@@ -391,23 +415,21 @@ return [
     'relatorioVelocidade' => 'Informe de velocidad',
     'fichaTecnica' => 'Ficha Técnica',
 
-
-    'cadastrarAdutora' => 'Registrar aductor',
     'ja_existe_adutora' => '¡Ya existe un registro de aductores para esta medida!',
     'aviso' => 'Advertencia',
     'erro_db' => 'Se ha producido un problema al intentar escribir los datos. Vuelva a intentarlo más tarde.',
     'adutora_vazia' => '¡Agregue al menos 1 extracto para guardar!',
     'erro_processamento' => 'Se produjo un error interno y no pudimos cumplir con la solicitud. ¡Inténtalo de nuevo más tarde!',
-    'cadastro_adutora_realizado_sucesso' => '¡Registro de aductores completado con éxito!',
+    'cadastro_adutora_realizado_sucesso' => '¡Registro de <b> Aductor </b> completado con éxito!',
+    'edicao_adutora_realizado_sucesso' => '¡Los cambios en <b> Aductor </b> se guardaron correctamente!',
     'edicaoSucesso' => '¡Cambios aplicados con éxito!',
     'erroAdutora' => 'No pudimos cumplir con su solicitud.',    
     'selecioneFazendaAfericao' => '¡Esta medida no pertenece a la granja seleccionada!',
     'graficoUniformidade' => "Tabla de uniformidad",
     'atualizarMapa' => 'Actualizar mapa',
-    'editarBombeamento' => 'EDITAR BOMBEO',
-    'statusAfericao' => 'ESTADO DE EXPLORACIÓN',
+    'editarBombeamento' => 'Editar Bombeo',
+    'statusAfericao' => 'Estado de Medición',
 
-    'statusAfericao' => 'PERSONAL DE AFERICION',
     'titulo_alerta_nome_pivo' => '¡Este pivote ya tiene medidas!',
     'texto_alerta_nome_pivo' => 'Si continúa, la medición anterior de este pivote se archivará.',
 
@@ -426,7 +448,7 @@ return [
     'gerarMapa' => 'Generar Mapa',
     'continuarCadastro' => 'Continuar Registro',
     'problemaPressaoSaidaNegativa' => 'La presión calculada devolvió un valor negativo, revise los datos ingresados e intente nuevamente.',
-    
+
     'posPivo' => 'Pos. de Pivote',
     'impressoes' => 'impresiones',
 

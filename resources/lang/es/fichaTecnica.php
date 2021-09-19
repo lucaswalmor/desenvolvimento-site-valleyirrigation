@@ -1,6 +1,15 @@
 <?php
 
 return [
+    'fichaTecnica' => 'Ficha Técnica',
+    'fichaBocais' => 'Lista de boquillas',
+    'bocaisComprar' => 'Bocais a Comprar',
+    'totalAcomprar' => 'Total a Comprar',
+    'bocal_1' => 'Bocal 1',
+    'bocal_2' => 'Bocal 2',
+    'funcionamento_pivo' => 'Operación de pivote',
+    'editar_ficha_tecnica_sucesso' => '¡Los cambios en los <b> Datos Técnicos </b> se guardaron correctamente!',
+    'mapaBocal' => 'Mapa de Boquillas Original',
     'ftPivoCentralDiagnostico' => 'HOJA DE DATOS PIVOTE CENTRAL - DIAGNÓSTICO',
     'proprietario' => 'Propietario',
     'propriedade' => 'Propiedad',
@@ -40,6 +49,9 @@ return [
     'comprimento' => 'Longitud',
     'hf' => 'HF',
     'pressao' => 'Presión',
+    'pressaoInicial' => 'Presión Inicial',
+    'pressaoFinal' => 'Presión Final',
+    'perdaPressao' => 'Perdida de Presión',
     'velocidade' => 'Velocidad',
     'alturaMonometrica' => 'Altura Monometrica',
     'conjuntoMotoBomba' => 'Conjunto de bomba',
@@ -54,7 +66,7 @@ return [
     'pressaoSaidaBomba' => 'Presión de salida de la bomba',
     'shutOff' => 'Shut Off',
     'numBombas' => 'Nº de bombas',
-    'posicionamentoBombeamento' => 'Tipo de bombeo',
+    'posicionamentoBombeamento' => 'Tipo bombeo',
     'tipoInstalacao' => 'Tipo de instalación',
     'captacao' => 'Recaudación de fondos',
     'coordenadasDecimais' => 'Coordenadas (decimales)',
@@ -62,7 +74,7 @@ return [
     'nao' => 'No',
     'bombeamento' => 'Bombeo',
     'comprimentoSuccao' => 'Longitud de succión',
-    'diametroSuccao' => 'ϕ de succión',
+    'diametroSuccao' => 'Diam. succión',
     'materialSuccao' => 'Mat. de succión',
     'alturaSuccao' => 'Altura de succión',
     'marca' => 'Marca',
@@ -138,4 +150,17 @@ return [
     'conclusao18' => 'Con la finalización de los ajustes recomendados, el equipo funcionará con el índice de uniformidad, presurización y carga adecuado. Por lo tanto, todos los ajustes deben seguir estrictamente la recomendación de los Consultores Irriger. El intercambio de boquillas debe seguir el orden exacto, de acuerdo con la lista adjunta. Si hay alguna duda al respecto, comuníquese con nuestro equipo para instruir al equipo de la granja en este proceso. Después de hacer los ajustes, le pedimos que se comunique con nuestro Consultor responsable para tener una verificación final del proceso.',
     'texto_uniformidade_7' => 'Después de los ajustes, la cuchilla de pivote central estará :lamina mm/ :horas h ',
 
+    'bocais' => 'Boqui.',
+    'espacamento' => 'Espa.',
+    'valvula' => 'Valv.',
+    'numTubos' => 'Nº Tubos: ',
+    'numerosEmissores' => 'Nº',
+
+    'atualizaou_fichatecnica' => 'Se generará una nueva Ficha Técnica.',
+
+    'pivo_central' => 'Pivote Central',
+    'pressao_centro' => 'Presión en el Centro',
+    'area_efetiva' => 'Area efectiva',
+    'tudo_novo' => '¿Todo nuevo?',
+    'total_bocais' => 'Boquillas totales'
 ];

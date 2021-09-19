@@ -14,6 +14,7 @@ return [
     'criar'=> 'Criar',
     'remover'=> 'Remover',
     'gera_bombas' => 'Gerar bombas',
+    'nova_bomba' => 'Nova Bomba',
 
     //Medidas, abreviações, valores, unidades e etc...
     'ou' => 'ou',

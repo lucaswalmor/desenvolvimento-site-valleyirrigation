@@ -20,8 +20,8 @@ return [
     
     'sucesso'=>'Sucesso',
     'erro'=>'Ops, parece que algo deu errado',
-    'cadastro_sucesso'=>'Fazenda cadastrada com sucesso !',
-    'atualizada_sucesso'=>'Fazenda Atualizada com sucesso !',
+    'cadastro_fazenda_sucesso' => 'Cadastro de <b>Fazenda</b> realizado com sucesso!',
+    'editar_fazenda_sucesso' => 'Alterações na <b>Fazenda</b> salvas com sucesso!',
     'removida_sucesso'=>'Fazenda removida com sucesso !',
     'erro_solicitacao'=>'Não foi possivel processar sua solicitação !',
 
@@ -36,7 +36,8 @@ return [
     'aviso'=>'Aviso',
 
     'fazendas'=>'Fazendas',
-    'fazenda'=>'Fazendas',
+    'fazendasDisponiveis' => 'FAZENDAS DISPONÍVEIS',
+    'pesquisarFazenda' => 'Pesquise uma fazenda',
 
     'assistente_removido_sucesso'=>'Assistente removido da fazenda com sucesso !',
 
