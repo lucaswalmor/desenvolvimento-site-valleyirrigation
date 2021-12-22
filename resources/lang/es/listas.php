@@ -39,7 +39,6 @@ return [
     '8.5/8' => '8.5/8"',
     '6.5/8' => '6.5/8"',
     '5' => '5"',
-
     'padrao' => 'Standard',
     'medio' => 'Medio',
     'longo' => 'Largo',
@@ -73,6 +72,33 @@ return [
     'grupo_gerador' => 'Generador Listo',
     'montagem' => 'Montaje',
     'solar' => 'Solar',
+
+    // ASPERSORES
+    'senninger' => 'Senninger',
+    'nelson' => 'Nelson',
+    'komet' => 'Komet',
+    'super_spray' => 'Super Spray',
+    'lnd' => 'LND',
+    'lefa' => 'LEFA',
+    'I-WOB' => 'I-WOB',
+    'spinner' => 'Spinner',
+    'trashbuster' => 'Trashbuster',
+    'orbitor' => 'Orbitor',
+    'twister' => 'Twister',
+    'rotator' => 'Rotator',
+    'azul' => 'Azul',
+    'preto' => 'Negro',
+    '20PSI' => '20 PSI',
+    '15PSI' => '15 PSI',
+    '10PSI' => '10 PSI',
+    '6PSI' => '6 PSI',
+    'tubo_descida_aco' => 'Tubo de descenso de acero',
+    'tubo_descida_flexivel' => 'Tubo de descenso flexible',
+    'trilha_seca' => 'Sendero Seco',
+    'komet_101sr' => 'Komet - 101SR',
+    'nelson_R75' => 'Nelson - R75',
+    'nelson_R55' => 'Nelson - R55',
+    'megabloc' => 'MEGABLOC',
     
 
 ];

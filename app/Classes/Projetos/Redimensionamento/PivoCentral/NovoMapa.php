@@ -31,7 +31,7 @@ class NovoMapa extends Model
         foreach($this->getBocaisDB() as $bocal){
             if(strtoupper($bocal['fabricante']) == strtoupper($fabricante)){
                 
-                if( number_format($vazao_requerida,4) <= number_format($bocal['intervalo_trabalho'],4)){
+                if( number_format($vazao_requerida, 4) <= number_format($bocal['intervalo_trabalho'], 4)){
                     if($bocal['nome'] < 6 && strtoupper($bocal['fabricante']) == ('I-WOB' || 'I-WOB UP3')){
                         return 6.0;
                     }

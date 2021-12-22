@@ -247,31 +247,6 @@ label.error strong {
     align-items: end;
 }
 
-
-/* TOOLTIPS */
-
-.tooltip-inner {
-    background-color: transparent;
-    color: #162E3C;
-    padding: 10px;
-}
-
-.bs-tooltip-auto[x-placement^=bottom] .arrow::before,
-.bs-tooltip-bottom .arrow::before,
-.bs-tooltip-auto[x-placement^=left] .arrow::before,
-.bs-tooltip-left .arrow::before,
-.bs-tooltip-auto[x-placement^=right] .arrow::before,
-.bs-tooltip-right .arrow::before {
-    border-bottom-color: transparent;
-    border-left-color: transparent;
-    border-right-color: transparent;
-}
-
-.bs-tooltip-auto[x-placement^=left],
-.bs-tooltip-left {
-    margin-top: -15px;
-}
-
 /* BOOTSTRAP CSS */
 
 .form-row {

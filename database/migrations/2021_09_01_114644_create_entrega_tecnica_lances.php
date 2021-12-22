@@ -17,9 +17,11 @@ class CreateEntregaTecnicaLances extends Migration
             $table->bigInteger('id_entrega_tecnica')->foreing('id_entrega_tecnica')->references('id')->on('entrega_tecnica');
             $table->bigInteger('id_lance');
             $table->string('diametro_tubo', 10)->nullable();
-            $table->integer('quantidade_lances')->nullable();
             $table->integer('quantidade_tubo')->nullable();
+            $table->integer('numero_serie')->nullable();
             $table->double('comprimento_lance', 5,2)->nullable();
+            $table->string('motorredutor_marca', 30)->nullable();
+            $table->string('motorredutor_potencia')->nullable();
             $table->softDeletes();
             $table->timestamps();
             $table->primary(['id_entrega_tecnica', 'id_lance']);

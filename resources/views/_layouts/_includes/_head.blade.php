@@ -1,26 +1,27 @@
+{{-- HEAD --}}
 <meta charset="utf-8">
 <meta name="language" content="pt-BR">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="theme-color" content="#013856">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="csrf-token" content="{{ csrf_token() }}">
-
 <title>TELO 5</title>
-<link rel="shortcut icon" href="http://localhost/TELO5/public/img/favicon/irriger.png" type="image/x-icon">
-<link rel="icon" href="/favicon.ico" type="image/x-icon">
-{{-- <link rel="shortcut icon" href="https://qa.scheduling.valleyirrigation.com/CSS/Valmont//Imagens/favicon.ico" /> --}}
+<link rel="shortcut icon" href="{{ asset('img/favicon/irriger.png') }}" type="image/x-icon">
+
+{{-- CDN FONT ROBOTO --}}
 <link href='https://fonts.googleapis.com/css?family=Roboto:100,400,700' rel='stylesheet' type='text/css'>
 <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet" type='text/css'>
 
+{{-- CDN FONT AWESOME --}}
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
 
-<!-- ------------------------------------------------------------------------------ -->
-<!-- JS : JQuery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<!-- ------------------------------------------------------------------------------ -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+{{-- CDN BOOTSTRAP 4.6.0 --}}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
 
+{{-- MULTI SELECT --}}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+{{-- LINK DOS CSS --}}
 <link rel="stylesheet" type="text/css" href="{{ asset('css/footer.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/sistema.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/geral.css') }}">
@@ -31,39 +32,19 @@
 <link rel="stylesheet" type="text/css" href="{{ asset('css/mobile.css') }}">
 <link rel="stylesheet" type="text/css" href="{{ asset('css/entregaTecnica.css') }}">
 
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.9/dist/css/bootstrap-select.min.css">
-<link href="//rawgithub.com/indrimuska/jquery-editable-select/master/dist/jquery-editable-select.min.css"
-    rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highcharts/7.1.2/css/highcharts.css"
-    integrity="sha256-4bpG/e3EbIONg49CHrSw5c4jzs+8fb4eQbTJTibHWdw=" crossorigin="anonymous" />
+{{-- SCRIPT DE GRÁFICOS DO MAPA ORIGINAL --}}
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+<script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
 
-<!-- Plugins -->
-<link rel="stylesheet" href="{{ asset('Plugins/ColorBox/ColorBox.css') }}">
-<link rel="stylesheet" href="{{ asset('Plugins/FancyBox/FancyBox.css') }}">
-<link rel="stylesheet" href="{{ asset('Plugins/JQueryUI/JQueryUI.css') }}">
-<link rel="stylesheet" href="{{ asset('Plugins/ColorPicker/ColorPicker.css') }}">
-<link rel="stylesheet" href="{{ asset('Plugins/Bootstrap/Slider/Bootstrap-Slider.css') }}">
-<meta name="csrf-token" content="{{ csrf_token() }}">
+{{-- SCRIPTS --}}
+<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/diversos.js') }}"></script>
 
-<!-- Plugin Slick -->
-<link href="{{ asset('Plugins/Slick/Slick.css" rel="stylesheet') }}">
-<link href="{{ asset('Plugins/Slick/Slick-Theme.css" rel="stylesheet') }}">
+{{-- JQUERY SCRIPTS --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.css"
-    integrity="sha512-C7hOmCgGzihKXzyPU/z4nv97W0d9bv4ALuuEbSf6hm93myico9qa0hv4dODThvCsqQUmKmLcJmlpRmCaApr83g=="
-    crossorigin="anonymous" />
-
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css"
-integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg=" crossorigin="anonymous" />
-
-<script>
-    $(document).ready(function () {
-        $('select').selectize({
-            sortField: 'text'
-        });
-    });
-</script>
+{{-- BOOTSTRAP SCRIPTS --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>

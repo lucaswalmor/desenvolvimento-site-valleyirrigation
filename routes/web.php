@@ -1,8 +1,12 @@
 <?php
 
+use App\Classes\EntregaTecnica\EntregaTecnica;
+use Illuminate\Http\Request;
+
 if (version_compare(PHP_VERSION, '7.2.0', '>=')) {
     error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
 }
+
 
 Auth::routes(['verify' => true]);
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -77,35 +81,81 @@ Route::group(['middleware' => 'auth', 'middleware' => 'verified'], function () {
         /////////////////////////////////////// TECHNICAL DELIVERY ROUTE /////////////////////////////////////////
             // gerenciar
             Route::get('/technical_delivery', ['as' => 'manage_technical_delivery', 'uses' => 'EntregaTecnica\EntregaTecnicaController@manageTechnicalDelivery']);
+
+            // editar entrega tecnica
+            Route::get('/technical_delivery/edit_technical_delivery/{id}', ['as' => 'edit_technical_delivery', 'uses' => 'EntregaTecnica\EntregaTecnicaController@editTechnicalDelivery']);
+            
+            // criar entrega tecnica
+            Route::post('/technical_delivery/save_technical_delivery', ['as' => 'save_technical_delivery', 'uses' => 'EntregaTecnica\EntregaTecnicaController@saveTechnicalDelivery']);
+            Route::post('/technical_delivery/save_technical_delivery_check', ['as' => 'check_technical_delivery', 'uses' => 'EntregaTecnica\EntregaTecnicaController@VerifyDadosTechnicalDelivery']);
             
             // criar verificacao
-            Route::get('/technical_delivery/create_technical_delivery_verification', ['as' => 'create_verification_technical_delivery', 'uses' => 'EntregaTecnica\EntregaTecnicaController@createVerificationTechnicalDelivery']);
-            Route::post('/technical_delivery/save_technical_delivery_verification', ['as' => 'save_verification_technical_delivery', 'uses' => 'EntregaTecnica\EntregaTecnicaController@saveVerificationTechnicalDelivery']);
+            Route::get('/technical_delivery/create_technical_delivery_telemetry/{id}', ['as' => 'create_telemetry_technical_delivery', 'uses' => 'EntregaTecnica\EntregaTecnicaController@createTelemetryTechnicalDelivery']);
+            Route::post('/technical_delivery/save_technical_delivery_telemetry', ['as' => 'save_telemetry_technical_delivery', 'uses' => 'EntregaTecnica\EntregaTecnicaController@saveTelemetryTechnicalDelivery']);
             
-            // criar caracterizacao
-            Route::get('/technical_delivery/create_technical_delivery/{id}', ['as' => 'create_technical_delivery', 'uses' => 'EntregaTecnica\EntregaTecnicaController@createTechnicalDelivery']);
-            Route::post('/technical_delivery/save_technical_delivery', ['as' => 'save_technical_delivery', 'uses' => 'EntregaTecnica\EntregaTecnicaController@saveTechnicalDelivery']);
+            // criar parte aerea
+            Route::get('/technical_delivery/create_technical_delivery_aerial_part/{id}', ['as' => 'create_aerial_part_technical_delivery', 'uses' => 'EntregaTecnica\EntregaTecnicaController@createTechnicalDeliveryAerialPart']);
+            Route::post('/technical_delivery/save_technical_delivery_aerial_part', ['as' => 'save_technical_delivery_aerial_part', 'uses' => 'EntregaTecnica\EntregaTecnicaController@saveTechnicalDeliveryAerialPart']);
+            
+            // criar lances
+            Route::get('/technical_delivery/create_technical_delivery_span/{id}', ['as' => 'create_technical_delivery_span', 'uses' => 'EntregaTecnica\EntregaTecnicaController@createTechnicalDeliverySpan']);
+            Route::post('/technical_delivery/save_technical_delivery_span', ['as' => 'save_technical_delivery_span', 'uses' => 'EntregaTecnica\EntregaTecnicaController@saveTechnicalDeliverySpan']);
             
             // criar pressurização
             Route::get('/technical_delivery/create_technical_delivery_pressurization/{id}', ['as' => 'create_technical_delivery_pressurization', 'uses' => 'EntregaTecnica\EntregaTecnicaController@createPressurizationTechnicalDelivery']);
             Route::post('/technical_delivery/save_technical_delivery_pressurization', ['as' => 'save_technical_delivery_pressurization', 'uses' => 'EntregaTecnica\EntregaTecnicaController@savePressurizationTechnicalDelivery']);
             
+            // criar bomba
+            Route::get('/technical_delivery/create_technical_delivery_pump/{id}', ['as' => 'create_technical_delivery_pump', 'uses' => 'EntregaTecnica\EntregaTecnicaController@createPumpTechnicalDelivery']);
+            Route::post('/technical_delivery/save_technical_delivery_pump', ['as' => 'save_technical_delivery_pump', 'uses' => 'EntregaTecnica\EntregaTecnicaController@savePumpTechnicalDelivery']);
+            Route::get('/technical_delivery/edit_technical_delivery_pump/{id}', ['as' => 'edit_technical_delivery_pump', 'uses' => 'EntregaTecnica\EntregaTecnicaController@editpumpTechnicalDelivery']);
+            Route::post('/technical_delivery/update_technical_delivery_pump', ['as' => 'update_technical_delivery_pump', 'uses' => 'EntregaTecnica\EntregaTecnicaController@updatePumpTechnicalDelivery']);
+            
             // criar chave de partida 
             Route::get('/technical_delivery/create_technical_delivery_starter_key/{id}', ['as' => 'create_technical_delivery_starter_key', 'uses' => 'EntregaTecnica\EntregaTecnicaController@createStarterKeyTechnicalDelivery']);
             Route::post('/technical_delivery/save_technical_delivery_starter_key', ['as' => 'save_technical_delivery_starter_key', 'uses' => 'EntregaTecnica\EntregaTecnicaController@saveStarterKeyTechnicalDelivery']);
+            
+            // criar aspersores
+            Route::get('/technical_delivery/create_technical_delivery_sprinklers/{id}', ['as' => 'create_technical_delivery_sprinklers', 'uses' => 'EntregaTecnica\EntregaTecnicaController@createSprinklersTechnicalDelivery']);
+            Route::post('/technical_delivery/save_technical_delivery_sprinklers', ['as' => 'save_technical_delivery_sprinklers', 'uses' => 'EntregaTecnica\EntregaTecnicaController@saveSprinklersTechnicalDelivery']);
+            
+            // criar medições de sucção
+            Route::get('/technical_delivery/create_technical_delivery_suction/{id}', ['as' => 'create_technical_delivery_suction', 'uses' => 'EntregaTecnica\EntregaTecnicaController@createSuctionMeasurementsTechnicalDelivery']);
+            Route::post('/technical_delivery/save_technical_delivery_suction', ['as' => 'save_technical_delivery_suction', 'uses' => 'EntregaTecnica\EntregaTecnicaController@saveSuctionMeasurementsTechnicalDelivery']);
+            
+            // criar medições de ligação de pressão
+            Route::get('/technical_delivery/create_technical_delivery_pressure_connection/{id}', ['as' => 'create_technical_delivery_pressure_connection', 'uses' => 'EntregaTecnica\EntregaTecnicaController@createPressureConnectionMeasurementsTechnicalDelivery']);
+            Route::post('/technical_delivery/save_technical_delivery_pressure_connection', ['as' => 'save_technical_delivery_pressure_connection', 'uses' => 'EntregaTecnica\EntregaTecnicaController@savePressureConnectionMeasurementsTechnicalDelivery']);
+            
+            // criar medições de adutora
+            Route::get('/technical_delivery/create_technical_delivery_water_supply/{id}', ['as' => 'create_technical_delivery_water_supply', 'uses' => 'EntregaTecnica\EntregaTecnicaController@createWaterSupplyMeasurementsTechnicalDelivery']);
+            Route::post('/technical_delivery/save_technical_delivery_water_supply', ['as' => 'save_technical_delivery_water_supply', 'uses' => 'EntregaTecnica\EntregaTecnicaController@saveWaterSupplyMeasurementsTechnicalDelivery']);
 
-            // histórico
-            Route::get('/technical_delivery/historic_technical_delivery', ['as' => 'historic_technical_delivery', 'uses' => 'EntregaTecnica\EntregaTecnicaController@historicTechnicalDelivery']);
-            Route::delete('/technical_delivery/delete_technical_delivery/{id}', ['as' => 'delete_technical_delivery', 'uses' => 'EntregaTecnica\EntregaTecnicaController@delete']);
-            Route::post('/technical_delivery/filter_historic', ['as' => 'filter_historic', 'uses' => 'EntregaTecnica\EntregaTecnicaController@searchHistoric']);
-            Route::get('/technical_delivery/view_technical_delivery/{id}', ['as' => 'view_technical_delivery', 'uses' => 'EntregaTecnica\EntregaTecnicaController@viewTechnicalDelivery']);
+            // criar testes
+            Route::post('/technical_delivery/save_technical_delivery_test_eletric', ['as' => 'save_technical_delivery_test_eletric', 'uses' => 'EntregaTecnica\EntregaTecnicaController@saveElectricalTestTechnicalDelivery']);
+            
+            // criar testes
+            Route::get('/technical_delivery/create_technical_delivery_tests/{id}', ['as' => 'create_technical_delivery_tests', 'uses' => 'EntregaTecnica\EntregaTecnicaController@createTestsTechnicalDelivery']);
+            Route::post('/technical_delivery/save_technical_delivery_tests', ['as' => 'save_technical_delivery_tests', 'uses' => 'EntregaTecnica\EntregaTecnicaController@saveTestsTechnicalDelivery']);
+        
+            Route::post('/technical_delivery/save_img_technical_delivery_test', ['as' => 'save_img_technical_delivery_test', 'uses' => 'EntregaTecnica\EntregaTecnicaController@imgTestTechnicalDelivery']);
 
-            Route::post('/technical_delivery/update_technical_delivery', ['as' => 'update_technical_delivery', 'uses' => 'EntregaTecnica\EntregaTecnicaController@updatetechnical_delivery']);
-           
-            // rotas de busca no ajax para preencher select e inputs
-            Route::post('/technical_delivery/findFarms_technical_delivery', ['as' => 'findFarms_technical_delivery', 'uses' => 'EntregaTecnica\EntregaTecnicaController@findFarms']);
-            Route::post('/technical_delivery/findCity_technical_delivery', ['as' => 'findCity_technical_delivery', 'uses' => 'EntregaTecnica\EntregaTecnicaController@findCityFarm']);
-        //////////////////////////////////////////////////////////////////////////////////////////////////////////
+            // ficha tecnica
+            Route::get('/technical_delivery/datasheet_technical_delivery/{id}', ['as' => 'datasheet_technical_delivery', 'uses' => 'EntregaTecnica\EntregaTecnicaController@datasheetTechnicalDelivery']);
+            
+            // enviar ficha tecnica
+            Route::get('/technical_delivery/send_technical_delivery/{id}', ['as' => 'send_technical_delivery', 'uses' => 'EntregaTecnica\EntregaTecnicaController@sendTechnicalDelivery']);
+            Route::post('/technical_delivery/send_complete_technical_delivery', ['as' => 'send_complete_technical_delivery', 'uses' => 'EntregaTecnica\EntregaTecnicaController@sendCompleteTechnicalDelivery']);
+
+            // análise entrega técnica
+            Route::get('/technical_delivery/manage_analysis_technical_delivery', ['as' => 'manage_analysis_technical_delivery', 'uses' => 'EntregaTecnica\EntregaTecnicaController@manageAnalysisTechnicalDelivery']);
+            Route::get('/technical_delivery/analysis_technical_delivery/{id}', ['as' => 'analysis_technical_delivery', 'uses' => 'EntregaTecnica\EntregaTecnicaController@analysisTechnicalDelivery']);
+            Route::post('/technical_delivery/send_analisy_technical_delivery', ['as' => 'send_analisy_technical_delivery', 'uses' => 'EntregaTecnica\EntregaTecnicaController@sendAnalisyTechnicalDelivery']);
+
+            // search
+            Route::post('/technical_delivery/filter', ['as' => 'technical_delivery_filter', 'uses' => 'EntregaTecnica\EntregaTecnicaController@searchTechnilcalDelivery']);
+
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////
     });
 
     /*

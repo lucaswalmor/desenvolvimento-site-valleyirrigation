@@ -35,17 +35,8 @@ const store = new Vuex.Store({
     }
 });
 
-
+Vue.component('vue-multiselect', require('./components/multiselect.vue').default);
 Vue.component('tabela-lista', require('./components/TabelaLista.vue').default);
-Vue.component('modallink', require('./components/Modal/ModalLink.vue').default);
-Vue.component('modal', require('./components/Modal/Modal.vue').default);
-Vue.component('modal-selecionar-fazenda', require('./components/Modal/ModalSelecionarFazenda.vue').default);
-Vue.component('example', require('./components/ExampleComponent.vue').default);
-Vue.component('formulario', require('./components/Formulario.vue').default);
-Vue.component('filtro', require('./components/FiltroComponent.vue').default);
-Vue.component('caixa', require('./components/Caixa.vue').default);
-Vue.component('linha-emissor', require('./components/redimensionamento/LinhaCadastroEmissor.vue').default);
-Vue.component('painel', require('./components/painel.vue').default);
 
 
 

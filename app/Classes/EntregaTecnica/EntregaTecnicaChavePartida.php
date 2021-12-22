@@ -12,6 +12,6 @@ class EntregaTecnicaChavePartida extends Model
     use SoftDeletes;
     protected $dates =  ['deleted_at'];
     protected $fillable = [
-        'id_chave_partida', 'id_entrega_tecnica', 'marca', 'acionamento', 'regulagem_reles', 'numero_serie'
+        'id_chave_partida', 'id_entrega_tecnica', 'marca', 'acionamento', 'regulagem_reles', 'numero_serie', 'id_bomba', 'id_motor'
     ];
 }

@@ -38,6 +38,7 @@ return [
     'editar' => 'Editar',
     'gerenciar' => 'Gerenciar',
     'salvar' => 'Salvar',
+    'confirmar' => 'Confirmar',
 
     'calc' => 'Calculate',
     'checkInput' => 'Preencha os Campos Corretamente para Realização dos Cálculos!',

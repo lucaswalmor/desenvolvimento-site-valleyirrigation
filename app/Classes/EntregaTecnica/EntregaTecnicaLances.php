@@ -12,6 +12,7 @@ class EntregaTecnicaLances extends Model
     use SoftDeletes;
     protected $dates =  ['deleted_at'];
     protected $fillable = [
-        'id_entrega_tecnica', 'id_lance', 'diametro_tubo',  'quantidade_lances', 'quantidade_tubo', 'comprimento_lance'
+        'id_entrega_tecnica', 'id_lance', 'diametro_tubo',  'quantidade_tubo', 
+        'comprimento_lance', 'motorredutor_potencia', 'motorredutor_marca', 'numero_serie'
     ];
 }

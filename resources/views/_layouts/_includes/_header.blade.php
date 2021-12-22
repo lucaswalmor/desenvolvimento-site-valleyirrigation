@@ -25,7 +25,6 @@
                             <input id="sub-group-1" type="checkbox" hidden />
                             <label for="sub-group-1">
                                 <a href="{{ route('gauging_manager') }}" class='nav-link'>
-                                    <i class='fa fa-fw fa-money'></i>
                                     @lang('afericao.pivoCentral')
                                 </a>
                             </label>
@@ -78,10 +77,23 @@
 
                     {{-- ENTREGA TÉCNICA --}}
 
-                    <input id="group-4" type="checkbox" hidden />
+                    <input id="group-3" type="checkbox" hidden />
                     
-                    <a href="{{ route('manage_technical_delivery') }}" class="nav-link entrega-tecnica-link">@lang('entregaTecnica.entregaTecnica')</a>
+                    <a href="{{ route('manage_technical_delivery') }}" class="nav-link entrega-tecnica-link sub_grupo">
+                        @lang('entregaTecnica.entregaTecnica')
+                    </a>
 
+                    {{-- ANÁLISE ENTREGA TÉCNICA --}}
+                    <input id="group-4" type="checkbox" hidden />
+                    <a href="{{ route('manage_analysis_technical_delivery') }}" class="nav-link entrega-tecnica-link sub_grupo">
+                        </span>@lang('entregaTecnica.analise_entregaTecnica')
+                    </a>
+
+                    {{-- DOWNLOAD --}}
+                    {{-- <input id="group-4" type="checkbox" hidden />
+                    <a href="{{ route('manage_technical_delivery') }}" class="nav-link entrega-tecnica-link">
+                        </span>@lang('entregaTecnica.biblioteca')
+                    </a> --}}
 
                     {{-- GARANTIAS --}}
 

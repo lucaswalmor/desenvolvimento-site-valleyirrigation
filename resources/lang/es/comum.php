@@ -37,6 +37,7 @@ return [
     'editar' => 'Editar',
     'gerenciar' => 'Administrar',
     'salvar' => 'Guardar',
+    'confirmar' => 'Confirmar',
 
     'calc' => 'Calcular',
     'checkInput' => 'Rellene los campos correctamente para realizar los cálculos.',

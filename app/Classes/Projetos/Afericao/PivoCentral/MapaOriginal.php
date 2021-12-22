@@ -80,22 +80,19 @@ class MapaOriginal extends Model
             'emissores.saida_1 as bocal_1', 'emissores.saida_2 as bocal_2', 'emissores.emissor as fabricante', 'emissores.espacamento as espacamento', 'emissores.numero as numero',
             'emissores.diametro', 'emissores.psi as valvulas_reguladoras_psi', 'emissores.tipo_valvula as valvulas_reguladoras_tipo', 'emissores.id as id_emissor',
             'L.numero_lance as lance', 'B1.vazao as vazao_1', 'B2.vazao as vazao_2'
-        )->
-        join('lances as L', 'emissores.id_lance', 'L.id')->
-        leftJoin('bocais as B1', function($join)
+        )->join('lances as L', 'emissores.id_lance', 'L.id')
+        ->leftJoin('bocais as B1', function($join)
         {
             $join->on('emissores.saida_1', '=', 'B1.nome');
-            $join->on('emissores.emissor', '=', 'B1.fabricante');
-        })->
-        leftJoin('bocais as B2', function($join)
+            // $join->on('emissores.emissor', '=', 'B1.fabricante');
+            $join->on('emissores.emissor', '=', 'B1.modelo');
+        })->leftJoin('bocais as B2', function($join)
         {
             $join->on('emissores.saida_2', '=', 'B2.nome');
-            $join->on('emissores.emissor', '=', 'B2.fabricante');
-        })->
-        where('L.id_afericao', $id_afericao)->orderBy('L.numero_lance', 'asc')->orderBy('emissores.numero', 'asc')->
-        groupBy('emissores.id')->
-        get();
-
+            // $join->on('emissores.emissor', '=', 'B2.fabricante');
+            $join->on('emissores.emissor', '=', 'B2.modelo');
+        })->where('L.id_afericao', $id_afericao)->orderBy('L.numero_lance', 'asc')->orderBy('emissores.numero', 'asc')->
+        groupBy('emissores.id')->get();
 
         $entrada['desnivel_total'] = $entrada['altitude_mais_alto'] - $entrada['altitude_centro'];
 

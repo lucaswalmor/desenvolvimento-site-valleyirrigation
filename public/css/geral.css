@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+
 body {
     font-family: 'Roboto Condensed', sans-serif !important;
 }
@@ -12,4 +13,66 @@ body h1 {
 
 form div input {
     display: inline-flex;
+}
+
+/* TOOLTIP BOOTSTRAP */
+.tooltip-inner {
+    background-color: transparent;
+    color: #003A5D;
+}
+
+.tooltip.bs-tooltip-right .arrow:before {
+    border-right-color: transparent !important;
+}
+
+.tooltip.bs-tooltip-left .arrow:before {
+    border-left-color: transparent !important;
+}
+
+.tooltip.bs-tooltip-bottom .arrow:before {
+    border-bottom-color: transparent !important;
+}
+
+.tooltip.bs-tooltip-top .arrow:before {
+    border-top-color: transparent !important;
+}
+
+/* CUSTOM TOOLTIP */
+.tooltip-et {
+    position:relative;
+}
+
+.tooltip-et:after {
+    background-color:#333;
+    color: white;
+    box-sizing:border-box;
+    content: attr(data-tooltip);
+    display:none;
+    padding: 5px 10px;
+    position: absolute;
+    font-family: 'Roboto Condensed', sans-serif !important;
+    font-weight: 100;
+    left: -100px;
+    bottom: -35px;
+    width: 200px;
+    z-index: 3;
+    font-size: 10px;
+}
+
+.tooltip-adutora:after {
+    left: -120px !important;
+}
+
+.tooltip-testes:after {
+    top: 25px;
+    left: -80px !important;
+}
+
+.tooltip-et:hover:after {
+    display:block;
+}
+
+.tooltip-et-testes:hover:after {
+    margin-bottom: 10px;
+    display:block;
 }

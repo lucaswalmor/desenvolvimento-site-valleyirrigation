@@ -19,6 +19,7 @@ return [
     //Medidas, abreviações, valores, unidades e etc...
     'ou' => 'ou',
     'porcentagem' => ' (%)',
+    '(pol)' => ' (pol)',
     '(ha)' => ' (ha)',
     '(m3h)' => ' (m³/h)',
     '(m/h)' => ' (m/h)',
@@ -29,6 +30,7 @@ return [
     '(graus)' => ' (Graus)',
     '(mm)' => ' (mm)',
     'kwh/mm' => 'kWh/mm',
+    '(kgf/cm²)' => '(kgf/cm²)',
     '($/kWh)' => ' ($/kWh)',
     '($/L)' => ' ($/L)',
     '(R$/ha)' => ' (R$/ha)',

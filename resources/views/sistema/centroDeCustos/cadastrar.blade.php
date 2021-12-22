@@ -74,6 +74,7 @@
 @endsection
 
 @section('scripts')
+<script>$('#picker').selectpicker();</script>
 
     {{-- SALVAR E VALIDAR CAMPOS VAZIOS --}}
     <script src="http://jqueryvalidation.org/files/dist/jquery.validate.js"></script>

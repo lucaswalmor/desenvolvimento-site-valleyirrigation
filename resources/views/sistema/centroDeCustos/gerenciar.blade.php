@@ -93,11 +93,6 @@
             </tfoot>
         </table>
     </div>
-    <div class="d-flex justify-content-center mb-5">
-        {{ $cdcs->links() }}
-    </div>
-
-
 @endsection
 
 @section('scripts')

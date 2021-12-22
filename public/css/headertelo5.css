@@ -458,3 +458,7 @@ label>span {
     border: none;
 }
 
+.sub_grupo {
+    height: 100%;
+    border-bottom: 1px solid #005C99;
+}

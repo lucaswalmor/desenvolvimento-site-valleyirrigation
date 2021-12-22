@@ -1,6 +1,5 @@
 <html lang="{{ app()->getLocale() }}">
 @include('_layouts._includes._head')
-@include('_layouts._includes._scripts')
 
 <head>
     @yield('head')

@@ -36,6 +36,7 @@ return [
    'editar' => 'Edit',
    'gerenciar' => 'Manager',
     'salvar' => 'Save',
+    'confirmar' => 'Confirm',
 
     'calc' => 'Calcular',
     'checkInput' => 'Fill out the fields correctly to perform the calculations!',

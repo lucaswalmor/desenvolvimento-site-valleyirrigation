@@ -130,10 +130,10 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('unidadesAcoes.sair')</button>
                     <span slot="botoes"> <button type="submit" id="botaoEnviar" disabled form="formulario_enviar"
                             class="btn btn-outline-primary"><i
-                                class="fa fa-fw fa-plus-circle"></i>@lang('unidadesAcoes.criar') </button>
+                                class="fa fa-fw fa-plus-circle"></i>@lang('unidadesAcoes.criar')</button>
                     </span>
                 </div>
             </div>

@@ -10,9 +10,40 @@
     cursor: pointer;
 }
 
-.accordion .card .card-header {
-    background: none;
-    border: none;
+.card_editar_et a {
+    display: block;
+}
+
+.card_editar_et .card {
+    border: 1px solid #162E3C;
+}
+
+.accordion .card .card-header { 
+    background-color: #1B6B9A !important;
+}
+
+.card_editar_et button { 
+    color: #FFF;
+}
+
+.card_editar_et button:hover { 
+    color: #FFF;
+}
+
+.card_cadastro_et .card .card-header { 
+    background-color: #e2eff773 !important;
+}
+
+.card_cadastro_et .card {
+    border: 1px solid #3c8dbc !important;
+}
+
+.card_cadastro_et button { 
+    color: #3c8dbc;
+}
+
+.card_cadastro_et button:hover { 
+    color: #3c8dbc;
 }
 
 .accordion .card .card-header .btn-header-link {
@@ -31,4 +62,503 @@
 
 .accordion .card .card-header .btn-header-link.collapsed:after {
     content: "\f077";
+}
+
+.card-header .fa {
+    transition: .3s transform ease-in-out;
+    margin-top: 10px;
+    float: right;
+}
+
+.card-header .collapsed .fa {
+    transform: rotate(-90deg);
+}
+
+/* MULTIPLE SELECT */
+#novo_select_container{
+	position: relative;
+	height: 21px;
+	display: inline-block;
+}
+
+#novo_select{
+	background: #ddd;
+}
+
+#novo_select li, #novo_select ul{
+	padding: 0;
+	margin: 0;
+}
+
+#novo_select li{
+	padding: 0 10px;
+	line-height: 25px;
+	cursor: default;
+}
+
+#novo_select li:first-child{
+	background: url(https://www.materialui.co/materialIcons/navigation/arrow_drop_down_grey_192x192.png) right no-repeat;
+	background-size: contain;
+	padding-right: 25px;
+}
+
+.novo_select_aberto{
+	position: relative;
+	display: inline-block;
+}
+
+.novo_select_fechado{
+	position: absolute;
+	clip: rect(0px 1000px 25px 0px);
+}
+
+.etSalvar {
+	color: #fff;
+    width: 70px;
+    border: none;
+    outline: none;
+	height: 30px;
+    background-color: #26546F;
+}
+
+.etVoltar {
+	color: #fff;
+    width: 70px;
+    border: none;
+    outline: none;
+	height: 30px;
+    background-color: #1B6B9A;
+}
+
+.select2-container--default .select2-selection--multiple {
+    background-color: #e2eff773 !important;
+    border: none;
+    border-radius: 4px;
+    cursor: text;
+    padding-bottom: 5px;
+    padding-right: 5px;
+    position: relative;
+}
+
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+    border: none;
+    outline: 0;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #d6e6f073;
+    
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+    background-color: #d6e6f073;
+    border: none;
+    border-right: 1px solid #aaa;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    color: #26546F;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 0 4px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover {
+    background-color: #d6e6f073;
+    color: black;
+}
+
+.select2-container--default .select2-selection--multiple .select2-selection__choice {
+    background-color: #e2eff773;
+    border: none;
+    color: black;
+}
+
+.btn.focus, .btn:focus {
+    box-shadow: none;
+}
+
+/* MENU DE EDIÇÃO DA ENTREGA TECNICA */        
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;  
+}
+
+.accordion-menu {
+    width: 100%;
+    max-width: 350px;
+    margin: 0px auto 20px;
+    background: #1B6B9A;
+    border-radius: 4px;
+}
+
+.accordion-menu li:hover {
+    background-color: #1e7cb3;
+}
+
+.accordion-menu li.open .dropdownlink {
+    color: #B6B6B6;
+}
+
+.accordion-menu li.open .dropdownlink .fa-chevron-down {
+    transform: rotate(180deg);
+    transition: all 0.4s ease-out;
+}
+
+.accordion-menu li:last-child .dropdownlink {
+    border-bottom: 0;
+}
+
+.firstDrop {
+    cursor: pointer;
+    display: block;
+    padding: 15px 15px 15px 45px;
+    font-size: 18px;
+    border-bottom: 1px solid #26546F;
+    color: #fff;
+    position: relative;
+    transition: all 0.4s ease-out;
+}
+
+.firstDrop a {
+    color: #fff;
+    display: block;
+}
+
+.firstDrop a:hover {
+    color: #fff;
+}
+
+.firstDrop a:visited {
+    color: #fff;
+}
+
+.firstDrop i {
+    position: absolute;
+    top: 17px;
+    left: 16px;
+}
+
+.firstDrop .fa-chevron-down {
+    right: 12px;
+    left: auto;
+}
+
+.dropdownlink {
+    cursor: pointer;
+    display: block;
+    padding: 15px 15px 15px 45px;
+    font-size: 18px;
+    border-bottom: 1px solid #26546F;
+    color: #fff;
+    position: relative;
+    transition: all 0.4s ease-out;
+
+}
+
+.dropdownlink i{
+    position: absolute;
+    top: 17px;
+    left: 16px;
+}
+
+.dropdownlink .fa-chevron-down {
+    right: 12px;
+    left: auto;
+}
+
+.submenuItems {
+    display: none;
+    background: #E2EFF7;
+}
+
+.submenuItems li {
+    border-bottom: 1px solid #B6B6B6;
+}
+
+.submenuItems a {
+    display: block;
+    color: #162E3C;
+    padding: 12px 12px 12px 45px;
+}
+
+.submenuItems a:hover {
+    background-color: #1B6B9A;
+    color: #fff;
+    opacity: 0.8;
+}
+
+.span_collapse {
+    font-size: 20px;
+}
+
+.card_editar_et ul li {
+    cursor: pointer;
+    display: block;
+    padding: 5 5 5 30px;
+    font-size: 18px;
+    color: #fff;
+    position: relative;
+}
+
+.card_editar_et ul li:hover {
+    background-color: #E2EFF7;
+}
+
+.status_et_incompleta {
+    color: #d8a50d;
+}
+
+.status_et_incompleta i{
+    color: #d8a50d !important;
+}
+
+.status_et_incompleta:hover {
+    color: #d8a50d;
+}
+
+.card_editar_et ul li i {
+    color: #1B6B9A;    
+    float: right;
+}
+
+/* TELA DE SUCCAO */
+
+.botao_criar_tab button {
+    margin: 15px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: #fff !important;
+    color: #3c8dbc;
+}
+
+@media screen and (max-width: 768px) {
+    .card_img > .col-md-2 {
+        max-width: 35% !important;
+    }
+
+    .form-row {
+        flex-wrap: wrap !important;
+    }
+
+}
+
+@media screen and (max-width: 1024px) {
+    .card_img > .col-md-2 {
+        max-width: 35% !important;
+    }
+
+    .form-row {
+        flex-wrap: wrap !important;
+    }
+
+}
+
+@media screen and (max-width: 1280px) {
+    .card_img > .col-md-2 {
+        max-width: 35% !important;
+    }
+
+    .form-row {
+        flex-wrap: wrap !important;
+    }
+}
+
+.card_img label {
+    cursor: pointer;
+}
+
+input[type="radio"] {
+    cursor: pointer;
+}
+
+.img-succao {
+    cursor: pointer;
+}
+
+#myImg {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#myImg:hover {opacity: 0.7;}
+
+.modal-succao {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: hidden; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-contentt {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+/* Caption of Modal Image */
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+}
+
+.fechar {
+    float: right;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-shadow: 0 1px 0 #fff;
+    opacity: 1;
+    padding-right: 30px;
+    cursor: pointer;
+}
+
+.fechar:hover {
+    color: #fff;
+}
+
+@media screen and (max-width: 1420px) {
+    .modal-contentt {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 650px;
+        height: 600;
+        margin-top: -90px;
+    }
+
+    .fechar {        
+        margin-top: -80px;
+    }
+}
+
+/* TELA DE TESTES ELETRICOS INPUT FILE */
+input[type=file] {
+    float: left;
+    display: block;
+}
+
+.img_preview {
+    margin-top: 5px;
+    height: 65px;
+    width: 65px;
+    margin: 0 0 0 -10px;
+    border-radius: 3px;
+    background-image: url("../img/image_none.png");
+    background-repeat: repeat;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.img_horimetro {
+    margin: 5px 0px 0px 20px;
+    height: 65px;
+    width: 65px;
+    border-radius: 3px;
+    background-image: url("../img/image_none.png");
+    background-repeat: repeat;
+    background-size: cover;
+    cursor: pointer;
+}
+
+.img_preview_editar {
+    margin-top: 5px;
+    height: 65px;
+    width: 65px;
+    margin: 0 0 0 -10px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.img_modal {
+    max-height: 500px;
+    min-height: 500px;
+    max-width: 500px;
+    min-width: 500px;
+}
+
+.campos_tabela tr td {
+    vertical-align: middle;
+}
+
+.campos_tensao {
+    display: flex;
+    flex-direction: column;
+}
+
+.label_input_file {
+    height: calc(1.5em + 0.75rem + 2px);
+    background-color: #26546F;
+    color: #FFF;
+    text-transform: uppercase;
+    text-align: center;
+    display: block;
+    cursor: pointer;
+    padding: 8px;
+    margin: 5px 0 0 0;
+    border-radius: 3px;
+}
+
+.label_input_file_horimetro {
+    height: calc(1.5em + 0.75rem + 2px);
+    background-color: #26546F;
+    color: #FFF;
+    text-transform: uppercase;
+    text-align: center;
+    display: block;
+    cursor: pointer;
+    padding: 8px;
+    margin: 15px 0 0 0px;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.label_input_file_enviar_et {
+    height: calc(1.5em + 0.75rem);
+    background-color: #26546F;
+    color: #FFF;
+    text-transform: uppercase;
+    text-align: center;
+    display: block;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.image_none {
+    background-image: url("/public/img/image_none.png");
+    background-repeat: repeat;
+    background-size: cover;
+}
+
+.informativo {
+    margin-left: 13px;
+}
+
+.informativo i {
+    font-size: 15px;
+}
+
+.informativo .informacao {
+    font-size: 15px;
 }

@@ -12,6 +12,7 @@ class EntregaTecnicaBomba extends Model
     use SoftDeletes;
     protected $dates =  ['deleted_at'];
     protected $fillable = [
-        'id_bomba', 'id_entrega_tecnica', 'quantidade', 'ligacao', 'marca', 'modelo', 'numero_estagio', 'rotor', 'opcionais'
+        'id_bomba', 'id_entrega_tecnica', 'marca', 'modelo', 'numero_estagio', 'rotor', 'opcionais', 'tipo_motobomba',
+        'numero_serie', 'fornecedor'
     ];
 }

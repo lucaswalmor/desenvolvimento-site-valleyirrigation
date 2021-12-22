@@ -190,44 +190,10 @@ class Lista extends Model
             ['pneus' => '12.4 X 28'],
             ['pneus' => '12.4 X 38'],
             ['pneus' => '14.9 X 24'],
-            ['pneus' => '14.9 X 28']
+            ['pneus' => '14.9 X 28'],
+            ['pneus' => '16,9 x 24'],
         ];
         return $pneus;
-    }
-
-    public static function getBombaMarca() {
-        $bomba_marca = [
-            ['bomba_marca' => 'IMBIL'],
-            ['bomba_marca' => 'KSB'],
-            ['bomba_marca' => 'HIGRA'],
-            ['bomba_marca' => 'GRUNDFUS'],
-            ['bomba_marca' => 'EBARA']
-        ];
-        return $bomba_marca;
-    }
-
-    public static function getBombaMarcaSerie() {
-        $bomba_marca = [
-            ['bomba_marca' => 'IMBIL', 'modelo' => 'ITA'],
-            ['bomba_marca' => 'IMBIL', 'modelo' => 'BEW'],
-            ['bomba_marca' => 'IMBIL', 'modelo' => 'INI'],
-            ['bomba_marca' => 'IMBIL', 'modelo' => 'INIBLOC'],
-            ['bomba_marca' => 'KSB', 'modelo' => 'WKL*'],
-            ['bomba_marca' => 'KSB', 'modelo' => 'MEGANORM'],
-            ['bomba_marca' => 'KSB', 'modelo' => 'MEGABLOC'],
-            ['bomba_marca' => 'KSB', 'modelo' => 'ETA'],
-            ['bomba_marca' => 'KSB', 'modelo' => 'BLOC'],
-            ['bomba_marca' => 'HIGRA', 'modelo' => 'M1'],
-            ['bomba_marca' => 'HIGRA', 'modelo' => 'R1'],
-            ['bomba_marca' => 'HIGRA', 'modelo' => 'R2'],
-            ['bomba_marca' => 'HIGRA', 'modelo' => 'R3'],
-            ['bomba_marca' => 'HIGRA', 'modelo' => 'R4'],
-            ['bomba_marca' => 'HIGRA', 'modelo' => 'R5'],
-            ['bomba_marca' => 'GRUNDFUS', 'modelo' => 'NKG'],
-            ['bomba_marca' => 'GRUNDFUS', 'modelo' => 'NBG'],
-            ['bomba_marca' => 'EBARA', 'modelo' => 'NORM'],
-        ];
-        return $bomba_marca;
     }
 
     public static function getMarcaMotorredutor() {
@@ -303,7 +269,7 @@ class Lista extends Model
 
     public static function getChavePartida() {
         $chavePartida = [
-            ['tipo' => 'WEB'],
+            ['tipo' => 'WEG'],
             ['tipo' => 'YASKAWA'],
             ['tipo' => 'SEMEL']
         ];
@@ -313,9 +279,9 @@ class Lista extends Model
 
     public static function getChavePartidaAcionamento() {
         $chavePartidaAcionamento = [
-            ['tipo' => 'WEB', 'modelo' => 'compensadora'],
-            ['tipo' => 'WEB', 'modelo' => 'soft_starter'],
-            ['tipo' => 'WEB', 'modelo' => 'inversora'],
+            ['tipo' => 'WEG', 'modelo' => 'compensadora'],
+            ['tipo' => 'WEG', 'modelo' => 'soft_starter'],
+            ['tipo' => 'WEG', 'modelo' => 'inversora'],
             ['tipo' => 'YASKAWA', 'modelo' => 'inversora'],
             ['tipo' => 'SEMEL', 'modelo' => 'conversor_mono_tri'],
         ];
@@ -336,7 +302,7 @@ class Lista extends Model
     public static function getChaveSeccionadora() {
         $chaveSeccionadora = [
             ['tipo' => 'nenhuma'],
-            ['tipo' => 'disjuntos'],
+            ['tipo' => 'disjuntor'],
             ['tipo' => 'outros'],
         ];
         
@@ -352,6 +318,220 @@ class Lista extends Model
 
         return $gerador;
     }
+
+    public static function getBombaMarca() {
+        $bomba_marca = [
+            ['bomba_marca' => 'IMBIL'],
+            ['bomba_marca' => 'KSB'],
+            ['bomba_marca' => 'HIGRA'],
+            ['bomba_marca' => 'GRUNDFUS'],
+            ['bomba_marca' => 'EBARA']
+        ];
+        return $bomba_marca;
+    }
+
+    public static function getBombaMarcaSerie() {
+        $bomba_marca = [
+            ['bomba_marca' => 'IMBIL', 'modelo' => 'ITA'],
+            ['bomba_marca' => 'IMBIL', 'modelo' => 'BEW'],
+            ['bomba_marca' => 'IMBIL', 'modelo' => 'INI'],
+            ['bomba_marca' => 'IMBIL', 'modelo' => 'INIBLOC'],
+            ['bomba_marca' => 'KSB', 'modelo' => 'WKL'],
+            ['bomba_marca' => 'KSB', 'modelo' => 'MEGANORM'],
+            ['bomba_marca' => 'KSB', 'modelo' => 'MEGABLOC'],
+            ['bomba_marca' => 'KSB', 'modelo' => 'ETA'],
+            ['bomba_marca' => 'KSB', 'modelo' => 'BLOC'],
+            ['bomba_marca' => 'HIGRA', 'modelo' => 'M1'],
+            ['bomba_marca' => 'HIGRA', 'modelo' => 'R1'],
+            ['bomba_marca' => 'HIGRA', 'modelo' => 'R2'],
+            ['bomba_marca' => 'HIGRA', 'modelo' => 'R3'],
+            ['bomba_marca' => 'HIGRA', 'modelo' => 'R4'],
+            ['bomba_marca' => 'HIGRA', 'modelo' => 'R5'],
+            ['bomba_marca' => 'GRUNDFUS', 'modelo' => 'NKG'],
+            ['bomba_marca' => 'GRUNDFUS', 'modelo' => 'NBG'],
+            ['bomba_marca' => 'EBARA', 'modelo' => 'NORM'],
+        ];
+        return $bomba_marca;
+    }
+
+    public static function getTipoSuccao() {
+        $tipo_succao = [
+            ['tipo' => 'direta'],
+            ['tipo' => 'pocos'],
+            ['tipo' => 'afogada'],
+            ['tipo' => 'auxiliar'],
+        ];
+
+        return $tipo_succao;
+    }
+
+    public static function getTipoSuccaoAuxiliar() {
+        $tipo_succao_auxiliar = [
+            ['tipo' => 'auxiliar', 'modelo' => 'balsa'],
+            ['tipo' => 'auxiliar', 'modelo' => 'submersa'],
+            ['tipo' => 'auxiliar', 'modelo' => 'flutuante']
+        ];
+
+        return $tipo_succao_auxiliar;
+    }
+
+    public static function getAspersorMarca() {
+        $aspersor_marca = [
+            ['marca' => 'senninger'],
+            ['marca' => 'nelson'],
+            ['marca' => 'komet']
+        ];
+
+        return $aspersor_marca;
+    }
+
+    public static function getAspersorModelo() {
+        $aspersor_modelo = [            
+            ['marca' => 'senninger', 'modelo' => 'super_spray'],
+            ['marca' => 'senninger', 'modelo' => 'lnd'],
+            ['marca' => 'senninger', 'modelo' => 'lefa'],
+            ['marca' => 'senninger', 'modelo' => 'I-WOB'],
+            ['marca' => 'nelson', 'modelo' => 'spinner'],
+            ['marca' => 'nelson', 'modelo' => 'rotator'],
+            ['marca' => 'nelson', 'modelo' => 'trashbuster'],
+            ['marca' => 'nelson', 'modelo' => 'orbitor'],
+            ['marca' => 'komet', 'modelo' => 'twister']
+        ];
+
+        return $aspersor_modelo;
+    }
+
+    public static function getDefletores() {
+        $defletores = [
+            ['modelo' => 'azul'],
+            ['modelo' => 'preto']
+        ];
+
+        return $defletores;
+    }
+
+    public static function getReguladorModelo() {
+        $reguladorModelo = [
+            ['modelo' => 'LF'],
+            ['modelo' => 'MF'],
+            ['modelo' => 'PSR'],
+        ];
+
+        return $reguladorModelo;
+    }
+
+    public static function getPressao() {
+        $pressao = [
+            ['psi' => '20PSI', 'maximo' => '21mca', 'minimo' => '18mca', 'projeto' => '19mca'],
+            ['psi' => '15PSI', 'maximo' => '17mca', 'minimo' => '14mca', 'projeto' => '15mca'],
+            ['psi' => '10PSI', 'maximo' => '15mca', 'minimo' => '12mca', 'projeto' => '13mca'],
+            ['psi' => '6PSI', 'maximo' => '11mca', 'minimo' => '8mca', 'projeto' => '9mca'],
+        ];
+
+        return $pressao;
+    }
+
+    public static function getAspersorOpcional() {
+        $aspersor_opcional = [
+            ['modelo' => 'tubo_descida_aco'],
+            ['modelo' => 'tubo_descida_flexivel'],
+        ];
+
+        return $aspersor_opcional;
+    }
+
+    public static function getAspersorCanhaoFinal() {
+        $aspersor_canhao_final = [
+            ['marca' => 'komet_101sr'],
+            ['marca' => 'nelson_R75'],
+            ['marca' => 'nelson_R55'],
+        ];
+
+        return $aspersor_canhao_final;
+    }
+
+    public static function getMotobombaBoostermarca() {
+        $motobomba_booster_marca = [
+            ['marca' => 'KSB']
+        ];
+
+        return $motobomba_booster_marca;
+    }
+
+    public static function getMotobombaBoostermodelo() {
+        $motobomba_booster_modelo = [
+            ['marca' => 'KSB', 'modelo' => 'megabloc']
+        ];
+
+        return $motobomba_booster_modelo;
+    }
+
+    public static function getSuccaoTipo() {
+        $succao = [
+            ['tipo' => 'Flange'],
+            ['tipo' => 'Engate Rápido']
+        ];
+
+        return $succao;
+    }
+
+    public static function TipoTubos() {
+        $tubo = [
+            ['tipo' => 'aco_zincado'],
+            ['tipo' => 'aco_sac'],
+            ['tipo' => 'pvcpn60'],
+            ['tipo' => 'pvcpn80'],
+            ['tipo' => 'pvcpn125'],
+            ['tipo' => 'pvcpn140'],
+            ['tipo' => 'pvcpn145'],
+            ['tipo' => 'pvcpn160'],
+            ['tipo' => 'pvcpn180'],
+            ['tipo' => 'ferro_fundido'],
+            ['tipo' => 'prfv'],
+        ];
+
+        return $tubo;
+    }
+
+    public static function fornecedores() {
+        $fornecedores = [
+            ['fornecedor' => 'valmont'],
+            ['fornecedor' => 'cliente'],
+            ['fornecedor' => 'revenda']
+        ];
+
+        return $fornecedores;
+    }
+
+    public static function marcaTubos() {
+        $marcasTubos = [
+            ['marca' => 'tigre'],
+            ['marca' => 'amanco'],
+            ['marca' => 'corr_plastic']
+        ];
+
+        return $marcasTubos;
+    }
+
+    public static function listaCamposET() {
+        $campo = [
+            ['campo' => 'caracteristicas_gerais'],
+            ['campo' => 'lances'],
+            ['campo' => 'aspersores'],
+            ['campo' => 'adutora'],
+            ['campo' => 'ligacao_acessorios'],
+            ['campo' => 'moto_bomba'],
+            ['campo' => 'succao'],
+            ['campo' => 'alimentacao_eletrica'],
+            ['campo' => 'testes'],
+            ['campo' => 'telemetria'],
+        ];
+
+        return $campo;
+
+    }
+
+
 }
 
 ?>
