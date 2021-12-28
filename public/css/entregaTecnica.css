@@ -562,3 +562,145 @@ input[type=file] {
 .informativo .informacao {
     font-size: 15px;
 }
+
+/* MOBILE ENTREGA TECNICA */
+
+
+@media screen and (max-width:768px) {    
+    .mobile-et .nav-link {
+        font-size: 9px !important;
+    }
+
+    .mobile-et b {
+        font-size: 10px !important;
+    }
+
+    .span-mobile-et {
+        font-size: 10px !important;
+    }
+
+    .table thead tr th {
+        font-size: 11px !important;
+    }
+
+    .table tbody tr td {
+        font-size: 10px !important;
+    }
+    
+    .espacamento-cabecalho img {
+        width: 215px;
+    }
+}
+
+@media screen and (max-width:425px) {
+    .imagens {
+        display: none;
+    }
+
+    #menu > #user {
+        padding: 0px 16px;
+    }
+
+    #menu ul {
+        right: -17px;
+    }
+
+    .idioma {
+        right: -64px !important;
+    }
+
+    .dropdown-content4 {
+        min-width: 375px;
+    }
+
+    .dropbtn {
+        width: 365px;
+    }
+
+    #menu li {
+        padding: 0 13px;
+    }
+
+    #menu li i {
+        margin-left: 60px;
+    }
+
+    #menu ul li {
+        width: 299px;
+        border: none;
+        border-bottom: 1px solid #0088CE;
+    }
+
+    .dropdown-content1 {
+        min-width: 316px;
+    }
+
+    .titulo-entrega-tecnica-mobile-cadastros h4 {
+        font-size: 1.1rem !important;
+    }
+
+    .titulo-entrega-tecnica-mobile {
+        margin-top: 10px;
+    }
+
+    .titulo-entrega-tecnica-mobile h1 {
+        font-size: 2rem;
+    }
+
+    .titulo-entrega-tecnica-mobile h4 {
+        font-size: 1.5rem;
+    }
+
+    .topo {
+        height: 150px;
+    }
+
+    .mobile {
+        margin-top: 15px;
+        font-size: 8px;
+    }
+
+    .acoes .botaoTabela {
+        font-size: 13px !important;
+    }
+
+    .dados-et-mobile {      
+        margin-left: 35px !important;
+    }
+
+    .dados-et-mobile h3 {
+        font-size: 1rem;        
+        margin-left: -20px !important;
+    }
+
+    .afericao a {
+        font-size: 1rem;
+    }
+
+    .afericao .cad-lance-bloqueado {
+        font-size: 1rem;
+    }
+
+    .telo5inputfiltro {
+        margin-top: 0rem !important;
+    }
+
+    .dropbtn>i {
+        padding: 4px 25px 0 0px;
+    }
+
+    .addtablerow {
+        margin: 0;
+    }
+
+    .img_modal {
+        max-height: 300px;
+        min-height: 300px;
+        max-width: 300px;
+        min-width: 300px;
+    }
+
+    .card_img > .col-md-2 {
+        max-width: 41% !important;
+    }
+}

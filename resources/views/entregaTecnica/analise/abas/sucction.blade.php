@@ -5,20 +5,20 @@
     <div class="do-not-break espacamento-cabecalho">
         <div class='row'>
             <div class="col-md-2 "><b>@lang('entregaTecnica.medicao_succao_l') @lang('unidadesAcoes.(m)')</b></div>
-            <div class="col-md-1">{{ $item['medicao_succao_l'] }}</div>
+            <div class="col-md-1"><span class="span-mobile-et">{{ $item['medicao_succao_l'] }}</span></div>
 
             <div class="col-md-2 "><b>@lang('entregaTecnica.medicao_succao_h') @lang('unidadesAcoes.(m)')</b></div>
-            <div class="col-md-1">{{ $item['medicao_succao_h'] }}</div>
+            <div class="col-md-1"><span class="span-mobile-et">{{ $item['medicao_succao_h'] }}</span></div>
 
             <div class="col-md-2 "><b>@lang('entregaTecnica.medicao_succao_e') @lang('unidadesAcoes.(m)')</b></div>
-            <div class="col-md-1">{{ $item['medicao_succao_e'] }}</div>
+            <div class="col-md-1"><span class="span-mobile-et">{{ $item['medicao_succao_e'] }}</span></div>
 
             <div class="col-md-2 "><b>@lang('entregaTecnica.medicao_succao_diametro') @lang('unidadesAcoes.(pol)')</b></div>
-            <div class="col-md-1">{{ $item['medicao_succao_diametro'] }}</div>
+            <div class="col-md-1"><span class="span-mobile-et">{{ $item['medicao_succao_diametro'] }}</span></div>
         </div>
         <div class="row">
             <div class="col-md-2 "><b>@lang('entregaTecnica.medicao_succao_tipo')</b></div>
-            <div class="col-md-1">{{ $item['medicao_succao_tipo'] }}</div>
+            <div class="col-md-1"><span class="span-mobile-et">{{ $item['medicao_succao_tipo'] }}</span></div>
         </div>
         <div class="row mt-4">
             <div class="form-group col-md-4">

@@ -60,8 +60,8 @@
                 <div class="form-row justify-content-start">
                     
                     <div class="form-group col-md-2 mt-2">
-                        <label for="data_envio">@lang('entregaTecnica.data_envio')</label>
-                        <input type="text" id="data_envio" class="form-control text-center" value="{{ date('d/m/Y H:i:s') }}" readonly>
+                        <label for="data_envio_entrega_tecnica">@lang('entregaTecnica.data_envio')</label>
+                        <input type="text" name="data_envio_entrega_tecnica" class="form-control text-center" value="{{ date('d/m/Y H:i:s') }}" readonly>
                     </div>
 
                     <div class="form-group col-md-4">                                
@@ -69,7 +69,7 @@
                             <div class="campos_tensao col-6 mt-2">
                                 <label for="declaracao_img">@lang('entregaTecnica.img_declaracao')</label>
                                 <label for="declaracao_img" id="lbdeclaracao_img" class="label_input_file_enviar_et">@lang('entregaTecnica.carregar_imagem')</label>
-                                <input type="file" onchange="myfn(this)" style="display: none;" name="declaracao_img" id="declaracao_img" class="form-control" accept="image/gif, image/png, image/jpeg, image/pjpeg" />
+                                <input type="file" onchange="myfn(this)" style="display: none;" name="declaracao_img" id="declaracao_img" class="form-control" accept="image/gif, image/png, image/jpeg, image/pjpeg" required/>
                             </div>    
                             <div>
                                 @if (count($velocidade['declaracao_img']) > 0)
@@ -83,8 +83,8 @@
                 </div>
                 <div class="form-row justify-content-start">
                     <div class="form-group col-md-12">
-                        <label for="oberservacao_final">@lang('entregaTecnica.observacoes')</label>
-                        <textarea class="form-control" id="oberservacao_final" rows="5"></textarea>
+                        <label for="observacoes_envio">@lang('entregaTecnica.observacoes')</label>
+                        <textarea class="form-control" id="observacoes_envio" name="observacoes_envio" rows="5"></textarea>
                     </div>
                 </div>
             </div>

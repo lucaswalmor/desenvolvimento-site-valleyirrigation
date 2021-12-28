@@ -111,54 +111,58 @@
 @section('conteudo')
     {{-- NAVTAB'S --}}
     <ul class="nav nav-tabs" id="myTab" role="tablist">
-        <li class="nav-item" role="presentation">
+        <li class="nav-item mobile-et" role="presentation">
             <a class="nav-link active" id="caracteristicas_gerais-tab" data-toggle="tab" href="#caracteristicas_gerais" role="tab"
                 aria-controls="caracteristicas_gerais" aria-selected="true">@lang('entregaTecnica.caracteristicas_gerais')</a>
         </li>
-        <li class="nav-item" role="presentation">
+        <li class=" mobile-et" role="presentation">
             <a class="nav-link" id="lances-tab" data-toggle="tab" href="#lances" role="tab"
                 aria-controls="lances" aria-selected="false">@lang('entregaTecnica.lances')
             </a>
         </li>
-        <li class="nav-item" role="presentation">
+        <li class=" mobile-et" role="presentation">
             <a class="nav-link" id="aspersores-tab" data-toggle="tab" href="#aspersores" role="tab" aria-controls="aspersores"
                 aria-selected="false">@lang('entregaTecnica.aspersores')</a>
         </li>
-        <li class="nav-item" role="presentation">
+        <li class=" mobile-et" role="presentation">
             <a class="nav-link" id="adutora-tab" data-toggle="tab" href="#adutora" role="tab"
                 aria-controls="adutora" aria-selected="false">@lang('entregaTecnica.adutora')</a>
         </li>
-        <li class="nav-item" role="presentation">
+        <li class=" mobile-et" role="presentation">
             <a class="nav-link" id="ligacao-tab" data-toggle="tab" href="#ligacao" role="tab"
                 aria-controls="ligacao" aria-selected="false">@lang('entregaTecnica.ligacao_acessorios')</a>
         </li>
-        <li class="nav-item" role="presentation">
+        <li class=" mobile-et" role="presentation">
             <a class="nav-link" id="motobomba-tab" data-toggle="tab" href="#motobomba" role="tab"
                 aria-controls="motobomba" aria-selected="false">@lang('entregaTecnica.motobomba')</a>
         </li>
-        <li class="nav-item" role="presentation">
+        <li class=" mobile-et" role="presentation">
             <a class="nav-link" id="succao-tab" data-toggle="tab" href="#succao" role="tab"
                 aria-controls="succao" aria-selected="false">@lang('entregaTecnica.succao')</a>
         </li>
-        <li class="nav-item" role="presentation">
+        <li class=" mobile-et" role="presentation">
             <a class="nav-link" id="alimentacao_eletrica-tab" data-toggle="tab" href="#alimentacao_eletrica" role="tab"
                 aria-controls="alimentacao_eletrica" aria-selected="false">@lang('entregaTecnica.alimentacao_eletrica')</a>
         </li>
-        <li class="nav-item" role="presentation">
+        <li class=" mobile-et" role="presentation">
             <a class="nav-link" id="testes-tab" data-toggle="tab" href="#testes" role="tab"
                 aria-controls="testes" aria-selected="false">@lang('entregaTecnica.testes')</a>
         </li>
-        <li class="nav-item" role="presentation">
-            <a class="nav-link" id="telemetria-tab" data-toggle="tab" href="#telemetria" role="tab"
-                aria-controls="telemetria" aria-selected="false">@lang('entregaTecnica.telemetria')</a>
-        </li>
+
+        @if (count($telemetria) > 0)
+            <li class=" mobile-et" role="presentation">
+                <a class="nav-link" id="telemetria-tab" data-toggle="tab" href="#telemetria" role="tab"
+                    aria-controls="telemetria" aria-selected="false">@lang('entregaTecnica.telemetria')</a>
+            </li>
+        @endif
+
     </ul>
 
 <div id="alert">                
     @include('_layouts._includes._alert')    
 </div>  
 
-<div class="tab-content" id="myTabContent">
+<div class="tab-content mobile-et" id="myTabContent">
     @foreach ($entrega_tecnica as $item) 
         <div class="tab-pane fade show active" id="caracteristicas_gerais" role="tabpanel" aria-labelledby="caracteristicas_gerais-tab">
             @include('entregaTecnica.analise.abas.general_features')

@@ -5,21 +5,21 @@
         <div class="row">
             <div class="col-md-3"><b>@lang('entregaTecnica.quantidade_motobomba')</b>:</div>
             <div class="col-md-1">
-                {{ $item['quantidade_motobomba']}}
+                <span class="span-mobile-et">{{ $item['quantidade_motobomba']}}</span>
             </div>
             <div class="col-md-2"><b>@lang('entregaTecnica.tipo_succao')</b>:</div>
             <div class="col-md-2">
-                {{ $item['tipo_succao']}}
+                <span class="span-mobile-et">{{ $item['tipo_succao']}}</span>
             </div>
             @if ($item['ligacao_serie'] > 0)
                 <div class="col-md-2"><b>@lang('entregaTecnica.ligacao_serie')</b>:</div>
                 <div class="col-md-2">
-                    @lang('comum.sim')
+                   <span class="span-mobile-et"> @lang('comum.sim')</span>
                 </div>                                        
             @elseif($item['ligacao_paralelo'] > 0)
                 <div class="col-md-2"><b>@lang('entregaTecnica.ligacao_paralela')</b>:</div>
                 <div class="col-md-2">
-                    @lang('comum.sim')
+                    <span class="span-mobile-et">@lang('comum.sim')</span>
                 </div>
             @endif
         </div>
@@ -31,25 +31,25 @@
             <div class="row">
                 <div class="col-md-2"><b>@lang('entregaTecnica.marca')</b>:</div>
                 <div class="col-md-2">
-                    {{ $bomba['marca']}}
+                    <span class="span-mobile-et">{{ $bomba['marca']}}</span>
                 </div>
                 <div class="col-md-2"><b>@lang('entregaTecnica.modelo')</b>:</div>
                 <div class="col-md-2">
-                    {{ $bomba['modelo']}}
+                    <span class="span-mobile-et">{{ $bomba['modelo']}}</span>
                 </div>
                 <div class="col-md-2"><b>@lang('entregaTecnica.numero_estagio')</b>:</div>
                 <div class="col-md-2">
-                    {{ $bomba['numero_estagio']}}
+                    <span class="span-mobile-et">{{ $bomba['numero_estagio']}}</span>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-2"><b>@lang('entregaTecnica.rotor')</b>:</div>
                 <div class="col-md-2">
-                    {{ $bomba['rotor']}}
+                    <span class="span-mobile-et">{{ $bomba['rotor']}}</span>
                 </div>
                 <div class="col-md-2"><b>@lang('entregaTecnica.opcionais')</b>:</div>
                 <div class="col-md-2">
-                    {{ $bomba['opcionais']}}
+                    <span class="span-mobile-et">{{ $bomba['opcionais']}}</span>
                 </div>
             </div>
 
@@ -61,29 +61,29 @@
                     <div class="row">
                         <div class="col-md-2"><b>@lang('entregaTecnica.tipo_motor')</b>:</div>
                         <div class="col-md-2">
-                            {{ $motor['tipo_motor']}}
+                            <span class="span-mobile-et">{{ $motor['tipo_motor']}}</span>
                         </div>
                         <div class="col-md-2"><b>@lang('entregaTecnica.marca')</b>:</div>
                         <div class="col-md-2">
-                            {{ $motor['marca']}}
+                            <span class="span-mobile-et">{{ $motor['marca']}}</span>
                         </div>
                         <div class="col-md-2"><b>@lang('entregaTecnica.modelo')</b>:</div>
                         <div class="col-md-2">
-                            {{ $motor['modelo']}}
+                            <span class="span-mobile-et">{{ $motor['modelo']}}</span>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-2"><b>@lang('entregaTecnica.potencia')</b>:</div>
                         <div class="col-md-2">
-                            {{ $motor['potencia']}}
+                            <span class="span-mobile-et">{{ $motor['potencia']}}</span>
                         </div>
                         <div class="col-md-2"><b>@lang('entregaTecnica.rotacao')</b>:</div>
                         <div class="col-md-2">
-                            {{ $motor['rotacao']}}
+                            <span class="span-mobile-et">{{ $motor['rotacao']}}</span>
                         </div>
                         <div class="col-md-2"><b>@lang('entregaTecnica.numero_serie')</b>:</div>
                         <div class="col-md-2">
-                            {{ $motor['numero_serie']}}
+                            <span class="span-mobile-et">{{ $motor['numero_serie']}}</span>
                         </div>
                     </div>
 
@@ -91,39 +91,39 @@
                         <div class="row">
                             <div class="col-md-2"><b>@lang('entregaTecnica.tensao')</b>:</div>
                             <div class="col-md-2">
-                                {{ $motor['tensao']}}
+                                <span class="span-mobile-et">{{ $motor['tensao']}}</span>
                             </div>
                             <div class="col-md-2"><b>@lang('entregaTecnica.lp_ln')</b>:</div>
                             <div class="col-md-2">
-                                {{ $motor['lp_ln']}}
+                                <span class="span-mobile-et">{{ $motor['lp_ln']}}</span>
                             </div>
                             <div class="col-md-2"><b>@lang('entregaTecnica.classe_isolamento')</b>:</div>
                             <div class="col-md-2">
-                                {{ $motor['classe_isolamento']}}
+                                <span class="span-mobile-et">{{ $motor['classe_isolamento']}}</span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-2"><b>@lang('entregaTecnica.corrente_nominal')</b>:</div>
                             <div class="col-md-2">
-                                {{ $motor['corrente_nominal']}}
+                                <span class="span-mobile-et">{{ $motor['corrente_nominal']}}</span>
                             </div>
                             <div class="col-md-2"><b>@lang('entregaTecnica.fs')</b>:</div>
                             <div class="col-md-2">
-                                {{ $motor['fs']}}
+                                <span class="span-mobile-et">{{ $motor['fs']}}</span>
                             </div>
                             <div class="col-md-2"><b>@lang('entregaTecnica.ip')</b>:</div>
                             <div class="col-md-2">
-                                {{ $motor['ip']}}
+                                <span class="span-mobile-et">{{ $motor['ip']}}</span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-2"><b>@lang('entregaTecnica.rendimento')</b>:</div>
                             <div class="col-md-2">
-                                {{ $motor['rendimento']}}
+                                <span class="span-mobile-et">{{ $motor['rendimento']}}</span>
                             </div>
                             <div class="col-md-2"><b>@lang('entregaTecnica.cos')</b>:</div>
                             <div class="col-md-2">
-                                {{ $motor['cos']}}
+                                <span class="span-mobile-et">{{ $motor['cos']}}</span>
                             </div>
                         </div>
                         
@@ -135,21 +135,21 @@
                                 <div class="row">
                                     <div class="col-md-2"><b>@lang('entregaTecnica.marca')</b>:</div>
                                     <div class="col-md-2">
-                                        {{ $cp['marca'] }}
+                                        <span class="span-mobile-et">{{ $cp['marca'] }}</span>
                                     </div>
                                     <div class="col-md-2"><b>@lang('entregaTecnica.acionamento')</b>:</div>
                                     <div class="col-md-2">
-                                        {{ __('listas.'. $cp['acionamento'] )}}
+                                        <span class="span-mobile-et">{{ __('listas.'. $cp['acionamento'] )}}</span>
                                     </div>
                                     <div class="col-md-2"><b>@lang('entregaTecnica.regulagem_reles')</b>:</div>
                                     <div class="col-md-2">
-                                        {{ $cp['regulagem_reles']}}
+                                        <span class="span-mobile-et">{{ $cp['regulagem_reles']}}</span>
                                     </div>
                                 </div>                                      
                                 <div class="row">
                                     <div class="col-md-2"><b>@lang('entregaTecnica.numero_serie')</b>:</div>
                                     <div class="col-md-2">
-                                        {{ $motor['numero_serie']}}
+                                        <span class="span-mobile-et">{{ $motor['numero_serie']}}</span>
                                     </div>
                                 </div>
                             @endif

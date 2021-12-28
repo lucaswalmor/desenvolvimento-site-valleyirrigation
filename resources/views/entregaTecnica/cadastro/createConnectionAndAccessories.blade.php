@@ -5,7 +5,7 @@
         <div class="row align-items-start">
 
             {{-- TITULO E SUBTITULO --}}
-            <div class="col-6 titulo-cdc-mobile">
+            <div class="col-6 titulo-entrega-tecnica-mobile-cadastros titulo-entrega-tecnica-mobile">
                 <h1>@lang('entregaTecnica.entregaTecnica')</h1><br>
                 <h4 style="margin-top: -20px">@lang('entregaTecnica.ligacao')/@lang('entregaTecnica.acessorios') - @lang('comum.cadastrar')</h4>
             </div>

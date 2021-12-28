@@ -47,6 +47,22 @@
                 left: 0;
                 z-index: 1030;
             }
+
+            .label_declaracao {
+                margin-bottom: 30px;
+            }
+
+            .declaracao {
+                width: 500px;
+            }
+
+            .font-declaracao {
+                font-size: 20px;
+            }
+            
+            .font-declaracao-data {
+                font-size: 17px;
+            }
         }        
 
         .header {
@@ -62,10 +78,25 @@
             color: #162E3C !important;
             text-transform: capitalize;
             width: 300px;
+            outline: none;
+        }
+
+        .declaracao_cpf {
+            width: 194px;
+            border: 0;
+            border-bottom: 1px solid #162E3C;
+            outline: none;
+        }
+
+        .declaracao_data {
+            width: 90px;
+            border: 0;
+            border-bottom: 1px solid #162E3C;
+            outline: none;
         }
 
         .input-group-text {
-            padding: 20px;
+            padding: 15px;
             margin: 10px
         }
         
@@ -1253,7 +1284,7 @@
 
                         <div class="pagebreak"> </div>
     
-                        <div class="container mt-5">
+                        <div class="container mt-5 ">
                             <div id="alert">                
                                 @include('_layouts._includes._alert')    
                             </div>  
@@ -1261,81 +1292,114 @@
                             <div class="col-md-12" style="background-color: #fff; width: 100%; color: #162E3C;; border-radius: 10px; border: 1px solid #162E3C;">
                                 <div class="col-md-12 mt-4 text-center">
                                     
-                                </div>           
+                                </div>       
+
+                                {{-- DECLARAÇÃO DO CLIENTE --}}       
     
                                 <div class="col-md-12">
-                                    <p>@lang('entregaTecnica.declaracao_texto_1')</p>
+                                    <p class="font-declaracao">@lang('entregaTecnica.eu') <strong>{{ strtoupper($item['nome_proprietario']) }}</strong> @lang('entregaTecnica.declaracao_texto_cliente')</p>
+                                </div>
+
+                                <div class="row justify-content-center pt-3 ml-2">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                            </div>
+                                        </div>
+                                        <label style="margin: 15px 10px;" class="font-declaracao">@lang('entregaTecnica.item_manual_montagem')</label>
+                                    </div>
+                                </div>
+    
+                                <div class="row justify-content-center pt-3 ml-2">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                            </div>
+                                        </div>
+                                        <label style="margin: 15px 10px;" class="font-declaracao">@lang('entregaTecnica.item_listagem_aspersores')</label>
+                                    </div>
+                                </div>
+    
+                                <div class="row justify-content-center pt-3 ml-2">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                            </div>
+                                        </div>
+                                        <label  style="margin: 15px 10px;" class="font-declaracao">@lang('entregaTecnica.item_manual_bomba')</label>
+                                    </div>
+                                </div>
+    
+                                <div class="row justify-content-center pt-3 ml-2">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                            </div>
+                                        </div>
+                                        <label  style="margin: 15px 10px;" class="font-declaracao">@lang('entregaTecnica.item_manual_motor_diesel')</label>
+                                    </div>
+                                </div>
+    
+                                <div class="row justify-content-center pt-3 ml-2">
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                            </div>
+                                        </div>
+                                        <label  style="margin: 15px 10px;" class="font-declaracao">@lang('entregaTecnica.item_manual_chave_partida_ss')</label>
+                                    </div>
                                 </div>
                                 
-                                <div class="col-md-12">
-                                    <p>@lang('entregaTecnica.declaracao_texto_2')</p>
+                                <div class="row justify-content-center pt-3 ml-2">
+                                    <div class="form-group col-md-12">
+                                        <label for="observacoes" class="font-declaracao">@lang('entregaTecnica.observacoes'):</label>
+                                        <textarea class="form-control" id="observacoes" rows="5"></textarea>
+                                      </div>
                                 </div>
-    
-                                <div class="row justify-content-center pt-3">
+
+
+                                <div class="col-md-12 ml-2 pt-3 pb-3 row">
+                                    <div class="col-md-6">
+                                        <label for="" class="label_declaracao font-declaracao">@lang('entregaTecnica.assinatura_cliente')</label>
+                                        <input type="text" class="declaracao pl-2 pr-2 font-declaracao">
+                                    </div>
                                     <div class="col-md-4">
-                                        <label for="cliente">@lang('entregaTecnica.assinatura_cliente')</label>
-                                        <input type="text" name="cliente" id="cliente" class="form-control">
-                            
-                                        <label for="cpf" class="mt-3">@lang('entregaTecnica.cpf_cliente')</label>
-                                        <input type="number" minlength="0" maxlength="9" name="cliente_cpf" id="cliente_cpf" class="form-control">
+                                        <label for="" class="label_declaracao font-declaracao">@lang('entregaTecnica.cpf_cliente')</label>
+                                        <input type="text" class="declaracao_cpf pl-2 pr-2 font-declaracao">
                                     </div>
-                        
+                                    <div class="col-md-2 font-declaracao-data">
+                                        <label for="" class="label_declaracao font-declaracao">@lang('entregaTecnica.data'):</label>
+                                        <input type="text" class="declaracao_data font-declaracao-data" value="{{ date('d/m/Y') }}" readonly>
+                                    </div>
+                                </div>
+
+                                {{-- DECLARAÇÃO DO TÉCNICO --}}          
+                                <div class="col-md-12 ml-2">
+                                    <hr>
+                                </div>
+                                <div class="col-md-12 ml-2 pt-3">
+                                    <p class="font-declaracao">@lang('entregaTecnica.eu') <strong>{{ strtoupper($item['nome_usuario']) }} </strong> @lang('entregaTecnica.declaracao_texto_tecnico_pt_1') <strong>{{ $item['numero_pedido'] }}</strong> @lang('entregaTecnica.declaracao_texto_tecnico_pt_2')</p>
+                                </div>
+                                
+                                <div class="row justify-content-center ml-2">
+                                    <div class="form-group col-md-12 font-declaracao">
+                                        <label for="observacoes">@lang('entregaTecnica.observacoes'):</label>
+                                        <textarea class="form-control" id="observacoes" rows="5"></textarea>
+                                      </div>
+                                </div>      
+
+                                <div class="col-md-12 ml-2 pt-3 pb-3 row">
+                                    <div class="col-md-6">
+                                        <label for="" class="label_declaracao font-declaracao">@lang('entregaTecnica.assinatura_tecnico')</label>
+                                        <input type="text" class="declaracao pl-2 pr-2 form-group">
+                                    </div>
                                     <div class="col-md-4">
-                                        <label for="tecnico">@lang('entregaTecnica.assinatura_tecnico')</label>
-                                        <input type="text" name="tecnico" id="tecnico" class="form-control">
-                            
-                                        <label for="tecnico_cpf" class="mt-3">@lang('entregaTecnica.cpf_tecnico')</label>
-                                        <input type="number"name="tecnico_cpf" id="tecnico_cpf" class="form-control">
+                                        <label for="" class="label_declaracao font-declaracao">@lang('entregaTecnica.cpf_tecnico')</label>
+                                        <input type="text" class="declaracao_cpf pl-2 pr-2">
                                     </div>
-                                </div>
-    
-                                <div class="row justify-content-center pt-3">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                            </div>
-                                        </div>
-                                        <label style="font-size: 1.2rem; margin-top: 15px;">@lang('entregaTecnica.item_manual_montagem')</label>
-                                    </div>
-                                </div>
-    
-                                <div class="row justify-content-center pt-3">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                            </div>
-                                        </div>
-                                        <label style="font-size: 1.2rem; margin-top: 15px;">@lang('entregaTecnica.item_listagem_aspersores')</label>
-                                    </div>
-                                </div>
-    
-                                <div class="row justify-content-center pt-3">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                            </div>
-                                        </div>
-                                        <label style="font-size: 1.2rem; margin-top: 15px;">@lang('entregaTecnica.item_manual_bomba')</label>
-                                    </div>
-                                </div>
-    
-                                <div class="row justify-content-center pt-3">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                            </div>
-                                        </div>
-                                        <label style="font-size: 1.2rem; margin-top: 15px;">@lang('entregaTecnica.item_manual_motor_diesel')</label>
-                                    </div>
-                                </div>
-    
-                                <div class="row justify-content-center pt-3">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                            </div>
-                                        </div>
-                                        <label style="font-size: 1.2rem; margin-top: 15px;">@lang('entregaTecnica.item_manual_chave_partida_ss')</label>
+                                    <div class="col-md-2">
+                                        <label for="" class="label_declaracao font-declaracao">@lang('entregaTecnica.data'):</label>
+                                        <input type="text" class="declaracao_data font-declaracao-data" value="{{ date('d/m/Y') }}" readonly>
                                     </div>
                                 </div>
                             </div>

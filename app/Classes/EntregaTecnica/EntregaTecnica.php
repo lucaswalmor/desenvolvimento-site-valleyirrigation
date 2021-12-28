@@ -33,6 +33,7 @@ class EntregaTecnica extends Model
         'medicao_succao_e', 'medicao_succao_diametro', 'medicao_succao_tipo', 'tubo_acozinc1_quantidade', 'tubo_acozinc2_quantidade',
         'tubo_pvcpn60_quantidade', 'tubo_pvcpn80_quantidade', 'tubo_pvcpn125_quantidade', 'tubo_pvcpn145_quantidade', 'tubo_pvcpn160_quantidade',
         'tubo_pvcpn180_quantidade', 'tubo_prfv_quantidade', 'status_parte_aerea', 'status_lances', 'status_aspersores', 'status_adutora', 'status_ligacao',
-        'status_motobomba', 'status_succao', 'status_autotrafo', 'status_testes', 'status_telemetria'
+        'status_motobomba', 'status_succao', 'status_autotrafo', 'status_testes', 'status_telemetria', 'data_envio_entrega_tecnica', 'observacoes_envio',
+        'img_declaracao'
     ];
 }

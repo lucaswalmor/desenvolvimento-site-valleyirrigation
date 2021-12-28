@@ -87,6 +87,7 @@ class EntregaTecnicaController extends Controller
             return redirect()->route('dashboard');
         }
     }
+    
     public function searchTechnilcalDelivery(Request $request) 
     {
         $entrega_tecnica = [];
@@ -1571,16 +1572,24 @@ class EntregaTecnicaController extends Controller
     {
         $dados = $request->all();
         $id_entrega_tecnica = $dados['id_entrega_tecnica'];
-        if (!empty($dados['cliente']) && !empty($dados['cliente_cpf']) && !empty($dados['tecnico']) &&
-            !empty($dados['tecnico_cpf'])) {
-            EntregaTecnica::where('id', $id_entrega_tecnica)->update(['status' => 3]);       
-            
-            Session::flash('send', Lang::get("entregaTecnica.entrega_tecnica_enviada"));
-            return redirect()->route('manage_technical_delivery');
+        if (!empty($dados['data_envio_entrega_tecnica']) && !empty($dados['declaracao_img'])) {
+                $extension = $dados['declaracao_img']->extension();
+                // Define finalmente o nome
+                $nameFile = 'declaracao.'.$extension;
+                
+                // faz o upload do arquivo no projeto
+                $file = $dados['declaracao_img']->storeAs('projetos/entrega_tecnica/declaracao_' . $id_entrega_tecnica, $nameFile);
+                $envio['img_declaracao'] = $file;
+                $envio['data_envio_entrega_tecnica'] = $dados['data_envio_entrega_tecnica'];
+                $envio['observacoes_envio'] = $dados['observacoes_envio'];
+                $envio['status'] = 3;
+                EntregaTecnica::where('id', $id_entrega_tecnica)->update($envio);
         } else {           
             Notificacao::gerarAlert('', 'entregaTecnica.dados_incompletos', 'warning');
             return redirect()->back();            
         }
+
+        return redirect()->route('manage_analysis_technical_delivery');
 
     }
 

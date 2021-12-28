@@ -6,14 +6,14 @@
         <div class="row align-items-start">
 
             {{-- TITULO E SUBTITULO --}}
-            <div class="col-6">
+            <div class="col-6 titulo-entrega-tecnica-mobile">
                 <h1>
                     @lang('entregaTecnica.entregaTecnica')
                 </h1>
             </div>
 
             {{-- BOTOES SALVAR E VOLTAR --}}
-            <div class="col-6 text-right botoes mobile">
+            <div class="col-6 text-right botoes mobile ">
 
                 <a href="{{ route('manage_technical_delivery') }}" style="color: #3c8dbc">
                     <button type="button" data-toggle="tooltip" data-placement="bottom" title="Voltar">
@@ -52,7 +52,7 @@
         </div>
 
         {{-- FILTRO DE PESQUISA --}}
-        <div class="row justify-content-start telo5inputfiltro mt-5">
+        <div class="row justify-content-start mt-5 dados-et-mobile">
             <div class="ml-4">
                 <h3> @lang('entregaTecnica.numero_pedido'):  <span style="color: #003A5D">{{ $entrega_tecnica['numero_pedido'] }}</span></h3> 
             </div>
@@ -94,7 +94,7 @@
 </div>
 @if ($entrega_tecnica['tipo_entrega_tecnica'] == 'completa')    
     <div class="form-row form-row-statusAfericao justify-content-center mobileStatus">
-        <div class="form-group col-md-2 text-center afericao">
+        <div class="form-group col-md-2 col-10 text-center afericao">
             <div>
                 <h3>
                     @if ($entrega_tecnica['status_parte_aerea'] == 0)
@@ -122,7 +122,7 @@
                     </div>
                 @endif
         </div>
-        <div class="form-group col-md-2 text-center afericao">
+        <div class="form-group col-md-2 col-10 text-center afericao">
             <div>
                 @if ($tem_pivo['tipo_equipamento'] == null)
                     <h3>@lang('entregaTecnica.lances') <i class="fas fa-lock tooltip-et" data-tooltip="@lang('entregaTecnica.tooltip_caracteristicas_equipamento')" style="color: #6d97ac; float: right;"></i></h3>
@@ -142,7 +142,7 @@
             </div>    
             @if ($tem_pivo['tipo_equipamento'] == null)   
                 <div class="p-2" style="background-color: #6d97ac; color: #fff">
-                    @lang('entregaTecnica.bloqueado')</i>
+                    <span class="cad-lance-bloqueado">@lang('entregaTecnica.bloqueado')</i></span>
                 </div>
             @else
                 @if ($entrega_tecnica['status_lances'] == 0)   
@@ -161,7 +161,7 @@
             @endif
         </div>
         
-        <div class="form-group col-md-2 text-center afericao">
+        <div class="form-group col-md-2 col-10 text-center afericao">
             <div>
                 <h3>
                     @if ($entrega_tecnica['status_aspersores'] == 0)
@@ -190,7 +190,7 @@
                 @endif
         </div>
         
-        <div class="form-group col-md-2 text-center afericao">
+        <div class="form-group col-md-2 col-10 text-center afericao">
             <div>
                 <h3>
                     @if ($entrega_tecnica['status_adutora'] == 0)
@@ -221,7 +221,7 @@
     </div>
 
     <div class="form-row form-row-statusAfericao justify-content-center mobileStatus">
-        <div class="form-group col-md-2 text-center afericao">
+        <div class="form-group col-md-2 col-10 text-center afericao">
             <div>
                 <h3>
                     @if ($entrega_tecnica['status_ligacao'] == 0)
@@ -250,7 +250,7 @@
                 @endif
         </div>
 
-        <div class="form-group col-md-2 text-center afericao">
+        <div class="form-group col-md-2 col-10 text-center afericao">
             <div>
                 <h3>
                     @if ($entrega_tecnica['status_motobomba'] == 0)
@@ -279,7 +279,7 @@
                 @endif
         </div>
         
-        <div class="form-group col-md-2 text-center afericao">
+        <div class="form-group col-md-2 col-10 text-center afericao">
             <div>
                 <h3>
                     @if ($entrega_tecnica['status_succao'] == 0)
@@ -308,7 +308,7 @@
                 @endif
         </div>
         
-        <div class="form-group col-md-2 text-center afericao">
+        <div class="form-group col-md-2 col-10 text-center afericao">
             <div>
                 <h3>
                     @if ($entrega_tecnica['status_autotrafo'] == 0)
@@ -339,7 +339,7 @@
     </div>
 
     <div class="form-row form-row-statusAfericao justify-content-center mobileStatus">
-        <div class="form-group col-md-2 text-center afericao">
+        <div class="form-group col-md-2 col-10 text-center afericao">
             <div>
                 @if($entrega_tecnica['status_parte_aerea'] == 2 && $entrega_tecnica['status_lances'] == 2 && $entrega_tecnica['status_aspersores'] == 2 && 
                     $entrega_tecnica['status_adutora'] == 2 && $entrega_tecnica['status_motobomba'] == 2 && $entrega_tecnica['status_succao'] == 2 &&
@@ -382,7 +382,7 @@
             @endif
         </div>
         
-        <div class="form-group col-md-2 text-center afericao">
+        <div class="form-group col-md-2 col-10 text-center afericao">
             <div>
                 <h3>
                     @if ($entrega_tecnica['status_telemetria'] == 0)
@@ -408,7 +408,7 @@
 
 @if ($entrega_tecnica['tipo_entrega_tecnica'] == 'motobomba')      
     <div class="form-row form-row-statusAfericao justify-content-center mobileStatus">  
-        <div class="form-group col-md-2 text-center afericao">
+        <div class="form-group col-md-2 col-10 text-center afericao">
             <div>
                 <h3>
                     @if ($entrega_tecnica['status_ligacao'] == 0)
@@ -437,7 +437,7 @@
                 @endif
         </div>
 
-        <div class="form-group col-md-2 text-center afericao">
+        <div class="form-group col-md-2 col-10 text-center afericao">
             <div>
                 <h3>
                     @if ($entrega_tecnica['status_motobomba'] == 0)
@@ -466,7 +466,7 @@
                 @endif
         </div>
         
-        <div class="form-group col-md-2 text-center afericao">
+        <div class="form-group col-md-2 col-10 text-center afericao">
             <div>
                 <h3>
                     @if ($entrega_tecnica['status_succao'] == 0)
@@ -495,7 +495,7 @@
                 @endif
         </div>
 
-        <div class="form-group col-md-2 text-center afericao">
+        <div class="form-group col-md-2 col-10 text-center afericao">
             <div>
                 <h3>
                     @if ($entrega_tecnica['status_adutora'] == 0)
@@ -528,7 +528,7 @@
     </div>
 
     <div class="form-row form-row-statusAfericao justify-content-center mobileStatus">
-        <div class="form-group col-md-2 text-center afericao">
+        <div class="form-group col-md-2 col-10 text-center afericao">
             <div>
                 @if ($qtd_bombas < 1)
                     <h3>@lang('entregaTecnica.testes') <i class="fas fa-lock" style="color: #6d97ac; float: right;"></i></h3>
