@@ -79,8 +79,8 @@
                             <div class="form-group col-md-3 telo5ce">
                                 <label for="tipo_usuario">@lang('usuarios.tipo_usuario')</label><br>
                                 <select onchange="trocarDivAtivaSuperior()" name="tipo_usuario" id="tipo_usuario" required class="form-control telo5ce">
+                                    <option value=""></option>
                                     @foreach ($papeis as $papel)
-                                        <option value=""></option>
                                         <option value="{{ $papel['chave'] }}">@lang($papel['valor'])</option>
                                     @endforeach
                                 </select>
@@ -132,8 +132,8 @@
                                 <label for="configuracao_idioma">@lang('usuarios.idioma')</label><br>
                                 <select required name="configuracao_idioma" id="configuracao_idioma"
                                     class="form-control telo5ce">
+                                    <option value=""></option>
                                     @foreach ($idiomas as $idioma)
-                                        <option value=""></option>
                                         <option value="{{ $idioma['chave'] }}">{{ $idioma['valor'] }}</option>
                                     @endforeach
                                 </select>
@@ -145,9 +145,9 @@
                                 <div id='divSupervisor' style="display: none;">
                                     <label for="tipo_usuario">@lang('usuarios.superior')</label>
                                     <select name="superior_s" id="superior_s" class='form-control' required>
+                                        <option value=""></option>
                                         @foreach ($usuarios_superiores as $item)
                                             @if ($item->tipo_usuario == 1)
-                                                <option value=""></option>
                                                 <option value="{{ $item->id }}">{{ $item->nome }}</option>
                                             @endif
                                         @endforeach
@@ -158,9 +158,9 @@
                                 <div id='divConsultor' style="display: none;">
                                     <label for="tipo_usuario">@lang('usuarios.superior')</label>
                                     <select name="superior_c" id="superior_c" class='form-control' required>
+                                        <option value=""></option>
                                         @foreach ($usuarios_superiores as $item)
                                             @if ($item->tipo_usuario == 1 || $item->tipo_usuario == 2)
-                                                <option value=""></option>
                                                 <option value="{{ $item->id }}">{{ $item->nome }}</option>
                                             @endif
                                         @endforeach
@@ -171,9 +171,9 @@
                                 <div id='divAssistente' style="display: none;">
                                     <label for="tipo_usuario">@lang('usuarios.superior')</label>
                                     <select id="superior_a" name="superior_a" class='form-control' required>
+                                        <option value=""></option>
                                         @foreach ($usuarios_superiores as $item)
                                             @if ($item->tipo_usuario == 3)
-                                                <option value=""></option>
                                                 <option value="{{ $item->id }}">{{ $item->nome }}</option>
                                             @endif
                                         @endforeach
@@ -188,8 +188,8 @@
                                 <div class='form-group telo5ce' id="divCentroCusto">
                                     <label for="cdcs">@lang('usuarios.centrodecustos')</label>
                                     <select class="form-control" name="cdcs[]" id="cdcs">
+                                        <option value=""></option>
                                         @foreach ($cdcs as $item)
-                                            <option value=""></option>
                                             <option value="{{ $item->id }}">{{ $item->nome }}</option>
                                         @endforeach
                                     </select>
@@ -205,10 +205,6 @@
 @endsection
 
 @section('scripts')
-
-    {{-- FILTRO SELECT --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js"
-    integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
 
     {{-- MASCARA DE INPUT --}}
     <script src="{{ asset('js/jquery.mask.js') }}"></script>

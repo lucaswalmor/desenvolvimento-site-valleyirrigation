@@ -194,7 +194,6 @@ class UsuarioController extends Controller
     public function saveUsuario(Request $req)
     {
         $dados = $req->all();
-
         //Medida provisória para flag de pendência de -email
         $dados['email_verified_at'] = time();
         $verifica =  DB::table('users')->where('email', $dados['email'])->first();
@@ -249,6 +248,7 @@ class UsuarioController extends Controller
                 $user->situacao = __('usuarios.ativo');
             }
         }
+
         return view('sistema.usuarios.editar', compact('usuarios', 'papeis', 'idiomas', 'cdcs', 'usuarios_superiores'));
     }
 

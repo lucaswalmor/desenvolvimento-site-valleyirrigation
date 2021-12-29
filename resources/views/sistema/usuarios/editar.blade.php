@@ -101,8 +101,8 @@
                             
                             <div class="form-group col-md-3 telo5ce">
                                 <label for="cep">@lang('usuarios.cep')</label>
-                                <input type="number" class="form-control telo5ce" id="cep" name="cep" maxlength="10"
-                                    value="{{ $usuarios->cep }}">
+                                <input type="text" class="form-control telo5ce" id="cep" name="cep" maxlength="10"
+                                    value="{{ $usuarios['cep'] }}">
                             </div>
                             <div class="form-group col-md-3 telo5ce">
                                 <label for="rua">@lang('usuarios.rua')</label>
@@ -127,16 +127,6 @@
                                 <input type="email" class="form-control telo5ce" id="email" name="email" maxlength="100"
                                     value="{{ $usuarios->email }}">
                             </div>
-                            <div class="form-group col-md-3 telo5ce">
-                                <label for="password">@lang('usuarios.senha')</label>
-                                <input type="password" class="form-control telo5ce" id="password" name="password"
-                                    maxlength="20" value="{{ $usuarios->password }}">
-                            </div>
-                            <div class="form-group col-md-3 telo5ce">
-                                <label for="confirmar_senha">@lang('usuarios.confirmar_senha')</label>
-                                <input type="password" class="form-control telo5ce" id="confirmar_senha"
-                                    name="confirmar_senha" maxlength="20" value="{{ $usuarios->password }}">
-                            </div>
                             <div class="form-group col-md-3 position telo5ce">
                                 <label for="configuracao_idioma">@lang('usuarios.idioma')</label><br>
                                 <select name="configuracao_idioma" id="configuracao_idioma"
@@ -152,9 +142,9 @@
                             <div class='form-group telo5ce col-md-3' id='edivSupervisor'>
                                 <label for="tipo_usuario">@lang('usuarios.superior')</label>
                                 <select name="superior_s" id="esuperior_s" class='form-control' required>
+                                    <option value=""></option>
                                     @foreach ($usuarios_superiores as $item)
                                         @if ($item->tipo_usuario == 1)
-                                            <option value=""></option>
                                             <option value="{{ $item->id }}">{{ $item->nome }}</option>
                                         @endif
                                     @endforeach
@@ -165,9 +155,9 @@
                             <div class='form-group telo5ce col-md-3' id='edivConsultor'>
                                 <label for="tipo_usuario">@lang('usuarios.superior')</label>
                                 <select name="superior_c" id="esuperior_c" class='form-control' required>
+                                    <option value=""></option>
                                     @foreach ($usuarios_superiores as $item)
                                         @if ($item->tipo_usuario == 1 || $item->tipo_usuario == 2)
-                                            <option value=""></option>
                                             <option value="{{ $item->id }}">{{ $item->nome }}</option>
                                         @endif
                                     @endforeach
@@ -178,9 +168,9 @@
                             <div class='form-group telo5ce col-md-3' id='edivAssistente'>
                                 <label for="tipo_usuario">@lang('usuarios.superior')</label>
                                 <select name="superior_a" id="esuperior_a" class='form-control' required>
+                                    <option value=""></option>
                                     @foreach ($usuarios_superiores as $item)
                                         @if ($item->tipo_usuario == 3)
-                                            <option value=""></option>
                                             <option value="{{ $item->id }}">{{ $item->nome }}</option>
                                         @endif
                                     @endforeach
@@ -193,8 +183,8 @@
                             <div class='form-group telo5ce col-md-3' id="edivCentroCusto">
                                 <label for="cdcs">@lang('usuarios.centrodecustos')</label>
                                 <select class='form-control telo5ce' name="cdcs[]" id="ecdcs">
+                                    <option value=""></option>
                                     @foreach ($cdcs as $item)
-                                        <option value=""></option>
                                         <option value="{{ $item->id }}">{{ $item->nome }}</option>
                                     @endforeach
                                 </select>

@@ -83,8 +83,8 @@
                             <div class='form-group col-md-4 telo5ce'>
                                 <label for="marca_modelo_pivo">@lang('afericao.marcaModeloPivo')</label>
                                 <select class='form-control' required='true' id="fabricante" name='marca_modelo_pivo'>
+                                    <option value=""></option>
                                     @foreach ($pivos as $item)
-                                        <option value=""></option>
                                         <option value="{{ $item->id }}">{{ $item->resumo }}</option>
                                     @endforeach
                                 </select>
@@ -178,7 +178,6 @@
                             <div class="form-group col-md-4 telo5ce">
                                 <label for="valvulaPSI">@lang('afericao.valvulaPSI')</label><br>
                                 <select class='form-control' name="problema_valvula_psi[]" id="">
-                                    <option value=""></option>
                                     <option value=""></option>
                                     <option value="6">@lang('afericao.problema6')</option>
                                     <option value="7">@lang('afericao.problema7')</option>

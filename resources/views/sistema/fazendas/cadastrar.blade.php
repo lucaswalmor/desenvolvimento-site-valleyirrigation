@@ -68,8 +68,8 @@
                             <div class="form-group col-md-4 telo5ce">
                                 <label for="id_proprietario">@lang('fazendas.proprietario')</label>
                                 <select id="id_proprietario" class="form-control" name="id_proprietario">
+                                    <option value=""></option>
                                     @foreach ($proprietarios as $proprietario)
-                                        <option value=""></option>
                                         <option value="{{ $proprietario->id }}">{{ $proprietario->nome }}</option>
                                     @endforeach
                                 </select>
