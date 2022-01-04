@@ -28,7 +28,9 @@ use App\User;
 use Illuminate\Support\Facades\Lang;
 use Session;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use stdClass;
 
 class EntregaTecnicaController extends Controller
 {
@@ -53,6 +55,7 @@ class EntregaTecnicaController extends Controller
             ->join('proprietarios as P', 'fazendas.id_proprietario', '=', 'P.id')
             ->where('entrega_tecnica.id_fazenda', $id_fazenda)
             ->get();
+
             $proprietarios = Proprietario::select('nome', 'id')->orderBy('nome')->get();
             $revendas = Revendas::select('id', 'nome')->get();
             $consultores = User::where('tipo_usuario', 3)->where('situacao', 1)->select('id', 'nome')->get();
@@ -87,7 +90,7 @@ class EntregaTecnicaController extends Controller
             return redirect()->route('dashboard');
         }
     }
-    
+
     public function searchTechnilcalDelivery(Request $request) 
     {
         $entrega_tecnica = [];
@@ -253,7 +256,7 @@ class EntregaTecnicaController extends Controller
     {
         $dados = $request->all();
         $id_entrega_tecnica = $dados['id_entrega_tecnica'];
-
+        
         $trecho['id_entrega_tecnica'] = $id_entrega_tecnica;
         $trecho['id_telemetria'] = 1;                    
         $trecho['aqua_tec_pro'] = ($dados['aqua_tec_pro'] == "on") ? 1 : 0;
@@ -265,7 +268,7 @@ class EntregaTecnicaController extends Controller
         $trecho['estacao_metereologica_valley'] = ($dados['estacao_metereologica_valley'] == "on") ? 1 : 0;
         $trecho['field_commander'] = ($dados['field_commander'] == "on") ? 1 : 0;
         $telemetria_existente =  EntregaTecnicaTelemetria::where('id_entrega_tecnica', $id_entrega_tecnica)->count();
-
+    
         if ($telemetria_existente > 0) {
             EntregaTecnicaTelemetria::where('id_entrega_tecnica', $id_entrega_tecnica)->update($trecho);
         } else {
@@ -754,7 +757,7 @@ class EntregaTecnicaController extends Controller
         $dados = $req->all();
         $id_entrega_tecnica = $dados['id_entrega_tecnica'];
         $autotrafo_existente = EntregaTecnicaBombaAutotrafo::where('id_entrega_tecnica', $id_entrega_tecnica)->count();                                   
-            
+
         if (!empty($dados['potencia_elevacao']) || !empty($dados['tap_entrada_elevacao']) || !empty($dados['tap_saida_elevacao']) || 
             !empty($dados['corrente_disjuntor']) || !empty($dados['numero_serie_elevacao']) ) {   
             if (!empty($dados['gerador']) || !empty($dados['gerador_marca']) || !empty($dados['gerador_modelo']) || 
@@ -763,12 +766,12 @@ class EntregaTecnicaController extends Controller
                     Notificacao::gerarAlert('', 'entregaTecnica.cadastro_errado_autotrafo', 'warning');
                     return redirect()->back();      
             } else {
-                if ($autotrafo_existente > 0) {
-                    EntregaTecnicaBombaAutotrafo::where('id_entrega_tecnica', $id_entrega_tecnica)
-                    ->update([
-                        'potencia_elevacao' => $dados['potencia_elevacao'],
-                        'tap_entrada_elevacao' => $dados['tap_entrada_elevacao'],
-                        'tap_saida_elevacao' => $dados['tap_saida_elevacao'],
+        if ($autotrafo_existente > 0) {
+            EntregaTecnicaBombaAutotrafo::where('id_entrega_tecnica', $id_entrega_tecnica)
+            ->update([
+                'potencia_elevacao' => $dados['potencia_elevacao'],
+                'tap_entrada_elevacao' => $dados['tap_entrada_elevacao'],
+                'tap_saida_elevacao' => $dados['tap_saida_elevacao'],
                         'corrente_disjuntor' => $dados['corrente_disjuntor'],
                         'numero_serie_elevacao' => $dados['numero_serie_elevacao'],
                     ]); 
@@ -778,14 +781,14 @@ class EntregaTecnicaController extends Controller
                         'tap_entrada_elevacao' => $dados['tap_entrada_elevacao'],
                         'tap_saida_elevacao' => $dados['tap_saida_elevacao'],
                         'corrente_disjuntor' => $dados['corrente_disjuntor'],
-                        'numero_serie_elevacao' => $dados['numero_serie_elevacao'],
+                'numero_serie_elevacao' => $dados['numero_serie_elevacao'],
                         'id_autotrafo' => 1,
                         'id_entrega_tecnica' => $id_entrega_tecnica
                     ]); 
                 }                             
             }
         } 
-
+                
         if (!empty($dados['potencia_rebaixamento']) || !empty($dados['tap_entrada_rebaixamento']) || 
             !empty($dados['tap_saida_rebaixamento']) || !empty($dados['numero_serie_rebaixamento'])) {
             if (empty($dados['potencia_elevacao']) || empty($dados['tap_entrada_elevacao']) || empty($dados['tap_saida_elevacao']) || 
@@ -803,10 +806,10 @@ class EntregaTecnicaController extends Controller
                     ]); 
                 } else {
                     EntregaTecnicaBombaAutotrafo::create([
-                        'potencia_rebaixamento' => $dados['potencia_rebaixamento'],
-                        'tap_entrada_rebaixamento' => $dados['tap_entrada_rebaixamento'],
-                        'tap_saida_rebaixamento' => $dados['tap_saida_rebaixamento'],
-                        'numero_serie_rebaixamento' => $dados['numero_serie_rebaixamento'],
+                'potencia_rebaixamento' => $dados['potencia_rebaixamento'],
+                'tap_entrada_rebaixamento' => $dados['tap_entrada_rebaixamento'],
+                'tap_saida_rebaixamento' => $dados['tap_saida_rebaixamento'],
+                'numero_serie_rebaixamento' => $dados['numero_serie_rebaixamento'],
                         'id_autotrafo' => 1,
                         'id_entrega_tecnica' => $id_entrega_tecnica
                     ]); 
@@ -825,37 +828,37 @@ class EntregaTecnicaController extends Controller
                 if ($autotrafo_existente > 0) {
                     EntregaTecnicaBombaAutotrafo::where('id_entrega_tecnica', $id_entrega_tecnica)
                     ->update([
-                        'gerador' => $dados['gerador'],
-                        'gerador_marca' => $dados['gerador_marca'],
-                        'gerador_modelo' => $dados['gerador_modelo'],
-                        'gerador_potencia' => $dados['gerador_potencia'],
-                        'gerador_frequencia' => $dados['gerador_frequencia'],
-                        'gerador_tensao' => $dados['gerador_tensao'],
+                'gerador' => $dados['gerador'],
+                'gerador_marca' => $dados['gerador_marca'],
+                'gerador_modelo' => $dados['gerador_modelo'],
+                'gerador_potencia' => $dados['gerador_potencia'],
+                'gerador_frequencia' => $dados['gerador_frequencia'],
+                'gerador_tensao' => $dados['gerador_tensao'],
                         'numero_serie_gerador' => $dados['numero_serie_gerador'],
-                    ]); 
-                } else {
-                    EntregaTecnicaBombaAutotrafo::create([
-                        'gerador' => $dados['gerador'],
-                        'gerador_marca' => $dados['gerador_marca'],
-                        'gerador_modelo' => $dados['gerador_modelo'],
-                        'gerador_potencia' => $dados['gerador_potencia'],
-                        'gerador_frequencia' => $dados['gerador_frequencia'],
-                        'gerador_tensao' => $dados['gerador_tensao'],
+            ]); 
+        } else {
+            EntregaTecnicaBombaAutotrafo::create([
+                'gerador' => $dados['gerador'],
+                'gerador_marca' => $dados['gerador_marca'],
+                'gerador_modelo' => $dados['gerador_modelo'],
+                'gerador_potencia' => $dados['gerador_potencia'],
+                'gerador_frequencia' => $dados['gerador_frequencia'],
+                'gerador_tensao' => $dados['gerador_tensao'],
                         'numero_serie_gerador' => $dados['numero_serie_gerador'],
-                        'id_autotrafo' => 1,
-                        'id_entrega_tecnica' => $id_entrega_tecnica
-                    ]); 
+                'id_autotrafo' => 1,
+                'id_entrega_tecnica' => $id_entrega_tecnica
+            ]); 
                 }
             }                    
         }
-                    
+
         if ((!empty($dados['potencia_elevacao']) && !empty($dados['tap_entrada_elevacao']) && !empty($dados['tap_saida_elevacao']) && 
             !empty($dados['corrente_disjuntor']) && !empty($dados['numero_serie_elevacao'])) || 
             (!empty($dados['gerador']) && !empty($dados['gerador_marca']) && !empty($dados['gerador_modelo']) && 
             !empty($dados['gerador_potencia']) && !empty($dados['gerador_frequencia']) && !empty($dados['gerador_tensao'])) ) {
             EntregaTecnica::where('id', $id_entrega_tecnica)->update([
                 'status_autotrafo' => 2
-            ]); 
+            ]);
         } else {
             EntregaTecnica::where('id', $id_entrega_tecnica)->update([
                 'status_autotrafo' => 1
@@ -1535,7 +1538,7 @@ class EntregaTecnicaController extends Controller
             $chave_partida = EntregaTecnicaChavePartida::select('*')->where('id_entrega_tecnica', $id_entrega_tecnica)->get();
             $teste_torre_central = EntregaTecnicaTesteEletricoTc::select('*')->where('id_entrega_tecnica', $id_entrega_tecnica)->first();
             $teste_bombas = EntregaTecnicaTesteHidraulicoMotoBomba::select('*')->where('id_entrega_tecnica', $id_entrega_tecnica)->get();
-            $teste_chave_partida = EntregaTecnicaTesteEletricoCp::select('*')->where('id_entrega_tecnica', $id_entrega_tecnica)->get();            
+            $teste_chave_partida = EntregaTecnicaTesteEletricoCp::select('*')->where('id_entrega_tecnica', $id_entrega_tecnica)->get();
             $telemetria = EntregaTecnicaTelemetria::select('*')->where('id_entrega_tecnica', $id_entrega_tecnica)->first();
         }
 
@@ -1571,31 +1574,64 @@ class EntregaTecnicaController extends Controller
     public function sendCompleteTechnicalDelivery(Request $request)
     {
         $dados = $request->all();
+
         $id_entrega_tecnica = $dados['id_entrega_tecnica'];
         if (!empty($dados['data_envio_entrega_tecnica']) && !empty($dados['declaracao_img'])) {
                 $extension = $dados['declaracao_img']->extension();
                 // Define finalmente o nome
                 $nameFile = 'declaracao.'.$extension;
-                
+            
                 // faz o upload do arquivo no projeto
                 $file = $dados['declaracao_img']->storeAs('projetos/entrega_tecnica/declaracao_' . $id_entrega_tecnica, $nameFile);
                 $envio['img_declaracao'] = $file;
                 $envio['data_envio_entrega_tecnica'] = $dados['data_envio_entrega_tecnica'];
                 $envio['observacoes_envio'] = $dados['observacoes_envio'];
                 $envio['status'] = 3;
-                EntregaTecnica::where('id', $id_entrega_tecnica)->update($envio);
+                // EntregaTecnica::where('id', $id_entrega_tecnica)->update($envio);
+                
+
+                // ENVIO DO EMAIL PARA O CONSULTOR //
+
+                    if (session()->has('fazenda')) {
+                        $fazenda = session()->get('fazenda');            
+                        $id_fazenda = Session::get('fazenda')['id'];
+                        
+                        $fazenda = Fazenda::select('fazendas.*', 'P.nome as nome_proprietario', 'U.nome as nome_consultor')
+                            ->where('fazendas.id', $id_fazenda)
+                            ->join('proprietarios as P', 'P.id', 'fazendas.id_proprietario')
+                            ->join('users as U', 'U.id', 'fazendas.id_consultor')
+                            ->first();
+                            
+                        $entrega_tecnica = EntregaTecnica::select('entrega_tecnica.*', 'P.nome as nome_proprietario',
+                        'fazendas.*', 'US.id_usuario', 'U.nome as nome_usuario', 'U.email as email_tecnico', 'U.telefone as telefone_tecnico')
+                        ->join('fazendas', 'entrega_tecnica.id_fazenda', '=', 'fazendas.id')
+                        ->join('usuario_superiores as US', 'fazendas.id_consultor', '=', 'US.id_usuario')
+                        ->join('users as U', 'US.id_usuario', '=', 'U.id')
+                        ->join('proprietarios as P', 'fazendas.id_proprietario', '=', 'P.id')
+                        ->where('entrega_tecnica.id_fazenda', $id_fazenda)
+                        ->where('entrega_tecnica.id', $id_entrega_tecnica)
+                        ->first();
+                    }
+
+                    $fromSend = 'noreply@valleycheckpivot.com';
+                    $subjectTitle = 'Confirmação Envio de Entrega Técnica';
+                    $msg = 'A Entrega Técnica do Nº Pedido ' . $entrega_tecnica['numero_pedido'] . ', foi enviada para análise';                
+                    $toUser = $entrega_tecnica['email_tecnico'];
+                    Mail::send(new \App\Mail\SendMailUser($toUser, $fromSend, $msg, $subjectTitle));
+                /////////////////////////////////////
         } else {           
             Notificacao::gerarAlert('', 'entregaTecnica.dados_incompletos', 'warning');
             return redirect()->back();            
         }
 
-        return redirect()->route('manage_analysis_technical_delivery');
+        return redirect()->route('manage_technical_delivery');
 
     }
 
     // ANÁLISE ENTREGA TÉCNICA
     public function manageAnalysisTechnicalDelivery() 
-    {  
+    {   
+        
         $entrega_tecnica = EntregaTecnica::select('entrega_tecnica.*', 'P.nome as nome_proprietario', 'U.nome as nome_usuario')
         ->join('fazendas', 'entrega_tecnica.id_fazenda', '=', 'fazendas.id')
         ->join('usuario_superiores as US', 'fazendas.id_consultor', '=', 'US.id_usuario')
@@ -1687,14 +1723,59 @@ class EntregaTecnicaController extends Controller
 
             if ($dados['situacao'] == 1) {
                 EntregaTecnica::where('id', $id_entrega_tecnica)->update(['status' => 4]);
+
             } else if ($dados['situacao'] == 0) {
                 EntregaTecnica::where('id', $id_entrega_tecnica)->update(['status' => 5]);
             }
-        }
+            
+            // ENVIO DO EMAIL PARA O CONSULTOR //
 
+                if (session()->has('fazenda')) {
+                    $fazenda = session()->get('fazenda');            
+                    $id_fazenda = Session::get('fazenda')['id'];
+                    
+                    $fazenda = Fazenda::select('fazendas.*', 'P.nome as nome_proprietario', 'U.nome as nome_consultor')
+                        ->where('fazendas.id', $id_fazenda)
+                        ->join('proprietarios as P', 'P.id', 'fazendas.id_proprietario')
+                        ->join('users as U', 'U.id', 'fazendas.id_consultor')
+                        ->first();
+                        
+                    $entrega_tecnica = EntregaTecnica::select('entrega_tecnica.*', 'P.nome as nome_proprietario', 'P.email as email_cliente',
+                    'fazendas.*', 'US.id_usuario', 'U.nome as nome_usuario', 'U.email as email_tecnico', 'U.telefone as telefone_tecnico')
+                    ->join('fazendas', 'entrega_tecnica.id_fazenda', '=', 'fazendas.id')
+                    ->join('usuario_superiores as US', 'fazendas.id_consultor', '=', 'US.id_usuario')
+                    ->join('users as U', 'US.id_usuario', '=', 'U.id')
+                    ->join('proprietarios as P', 'fazendas.id_proprietario', '=', 'P.id')
+                    ->where('entrega_tecnica.id_fazenda', $id_fazenda)
+                    ->where('entrega_tecnica.id', $id_entrega_tecnica)
+                    ->first();
+                }
+
+
+                if ($entrega_tecnica['status'] === 4) {
+                    $msgTec = 'A situação da Entrega Técnica Nº ' . $entrega_tecnica['numero_pedido'] . ', foi aprovada!';
+                    $msgClient = 'A Entrega Técnica Nº ' . $entrega_tecnica['numero_pedido'] . ', foi realizada com sucesso!';
+                } else if ($entrega_tecnica['status'] === 5) {
+                    $msgTec = 'A situação da Entrega Técnica Nº ' . $entrega_tecnica['numero_pedido'] . ', foi reprovada!';
+                    $msgClient = 'A Entrega Técnica Nº ' . $entrega_tecnica['numero_pedido'] . ', foi realizada com sucesso!';
+                }
+
+                $fromSend = 'noreply@valleycheckpivot.com';
+                $subjectTitle = 'Confirmação Envio de Análise da Entrega Técnica';        
+                
+                $email_tecnico = $entrega_tecnica['email_tecnico'];
+                $email_cliente = $entrega_tecnica['email_cliente'];
+
+                $toTec = $email_tecnico;
+                $toClient = $email_cliente;
+                
+                Mail::send(new \App\Mail\SendMailUser($toTec, $fromSend, $msgTec, $subjectTitle));
+                Mail::send(new \App\Mail\SendMailUser($toClient, $fromSend, $msgClient, $subjectTitle));
+            /////////////////////////////////////
+        }
         return redirect()->route('manage_analysis_technical_delivery');
     }
-
+    
     // EXCLUIR ENTREGA TECNICA
     public function delete($id)
     {

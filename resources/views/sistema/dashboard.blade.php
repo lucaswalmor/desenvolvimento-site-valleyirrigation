@@ -13,5 +13,4 @@
     <br/><br/>
     @include('_layouts._includes._alert')
 
-    <img src="{{ asset('img/logo_telo5.png') }}" alt="" style="position: absolute; margin-left: 30%; opacity: 0.5;" width="35%">
 @endsection

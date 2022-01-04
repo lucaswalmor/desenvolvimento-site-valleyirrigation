@@ -27,13 +27,13 @@
 
         <div class="row">
             <div class="col-md-4">
-                    <img src="{{ asset('../storage/app/public/'. $teste_torre_central['tensao_rs_semcarga_img'])}}"/>   
+                    <img src="{{ asset('storage/'. $teste_torre_central['tensao_rs_semcarga_img'])}}"/>   
             </div>
             <div class="col-md-4">
-                    <img src="{{ asset('../storage/app/public/'. $teste_torre_central['tensao_st_semcarga_img'])}}"/>   
+                    <img src="{{ asset('storage/'. $teste_torre_central['tensao_st_semcarga_img'])}}"/>   
             </div>
             <div class="col-md-4">
-                    <img src="{{ asset('../storage/app/public/'. $teste_torre_central['tensao_rt_semcarga_img'])}}"/>   
+                    <img src="{{ asset('storage/'. $teste_torre_central['tensao_rt_semcarga_img'])}}"/>   
             </div>
         </div>
         <hr>
@@ -54,13 +54,13 @@
 
         <div class="row">
             <div class="col-md-4">
-                    <img src="{{ asset('../storage/app/public/'. $teste_torre_central['tensao_rs_comcarga_img'])}}"/>   
+                    <img src="{{ asset('storage/'. $teste_torre_central['tensao_rs_comcarga_img'])}}"/>   
             </div>
             <div class="col-md-4">
-                    <img src="{{ asset('../storage/app/public/'. $teste_torre_central['tensao_st_comcarga_img'])}}"/>   
+                    <img src="{{ asset('storage/'. $teste_torre_central['tensao_st_comcarga_img'])}}"/>   
             </div>
             <div class="col-md-4">
-                    <img src="{{ asset('../storage/app/public/'. $teste_torre_central['tensao_rt_comcarga_img'])}}"/>   
+                    <img src="{{ asset('storage/'. $teste_torre_central['tensao_rt_comcarga_img'])}}"/>   
             </div>
         </div>
     </div>
@@ -90,13 +90,13 @@
             </div>
             <div class="row">
                 <div class="col-md-4">
-                        <img src="{{ asset('../storage/app/public/'. $bomba['pressao_reg_fechado_img'])}}"/>   
+                        <img src="{{ asset('storage/'. $bomba['pressao_reg_fechado_img'])}}"/>   
                 </div>
                 <div class="col-md-4">
-                        <img src="{{ asset('../storage/app/public/'. $bomba['pressao_reg_aberto_img'])}}"/>   
+                        <img src="{{ asset('storage/'. $bomba['pressao_reg_aberto_img'])}}"/>   
                 </div>
                 <div class="col-md-4">
-                        <img src="{{ asset('../storage/app/public/'. $bomba['pressao_centro_img'])}}"/>   
+                        <img src="{{ asset('storage/'. $bomba['pressao_centro_img'])}}"/>   
                 </div>
             </div>
             <hr>
@@ -109,7 +109,7 @@
             </div>
             <div class="row">
                 <div class="col-md-4">
-                        <img src="{{ asset('../storage/app/public/'. $bomba['pressao_ult_torre_img'])}}"/>   
+                        <img src="{{ asset('storage/'. $bomba['pressao_ult_torre_img'])}}"/>   
                 </div>
             </div>
         <hr>
@@ -134,13 +134,13 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                                <img src="{{ asset('../storage/app/public/'. $cp['tensao_rs_semcarga_img'])}}"/>   
+                                <img src="{{ asset('storage/'. $cp['tensao_rs_semcarga_img'])}}"/>   
                         </div>
                         <div class="col-md-4">
-                                <img src="{{ asset('../storage/app/public/'. $cp['tensao_st_semcarga_img'])}}"/>   
+                                <img src="{{ asset('storage/'. $cp['tensao_st_semcarga_img'])}}"/>   
                         </div>
                         <div class="col-md-4">
-                                <img src="{{ asset('../storage/app/public/'. $cp['tensao_rt_semcarga_img'])}}"/>   
+                                <img src="{{ asset('storage/'. $cp['tensao_rt_semcarga_img'])}}"/>   
                         </div>
                     </div>
                     <hr>
@@ -161,13 +161,13 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                                <img src="{{ asset('../storage/app/public/'. $cp['tensao_rs_comcarga_img'])}}"/>   
+                                <img src="{{ asset('storage/'. $cp['tensao_rs_comcarga_img'])}}"/>   
                         </div>
                         <div class="col-md-4">
-                                <img src="{{ asset('../storage/app/public/'. $cp['tensao_st_comcarga_img'])}}"/>   
+                                <img src="{{ asset('storage/'. $cp['tensao_st_comcarga_img'])}}"/>   
                         </div>
                         <div class="col-md-4">
-                                <img src="{{ asset('../storage/app/public/'. $cp['tensao_rt_comcarga_img'])}}"/>   
+                                <img src="{{ asset('storage/'. $cp['tensao_rt_comcarga_img'])}}"/>   
                         </div>
                     </div>
                     <hr>
@@ -188,13 +188,13 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                                <img src="{{ asset('../storage/app/public/'. $cp['corrente_rs_comcarga_img'])}}"/>   
+                                <img src="{{ asset('storage/'. $cp['corrente_rs_comcarga_img'])}}"/>   
                         </div>
                         <div class="col-md-4">
-                                <img src="{{ asset('../storage/app/public/'. $cp['corrente_st_comcarga_img'])}}"/>   
+                                <img src="{{ asset('storage/'. $cp['corrente_st_comcarga_img'])}}"/>   
                         </div>
                         <div class="col-md-4">
-                                <img src="{{ asset('../storage/app/public/'. $cp['corrente_rt_comcarga_img'])}}"/>   
+                                <img src="{{ asset('storage/'. $cp['corrente_rt_comcarga_img'])}}"/>   
                         </div>
                     </div>
                     <hr>

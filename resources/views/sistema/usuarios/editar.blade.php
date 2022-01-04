@@ -1,5 +1,5 @@
-@extends('_layouts._layout_site')
-@include('_layouts._includes._head')
+@extends('_layouts._layout_admsystem')
+@include('_layouts._includes._head_admsystem')
 
 @section('head')
 @endsection
@@ -183,7 +183,7 @@
                             <div class='form-group telo5ce col-md-3' id="edivCentroCusto">
                                 <label for="cdcs">@lang('usuarios.centrodecustos')</label>
                                 <select class='form-control telo5ce' name="cdcs[]" id="ecdcs">
-                                    <option value=""></option>
+                                        <option value=""></option>
                                     @foreach ($cdcs as $item)
                                         <option value="{{ $item->id }}">{{ $item->nome }}</option>
                                     @endforeach

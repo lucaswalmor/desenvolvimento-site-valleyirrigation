@@ -1,5 +1,5 @@
-@extends('_layouts._layout_site')
-@include('_layouts._includes._head')
+@extends('_layouts._layout_admsystem')
+@include('_layouts._includes._head_admsystem')
 
 @section('head')
 
@@ -79,7 +79,7 @@
                             <div class="form-group col-md-3 telo5ce">
                                 <label for="tipo_usuario">@lang('usuarios.tipo_usuario')</label><br>
                                 <select onchange="trocarDivAtivaSuperior()" name="tipo_usuario" id="tipo_usuario" required class="form-control telo5ce">
-                                    <option value=""></option>
+                                        <option value=""></option>
                                     @foreach ($papeis as $papel)
                                         <option value="{{ $papel['chave'] }}">@lang($papel['valor'])</option>
                                     @endforeach
@@ -132,7 +132,7 @@
                                 <label for="configuracao_idioma">@lang('usuarios.idioma')</label><br>
                                 <select required name="configuracao_idioma" id="configuracao_idioma"
                                     class="form-control telo5ce">
-                                    <option value=""></option>
+                                        <option value=""></option>
                                     @foreach ($idiomas as $idioma)
                                         <option value="{{ $idioma['chave'] }}">{{ $idioma['valor'] }}</option>
                                     @endforeach
@@ -188,7 +188,7 @@
                                 <div class='form-group telo5ce' id="divCentroCusto">
                                     <label for="cdcs">@lang('usuarios.centrodecustos')</label>
                                     <select class="form-control" name="cdcs[]" id="cdcs">
-                                        <option value=""></option>
+                                            <option value=""></option>
                                         @foreach ($cdcs as $item)
                                             <option value="{{ $item->id }}">{{ $item->nome }}</option>
                                         @endforeach

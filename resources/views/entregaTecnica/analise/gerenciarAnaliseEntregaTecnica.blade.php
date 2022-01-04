@@ -73,7 +73,11 @@
                             @endif
                         </td>
                         <td class="acoes">
-                            <a href="{{ route('analysis_technical_delivery', $item->id ) }}" style="font-size: 20px"><button type="button" class="botaoTabela"><i class="fas fa-eye"></i></button></a>
+                            @if ($item['status'] === 3) 
+                                <a href="{{ route('analysis_technical_delivery', $item->id ) }}" style="font-size: 20px"><button type="button" class="botaoTabela"><i class="fas fa-eye"></i></button></a>
+                            @else
+                                <button type="button" class="botaoTabela" disabled style="font-size: 20px; cursor: default;"><i class="fas fa-eye"></i></button>
+                            @endif
                         </td> 
                     </tr>
                 @endforeach

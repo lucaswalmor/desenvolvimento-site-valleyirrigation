@@ -76,7 +76,8 @@ small.required {
     border: none;
     outline: none;
     background-color: #E2EFF7 !important;
-    color: #3c8dbc;
+    /*color: #3c8dbc;*/
+    color: #0574AF;
 }
 
 .botaosalvar5 {

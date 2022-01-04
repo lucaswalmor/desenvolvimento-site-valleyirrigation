@@ -935,7 +935,7 @@
                             </div>
                             {{-- <div class="row">
                                 <div class="col-md-4">
-                                    <img src="{{ asset('../storage/app/public/'. $item['tipo_succaos'])}}"/>   
+                                    <img src="{{ asset('storage/'. $item['tipo_succaos'])}}"/>   
                                 </div>
                             </div> --}}
                         </div>
@@ -1047,13 +1047,13 @@
 
                             <div class="row">
                                 <div class="col-md-4">
-                                        <img src="{{ asset('../storage/app/public/'. $teste_torre_central['tensao_rs_semcarga_img'])}}"/>   
+                                        <img src="{{ asset('storage/'. $teste_torre_central['tensao_rs_semcarga_img'])}}"/>   
                                 </div>
                                 <div class="col-md-4">
-                                        <img src="{{ asset('../storage/app/public/'. $teste_torre_central['tensao_st_semcarga_img'])}}"/>   
+                                        <img src="{{ asset('storage/'. $teste_torre_central['tensao_st_semcarga_img'])}}"/>   
                                 </div>
                                 <div class="col-md-4">
-                                        <img src="{{ asset('../storage/app/public/'. $teste_torre_central['tensao_rt_semcarga_img'])}}"/>   
+                                        <img src="{{ asset('storage/'. $teste_torre_central['tensao_rt_semcarga_img'])}}"/>   
                                 </div>
                             </div>
                             <hr>
@@ -1074,13 +1074,13 @@
 
                             <div class="row">
                                 <div class="col-md-4">
-                                        <img src="{{ asset('../storage/app/public/'. $teste_torre_central['tensao_rs_comcarga_img'])}}"/>   
+                                        <img src="{{ asset('storage/'. $teste_torre_central['tensao_rs_comcarga_img'])}}"/>   
                                 </div>
                                 <div class="col-md-4">
-                                        <img src="{{ asset('../storage/app/public/'. $teste_torre_central['tensao_st_comcarga_img'])}}"/>   
+                                        <img src="{{ asset('storage/'. $teste_torre_central['tensao_st_comcarga_img'])}}"/>   
                                 </div>
                                 <div class="col-md-4">
-                                        <img src="{{ asset('../storage/app/public/'. $teste_torre_central['tensao_rt_comcarga_img'])}}"/>   
+                                        <img src="{{ asset('storage/'. $teste_torre_central['tensao_rt_comcarga_img'])}}"/>   
                                 </div>
                             </div>
                         </div>
@@ -1110,13 +1110,13 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4">
-                                            <img src="{{ asset('../storage/app/public/'. $bomba['pressao_reg_fechado_img'])}}"/>   
+                                            <img src="{{ asset('storage/'. $bomba['pressao_reg_fechado_img'])}}"/>   
                                     </div>
                                     <div class="col-md-4">
-                                            <img src="{{ asset('../storage/app/public/'. $bomba['pressao_reg_aberto_img'])}}"/>   
+                                            <img src="{{ asset('storage/'. $bomba['pressao_reg_aberto_img'])}}"/>   
                                     </div>
                                     <div class="col-md-4">
-                                            <img src="{{ asset('../storage/app/public/'. $bomba['pressao_centro_img'])}}"/>   
+                                            <img src="{{ asset('storage/'. $bomba['pressao_centro_img'])}}"/>   
                                     </div>
                                 </div>
                                 <hr>
@@ -1129,7 +1129,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4">
-                                            <img src="{{ asset('../storage/app/public/'. $bomba['pressao_ult_torre_img'])}}"/>   
+                                            <img src="{{ asset('storage/'. $bomba['pressao_ult_torre_img'])}}"/>   
                                     </div>
                                 </div>
                             <hr>
@@ -1154,13 +1154,13 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-4">
-                                                    <img src="{{ asset('../storage/app/public/'. $cp['tensao_rs_semcarga_img'])}}"/>   
+                                                    <img src="{{ asset('storage/'. $cp['tensao_rs_semcarga_img'])}}"/>   
                                             </div>
                                             <div class="col-md-4">
-                                                    <img src="{{ asset('../storage/app/public/'. $cp['tensao_st_semcarga_img'])}}"/>   
+                                                    <img src="{{ asset('storage/'. $cp['tensao_st_semcarga_img'])}}"/>   
                                             </div>
                                             <div class="col-md-4">
-                                                    <img src="{{ asset('../storage/app/public/'. $cp['tensao_rt_semcarga_img'])}}"/>   
+                                                    <img src="{{ asset('storage/'. $cp['tensao_rt_semcarga_img'])}}"/>   
                                             </div>
                                         </div>
                                         <hr>
@@ -1181,13 +1181,13 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-4">
-                                                    <img src="{{ asset('../storage/app/public/'. $cp['tensao_rs_comcarga_img'])}}"/>   
+                                                    <img src="{{ asset('storage/'. $cp['tensao_rs_comcarga_img'])}}"/>   
                                             </div>
                                             <div class="col-md-4">
-                                                    <img src="{{ asset('../storage/app/public/'. $cp['tensao_st_comcarga_img'])}}"/>   
+                                                    <img src="{{ asset('storage/'. $cp['tensao_st_comcarga_img'])}}"/>   
                                             </div>
                                             <div class="col-md-4">
-                                                    <img src="{{ asset('../storage/app/public/'. $cp['tensao_rt_comcarga_img'])}}"/>   
+                                                    <img src="{{ asset('storage/'. $cp['tensao_rt_comcarga_img'])}}"/>   
                                             </div>
                                         </div>
                                         <hr>
@@ -1208,13 +1208,13 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-4">
-                                                    <img src="{{ asset('../storage/app/public/'. $cp['corrente_rs_comcarga_img'])}}"/>   
+                                                    <img src="{{ asset('storage/'. $cp['corrente_rs_comcarga_img'])}}"/>   
                                             </div>
                                             <div class="col-md-4">
-                                                    <img src="{{ asset('../storage/app/public/'. $cp['corrente_st_comcarga_img'])}}"/>   
+                                                    <img src="{{ asset('storage/'. $cp['corrente_st_comcarga_img'])}}"/>   
                                             </div>
                                             <div class="col-md-4">
-                                                    <img src="{{ asset('../storage/app/public/'. $cp['corrente_rt_comcarga_img'])}}"/>   
+                                                    <img src="{{ asset('storage/'. $cp['corrente_rt_comcarga_img'])}}"/>   
                                             </div>
                                         </div>
                                         <hr>
@@ -1284,7 +1284,7 @@
 
                         <div class="pagebreak"> </div>
     
-                        <div class="container mt-5 ">
+                        <div class="container mt-5">
                             <div id="alert">                
                                 @include('_layouts._includes._alert')    
                             </div>  
@@ -1292,19 +1292,19 @@
                             <div class="col-md-12" style="background-color: #fff; width: 100%; color: #162E3C;; border-radius: 10px; border: 1px solid #162E3C;">
                                 <div class="col-md-12 mt-4 text-center">
                                     
-                                </div>       
-
-                                {{-- DECLARAÇÃO DO CLIENTE --}}       
+                                </div>           
     
+                                {{-- DECLARAÇÃO DO CLIENTE --}}       
+                                
                                 <div class="col-md-12">
                                     <p class="font-declaracao">@lang('entregaTecnica.eu') <strong>{{ strtoupper($item['nome_proprietario']) }}</strong> @lang('entregaTecnica.declaracao_texto_cliente')</p>
                                 </div>
-
+    
                                 <div class="row justify-content-center pt-3 ml-2">
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
-                                            </div>
+                                    </div>
                                         </div>
                                         <label style="margin: 15px 10px;" class="font-declaracao">@lang('entregaTecnica.item_manual_montagem')</label>
                                     </div>
@@ -1349,7 +1349,7 @@
                                         <label  style="margin: 15px 10px;" class="font-declaracao">@lang('entregaTecnica.item_manual_chave_partida_ss')</label>
                                     </div>
                                 </div>
-                                
+    
                                 <div class="row justify-content-center pt-3 ml-2">
                                     <div class="form-group col-md-12">
                                         <label for="observacoes" class="font-declaracao">@lang('entregaTecnica.observacoes'):</label>
@@ -1366,11 +1366,11 @@
                                     <div class="col-md-4">
                                         <label for="" class="label_declaracao font-declaracao">@lang('entregaTecnica.cpf_cliente')</label>
                                         <input type="text" class="declaracao_cpf pl-2 pr-2 font-declaracao">
-                                    </div>
+                                            </div>
                                     <div class="col-md-2 font-declaracao-data">
                                         <label for="" class="label_declaracao font-declaracao">@lang('entregaTecnica.data'):</label>
                                         <input type="text" class="declaracao_data font-declaracao-data" value="{{ date('d/m/Y') }}" readonly>
-                                    </div>
+                                        </div>
                                 </div>
 
                                 {{-- DECLARAÇÃO DO TÉCNICO --}}          

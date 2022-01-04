@@ -18,7 +18,7 @@ class CreateEntregaTecnica extends Migration
             $table->bigInteger('id_tecnico')->foreing('id_tecnico')->references('id')->on('users');
             $table->bigInteger('id_fazenda')->foreign('id_fazenda')->references('id')->on('fazendas');
             $table->date('data_entrega_tecnica');
-            $table->date('data_envio_entrega_tecnica');
+            $table->varchar('data_envio_entrega_tecnica')->nullable();
             $table->text('observacoes_envio')->nullable();            
             $table->string('img_declaracao', 200)->nullable();
             $table->string('tipo_entrega_tecnica', 10);

@@ -1,14 +1,6 @@
-@extends('_layouts._layout_site')
-@include('_layouts._includes._head')
-
-@section('head')
-@endsection
-
-@section('titulo')
-@endsection
+@extends('_layouts._layout_admsystem')
 
 @section('topo_detalhe')
-
     <div class="container-fluid topo">
         <div class="row align-items-start">
 
@@ -38,7 +30,6 @@
             </div>
         </div>
     </div>
-
 @endsection
 
 @section('conteudo')

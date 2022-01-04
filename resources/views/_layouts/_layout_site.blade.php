@@ -6,36 +6,31 @@
 </head>
 
 <body>
-    <div class="panel">
+    <header class="teste navbar-fixed-top">
+        <section>
+            @include('_layouts._includes._header')
+        </section>
+    </header>
 
-
-        <header class="teste navbar-fixed-top">
-            <section>
-                @include('_layouts._includes._header')
-            </section>
-        </header>
-
-        <main>
-            <section>
-                <div>
-                    @yield('topo_detalhe')
+    <main>
+        <section>
+            <div>
+                @yield('topo_detalhe')
+            </div>
+            <div>
+                <div class="conteudo" id="conteudo">
+                    @yield('conteudo')
                 </div>
-                <div>
-                    <div class="conteudo" id="conteudo">
-                        @yield('conteudo')
-                    </div>
-                </div>
-            </section>
-        </main>
+            </div>
+        </section>
+    </main>
 
-        <footer>
-            <section>
-                @include('_layouts._includes._footer')
-            </section>
-        </footer>
-    </div>
+    <footer>
+        <section>
+            @include('_layouts._includes._footer')
+        </section>
+    </footer>
 </body>
-
 
 
 <script type="text/javascript">

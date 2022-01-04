@@ -12,7 +12,8 @@ body {
 /* ICONES GERAIS */
 
 .teste {
-    background-color: #1B6B9A;
+    /*background-color: #1B6B9A;*/
+    background-color: #2896D1;
     height: 50px;
 }
 
@@ -36,7 +37,8 @@ body {
 .sair {
     float: right;
     height: 50px;
-    background-color: #26546F;
+    /*background-color: #26546F;*/
+    background-color: #0574AF;
     padding: 15px 10px 10px 10px;
 }
 
@@ -52,9 +54,9 @@ body {
 
 .header-usuario .header-logo {
     margin: 4px 0px 0px -330px;
-    width: 100px;
+    width: 210px;
     height: 35px;
-    background: transparent url("../img/logo_header.png") no-repeat !important;
+    background: transparent url("../img/icon2-pequeno.png") no-repeat !important;
 }
 
 .bandeiras {
@@ -105,7 +107,8 @@ body {
 .dropbtn {
     text-align: justify;
     text-indent: 15%;
-    background-color: #26546F;
+    /*background-color: #26546F;*/
+    background-color: #0574AF;
     color: white !important;
     padding: 5px;
     font-size: 16px;
@@ -133,7 +136,8 @@ body {
     padding: 14px 105px 4px 5px;
     border: none;
     outline: none;
-    background-color: #26546F;
+    /*background-color: #26546F;*/
+    background-color: #0574AF;
     color: #fff;
     border-bottom: 1px rgba(255, 255, 255, 0.4) solid;
 }
@@ -141,13 +145,15 @@ body {
 .myInput {
     display: block;
     padding: 30px;
-    background-color: #26546F;
+    /*background-color: #26546F;*/
+    background-color: #0574AF;
 }
 
 .inputicon {
     position: relative;
     padding: 2px 15px 15px 15px;
-    background-color: #26546F;
+    /*background-color: #26546F;*/
+    background-color: #0574AF;
 }
 
 .inputicon i {
@@ -187,7 +193,8 @@ body {
 }
 
 .headersearch {
-    color: #162E3C;
+    /*color: #162E3C;*/
+    color: #02466B;
     font-size: 12pt;
     font-weight: bold;
     padding: 10px 16px 0px 16px;
@@ -237,7 +244,8 @@ body {
     padding: 0 10px;
     height: 50px;
     line-height: 50px;
-    background-color: #26546F;
+    /*background-color: #26546F;*/
+    background-color: #0574AF;
     color: #fff !important;
     list-style: none;
     margin: 0;
@@ -268,7 +276,8 @@ body {
 #menu ul li {
     width: 253px;
     border: none;
-    border-bottom: 1px solid #0088CE;
+    /*border-bottom: 1px solid #0088CE;*/
+    border-bottom: 1px solid #65B2DB;
 }
 
 #menu ul li:last-child{
@@ -283,7 +292,8 @@ body {
 /* HAMBURGUER */
 
 .dropbtn4 {
-    background-color: #162E3C;
+    /*background-color: #162E3C;*/
+    background-color: #02466B;
     color: white;
     border: none;
     cursor: pointer;
@@ -328,7 +338,7 @@ body {
 .nav11 label {
     display: block;
     padding: .65rem;
-    font-size: 1em;
+    font-size: 1.1em;
 }
 
 label {
@@ -340,8 +350,10 @@ label {
 }
 
 .navbar11 {
-    background-color: #162E3C;
-    color: #0088CE;
+    /*background-color: #162E3C;*/
+    background-color: #02466B;
+    /*color: #0088CE;*/
+    color: #65B2DB;
 }
 
 .navbar11 span {
@@ -349,7 +361,8 @@ label {
 }
 
 .subnavbar {
-    background-color: #005C99;
+    /*background-color: #005C99;*/
+    background-color: #2896D1;
     color: #FFF;
     padding: 0px 20px 0px 20px
 }
@@ -448,7 +461,8 @@ label>span {
 }
 
 .entrega-tecnica-link {
-    color: #0088CE !important; 
+    /*color: #0088CE !important;*/
+    color: #65B2DB !important; 
 }
 
 .entrega-tecnica-link>span {

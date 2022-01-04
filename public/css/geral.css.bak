@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
+body {
+    font-family: 'Roboto Condensed', sans-serif !important;
+}
+
+body h1 {
+    color: #003A5D;
+    font-weight: normal;
+    font-size: 2.4em;
+}
+
+
+form div input {
+    display: inline-flex;
+}
+
+/* SELECT PICKER EDIT */
+.btn-light:not(:disabled):not(.disabled).active, .btn-light:not(:disabled):not(.disabled):active, .show>.btn-light.dropdown-toggle {
+    height: 30px !important;
+    border: none;
+    outline: none;
+    background-color: #e2eff773 !important;
+}
+
+.bootstrap-select .dropdown-toggle:focus {
+    outline: none !important;
+    height: 30px;
+    border: none !important;
+}
+
+.btn-light.focus, .btn-light:focus {
+    color: #212529;
+    background-color: #e2eff773;
+}
+
+.bootstrap-select > .dropdown-toggle.bs-placeholder, .bootstrap-select > .dropdown-toggle.bs-placeholder:hover, .bootstrap-select > .dropdown-toggle.bs-placeholder:focus, .bootstrap-select > .dropdown-toggle.bs-placeholder:active {
+    color: #003A5D;
+    font-size: 14px;
+}
+
+.btn:hover {
+    background-color: #e2eff773 !important;
+    border: none !important;
+    outline: none !important;
+}
+
+.btn {
+    transition: none !important;
+}
+
+.btn-light {
+    height: 30px;
+    color: #212529;
+    background-color: #f8f9fa;
+}
+
+.bs-searchbox .form-control {
+    border: 1px solid #ced4da;
+}

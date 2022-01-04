@@ -1,7 +1,7 @@
 <?php
 
 use App\Classes\EntregaTecnica\EntregaTecnica;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 if (version_compare(PHP_VERSION, '7.2.0', '>=')) {
     error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
@@ -25,6 +25,7 @@ Auth::routes(['verify' => true]);
 Route::group(['middleware' => 'auth'], function () {
     //Logout
     Route::get('/sair', ['as' => 'sair', 'uses' => 'Auth\AutenticacaoController@sair']);
+    Route::get('/admsystem', ['as' => 'admsystem', 'uses' => 'AdmSystem\AdmSystemController@index']);
 });
 
 
@@ -150,7 +151,7 @@ Route::group(['middleware' => 'auth', 'middleware' => 'verified'], function () {
             Route::get('/technical_delivery/manage_analysis_technical_delivery', ['as' => 'manage_analysis_technical_delivery', 'uses' => 'EntregaTecnica\EntregaTecnicaController@manageAnalysisTechnicalDelivery']);
             Route::get('/technical_delivery/analysis_technical_delivery/{id}', ['as' => 'analysis_technical_delivery', 'uses' => 'EntregaTecnica\EntregaTecnicaController@analysisTechnicalDelivery']);
             Route::post('/technical_delivery/send_analisy_technical_delivery', ['as' => 'send_analisy_technical_delivery', 'uses' => 'EntregaTecnica\EntregaTecnicaController@sendAnalisyTechnicalDelivery']);
-
+            
             // search
             Route::post('/technical_delivery/filter', ['as' => 'technical_delivery_filter', 'uses' => 'EntregaTecnica\EntregaTecnicaController@searchTechnilcalDelivery']);
 

@@ -86,7 +86,7 @@
                                                     </div>    
                                                     <div>
                                                         @if (count($item['tensao_rs_semcarga_img']) > 0)
-                                                            <img src="{{ asset('../storage/app/public/'. $item['tensao_rs_semcarga_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="tensao_rs_semcarga_preview" data-imgval="{{ $item['tensao_rs_semcarga_img'] }}" />   
+                                                            <img src="{{ asset('storage/'. $item['tensao_rs_semcarga_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="tensao_rs_semcarga_preview" data-imgval="{{ $item['tensao_rs_semcarga_img'] }}" />   
                                                         @else                                                             
                                                             <img id="tensao_rs_semcarga_preview" class="img_preview" onclick="expandImage(this)" data-imgval=""/>
                                                         @endif
@@ -103,7 +103,7 @@
     
                                                     <div>                                                            
                                                         @if (count($item['tensao_st_semcarga_img']) > 0)
-                                                            <img src="{{ asset('../storage/app/public/'. $item['tensao_st_semcarga_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="tensao_st_semcarga_preview" data-imgval="{{ $item['tensao_st_semcarga_img'] }}" />   
+                                                            <img src="{{ asset('storage/'. $item['tensao_st_semcarga_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="tensao_st_semcarga_preview" data-imgval="{{ $item['tensao_st_semcarga_img'] }}" />   
                                                         @else                                                             
                                                             <img id="tensao_st_semcarga_preview" class="img_preview" onclick="expandImage(this)" data-imgval=""/>
                                                         @endif
@@ -120,7 +120,7 @@
     
                                                     <div>                                                            
                                                         @if (count($item['tensao_rt_semcarga_img']) > 0)
-                                                            <img src="{{ asset('../storage/app/public/'. $item['tensao_rt_semcarga_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="tensao_rt_semcarga_preview" data-imgval="{{ $item['tensao_rt_semcarga_img'] }}" />   
+                                                            <img src="{{ asset('storage/'. $item['tensao_rt_semcarga_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="tensao_rt_semcarga_preview" data-imgval="{{ $item['tensao_rt_semcarga_img'] }}" />   
                                                         @else                                                             
                                                             <img id="tensao_rt_semcarga_preview" class="img_preview" onclick="expandImage(this)" data-imgval=""/>
                                                         @endif
@@ -140,7 +140,7 @@
     
                                                     <div>                                                           
                                                         @if (count($item['tensao_rs_comcarga_img']) > 0)
-                                                            <img src="{{ asset('../storage/app/public/'. $item['tensao_rs_comcarga_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="tensao_rs_comcarga_preview" data-imgval="{{ $item['tensao_rs_comcarga_img'] }}" />   
+                                                            <img src="{{ asset('storage/'. $item['tensao_rs_comcarga_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="tensao_rs_comcarga_preview" data-imgval="{{ $item['tensao_rs_comcarga_img'] }}" />   
                                                         @else                                                             
                                                             <img id="tensao_rs_comcarga_preview" class="img_preview" onclick="expandImage(this)" data-imgval=""/>
                                                         @endif
@@ -159,7 +159,7 @@
     
                                                         <div>                                                           
                                                             @if (count($item['tensao_st_comcarga_img']) > 0)
-                                                                <img src="{{ asset('../storage/app/public/'. $item['tensao_st_comcarga_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="tensao_st_comcarga_preview" data-imgval="{{ $item['tensao_st_comcarga_img'] }}" />   
+                                                                <img src="{{ asset('storage/'. $item['tensao_st_comcarga_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="tensao_st_comcarga_preview" data-imgval="{{ $item['tensao_st_comcarga_img'] }}" />   
                                                             @else                                                             
                                                                 <img id="tensao_st_comcarga_preview" class="img_preview" onclick="expandImage(this)" data-imgval=""/>
                                                             @endif
@@ -177,7 +177,7 @@
     
                                                     <div>
                                                         @if (count($item['tensao_rt_comcarga_img']) > 0)
-                                                            <img src="{{ asset('../storage/app/public/'. $item['tensao_rt_comcarga_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="tensao_rt_comcarga_preview" data-imgval="{{ $item['tensao_rt_comcarga_img'] }}" />   
+                                                            <img src="{{ asset('storage/'. $item['tensao_rt_comcarga_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="tensao_rt_comcarga_preview" data-imgval="{{ $item['tensao_rt_comcarga_img'] }}" />   
                                                         @else                                                             
                                                             <img id="tensao_rt_comcarga_preview" class="img_preview" onclick="expandImage(this)" data-imgval=""/>
                                                         @endif
@@ -230,7 +230,7 @@
                                                             </div>    
                                                             <div>
                                                                 @if (count($item['pressao_centro_img']) > 0)
-                                                                    <img src="{{ asset('../storage/app/public/'. $item['pressao_centro_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="pressao_centro_preview_{{$h}}" data-imgval="{{ $item['pressao_centro_img'] }}" />   
+                                                                    <img src="{{ asset('storage/'. $item['pressao_centro_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="pressao_centro_preview_{{$h}}" data-imgval="{{ $item['pressao_centro_img'] }}" />   
                                                                 @else                                                             
                                                                     <img id="pressao_centro_preview_{{$h}}" class="img_preview" onclick="expandImage(this)" data-imgval=""/>
                                                                 @endif
@@ -246,7 +246,7 @@
                                                             </div>    
                                                             <div>
                                                                 @if (count($item['pressao_ult_torre_img']) > 0)
-                                                                    <img src="{{ asset('../storage/app/public/'. $item['pressao_ult_torre_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="pressao_ult_torre_preview_{{$h}}" data-imgval="{{ $item['pressao_ult_torre_img'] }}" />   
+                                                                    <img src="{{ asset('storage/'. $item['pressao_ult_torre_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="pressao_ult_torre_preview_{{$h}}" data-imgval="{{ $item['pressao_ult_torre_img'] }}" />   
                                                                 @else                                                             
                                                                     <img id="pressao_ult_torre_preview_{{$h}}" class="img_preview" onclick="expandImage(this)" data-imgval=""/>
                                                                 @endif
@@ -288,7 +288,7 @@
                                 </div>    
                                 <div>
                                     @if (count($velocidade['leitura_horímetro_img']) > 0)
-                                        <img src="{{ asset('../storage/app/public/'. $velocidade['leitura_horímetro_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="leitura_horímetro_preview" data-imgval="{{ $velocidade['leitura_horímetro_img'] }}" />   
+                                        <img src="{{ asset('storage/'. $velocidade['leitura_horímetro_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="leitura_horímetro_preview" data-imgval="{{ $velocidade['leitura_horímetro_img'] }}" />   
                                     @else                                                             
                                         <img id="leitura_horímetro_preview" class="img_preview" onclick="expandImage(this)" data-imgval=""/>
                                     @endif
@@ -335,7 +335,7 @@
                                                             </div>    
                                                             <div>
                                                                 @if (count($item['pressao_reg_fechado_img']) > 0)
-                                                                    <img src="{{ asset('../storage/app/public/'. $item['pressao_reg_fechado_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="pressao_reg_fechado_preview_{{$h}}" data-imgval="{{ $item['pressao_reg_fechado_img'] }}" />   
+                                                                    <img src="{{ asset('storage/'. $item['pressao_reg_fechado_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="pressao_reg_fechado_preview_{{$h}}" data-imgval="{{ $item['pressao_reg_fechado_img'] }}" />   
                                                                 @else                                                             
                                                                     <img id="pressao_reg_fechado_preview_{{$h}}" class="img_preview" onclick="expandImage(this)" data-imgval=""/>
                                                                 @endif
@@ -351,7 +351,7 @@
                                                             </div>    
                                                             <div>
                                                                 @if (count($item['pressao_reg_aberto_img']) > 0)
-                                                                    <img src="{{ asset('../storage/app/public/'. $item['pressao_reg_aberto_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="pressao_reg_aberto_preview_{{$h}}" data-imgval="{{ $item['pressao_reg_aberto_img'] }}" />   
+                                                                    <img src="{{ asset('storage/'. $item['pressao_reg_aberto_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="pressao_reg_aberto_preview_{{$h}}" data-imgval="{{ $item['pressao_reg_aberto_img'] }}" />   
                                                                 @else                                                             
                                                                     <img id="pressao_reg_aberto_preview_{{$h}}" class="img_preview" onclick="expandImage(this)" data-imgval=""/>
                                                                 @endif
@@ -416,7 +416,7 @@
             
                                                             <div>
                                                                 @if (count($item['tensao_rs_semcarga_img']) > 0)
-                                                                    <img src="{{ asset('../storage/app/public/'. $item['tensao_rs_semcarga_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="tensao_rs_semcarga_cp_preview_0{{$b}}_{{$m}}_{{$i}}" data-imgval="{{ $item['tensao_rs_semcarga_img'] }}" />   
+                                                                    <img src="{{ asset('storage/'. $item['tensao_rs_semcarga_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="tensao_rs_semcarga_cp_preview_0{{$b}}_{{$m}}_{{$i}}" data-imgval="{{ $item['tensao_rs_semcarga_img'] }}" />   
                                                                 @else                                                             
                                                                     <img id="tensao_rs_semcarga_cp_preview_0{{$b}}_{{$m}}_{{$i}}" class="img_preview" onclick="expandImage(this)" data-imgval=""/>
                                                                 @endif
@@ -433,7 +433,7 @@
             
                                                             <div>
                                                                 @if (count($item['tensao_st_semcarga_img']) > 0)
-                                                                    <img src="{{ asset('../storage/app/public/'. $item['tensao_st_semcarga_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="tensao_st_semcarga_cp_preview_0{{$b}}_{{$m}}_{{$i}}" data-imgval="{{ $item['tensao_st_semcarga_img'] }}" />   
+                                                                    <img src="{{ asset('storage/'. $item['tensao_st_semcarga_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="tensao_st_semcarga_cp_preview_0{{$b}}_{{$m}}_{{$i}}" data-imgval="{{ $item['tensao_st_semcarga_img'] }}" />   
                                                                 @else                                                             
                                                                     <img id="tensao_st_semcarga_cp_preview_0{{$b}}_{{$m}}_{{$i}}" class="img_preview" onclick="expandImage(this)" data-imgval=""/>
                                                                 @endif
@@ -450,7 +450,7 @@
             
                                                             <div>
                                                                 @if (count($item['tensao_rt_semcarga_img']) > 0)
-                                                                    <img src="{{ asset('../storage/app/public/'. $item['tensao_rt_semcarga_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="tensao_rt_semcarga_cp_preview_0{{$b}}_{{$m}}_{{$i}}" data-imgval="{{ $item['tensao_rt_semcarga_img'] }}" />   
+                                                                    <img src="{{ asset('storage/'. $item['tensao_rt_semcarga_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="tensao_rt_semcarga_cp_preview_0{{$b}}_{{$m}}_{{$i}}" data-imgval="{{ $item['tensao_rt_semcarga_img'] }}" />   
                                                                 @else                                                             
                                                                     <img id="tensao_rt_semcarga_cp_preview_0{{$b}}_{{$m}}_{{$i}}" class="img_preview" onclick="expandImage(this)" data-imgval=""/>
                                                                 @endif
@@ -472,7 +472,7 @@
             
                                                             <div>
                                                                 @if (count($item['tensao_rs_comcarga_img']) > 0)
-                                                                    <img src="{{ asset('../storage/app/public/'. $item['tensao_rs_comcarga_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="tensao_rs_comcarga_cp_preview_0{{$b}}_{{$m}}_{{$i}}" data-imgval="{{ $item['tensao_rs_comcarga_img'] }}" />   
+                                                                    <img src="{{ asset('storage/'. $item['tensao_rs_comcarga_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="tensao_rs_comcarga_cp_preview_0{{$b}}_{{$m}}_{{$i}}" data-imgval="{{ $item['tensao_rs_comcarga_img'] }}" />   
                                                                 @else                                                             
                                                                     <img id="tensao_rs_comcarga_cp_preview_0{{$b}}_{{$m}}_{{$i}}" class="img_preview" onclick="expandImage(this)" data-imgval=""/>
                                                                 @endif
@@ -489,7 +489,7 @@
             
                                                             <div>
                                                                 @if (count($item['tensao_st_comcarga_img']) > 0)
-                                                                    <img src="{{ asset('../storage/app/public/'. $item['tensao_st_comcarga_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="tensao_st_comcarga_cp_preview_0{{$b}}_{{$m}}_{{$i}}" data-imgval="{{ $item['tensao_st_comcarga_img'] }}" />   
+                                                                    <img src="{{ asset('storage/'. $item['tensao_st_comcarga_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="tensao_st_comcarga_cp_preview_0{{$b}}_{{$m}}_{{$i}}" data-imgval="{{ $item['tensao_st_comcarga_img'] }}" />   
                                                                 @else                                                             
                                                                     <img id="tensao_st_comcarga_cp_preview_0{{$b}}_{{$m}}_{{$i}}" class="img_preview" onclick="expandImage(this)" data-imgval=""/>
                                                                 @endif
@@ -506,7 +506,7 @@
             
                                                             <div>
                                                                 @if (count($item['tensao_rt_comcarga_img']) > 0)
-                                                                    <img src="{{ asset('../storage/app/public/'. $item['tensao_rt_comcarga_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="tensao_rt_comcarga_cp_preview_0{{$b}}_{{$m}}_{{$i}}" data-imgval="{{ $item['tensao_rt_comcarga_img'] }}" />   
+                                                                    <img src="{{ asset('storage/'. $item['tensao_rt_comcarga_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="tensao_rt_comcarga_cp_preview_0{{$b}}_{{$m}}_{{$i}}" data-imgval="{{ $item['tensao_rt_comcarga_img'] }}" />   
                                                                 @else                                                             
                                                                     <img id="tensao_rt_comcarga_cp_preview_0{{$b}}_{{$m}}_{{$i}}" class="img_preview" onclick="expandImage(this)" data-imgval=""/>
                                                                 @endif
@@ -527,7 +527,7 @@
             
                                                             <div>
                                                                 @if (count($item['corrente_rs_comcarga_img']) > 0)
-                                                                    <img src="{{ asset('../storage/app/public/'. $item['corrente_rs_comcarga_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="corrente_rs_comcarga_cp_preview_0{{$b}}_{{$m}}_{{$i}}" data-imgval="{{ $item['corrente_rs_comcarga_img'] }}" />   
+                                                                    <img src="{{ asset('storage/'. $item['corrente_rs_comcarga_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="corrente_rs_comcarga_cp_preview_0{{$b}}_{{$m}}_{{$i}}" data-imgval="{{ $item['corrente_rs_comcarga_img'] }}" />   
                                                                 @else
                                                                     <img id="corrente_rs_comcarga_cp_preview_0{{$b}}_{{$m}}_{{$i}}" class="img_preview" onclick="expandImage(this)" data-imgval=""/>
                                                                 @endif
@@ -544,7 +544,7 @@
             
                                                             <div>
                                                                 @if (count($item['corrente_st_comcarga_img']) > 0)
-                                                                    <img src="{{ asset('../storage/app/public/'. $item['corrente_st_comcarga_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="corrente_st_comcarga_cp_preview_0{{$b}}_{{$m}}_{{$i}}" data-imgval="{{ $item['corrente_st_comcarga_img'] }}" />   
+                                                                    <img src="{{ asset('storage/'. $item['corrente_st_comcarga_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="corrente_st_comcarga_cp_preview_0{{$b}}_{{$m}}_{{$i}}" data-imgval="{{ $item['corrente_st_comcarga_img'] }}" />   
                                                                 @else                                                             
                                                                     <img id="corrente_st_comcarga_cp_preview_0{{$b}}_{{$m}}_{{$i}}" class="img_preview" onclick="expandImage(this)" data-imgval=""/>
                                                                 @endif
@@ -561,7 +561,7 @@
             
                                                             <div>
                                                                 @if (count($item['corrente_rt_comcarga_img']) > 0)
-                                                                    <img src="{{ asset('../storage/app/public/'. $item['corrente_rt_comcarga_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="corrente_rt_comcarga_cp_preview_0{{$b}}_{{$m}}_{{$i}}" data-imgval="{{ $item['corrente_rt_comcarga_img'] }}" />   
+                                                                    <img src="{{ asset('storage/'. $item['corrente_rt_comcarga_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="corrente_rt_comcarga_cp_preview_0{{$b}}_{{$m}}_{{$i}}" data-imgval="{{ $item['corrente_rt_comcarga_img'] }}" />   
                                                                 @else                                                             
                                                                     <img id="corrente_rt_comcarga_cp_preview_0{{$b}}_{{$m}}_{{$i}}" class="img_preview" onclick="expandImage(this)" data-imgval=""/>
                                                                 @endif
@@ -592,23 +592,23 @@
             <!-- Modal imagens torre central -->
             <div class="modal fade" id="modal_img_testes_" tabindex="-1" role="dialog" aria-labelledby="modal_img_testes_Label">
                 <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modal_label_"></h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body text-center">
-                            @foreach ($dados_tc as $item)
-                                @if (count($item) > 0)
-                                    <img src="{{ asset('../storage/app/public/')}}" class="img_modal">
-                                @else                                        
-                                    <img src="" class="img_modal"/>                                   
-                                @endif
-                            @endforeach
-                        </div>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal_label_"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
+                    <div class="modal-body text-center">
+                        @foreach ($dados_tc as $item)
+                            @if (count($item) > 0)
+                                <img src="{{ asset('storage/')}}" class="img_modal">
+                            @else                                        
+                                <img src="" class="img_modal"/>                                   
+                            @endif
+                        @endforeach
+                    </div>
+                </div>
                 </div>
             </div>
         </div>

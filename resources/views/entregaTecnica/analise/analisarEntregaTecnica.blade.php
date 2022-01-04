@@ -51,10 +51,10 @@
                     </button>
                 @endif
             </div>
+            </div>
         </div>
-    </div>
 
-    {{-- ENVIAR AN√ÅLISE DA ENTREGA TECNICA --}}
+    {{-- ENVIAR AN¡LISE DA ENTREGA TECNICA --}}
     <div class="modal fade" id="envar_analise" tabindex="-1" aria-labelledby="envar_analiseLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
@@ -66,7 +66,7 @@
                 </div>
                 <div class="modal-body">
                     <form action="{{ route('send_analisy_technical_delivery') }}" method="post" id="formdados">
-                        @csrf
+                    @csrf
                         <input type="hidden" name="id_entrega_tecnica" value="{{ $id_entrega_tecnica }}">
                         <div class="col-md-12" id="cssPreloader">
                             <div class="form-row justify-content-start">    
@@ -101,10 +101,10 @@
                             </button>
                             <button class="etSalvar ml-2" name="botao" value="salvar" id="botaosalvar">@lang('entregaTecnica.enviar')</button>
                         </div>
-                    </form>
-                </div>
+                </form>
             </div>
         </div>
+    </div>
       </div>
 @endsection
 
@@ -150,10 +150,10 @@
         </li>
 
         @if (count($telemetria) > 0)
-            <li class=" mobile-et" role="presentation">
-                <a class="nav-link" id="telemetria-tab" data-toggle="tab" href="#telemetria" role="tab"
-                    aria-controls="telemetria" aria-selected="false">@lang('entregaTecnica.telemetria')</a>
-            </li>
+        <li class=" mobile-et" role="presentation">
+            <a class="nav-link" id="telemetria-tab" data-toggle="tab" href="#telemetria" role="tab"
+                aria-controls="telemetria" aria-selected="false">@lang('entregaTecnica.telemetria')</a>
+        </li>
         @endif
 
     </ul>
@@ -195,15 +195,15 @@
         <div class="tab-pane fade" id="alimentacao_eletrica" role="tabpanel" aria-labelledby="alimentacao_eletrica-tab">
             @include('entregaTecnica.analise.abas.powerSupply')
         </div>
-        
+    
         <div class="tab-pane fade" id="testes" role="tabpanel" aria-labelledby="testes-tab">
             @include('entregaTecnica.analise.abas.tests')
         </div>
-        
+    
         <div class="tab-pane fade" id="telemetria" role="tabpanel" aria-labelledby="telemetria-tab">
             @include('entregaTecnica.analise.abas.telemetry')
         </div>
-    @endforeach
+            @endforeach
 </div>
 @endsection
 

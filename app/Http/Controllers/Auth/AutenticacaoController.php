@@ -19,8 +19,17 @@ class AutenticacaoController extends Controller
     {
         if (Auth::check()) {
             return redirect()->route('dashboard');
+        } else {
+            $lang_browser = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'],0,2);
+            if ($lang_browser == 'pt') {
+                Session::put('locale', 'pt-br');
+            } else if ($lang_browser == 'es') {
+                Session::put('locale', 'es');
+            } else {
+                Session::put('locale', 'en');
+            }
+            return view('sistema.usuarios.login');
         }
-        return view('sistema.usuarios.login');
     }
 
     public function Signin(Request $req)
@@ -43,6 +52,9 @@ class AutenticacaoController extends Controller
             Session::put('locale',  Auth::user()->preferencia_idioma);
             //Adicionando a lista de idiomas a sessão
             Session::put('idiomas', $idiomas);
+
+            $listModules = User::getListModulesPermissions();
+            Session::put('listModules', $listModules);
             
             // Coloca a lista de fazendas no menu
             $fazendas = FazendaController::selectFarms();

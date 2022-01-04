@@ -2,10 +2,10 @@
 
 return [
     'autenticao_necessaria' => 'Autenticación requerida',
-    'email' => 'Correo Electronico',
+    'email' => 'E-mail',
     'senha' => 'Contraseña',
-    'usuario_ou_senha_invalidos' => 'Nombre de usuario o contraseña inválidos',
-    'lembrar_minha_senha' => 'Recuerda mi contraseña',
-    'entrar' => 'Iniciar sesión',
-    'dados_invalidos' => 'Usuario / contraseña invalida'
+    'usuario_ou_senha_invalidos' => 'E-Mail o Contraseña no válida!',
+    'lembrar_minha_senha' => 'Olvide mi contraseña',
+    'entrar' => 'Entrar',
+    'dados_invalidos' => 'E-Mail o Contraseña no válida!'
 ];

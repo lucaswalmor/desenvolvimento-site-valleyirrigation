@@ -13,7 +13,7 @@
             </div>
 
             {{-- BOTOES SALVAR E VOLTAR --}}
-            <div class="col-6 text-right botoes mobile ">
+            <div class="col-6 text-right botoes mobile">
 
                 <a href="{{ route('manage_technical_delivery') }}" style="color: #3c8dbc">
                     <button type="button" data-toggle="tooltip" data-placement="bottom" title="Voltar">

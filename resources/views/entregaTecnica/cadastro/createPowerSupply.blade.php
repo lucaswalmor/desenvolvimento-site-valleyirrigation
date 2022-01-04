@@ -164,10 +164,10 @@
 
     {{-- VALIDAÇÕES DE CAMPOS --}}
     <script src="http://jqueryvalidation.org/files/dist/jquery.validate.js"></script>
-    <script>        
+    <script>
         $(document).ready(function() {
-            $("#alert").fadeIn(300).delay(2000).fadeOut(400);
 
+            $("#alert").fadeIn(300).delay(2000).fadeOut(400);
             $('#botaosalvar').on('click', function() {
                 $('#formdados').submit();
             });

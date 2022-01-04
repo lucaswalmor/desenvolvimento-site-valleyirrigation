@@ -20,8 +20,8 @@ class CreateTableEntregaTecnicaAdutora extends Migration
             $table->string('fornecedor', 30)->nullable();
             $table->string('tipo_tubo', 30)->nullable();
             $table->double('diametro', 6,2)->nullable();
-            $table->integer('numero_linha', 3)->nullable();
-            $table->integer('quantidade', 3)->nullable();
+            $table->integer('numero_linha')->nullable();
+            $table->integer('quantidade')->nullable();
             $table->double('comprimento', 6,2)->nullable();            
             $table->softDeletes();
             $table->timestamps();

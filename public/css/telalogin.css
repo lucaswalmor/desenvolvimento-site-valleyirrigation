@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
 
 body {
-    background-color: #26546F;
+    background-color: #2896D1;
     font-family: 'Roboto Condensed', sans-serif;
 }
 
@@ -9,7 +9,7 @@ body {
     width: 300px;
     padding: 40px;
     position: absolute;
-    top: 45%;
+    top: 280px;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
@@ -37,7 +37,8 @@ body {
     margin-bottom: 10px;
     border: 0px;
     cursor: pointer;
-    background-color: #162E3C;
+    /*background-color: #055F90;*/
+    background-color: #02466B;
     color: #fff;
 }
 

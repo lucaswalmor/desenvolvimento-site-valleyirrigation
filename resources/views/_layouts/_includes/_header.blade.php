@@ -12,12 +12,13 @@
     </button>
 
     <div id="myDropdown4" class="dropdown-content4 content">
+        @php $listModules = Session::get('listModules'); @endphp
         <nav class="nav11" role="navigation">
             <ul class="nav11__list">
                 <li class="navbar11">
 
                     {{-- AFERIÇÃO --}}
-
+                    @if (array_search("afericao.pivoCentral", array_column($listModules, 'name')))
                     <input id="group-1" type="checkbox" hidden />
                     <label for="group-1"><span class="fa fa-caret-right"></span>@lang('afericao.afericoes')</label>
                     <ul class="group-list">
@@ -39,9 +40,10 @@
                                 <label for="sub-group-1"></span><a href="#"> Second level</a></label> --}}
                         </li>
                     </ul>
+                    @endif
 
                     {{-- REDIMENSIONAMENTO --}}
-
+                    @if (array_search("redimensionamento.pivoCentral", array_column($listModules, 'name')))
                     <input id="group-2" type="checkbox" hidden />
                     <label for="group-2"><span class="fa fa-caret-right"></span>@lang('redimensionamento.menuRedimensionamento')</label>
                     <ul class="group-list">
@@ -74,16 +76,19 @@
                             </ul>
                         </li> --}}
                     </ul>
+                    @endif
 
                     {{-- ENTREGA TÉCNICA --}}
-
+                    @if (array_search("entregaTecnica", array_column($listModules, 'name')))
                     <input id="group-3" type="checkbox" hidden />
                     
                     <a href="{{ route('manage_technical_delivery') }}" class="nav-link entrega-tecnica-link sub_grupo">
                         @lang('entregaTecnica.entregaTecnica')
                     </a>
+                    @endif
 
                     {{-- ANÁLISE ENTREGA TÉCNICA --}}
+                    @if (array_search("analise.entregaTecnica", array_column($listModules, 'name')))
                     <input id="group-4" type="checkbox" hidden />
                     <a href="{{ route('manage_analysis_technical_delivery') }}" class="nav-link entrega-tecnica-link sub_grupo">
                         </span>@lang('entregaTecnica.analise_entregaTecnica')
@@ -94,6 +99,7 @@
                     <a href="{{ route('manage_technical_delivery') }}" class="nav-link entrega-tecnica-link">
                         </span>@lang('entregaTecnica.biblioteca')
                     </a> --}}
+                    @endif
 
                     {{-- GARANTIAS --}}
 
@@ -192,7 +198,7 @@
 <div class="dropdown">
 
     <button id="btnSelecionFazenda" class="dropbtn" onclick="myFunction()"
-        style="background: url({{ asset('img/ico_fazenda.png') }});background-repeat: no-repeat; background-color: #26546F; background-size: 30px; background-position: 5%;">
+        style="background: url({{ asset('img/ico_fazenda.png') }});background-repeat: no-repeat; background-color: #0574AF; background-size: 30px; background-position: 5%;">
         
         @if (session()->has('fazenda'))
             <span class="dropbtn">{{ Session::get('fazenda')['nome'] }}</span>
@@ -272,6 +278,9 @@
 
                 @can('admin')
                     <li class="container">
+                        <i class='fa fa-fw fa-toolbox'></i> <a href="{{ route('admsystem') }}">AdmSystem</a>
+                    </li>
+                    <!--<li class="container">
                         <i class='fa fa-fw fa-users'></i> <a href="{{ route('usuarios_manager') }}">@lang('sidenav.usuarios')</a>
                     </li>
                     <li class="container">
@@ -291,7 +300,7 @@
                     </li>
                     <li class="container">
                         <i class="fas fa-store-alt"></i> <a style="font-size: 12px; padding: 0 12px;" href="{{ route('manager_resales') }}">@lang('sidenav.revendas')</a>
-                    </li>
+                    </li>-->
                 @endcan
             </ul>
         </li>

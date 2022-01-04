@@ -681,26 +681,28 @@
                     HTML += '                            <label for="rotor">@lang("entregaTecnica.rotor") (mm)</label>';
                     HTML += '                            <input type="number" class="form-control" name="rotor[]" id="rotor_'+ i +'">';
                     HTML += '                        </div>';
-                    HTML += '                    <div class="form-group col-md-4 telo5ce">';
-                    HTML += '                        <label for="numero_serie">@lang("entregaTecnica.numero_serie")</label>';
-                    HTML += '                        <input type="text" class="form-control" name="numero_serie[]" id="numero_serie_'+ i +'">';
+
+                    HTML += '                       <div class="form-group col-md-4 telo5ce">';
+                    HTML += '                           <label for="numero_serie">@lang("entregaTecnica.numero_serie")</label>';
+                    HTML += '                           <input type="text" class="form-control" name="numero_serie[]" id="numero_serie_'+ i +'">';
+                    HTML += '                       </div>';
+                    
+                    HTML += '                       <div class="form-group col-md-4 telo5ce">';
+                    HTML += '                           <label for="fornecedor">@lang("entregaTecnica.fornecedor")</label>';
+                    HTML += '                           <select class="form-control" name="fornecedor[]" id="fornecedor_'+ i +'">';
+                    HTML += '                               <option value=""></option>';
+                    HTML += '                               @foreach ($fornecedores as $fornecedor)';
+                    HTML += '                                   <option value="{{ $fornecedor["fornecedor"] }}" {{ (($fornecedor["fornecedor"] == $bomba["fornecedor"]) ? "selected" : '') }}>{{ __("listas." . $fornecedor["fornecedor"] ) }}</option>';
+                    HTML += '                               @endforeach';
+                    HTML += '                           </select>';
+                    HTML += '                       </div>';
                     HTML += '                    </div>';
                     
-                    HTML += '                    <div class="form-group col-md-4 telo5ce">';
-                    HTML += '                        <label for="fornecedor">@lang("entregaTecnica.fornecedor")</label>';
-                    HTML += '                        <select class="form-control" name="fornecedor[]" id="fornecedor_'+ i +'">';
-                    HTML += '                            <option value=""></option>';
-                    HTML += '                            @foreach ($fornecedores as $fornecedor)';
-                    HTML += '                                <option value="{{ $fornecedor["fornecedor"] }}" {{ (($fornecedor["fornecedor"] == $bomba["fornecedor"]) ? "selected" : '') }}>{{ __("listas." . $fornecedor["fornecedor"] ) }}</option>';
-                    HTML += '                            @endforeach';
-                    HTML += '                        </select>';
-                    HTML += '                    </div>';
-                    
-                    HTML += '                    <div class="form-group col-md-4 telo5ce">';
-                    HTML += '                            <div class="form-group col-md-8 telo5ce">';
-                    HTML += '                                <label for="opcionais">@lang("entregaTecnica.outros")</label>';
-                    HTML += '                                <input type="text" class="form-control" name="opcionais[]" id="opcionais_'+ i +'" value="{{$bomba["opcionais"]}}">';
-                    HTML += '                            </div>';
+                    HTML += '                    <div class="form-row justify-content-start">';
+                    HTML += '                       <div class="form-group col-md-4 telo5ce">';
+                    HTML += '                            <label for="opcionais">@lang("entregaTecnica.outros")</label>';
+                    HTML += '                            <input type="text" class="form-control" name="opcionais[]" id="opcionais_'+ i +'" value="{{$bomba["opcionais"]}}">';
+                    HTML += '                       </div>';
                     HTML += '                    </div>';
                     HTML += '                </div>';
 

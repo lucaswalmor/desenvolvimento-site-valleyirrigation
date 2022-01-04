@@ -83,7 +83,7 @@
                             <div class='form-group col-md-4 telo5ce'>
                                 <label for="marca_modelo_pivo">@lang('afericao.marcaModeloPivo')</label>
                                 <select class='form-control' required='true' id="fabricante" name='marca_modelo_pivo'>
-                                    <option value=""></option>
+                                        <option value=""></option>
                                     @foreach ($pivos as $item)
                                         <option value="{{ $item->id }}">{{ $item->resumo }}</option>
                                     @endforeach

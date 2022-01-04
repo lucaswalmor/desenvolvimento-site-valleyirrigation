@@ -1,0 +1,113 @@
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+main > .container-fluid {
+    padding: 54px 0 0;
+}
+  
+.footer {
+    background-color: #0574AF;
+}
+
+.footer > .container-fluid {
+    padding-right: 15px;
+    padding-left: 15px;
+    text-align: right;
+}
+
+.footer > .container-fluid > span {
+    color: #FFF;
+    font-size: 0.85em;
+}
+
+code {
+    font-size: 80%;
+}
+
+.bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+@media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+    }
+}
+
+/* top nav bar */
+.bg-blue {
+    background-color: #2896D1 !important;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 10rem;
+    padding: 0.5rem 0;
+    margin: 0.125rem 0 0;
+    font-size: 1rem;
+    color: #fff !important;
+    text-align: left;
+    list-style: none;
+    background-color: #2896D1;
+    background-clip: none !important;
+    border: none !important;
+    border-radius: none !important;
+}
+
+.dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 0.25rem 1.5rem;
+    clear: both;
+    font-weight: 400;
+    color: #fff;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+}
+
+.topo-adm {
+    padding: 15px 15px 0;
+    background-color: #E2EFF7 !important;
+    color: #1B6B9A;
+    height: 120px;
+}
+
+/* INPUT DE FILTRO DE BUSCA TOPO DETALHE */
+
+.telo5inputfiltro form input {
+    outline: 0px !important;
+    -webkit-appearance: none;
+    box-shadow: none !important;
+    border: none;
+    border-radius: 0px;
+    width: 100% !important;
+}
+
+.telo5inputfiltro .search {
+    background: none !important;
+    color: #1B6B9A;
+    outline: none !important;
+    margin-top: 4px;
+    border: none;
+    margin-left: -30px;
+}
+
+.telo5inputfiltro .search:active {
+    color: #1B6B9A !important;
+    border: none !important;
+    outline: none !important;
+    background: none !important;
+}

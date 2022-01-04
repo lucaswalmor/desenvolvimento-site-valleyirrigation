@@ -1,5 +1,5 @@
-@extends('_layouts._layout_site')
-@include('_layouts._includes._head')
+@extends('_layouts._layout_admsystem')
+@include('_layouts._includes._head_admsystem')
 
 @section('topo_detalhe')
 

@@ -11,17 +11,23 @@ use App\Classes\EntregaTecnica\EntregaTecnica;
 class SendMailUser extends Mailable
 {
     use Queueable, SerializesModels;
-
-    private $name;
+    protected $toUser;
+    protected $subjectTitle;
+    protected $fromSend;
+    protected $msg;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(EntregaTecnica $name)
+    public function __construct($toUser, $fromSend, $msg, $subjectTitle)
     {
-        $this->name = $name;
+        $this->toUser = $toUser;
+        $this->fromSend = $fromSend;
+        $this->msg = $msg;
+        $this->subjectTitle = $subjectTitle;
+
     }
 
     /**
@@ -31,9 +37,10 @@ class SendMailUser extends Mailable
      */
     public function build()
     {
-        // $this->subject('Nova Entrega Técnica Recebida');
-        // $this->to($this->entrega_tecnica->email, $this->entrega_tecnica->name);
-        return $this->from('lucaswsb52@gmail.com')
-        ->view('entregaTecnica.relatorios.enviarEmail');
+        $this->subject($this->subjectTitle);
+        $this->from($this->fromSend);
+        $this->to($this->toUser);
+        // $this->to($this->entrega_tecnica->email_tecnico, $this->entrega_tecnica->nome_usuario);
+        return $this->view('email.email', ['msg' => $this->msg]);
     }
 }

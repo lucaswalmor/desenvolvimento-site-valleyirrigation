@@ -1,4 +1,4 @@
-@extends('_layouts._layout_site')
+@extends('_layouts._layout_admsystem')
 
 @section('topo_detalhe')
     <div class="container-fluid topo">
@@ -93,6 +93,11 @@
             </tfoot>
         </table>
     </div>
+    <div class="d-flex justify-content-center mb-5">
+        {{ $cdcs->links() }}
+    </div>
+
+
 @endsection
 
 @section('scripts')

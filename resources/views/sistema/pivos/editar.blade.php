@@ -1,4 +1,4 @@
-@extends('_layouts._layout_site')
+@extends('_layouts._layout_admsystem')
 
 @section('head')
 @endsection

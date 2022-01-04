@@ -1,6 +1,7 @@
 <?php
 
 return [
+
     // GERENCIAR ENTREGA TÉCNICA
     'entregaTecnica' => 'Entrega Técnica',
     'analise_entregaTecnica' => 'Análisis Entrega Técnica',
@@ -198,7 +199,7 @@ return [
     'bomba_booster' => 'Bomba de Refuerzo',
 
     // MEDIÇÃO DE SUCÇÃO
-    'succao' => 'Succión', 
+    'succao' => 'Succión',
     'medicao_succao_l' => 'Longitud L',
     'medicao_succao_h' => 'Longitud H',
     'medicao_succao_e' => 'Longitud E',

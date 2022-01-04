@@ -19,8 +19,8 @@ class CreateFazendasTable extends Migration
             $table->string('cidade');
             $table->string('estado');
             $table->string('pais');
-            $table->float('latitude');
-            $table->float('longitude');
+            $table->double('latitude', 12,8)->nullable();
+            $table->double('longitude', 12,8)->nullable();
             $table->float('altitude');
             $table->softDeletes();
             $table->timestamps();

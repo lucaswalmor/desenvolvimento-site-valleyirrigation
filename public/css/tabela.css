@@ -19,7 +19,19 @@ table {
     color: #162E3C !important;
 }
 
-
+.table thead th {
+    border-bottom: none;
+    padding: 15px 15px;
+}
+.table td, .table th {
+    border-top: none;
+}
+.table tbody tr td {
+    border-right: 1px solid #C1D5DE;
+}
+.table tbody tr td:last-child {
+    border-right: none;
+}
 
 .table-striped {
     width: 98% !important;
@@ -28,10 +40,11 @@ table {
     padding: 0!important;
 }
 
-tfoot {
+.table tfoot {
     background-color: #C1D5DE !important;
     height: 10px;
     opacity: 1;
+    padding: 15px 15px;
 }
 
 .abc {
@@ -51,7 +64,11 @@ table thead {
 }
 
 .table-striped>tbody>tr:nth-child(even)>td {
-    background-color: #ffffff !important;
+    /*background-color: #ffffff !important;*/
+    background-color: #F3F8FE !important;
+}
+.table-striped>tbody>tr:nth-child(odd)>td {
+    background-color: #E2EFF7 !important;
 }
 
 .table-striped>thead {
