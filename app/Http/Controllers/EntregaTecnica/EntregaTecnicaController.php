@@ -36,11 +36,11 @@ class EntregaTecnicaController extends Controller
 {
     // GERENCIAR
     public function manageTechnicalDelivery() 
-    {
+    {        
         if (session()->has('fazenda')) {
-            $fazenda = session()->get('fazenda');            
+            session()->put('current_module', 'entrega_tecnica');
+            $fazenda = session()->get('fazenda');                 
             $id_fazenda = Session::get('fazenda')['id'];
-            
             $fazenda = Fazenda::select('fazendas.*', 'P.nome as nome_proprietario', 'U.nome as nome_consultor')
                 ->where('fazendas.id', $id_fazenda)
                 ->join('proprietarios as P', 'P.id', 'fazendas.id_proprietario')
@@ -285,7 +285,7 @@ class EntregaTecnicaController extends Controller
         return redirect()->route('edit_technical_delivery', $id_entrega_tecnica); 
     }
 
-    // ENTREGA TÉCNICA PARTE AÉREA
+    // TECHNICAL DELIVERY AIR PART
     public function createTechnicalDeliveryAerialPart($id_entrega_tecnica) 
     {
         if (session()->has('fazenda')) {
@@ -325,11 +325,11 @@ class EntregaTecnicaController extends Controller
             $equipamento_modelo = EntregaTecnica::select('modelo_equipamento')->where('id', $id_entrega_tecnica)->first();
         /////////////////////
 
-        if ($entrega_tecnica_dados['status_parte_aerea'] == 0) {
-            EntregaTecnica::where('id', $id_entrega_tecnica)->update([
-                'status_parte_aerea' => 1
-            ]);
-        }
+        // if ($entrega_tecnica_dados['status_parte_aerea'] == 0) {
+        //     EntregaTecnica::where('id', $id_entrega_tecnica)->update([
+        //         'status_parte_aerea' => 1
+        //     ]);
+        // }
 
         return view('entregaTecnica.cadastro.createAerialPart', compact('proprietarios', 'consultores', 'revendas', 'modelos', 
         'equipamento', 'lista_equipamento', 'altura_equipamento', 'getBalanco', 'paineis', 'correntes', 'motorredutores', 'getPneus',
@@ -347,49 +347,57 @@ class EntregaTecnicaController extends Controller
             Notificacao::gerarAlert('', 'entregaTecnica.tipo_equipamento_vazio', 'warning');
             return redirect()->back();
         } else {
-            if (!empty($dados['numero_serie']) && !empty($dados['modelo']) && !empty($dados['tipo_equipamento']) && !empty($dados['tipo_equipamento_op1']) && 
-                !empty($dados['altura_equipamento']) && !empty($dados['balanco']) && !empty($dados['painel']) && !empty($dados['corrente']) && 
-                !empty($dados['pneus']) && !empty($dados['giro'])) {
-                    $altura_valor = Lista::getAlturaValor($dados['altura_equipamento']);   
-                    $trecho['numero_serie'] = $dados['numero_serie'];      
-                    $trecho['modelo_equipamento'] = $dados['modelo'];
-                    $trecho['tipo_equipamento'] = $dados['tipo_equipamento'];
-                    $trecho['tipo_equipamento_op1'] = $dados['tipo_equipamento_op1'];
-                    $trecho['altura_equipamento_nome'] = $dados['altura_equipamento'];
-                    $trecho['altura_equipamento_valor'] = $altura_valor;                    
-                    $trecho['balanco_comprimento'] = $dados['balanco'];
-                    $trecho['painel'] = $dados['painel'];
-                    $trecho['corrente_fusivel_nh500v'] = $dados['corrente'];
-                    $trecho['pneus'] = $dados['pneus'];
-                    $trecho['parada_automatica'] = $dados['parada_automatica'];  
-                    $trecho['barreira_seguranca'] = $dados['barreira_seguranca'];  
-                    $trecho['telemetria'] = $dados['telemetria'];  
-                    $trecho['acessorios'] = $dados['acessorios'];  
-                    $trecho['injeferd'] = $dados['injeferd'];  
-                    $trecho['canhao_final_valvula'] = $dados['canhao_final_valvula'];  
-                    $trecho['giro'] = $dados['giro'];  
-
-                    $equipamento_existente = EntregaTecnica::select('tipo_equipamento')->where('id', $id_entrega_tecnica)->first();
-                    $tipo_equipamento = $dados['tipo_equipamento'];
-
-                    EntregaTecnica::where('id', $id_entrega_tecnica)->update($trecho);
-                    EntregaTecnica::where('id', $id_entrega_tecnica)->update(['status_parte_aerea' => 2]);
-
-                    if ($equipamento_existente['tipo_equipamento'] != $dados['tipo_equipamento']) {
-                        EntregaTecnicaLances::select('id_entrega_tecnica')->where('id_entrega_tecnica', $id_entrega_tecnica)->delete();
-                        EntregaTecnica::where('id', $id_entrega_tecnica)->update($trecho);
-                    }
-            } else {
-                Notificacao::gerarAlert('', 'entregaTecnica.cadastro_vazio_parte_aerea', 'warning');
+            if( $dados['giro'] < 0 ||  $dados['giro'] > 360) {
+                Notificacao::gerarAlert('', 'entregaTecnica.cadastro_giro_incorreto', 'warning');
                 return redirect()->back();
+            } else {
+                $altura_valor = Lista::getAlturaValor($dados['altura_equipamento']);   
+                $trecho['numero_serie'] = $dados['numero_serie'];      
+                $trecho['modelo_equipamento'] = $dados['modelo'];
+                $trecho['tipo_equipamento'] = $dados['tipo_equipamento'];
+                $trecho['tipo_equipamento_op1'] = $dados['tipo_equipamento_op1'];
+                $trecho['altura_equipamento_nome'] = $dados['altura_equipamento'];
+                $trecho['altura_equipamento_valor'] = $altura_valor;                    
+                $trecho['balanco_comprimento'] = $dados['balanco'];
+                $trecho['painel'] = $dados['painel'];
+                $trecho['corrente_fusivel_nh500v'] = $dados['corrente'];
+                $trecho['pneus'] = $dados['pneus'];
+                $trecho['parada_automatica'] = $dados['parada_automatica'];  
+                $trecho['barreira_seguranca'] = $dados['barreira_seguranca'];  
+                $trecho['telemetria'] = $dados['telemetria'];  
+                $trecho['acessorios'] = $dados['acessorios'];  
+                $trecho['injeferd'] = $dados['injeferd'];  
+                $trecho['canhao_final_valvula'] = $dados['canhao_final_valvula'];  
+                $trecho['giro'] = $dados['giro'];  
+
+                $equipamento_existente = EntregaTecnica::select('tipo_equipamento')->where('id', $id_entrega_tecnica)->first();
+
+                if ($equipamento_existente['tipo_equipamento'] != $dados['tipo_equipamento']) {
+                    EntregaTecnicaLances::select('id_entrega_tecnica')->where('id_entrega_tecnica', $id_entrega_tecnica)->delete();
+                    EntregaTecnica::where('id', $id_entrega_tecnica)->update($trecho);
+                }
+                
+                EntregaTecnica::where('id', $id_entrega_tecnica)->update($trecho);
+
+                if (!empty($dados['numero_serie']) && !empty($dados['modelo']) && !empty($dados['tipo_equipamento']) && !empty($dados['tipo_equipamento_op1']) && 
+                    !empty($dados['altura_equipamento']) && !empty($dados['balanco']) && !empty($dados['painel']) && !empty($dados['corrente']) && 
+                    !empty($dados['pneus']) && !empty($dados['giro'])) {
+                        EntregaTecnica::where('id', $id_entrega_tecnica)->update(['status_parte_aerea' => 2]);
+                } else if ($trecho != null) {
+                    EntregaTecnica::where('id', $id_entrega_tecnica)->update(['status_parte_aerea' => 1]);
+                }
+                
+                Notificacao::gerarAlert('', 'entregaTecnica.cadastro_parte_aerea', 'success');
+                if ($dados['savebuttonvalue'] == "saveout") {
+                    return redirect()->route('edit_technical_delivery', $id_entrega_tecnica);                        
+                } else {
+                    return redirect()->back();
+                }
             }
-            
-            Notificacao::gerarAlert('', 'entregaTecnica.cadastro_parte_aerea', 'success');
-            return redirect()->route('edit_technical_delivery', $id_entrega_tecnica);
         }
     }
 
-    // ENTREGA TÉCNICA LANCES
+    // TECHNICAL DELIVERY SPANS
     public function createTechnicalDeliverySpan($id_entrega_tecnica) 
     {
         if (session()->has('fazenda')) {
@@ -411,6 +419,11 @@ class EntregaTecnicaController extends Controller
 
         $motorredutores = Lista::getMotoredutor();
         $marcaMotorredutor = Lista::getMarcaMotorredutor();
+        
+        $status_lance = EntregaTecnica::select('status_lances')->where('id', $id_entrega_tecnica)->first();
+        if ($status_lance['status_lances'] === 0 ) {
+            EntregaTecnica::where('id', $id_entrega_tecnica)->update(['status_lances' => 1]);
+        }
 
         if ($tipo_equipamento['status_lances'] === 0 || $tipo_equipamento['status_lances'] === 1) {
             EntregaTecnica::where('id', $id_entrega_tecnica)->update([
@@ -429,56 +442,62 @@ class EntregaTecnicaController extends Controller
         $id_entrega_tecnica = $dados['id_entrega_tecnica'];
 
         for ($i = 0; $i < count($dados['diametro']); $i++) {
-            if (!empty($dados['diametro'][$i]) && !empty($dados['numero_serie'][$i]) && !empty($dados['qtd_tubos'][$i]) &&
-                !empty($dados['motorredutor_marca'][$i]) && !empty($dados['motorredutor_potencia'][$i])) {
-                for ($i = 0; $i < count($dados['id_lance']); $i++) {
-                    $id_lance = (INT)$dados['id_lance'][$i];
-                    $lance_existe = EntregaTecnicaLances::where('id_entrega_tecnica', $id_entrega_tecnica)->where('id_lance', $id_lance)->count();
-                    $modelo = explode('_', $dados['qtd_tubos'][$i],2 );
-                    $qtd_tubos = (int)$modelo[0];
-                    $comprimento_lances = Lista::getTamanhoLance($dados['diametro'][$i], $modelo[1]);
+            for ($i = 0; $i < count($dados['id_lance']); $i++) {
+                $id_lance = (INT)$dados['id_lance'][$i];
+                $lance_existe = EntregaTecnicaLances::where('id_entrega_tecnica', $id_entrega_tecnica)->where('id_lance', $id_lance)->count();
+                $modelo = explode('_', $dados['qtd_tubos'][$i],2 );
+                $qtd_tubos = (int)$modelo[0];
+                $comprimento_lances = Lista::getTamanhoLance($dados['diametro'][$i], $modelo[1]);
 
-                    if ($lance_existe > 0) {
-                        EntregaTecnicaLances::where('id_entrega_tecnica', $id_entrega_tecnica)
-                        ->where('id_lance', $dados['id_lance'][$i])
-                        ->update([
-                            'diametro_tubo' => $dados['diametro'][$i],
-                            'numero_serie' => $dados['numero_serie'][$i],
-                            'quantidade_tubo' => $qtd_tubos,
-                            'comprimento_lance' => $comprimento_lances,
-                            'motorredutor_marca' => $dados['motorredutor_marca'][$i],
-                            'motorredutor_potencia' => $dados['motorredutor_potencia'][$i],
-                        ]);
-                    } else {
-                        EntregaTecnicaLances::create([
-                            'diametro_tubo' => $dados['diametro'][$i],
-                            'numero_serie' => $dados['numero_serie'][$i],
-                            'quantidade_tubo' => $qtd_tubos,
-                            'comprimento_lance' => $comprimento_lances,
-                            'motorredutor_marca' => $dados['motorredutor_marca'][$i],
-                            'motorredutor_potencia' => $dados['motorredutor_potencia'][$i],
-                            'id_lance' =>  $id_lance,
-                            'id_entrega_tecnica' => $id_entrega_tecnica
-                        ]);
-
-                        EntregaTecnica::where('id', $id_entrega_tecnica)->update([
-                            'status_lances' => 2,
-                            'status_parte_aerea' => 2
+                if ($lance_existe > 0) {
+                    EntregaTecnicaLances::where('id_entrega_tecnica', $id_entrega_tecnica)
+                    ->where('id_lance', $dados['id_lance'][$i])
+                    ->update([
+                        'diametro_tubo' => $dados['diametro'][$i],
+                        'numero_serie' => $dados['numero_serie'][$i],
+                        'quantidade_tubo' => $qtd_tubos,
+                        'comprimento_lance' => $comprimento_lances,
+                        'motorredutor_marca' => $dados['motorredutor_marca'][$i],
+                        'motorredutor_potencia' => $dados['motorredutor_potencia'][$i],
                     ]);
-                    }                    
-                }
-            } else {
-                Notificacao::gerarAlert('', 'entregaTecnica.cadastro_vazio_lances', 'warning');
-                return redirect()->back();
+                } else {
+                    EntregaTecnicaLances::create([
+                        'diametro_tubo' => $dados['diametro'][$i],
+                        'numero_serie' => $dados['numero_serie'][$i],
+                        'quantidade_tubo' => $qtd_tubos,
+                        'comprimento_lance' => $comprimento_lances,
+                        'motorredutor_marca' => $dados['motorredutor_marca'][$i],
+                        'motorredutor_potencia' => $dados['motorredutor_potencia'][$i],
+                        'id_lance' =>  $id_lance,
+                        'id_entrega_tecnica' => $id_entrega_tecnica
+                    ]);
+                }                    
             }
         }       
+        
+        if (!empty($dados['diametro'][$i]) && !empty($dados['numero_serie'][$i]) && !empty($dados['qtd_tubos'][$i]) &&
+        !empty($dados['motorredutor_marca'][$i]) && !empty($dados['motorredutor_potencia'][$i])) {
+            EntregaTecnica::where('id', $id_entrega_tecnica)->update([
+                'status_lances' => 2,
+                'status_parte_aerea' => 2
+            ]);
+        } else if (!empty($dados['diametro'][$i]) && !empty($dados['numero_serie'][$i]) && !empty($dados['qtd_tubos'][$i]) &&
+        !empty($dados['motorredutor_marca'][$i]) && !empty($dados['motorredutor_potencia'][$i])) {
+            EntregaTecnica::where('id', $id_entrega_tecnica)->update([
+                'status_lances' => 1,
+                'status_parte_aerea' => 2
+            ]);
+        } 
 
-        Notificacao::gerarAlert('', 'entregaTecnica.cadastro.cadastro_lances', 'success');
-        return redirect()->route('edit_technical_delivery', $id_entrega_tecnica);
-
+        Notificacao::gerarAlert('', 'entregaTecnica.cadastro_lances', 'success');
+        if ($dados['savebuttonvalue'] == "saveout") {
+            return redirect()->route('edit_technical_delivery', $id_entrega_tecnica);                        
+        } else {
+            return redirect()->back();
+        }
     }
 
-    // ENTREGA TÉCNICA MOTOBOMBA
+    // TECHNICAL DELIVERY MOTORPUMP
 
     public function createPressurizationTechnicalDelivery($id_entrega_tecnica)
     {
@@ -495,13 +514,6 @@ class EntregaTecnicaController extends Controller
         $tipo_succao_auxiliar = Lista::getTipoSuccaoAuxiliar();
         $motobomba = EntregaTecnica::select('quantidade_motobomba', 'ligacao_serie', 'ligacao_paralelo', 'tipo_succao', 'succao_auxiliar', 'quantidade_motobomba_auxiliar')->where('id', $id_entrega_tecnica)->first();
         $fornecedores = Lista::fornecedores();
-        // CHAVE DE PARTIDA //
-            $chavePartida = Lista::getChavePartida();
-            $chavePartidaAcionamento = Lista::getChavePartidaAcionamento();
-            $chaveSeccionadora = Lista::getChaveSeccionadora();
-            $chave_partida = EntregaTecnicaChavePartida::select('*')
-            ->where('id_entrega_tecnica', $id_entrega_tecnica)->get();
-        /////////////////////
         
         /// CONSULTAS DA BOMBA ///        
             $bombaLigacao = Lista::getBombaLigacao();
@@ -524,12 +536,13 @@ class EntregaTecnicaController extends Controller
             $total_bombas_cadastradas = $total_bombas['quantidade_motobomba'] + $total_bombas['quantidade_motobomba_auxiliar'];
         /////////////////////////
 
-        $status_motobomba = EntregaTecnica::select('status_motobomba')->first();
-        if ($status_motobomba['status_motobomba'] == 0) {
-            EntregaTecnica::where('id', $id_entrega_tecnica)->update([
-                'status_motobomba' => 1
-            ]);
-        }
+        // CHAVE DE PARTIDA //
+            $chavePartida = Lista::getChavePartida();
+            $chavePartidaAcionamento = Lista::getChavePartidaAcionamento();
+            $chaveSeccionadora = Lista::getChaveSeccionadora();
+            $chave_partida = EntregaTecnicaChavePartida::select('*')->where('id_entrega_tecnica', $id_entrega_tecnica)->where('id_bomba', $bombas['id_bomba'])->where('id_motor', $motores['id_motor'])->get();
+            
+        /////////////////////
 
         return view('entregaTecnica.cadastro.createMotoPump', compact('id_entrega_tecnica', 'fazenda', 'tipo_succao', 'tipo_succao_auxiliar', 'motobomba',
         'bombaLigacao', 'bomba_marca', 'tipo_bomba', 'total_bomba_padrao', 'total_bomba_auxiliar',
@@ -541,197 +554,202 @@ class EntregaTecnicaController extends Controller
     {
         $dados = $request->all();
         $id_entrega_tecnica = $dados['id_entrega_tecnica'];
-        if ($dados['botao'] == "proximo" && $dados['quantidade_motobomba'] == 0 || empty($dados['quantidade_motobomba'])) {
+
+        if ($dados['quantidade_motobomba'] == 0 || empty($dados['quantidade_motobomba'])) {
             Notificacao::gerarAlert('', 'entregaTecnica.qtd_bombas_erro', 'warning');
             return redirect()->back();
         } else {    
-            $pressurizacao['quantidade_motobomba'] = $dados['quantidade_motobomba'];            
-            $pressurizacao['ligacao_serie'] = ($dados['ligacao_serie'] == "on") ? 1 : 0;
-            $pressurizacao['ligacao_paralelo'] = ($dados['ligacao_paralela'] == "on") ? 1 : 0;
-            $pressurizacao['tipo_succao'] = $dados['img_succao'];
-            if($dados['quantidade_motobomba_auxiliar'] == null) {                
-                $pressurizacao['quantidade_motobomba_auxiliar'] = null;
-            } else {
-                $pressurizacao['quantidade_motobomba_auxiliar'] = $dados['quantidade_motobomba_auxiliar'];                
-            }
-
-            EntregaTecnica::where('id', $id_entrega_tecnica)->update($pressurizacao);
-
             $total_bombas = $dados['quantidade_motobomba'] + $dados['quantidade_motobomba_auxiliar'];
             // SE ALGUM CAMPO DA BOMBA ESTIVER PREENCHIDO IRÁ SALVAR A BOMBA
             for ($i = 0; $i < $total_bombas; $i++) {
-                if ($dados['marca'][$i] != null || $dados['modelo'][$i] != null || $dados['numero_estagio'][$i] != null || 
-                    $dados['rotor'][$i] != null || $dados['opcionais'][$i] != null || $dados['fornecedor'][$i] != null || 
-                    $dados['numero_serie'][$i] != null) {
-                    $id_bomba = $dados['id_bomba'][$i];
+                $id_bomba = $dados['id_bomba'][$i];
 
-                    $bomba_existe = EntregaTecnicaBomba::where('id_entrega_tecnica', $id_entrega_tecnica)->where('id_bomba', $id_bomba)->count();
-
-                    if ($bomba_existe > 0) {
-                        EntregaTecnicaBomba::where('id_entrega_tecnica', $id_entrega_tecnica)
-                        ->where('id_bomba', $dados['id_bomba'][$i])
-                        ->update([
-                            'tipo_motobomba' => $dados['tipo_motobomba'][$i],
-                            'marca' => $dados['marca'][$i],
-                            'modelo' => $dados['modelo'][$i],
-                            'numero_estagio' => $dados['numero_estagio'][$i],
-                            'rotor' => $dados['rotor'][$i],
-                            'numero_serie' => $dados['numero_serie'][$i],
-                            'fornecedor' => $dados['fornecedor'][$i],
-                            'opcionais' => $dados['opcionais'][$i],
-                        ]);
-                    } else {
-                        EntregaTecnicaBomba::create([
-                            'tipo_motobomba' => $dados['tipo_motobomba'][$i],
-                            'marca' => $dados['marca'][$i],
-                            'modelo' => $dados['modelo'][$i],
-                            'numero_estagio' => $dados['numero_estagio'][$i],
-                            'rotor' => $dados['rotor'][$i],
-                            'numero_serie' => $dados['numero_serie'][$i],
-                            'fornecedor' => $dados['fornecedor'][$i],
-                            'opcionais' => $dados['opcionais'][$i],
-                            'id_entrega_tecnica' => $dados['id_entrega_tecnica'],
-                            'id_bomba' => $dados['id_bomba'][$i],                    
-                        ]);
-                    }
-
-                    //IDENTIFICADOR DO MOTOR DA BOMBA
-                    $j = $i + 1;
-
-                    for ($k = 0; $k < count($dados['id_motor_'.$j]); $k++) {
-                        $id_motor = $dados['id_motor_'.$j][$k];
-
-                        if (!empty($dados['tipo_motor_' . $id_bomba][$k]) || !empty($dados['marca_motor_'.$j][$k]) || !empty($dados['modelo_motor_'.$j][$k]) 
-                            || !empty($dados['marca_motor_eletrico_'.$j][$k]) || !empty($dados['modelo_motor_eletrico_'.$j][$k])
-                            || !empty($dados['potencia_'.$j][$k]) || !empty($dados['numero_serie_'.$j][$k]) || !empty($dados['rotacao_'.$j][$k])) {
-                                                    
-                                $marca = '';
-                                $modelo = '';
-
-                                if ($dados['tipo_motor_'.$j][$k] == 'diesel') {
-                                    $marca = $dados['marca_motor_'.$j][$k];
-                                    $modelo = $dados['modelo_motor_'.$j][$k];
-                                } else {
-                                    $marca = $dados['marca_motor_eletrico_'.$j][$k];
-                                    $modelo = $dados['modelo_motor_eletrico_'.$j][$k];
-                                }
-
-                                $motor_existe = EntregaTecnicaBombaMotor::where('id_entrega_tecnica', $id_entrega_tecnica)->where('id_bomba', $id_bomba)->where('id_motor', $id_motor)->count();
-                                if ($motor_existe > 0) {                                    
-                                    EntregaTecnicaBombaMotor::where('id_entrega_tecnica', $id_entrega_tecnica)
-                                    ->where('id_bomba', $id_bomba)
-                                    ->where('id_motor', $id_motor)
-                                    ->update([
-                                        'tipo_motor' => $dados['tipo_motor_' . $id_bomba][$k],
-                                        'marca' => $marca,
-                                        'modelo' => $modelo,
-                                        'potencia' => $dados['potencia_'.$j][$k],
-                                        'numero_serie' => $dados['numero_serie_'.$j][$k],
-                                        'rotacao' => $dados['rotacao_'.$j][$k],
-                                        'tensao' => $dados['tensao_'.$j][$k],
-                                        'lp_ln' => $dados['lp_ln_'.$j][$k],
-                                        'classe_isolamento' => $dados['classe_isolamento_'.$j][$k],
-                                        'corrente_nominal' => $dados['corrente_nominal_'.$j][$k],
-                                        'fs' => $dados['fs_'.$j][$k],
-                                        'ip' => $dados['ip_'.$j][$k],
-                                        'rendimento' => $dados['rendimento_'.$j][$k],
-                                        'cos' => $dados['cos_'.$j][$k],
-                                    ]); 
-    
-                                } else {
-                                    EntregaTecnicaBombaMotor::create([
-                                        'tipo_motor' => $dados['tipo_motor_' . $id_bomba][$k],
-                                        'marca' => $marca,
-                                        'modelo' => $modelo,
-                                        'potencia' => $dados['potencia_'.$j][$k],
-                                        'numero_serie' => $dados['numero_serie_'.$j][$k],
-                                        'rotacao' => $dados['rotacao_'.$j][$k],
-                                        'tensao' => $dados['tensao_'.$j][$k],
-                                        'lp_ln' => $dados['lp_ln_'.$j][$k],
-                                        'classe_isolamento' => $dados['classe_isolamento_'.$j][$k],
-                                        'corrente_nominal' => $dados['corrente_nominal_'.$j][$k],
-                                        'fs' => $dados['fs_'.$j][$k],
-                                        'ip' => $dados['ip_'.$j][$k],
-                                        'rendimento' => $dados['rendimento_'.$j][$k],
-                                        'cos' => $dados['cos_'.$j][$k],
-                                        'id_bomba' => $id_bomba,
-                                        'id_motor' => $id_motor,
-                                        'id_entrega_tecnica' => $dados['id_entrega_tecnica']
-                                    ]);
-                                }
-
-                                if ($dados['tipo_motor_' . $id_bomba][$k] == 'eletrico') {
-                                    if(!empty($dados['marca_0'.$id_bomba.'_0'.$id_motor.'_1']) || !empty($dados['acionamento_0'.$id_bomba.'_0'.$id_motor.'_1']) || 
-                                        !empty($dados['regulagem_reles_0'.$id_bomba.'_0'.$id_motor.'_1']) || !empty($dados['numero_serie_0'.$id_bomba.'_0'.$id_motor.'_1'])) {
-                                        // salva a 1º chave de partida
-                                        $id_chave_partida = $dados['id_chave_partida_0'.$id_bomba.'_0'.$id_motor.'_1'];
-                                        
-                                        $chave_partida['marca'] = $dados['marca_cp_0'.$id_bomba.'_0'.$id_motor.'_1'][$k];
-                                        $chave_partida['acionamento'] = $dados['acionamento_cp_0'.$id_bomba.'_0'.$id_motor.'_1'][$k];
-                                        $chave_partida['regulagem_reles'] = $dados['regulagem_reles_0'.$id_bomba.'_0'.$id_motor.'_1'][$k];
-                                        $chave_partida['numero_serie'] = $dados['numero_serie_cp_0'.$id_bomba.'_0'.$id_motor.'_1'][$k];
-                                        $chave_partida['id_chave_partida'] = $dados['id_chave_partida_0'.$id_bomba.'_0'.$id_motor.'_1'];
-                                        $chave_partida['id_bomba'] = $id_bomba;
-                                        $chave_partida['id_motor'] = $id_motor;
-                                        $chave_partida['id_entrega_tecnica'] = $id_entrega_tecnica;
-
-                                        $chave_partida_existente = EntregaTecnicaChavePartida::where('id_entrega_tecnica', $id_entrega_tecnica)
-                                        ->where('id_bomba', $id_bomba)
-                                        ->where('id_motor', $id_motor)
-                                        ->where('id_chave_partida', $id_chave_partida)
-                                        ->count();
-
-                                        if ($chave_partida_existente > 0) {
-                                            EntregaTecnicaChavePartida::where('id_entrega_tecnica', $id_entrega_tecnica)
-                                            ->where('id_bomba', $id_bomba)
-                                            ->where('id_motor', $id_motor)
-                                            ->where('id_chave_partida', $id_chave_partida)
-                                            ->update($chave_partida);
-                                        } else {
-                                            EntregaTecnicaChavePartida::create($chave_partida);
-                                        }
-                                        
-                                    } else {
-                                        Notificacao::gerarAlert('', 'entregaTecnica.cadastro_vazio_chave_partida', 'warning');
-                                        return redirect()->back();
-                                    }
-                                }
-                        } else {
-                            Notificacao::gerarAlert('', 'entregaTecnica.cadastro_vazio_chave_partida', 'warning');
-                            return redirect()->back();
-                        }
-
-                        if ($dados['marca'][$i] != null || $dados['modelo'][$i] != null || $dados['numero_estagio'][$i] != null || $dados['rotor'][$i] != null) {  
-                            if ($dados['tipo_motor_'.$j][$k] == 'eletrico') {
-                                if (!empty($dados['marca_motor_eletrico_'.$j][$k]) && !empty($dados['modelo_motor_eletrico_'.$j][$k]) &&
-                                    !empty($dados['potencia_'.$j][$k]) && !empty($dados['numero_serie_'.$j][$k]) && !empty($dados['rotacao_'.$j][$k])) {
-                                    EntregaTecnica::where('id', $id_entrega_tecnica)->update([
-                                        'status_motobomba' => 2
-                                    ]);
-                                } 
-                            } else if ($dados['tipo_motor_'.$j][$k] == 'diesel') {
-                                if (!empty($dados['marca_motor_'.$j][$k]) && !empty($dados['modelo_motor_'.$j][$k]) &&
-                                    !empty($dados['potencia_'.$j][$k]) && !empty($dados['numero_serie_'.$j][$k]) && !empty($dados['rotacao_'.$j][$k])) {
-                                    EntregaTecnica::where('id', $id_entrega_tecnica)->update([
-                                        'status_motobomba' => 2
-                                    ]);
-                                }
-                            }
-                        }
-                    }
+                // BLOCO ONDE CLICA A PARTE DE QTD DE BOMBAS
+                $pressurizacao['quantidade_motobomba'] = $dados['quantidade_motobomba'];            
+                $pressurizacao['ligacao_serie'] = ($dados['ligacao_serie'] == "on") ? 1 : 0;
+                $pressurizacao['ligacao_paralelo'] = ($dados['ligacao_paralela'] == "on") ? 1 : 0;
+                $pressurizacao['tipo_succao'] = $dados['img_succao'];
+                if($dados['quantidade_motobomba_auxiliar'] == null) {                
+                    $pressurizacao['quantidade_motobomba_auxiliar'] = null;
                 } else {
-                    Notificacao::gerarAlert('', 'entregaTecnica.cadastro_vazio_motobomba', 'warning');
-                    return redirect()->back();
+                    $pressurizacao['quantidade_motobomba_auxiliar'] = $dados['quantidade_motobomba_auxiliar'];                
+                }
+    
+                EntregaTecnica::where('id', $id_entrega_tecnica)->update($pressurizacao);
+
+                // BLOCO DE CRIAÇÃO DA BOMBA
+                $bomba_existe = EntregaTecnicaBomba::where('id_entrega_tecnica', $id_entrega_tecnica)->where('id_bomba', $id_bomba)->count();
+                if ($bomba_existe > 0) {
+                    EntregaTecnicaBomba::where('id_entrega_tecnica', $id_entrega_tecnica)
+                    ->where('id_bomba', $dados['id_bomba'][$i])
+                    ->update([
+                        'tipo_motobomba' => $dados['tipo_motobomba'][$i],
+                        'marca' => $dados['marca'][$i],
+                        'modelo' => $dados['modelo'][$i],
+                        'numero_estagio' => $dados['numero_estagio'][$i],
+                        'rotor' => $dados['rotor'][$i],
+                        'numero_serie' => $dados['numero_serie'][$i],
+                        'fornecedor' => $dados['fornecedor'][$i],
+                        'opcionais' => $dados['opcionais'][$i],
+                    ]);
+                } else {
+                    EntregaTecnicaBomba::create([
+                        'tipo_motobomba' => $dados['tipo_motobomba'][$i],
+                        'marca' => $dados['marca'][$i],
+                        'modelo' => $dados['modelo'][$i],
+                        'numero_estagio' => $dados['numero_estagio'][$i],
+                        'rotor' => $dados['rotor'][$i],
+                        'numero_serie' => $dados['numero_serie'][$i],
+                        'fornecedor' => $dados['fornecedor'][$i],
+                        'opcionais' => $dados['opcionais'][$i],
+                        'id_entrega_tecnica' => $dados['id_entrega_tecnica'],
+                        'id_bomba' => $dados['id_bomba'][$i],                    
+                    ]);
+                }
+
+                //IDENTIFICADOR DO MOTOR DA BOMBA
+                $j = $i + 1;
+
+                for ($k = 0; $k < count($dados['id_motor_'.$j]); $k++) {
+                    $id_motor = $dados['id_motor_'.$j][$k];
+                                                
+                    $marca = '';
+                    $modelo = '';
+
+                    if ($dados['tipo_motor_'.$j][$k] == 'diesel') {
+                        $marca = $dados['marca_motor_'.$j][$k];
+                        $modelo = $dados['modelo_motor_'.$j][$k];
+                    } else {
+                        $marca = $dados['marca_motor_eletrico_'.$j][$k];
+                        $modelo = $dados['modelo_motor_eletrico_'.$j][$k];
+                    }
+
+                    $motor_existe = EntregaTecnicaBombaMotor::where('id_entrega_tecnica', $id_entrega_tecnica)->where('id_bomba', $id_bomba)->where('id_motor', $id_motor)->count();
+                    if ($motor_existe > 0) {                                    
+                        EntregaTecnicaBombaMotor::where('id_entrega_tecnica', $id_entrega_tecnica)
+                        ->where('id_bomba', $id_bomba)
+                        ->where('id_motor', $id_motor)
+                        ->update([
+                            'tipo_motor' => $dados['tipo_motor_' . $id_bomba][$k],
+                            'marca' => $marca,
+                            'modelo' => $modelo,
+                            'potencia' => $dados['potencia_'.$j][$k],
+                            'numero_serie' => $dados['numero_serie_'.$j][$k],
+                            'rotacao' => $dados['rotacao_'.$j][$k],
+                            'tensao' => $dados['tensao_'.$j][$k],
+                            'lp_ln' => $dados['lp_ln_'.$j][$k],
+                            'classe_isolamento' => $dados['classe_isolamento_'.$j][$k],
+                            'corrente_nominal' => $dados['corrente_nominal_'.$j][$k],
+                            'fs' => $dados['fs_'.$j][$k],
+                            'ip' => $dados['ip_'.$j][$k],
+                            'rendimento' => $dados['rendimento_'.$j][$k],
+                            'cos' => $dados['cos_'.$j][$k],
+                        ]); 
+
+                    } else {
+                        EntregaTecnicaBombaMotor::create([
+                            'tipo_motor' => $dados['tipo_motor_' . $id_bomba][$k],
+                            'marca' => $marca,
+                            'modelo' => $modelo,
+                            'potencia' => $dados['potencia_'.$j][$k],
+                            'numero_serie' => $dados['numero_serie_'.$j][$k],
+                            'rotacao' => $dados['rotacao_'.$j][$k],
+                            'tensao' => $dados['tensao_'.$j][$k],
+                            'lp_ln' => $dados['lp_ln_'.$j][$k],
+                            'classe_isolamento' => $dados['classe_isolamento_'.$j][$k],
+                            'corrente_nominal' => $dados['corrente_nominal_'.$j][$k],
+                            'fs' => $dados['fs_'.$j][$k],
+                            'ip' => $dados['ip_'.$j][$k],
+                            'rendimento' => $dados['rendimento_'.$j][$k],
+                            'cos' => $dados['cos_'.$j][$k],
+                            'id_bomba' => $id_bomba,
+                            'id_motor' => $id_motor,
+                            'id_entrega_tecnica' => $dados['id_entrega_tecnica']
+                        ]);
+                    }
+
+                    if ($dados['tipo_motor_' . $id_bomba][$k] == 'eletrico') {
+                        // salva a 1º chave de partida
+                        $id_chave_partida = $dados['id_chave_partida_0'.$id_bomba.'_0'.$id_motor.'_1'];
+                        
+                        $chave_partida['marca'] = $dados['marca_cp_0'.$id_bomba.'_0'.$id_motor.'_1'][$k];
+                        $chave_partida['acionamento'] = $dados['acionamento_cp_0'.$id_bomba.'_0'.$id_motor.'_1'][$k];
+                        $chave_partida['regulagem_reles'] = $dados['regulagem_reles_0'.$id_bomba.'_0'.$id_motor.'_1'][$k];
+                        $chave_partida['numero_serie'] = $dados['numero_serie_cp_0'.$id_bomba.'_0'.$id_motor.'_1'][$k];
+                        $chave_partida['id_chave_partida'] = $dados['id_chave_partida_0'.$id_bomba.'_0'.$id_motor.'_1'];
+                        $chave_partida['id_bomba'] = $id_bomba;
+                        $chave_partida['id_motor'] = $id_motor;
+                        $chave_partida['id_entrega_tecnica'] = $id_entrega_tecnica;
+
+                        $chave_partida_existente = EntregaTecnicaChavePartida::where('id_entrega_tecnica', $id_entrega_tecnica)
+                        ->where('id_bomba', $id_bomba)
+                        ->where('id_motor', $id_motor)
+                        ->where('id_chave_partida', $id_chave_partida)
+                        ->count();
+
+                        if ($chave_partida_existente > 0) {
+                            EntregaTecnicaChavePartida::where('id_entrega_tecnica', $id_entrega_tecnica)
+                            ->where('id_bomba', $id_bomba)
+                            ->where('id_motor', $id_motor)
+                            ->where('id_chave_partida', $id_chave_partida)
+                            ->update($chave_partida);
+                        } else {
+                            EntregaTecnicaChavePartida::create($chave_partida);
+                        }
+                    }
+                }
+
+                if ($dados['marca'][$i] != null && $dados['modelo'][$i] != null && $dados['numero_estagio'][$i] != null && 
+                $dados['rotor'][$i] != null && $dados['opcionais'][$i] != null && $dados['fornecedor'][$i] != null && 
+                $dados['numero_serie'][$i] != null && $dados['quantidade_motobomba'] && $dados['tipo_succao'] ) {
+                    // BOMBA
+                    if (!empty($dados['tipo_motor_' . $id_bomba][$k]) && !empty($dados['marca_motor_'.$j][$k]) && !empty($dados['modelo_motor_'.$j][$k]) 
+                    && !empty($dados['marca_motor_eletrico_'.$j][$k]) && !empty($dados['modelo_motor_eletrico_'.$j][$k])
+                    && !empty($dados['potencia_'.$j][$k]) && !empty($dados['numero_serie_'.$j][$k]) && !empty($dados['rotacao_'.$j][$k])) {
+                        // MOTOR
+                        if(!empty($dados['marca_0'.$id_bomba.'_0'.$id_motor.'_1']) && !empty($dados['acionamento_0'.$id_bomba.'_0'.$id_motor.'_1']) && 
+                        !empty($dados['regulagem_reles_0'.$id_bomba.'_0'.$id_motor.'_1']) && !empty($dados['numero_serie_0'.$id_bomba.'_0'.$id_motor.'_1'])) {
+                            // CHAVE DE PARTIDA
+                            EntregaTecnica::where('id', $id_entrega_tecnica)->update([
+                                'status_motobomba' => 2
+                            ]);
+                        }
+                    }
+                } else if ($dados['marca'][$i] != null || $dados['modelo'][$i] != null || $dados['numero_estagio'][$i] != null || 
+                $dados['rotor'][$i] != null || $dados['opcionais'][$i] != null || $dados['fornecedor'][$i] != null || 
+                $dados['numero_serie'][$i] != null || $dados['quantidade_motobomba'] || $dados['tipo_succao']) {
+                    // BOMBA
+                    EntregaTecnica::where('id', $id_entrega_tecnica)->update([
+                        'status_motobomba' => 1
+                    ]);
+                    if (!empty($dados['tipo_motor_' . $id_bomba][$k]) || !empty($dados['marca_motor_'.$j][$k]) || !empty($dados['modelo_motor_'.$j][$k]) 
+                    || !empty($dados['marca_motor_eletrico_'.$j][$k]) || !empty($dados['modelo_motor_eletrico_'.$j][$k])
+                    || !empty($dados['potencia_'.$j][$k]) || !empty($dados['numero_serie_'.$j][$k]) || !empty($dados['rotacao_'.$j][$k])) {
+                        // MOTOR
+                        EntregaTecnica::where('id', $id_entrega_tecnica)->update([
+                            'status_motobomba' => 1
+                        ]);
+                        if(!empty($dados['marca_0'.$id_bomba.'_0'.$id_motor.'_1']) || !empty($dados['acionamento_0'.$id_bomba.'_0'.$id_motor.'_1']) || 
+                        !empty($dados['regulagem_reles_0'.$id_bomba.'_0'.$id_motor.'_1']) || !empty($dados['numero_serie_0'.$id_bomba.'_0'.$id_motor.'_1'])) {
+                            // CHAVE DE PARTIDA
+                            EntregaTecnica::where('id', $id_entrega_tecnica)->update([
+                                'status_motobomba' => 1
+                            ]);
+                        }
+                    }
                 }
             }
-
-            Notificacao::gerarAlert('', 'entregaTecnica.cadastro_pressurizacao', 'success');
-            return redirect()->route('edit_technical_delivery', $id_entrega_tecnica);
+            
+            Notificacao::gerarAlert('', 'entregaTecnica.cadastro_bomba', 'success');
+            if ($dados['savebuttonvalue'] == "saveout") {
+                return redirect()->route('edit_technical_delivery', $id_entrega_tecnica);                        
+            } else {
+                return redirect()->back();
+            }
         }       
-
     }
 
-    // ENTREGA TÉCNICA AUTOTRÁFO
+    // AUTOTRAFO TECHNICAL DELIVERY
     public function createStarterKeyTechnicalDelivery($id_entrega_tecnica) 
     {
         $autotrafos = EntregaTecnicaBombaAutotrafo::select('*')
@@ -741,13 +759,6 @@ class EntregaTecnicaController extends Controller
         $chaveSeccionadora = Lista::getChaveSeccionadora();
         $gerador = Lista::getGerador();
 
-        $status_autotrafo = EntregaTecnica::select('status_autotrafo')->first();
-        if ($status_autotrafo['status_autotrafo'] == 0) {
-            EntregaTecnica::where('id', $id_entrega_tecnica)->update([
-                'status_autotrafo' => 1
-            ]);
-        }
-
         return view('entregaTecnica.cadastro.createPowerSupply', compact('id_entrega_tecnica', 'chavePartidaAcionamento', 'chaveSeccionadora',
         'gerador', 'autotrafos'));        
     }
@@ -756,8 +767,22 @@ class EntregaTecnicaController extends Controller
     {
         $dados = $req->all();
         $id_entrega_tecnica = $dados['id_entrega_tecnica'];
-        $autotrafo_existente = EntregaTecnicaBombaAutotrafo::where('id_entrega_tecnica', $id_entrega_tecnica)->count();                                   
+        $autotrafo_existente = EntregaTecnicaBombaAutotrafo::where('id_entrega_tecnica', $id_entrega_tecnica)->count();  
+        
+        // CHECK BEFORE SAVING IF THE FIELDS HAVE NEGATIVE VALUES
+        if (($dados['tap_entrada_elevacao'] != null || $dados['tap_saida_elevacao'] != null || $dados['corrente_disjuntor'] != null) &&
+        ($dados['tap_entrada_elevacao'] < 0 || $dados['tap_saida_elevacao'] < 0 || $dados['corrente_disjuntor'] < 0)) {
+            Notificacao::gerarAlert('', 'entregaTecnica.dados_invalidos', 'warning');
+            return redirect()->back();
+        }
 
+        if (($dados['tap_entrada_rebaixamento'] != null || $dados['tap_saida_rebaixamento'] != null || $dados['corrente_disjuntor'] != null) &&
+        ($dados['tap_entrada_rebaixamento'] < 0 || $dados['tap_saida_rebaixamento'] < 0 || $dados['corrente_disjuntor'] < 0)) {
+            Notificacao::gerarAlert('', 'entregaTecnica.dados_invalidos', 'warning');
+            return redirect()->back();
+        }
+
+        // ELEVATION AUTOTRAFO
         if (!empty($dados['potencia_elevacao']) || !empty($dados['tap_entrada_elevacao']) || !empty($dados['tap_saida_elevacao']) || 
             !empty($dados['corrente_disjuntor']) || !empty($dados['numero_serie_elevacao']) ) {   
             if (!empty($dados['gerador']) || !empty($dados['gerador_marca']) || !empty($dados['gerador_modelo']) || 
@@ -766,12 +791,12 @@ class EntregaTecnicaController extends Controller
                     Notificacao::gerarAlert('', 'entregaTecnica.cadastro_errado_autotrafo', 'warning');
                     return redirect()->back();      
             } else {
-        if ($autotrafo_existente > 0) {
-            EntregaTecnicaBombaAutotrafo::where('id_entrega_tecnica', $id_entrega_tecnica)
-            ->update([
-                'potencia_elevacao' => $dados['potencia_elevacao'],
-                'tap_entrada_elevacao' => $dados['tap_entrada_elevacao'],
-                'tap_saida_elevacao' => $dados['tap_saida_elevacao'],
+                if ($autotrafo_existente > 0) {
+                    EntregaTecnicaBombaAutotrafo::where('id_entrega_tecnica', $id_entrega_tecnica)
+                        ->update([
+                        'potencia_elevacao' => $dados['potencia_elevacao'],
+                        'tap_entrada_elevacao' => $dados['tap_entrada_elevacao'],
+                        'tap_saida_elevacao' => $dados['tap_saida_elevacao'],
                         'corrente_disjuntor' => $dados['corrente_disjuntor'],
                         'numero_serie_elevacao' => $dados['numero_serie_elevacao'],
                     ]); 
@@ -781,14 +806,15 @@ class EntregaTecnicaController extends Controller
                         'tap_entrada_elevacao' => $dados['tap_entrada_elevacao'],
                         'tap_saida_elevacao' => $dados['tap_saida_elevacao'],
                         'corrente_disjuntor' => $dados['corrente_disjuntor'],
-                'numero_serie_elevacao' => $dados['numero_serie_elevacao'],
+                        'numero_serie_elevacao' => $dados['numero_serie_elevacao'],
                         'id_autotrafo' => 1,
                         'id_entrega_tecnica' => $id_entrega_tecnica
                     ]); 
-                }                             
+                }                
             }
         } 
                 
+        // DRAWING AUTOTRAFO
         if (!empty($dados['potencia_rebaixamento']) || !empty($dados['tap_entrada_rebaixamento']) || 
             !empty($dados['tap_saida_rebaixamento']) || !empty($dados['numero_serie_rebaixamento'])) {
             if (empty($dados['potencia_elevacao']) || empty($dados['tap_entrada_elevacao']) || empty($dados['tap_saida_elevacao']) || 
@@ -806,17 +832,18 @@ class EntregaTecnicaController extends Controller
                     ]); 
                 } else {
                     EntregaTecnicaBombaAutotrafo::create([
-                'potencia_rebaixamento' => $dados['potencia_rebaixamento'],
-                'tap_entrada_rebaixamento' => $dados['tap_entrada_rebaixamento'],
-                'tap_saida_rebaixamento' => $dados['tap_saida_rebaixamento'],
-                'numero_serie_rebaixamento' => $dados['numero_serie_rebaixamento'],
+                        'potencia_rebaixamento' => $dados['potencia_rebaixamento'],
+                        'tap_entrada_rebaixamento' => $dados['tap_entrada_rebaixamento'],
+                        'tap_saida_rebaixamento' => $dados['tap_saida_rebaixamento'],
+                        'numero_serie_rebaixamento' => $dados['numero_serie_rebaixamento'],
                         'id_autotrafo' => 1,
                         'id_entrega_tecnica' => $id_entrega_tecnica
                     ]); 
-                }        
+                }  
             }
         }  
 
+        // GENERATOR
         if (!empty($dados['gerador']) || !empty($dados['gerador_marca']) || !empty($dados['gerador_modelo']) || 
             !empty($dados['gerador_potencia']) || !empty($dados['gerador_frequencia']) || !empty($dados['gerador_tensao']) || 
             !empty($dados['numero_serie_gerador'])) {
@@ -826,16 +853,15 @@ class EntregaTecnicaController extends Controller
                     return redirect()->back();
             } else {
                 if ($autotrafo_existente > 0) {
-                    EntregaTecnicaBombaAutotrafo::where('id_entrega_tecnica', $id_entrega_tecnica)
-                    ->update([
-                'gerador' => $dados['gerador'],
-                'gerador_marca' => $dados['gerador_marca'],
-                'gerador_modelo' => $dados['gerador_modelo'],
-                'gerador_potencia' => $dados['gerador_potencia'],
-                'gerador_frequencia' => $dados['gerador_frequencia'],
-                'gerador_tensao' => $dados['gerador_tensao'],
-                        'numero_serie_gerador' => $dados['numero_serie_gerador'],
-            ]); 
+                EntregaTecnicaBombaAutotrafo::where('id_entrega_tecnica', $id_entrega_tecnica)->update([
+                    'gerador' => $dados['gerador'],
+                    'gerador_marca' => $dados['gerador_marca'],
+                    'gerador_modelo' => $dados['gerador_modelo'],
+                    'gerador_potencia' => $dados['gerador_potencia'],
+                    'gerador_frequencia' => $dados['gerador_frequencia'],
+                    'gerador_tensao' => $dados['gerador_tensao'],
+                    'numero_serie_gerador' => $dados['numero_serie_gerador'],
+                ]); 
         } else {
             EntregaTecnicaBombaAutotrafo::create([
                 'gerador' => $dados['gerador'],
@@ -852,6 +878,7 @@ class EntregaTecnicaController extends Controller
             }                    
         }
 
+        // E.T STATUS UPDATE
         if ((!empty($dados['potencia_elevacao']) && !empty($dados['tap_entrada_elevacao']) && !empty($dados['tap_saida_elevacao']) && 
             !empty($dados['corrente_disjuntor']) && !empty($dados['numero_serie_elevacao'])) || 
             (!empty($dados['gerador']) && !empty($dados['gerador_marca']) && !empty($dados['gerador_modelo']) && 
@@ -859,17 +886,24 @@ class EntregaTecnicaController extends Controller
             EntregaTecnica::where('id', $id_entrega_tecnica)->update([
                 'status_autotrafo' => 2
             ]);
-        } else {
+        } else if ((!empty($dados['potencia_elevacao']) || !empty($dados['tap_entrada_elevacao']) || !empty($dados['tap_saida_elevacao']) || 
+        !empty($dados['corrente_disjuntor']) || !empty($dados['numero_serie_elevacao'])) || 
+        (!empty($dados['gerador']) || !empty($dados['gerador_marca']) || !empty($dados['gerador_modelo']) || 
+        !empty($dados['gerador_potencia']) || !empty($dados['gerador_frequencia']) || !empty($dados['gerador_tensao'])) ) {
             EntregaTecnica::where('id', $id_entrega_tecnica)->update([
                 'status_autotrafo' => 1
             ]);
         }
-
-        Notificacao::gerarAlert('', 'entregaTecnica.cadastro_chave_partida', 'success');
-        return redirect()->route('edit_technical_delivery', $id_entrega_tecnica);
+            
+        Notificacao::gerarAlert('', 'entregaTecnica.cadastro_Autotrafo', 'success');
+        if ($dados['savebuttonvalue'] == "saveout") {
+            return redirect()->route('edit_technical_delivery', $id_entrega_tecnica);                        
+        } else {
+            return redirect()->back();
+        }
     }
 
-    // ENTREGA TÉCNICA ASPERSORES
+    // SPRINKLER TECHNICAL DELIVERY
 
     public function createSprinklersTechnicalDelivery($id_entrega_tecnica)
     {
@@ -890,12 +924,6 @@ class EntregaTecnicaController extends Controller
 
         $modelos = explode(", ", $aspersores['aspersor_regulador_modelo']);
 
-        if ($aspersores['status_aspersores'] == 0) {
-            EntregaTecnica::where('id', $id_entrega_tecnica)->update([
-                'status_aspersores' => 1
-            ]);
-        }
-
         return view('entregaTecnica.cadastro.createSprinklers', compact('id_entrega_tecnica', 'aspersor_marca', 'aspersor_modelo', 'modelos',
         'defletores', 'pressao', 'aspersor_opcional', 'aspersor_canhao_final', 'motobomba_booster_modelo', 'id_aspersor', 'reguladorModelo', 'aspersores'));     
     }
@@ -905,38 +933,42 @@ class EntregaTecnicaController extends Controller
         $dados = $request->all();
         $id_entrega_tecnica = $dados['id_entrega_tecnica'];
 
+        $aspersores['aspersor_marca'] = $dados['marca'];
+        $aspersores['aspersor_modelo'] = $dados['modelo'];
+        $aspersores['aspersor_defletor'] = $dados['defletor'];
+        $aspersores['aspersor_impacto_marca'] = $dados['impacto_marca'];                    
+        $aspersores['aspersor_impacto_modelo'] = $dados['impacto_modelo'];
+        $aspersores['aspersor_regulador_marca'] = $dados['regulador_marca'];        
+        $aspersores['aspersor_regulador_modelo'] = implode(', ', $dados['tags']);
+        $aspersores['aspersor_pressao'] = $dados['pressao'];
+        $aspersores['tubo_descida'] = $dados['tubo_descida'];
+        $aspersores['aspersor_canhao_final'] = $dados['canhao_final'];
+        $aspersores['aspersor_canhao_final_bocal'] = $dados['canhao_final_bocal'];
+        $aspersores['aspersor_mbbooster_marca'] = $dados['mb_booster_marca'];
+        $aspersores['aspersor_mbbooster_modelo'] = $dados['mb_booster_modelo'];
+        $aspersores['aspersor_mbbooster_rotor'] = $dados['mb_booster_rotor'];
+        $aspersores['aspersor_mbbooster_potencia'] = $dados['mb_booster_potencia'];
+        $aspersores['aspersor_mbbooster_corrente'] = $dados['mb_booster_corrente'];
+
+        EntregaTecnica::where('id', $id_entrega_tecnica)->update($aspersores);
+
         if (!empty($dados['marca']) && !empty($dados['modelo']) && !empty($dados['defletor']) && 
-            !empty($dados['regulador_marca']) && !empty($dados['tags']) && !empty($dados['pressao'])) {
-                $aspersores['aspersor_marca'] = $dados['marca'];
-                $aspersores['aspersor_modelo'] = $dados['modelo'];
-                $aspersores['aspersor_defletor'] = $dados['defletor'];
-                $aspersores['aspersor_impacto_marca'] = $dados['impacto_marca'];                    
-                $aspersores['aspersor_impacto_modelo'] = $dados['impacto_modelo'];
-                $aspersores['aspersor_regulador_marca'] = $dados['regulador_marca'];        
-                $aspersores['aspersor_regulador_modelo'] = implode(', ', $dados['tags']);
-                $aspersores['aspersor_pressao'] = $dados['pressao'];
-                $aspersores['tubo_descida'] = $dados['tubo_descida'];
-                $aspersores['aspersor_canhao_final'] = $dados['canhao_final'];
-                $aspersores['aspersor_canhao_final_bocal'] = $dados['canhao_final_bocal'];
-                $aspersores['aspersor_mbbooster_marca'] = $dados['mb_booster_marca'];
-                $aspersores['aspersor_mbbooster_modelo'] = $dados['mb_booster_modelo'];
-                $aspersores['aspersor_mbbooster_rotor'] = $dados['mb_booster_rotor'];
-                $aspersores['aspersor_mbbooster_potencia'] = $dados['mb_booster_potencia'];
-                $aspersores['aspersor_mbbooster_corrente'] = $dados['mb_booster_corrente'];
-
-                EntregaTecnica::where('id', $id_entrega_tecnica)->update($aspersores);
-                EntregaTecnica::where('id', $id_entrega_tecnica)->update(['status_aspersores' => 2]);
-
-        } else {
-            Notificacao::gerarAlert('', 'entregaTecnica.cadastro_vazio_aspersores', 'warning');
-            return redirect()->back();
+        !empty($dados['regulador_marca']) && !empty($dados['tags']) && !empty($dados['pressao'])) {
+            EntregaTecnica::where('id', $id_entrega_tecnica)->update(['status_aspersores' => 2]);
+        } else if (!empty($dados['marca']) || !empty($dados['modelo']) || !empty($dados['defletor']) || 
+        !empty($dados['regulador_marca']) || !empty($dados['tags']) || !empty($dados['pressao'])) {
+            EntregaTecnica::where('id', $id_entrega_tecnica)->update(['status_aspersores' => 1]);
         }
 
         Notificacao::gerarAlert('', 'entregaTecnica.cadastro_aspersor', 'success');
-        return redirect()->route('edit_technical_delivery', $id_entrega_tecnica);
+        if ($dados['savebuttonvalue'] == "saveout") {
+            return redirect()->route('edit_technical_delivery', $id_entrega_tecnica);                        
+        } else {
+            return redirect()->back();
+        }
     }
 
-    // ENTREGA TÉCNICA SUCÇÃO
+    // SUCTION TECHNICAL DELIVERY
 
     public function createSuctionMeasurementsTechnicalDelivery($id_entrega_tecnica)
     {
@@ -950,12 +982,6 @@ class EntregaTecnicaController extends Controller
 
         $succao_tipo = explode(", ", $succao['medicao_succao_tipo']);
 
-        if ($motobomba['status_succao'] == 0) {
-            EntregaTecnica::where('id', $id_entrega_tecnica)->update([
-                'status_succao' => 1
-            ]);
-        }
-
         return view('entregaTecnica.cadastro.createSuction', compact('id_entrega_tecnica', 'succao_tipo', 'tipo_succao', 
         'succao', 'motobomba', 'tubos'));     
     }
@@ -963,29 +989,41 @@ class EntregaTecnicaController extends Controller
     public function saveSuctionMeasurementsTechnicalDelivery(Request $request)
     {
         $dados = request()->except(['_token']);        
-        $id_entrega_tecnica = $dados['id_entrega_tecnica'];        
+        $id_entrega_tecnica = $dados['id_entrega_tecnica'];
 
-        if (!empty($dados['medicao_succao_l']) && !empty($dados['medicao_succao_h']) && !empty($dados['medicao_succao_e']) && 
-            !empty($dados['medicao_succao_diametro']) && !empty($dados['tags'])) {      
-                $succao['medicao_succao_l'] = $dados['medicao_succao_l'];
-                $succao['medicao_succao_h'] = $dados['medicao_succao_h'];
-                $succao['medicao_succao_e'] = $dados['medicao_succao_e'];
-                $succao['medicao_succao_diametro'] = $dados['medicao_succao_diametro'];
-                $succao['tipo_tubo_succao'] = $dados['tipo_tubo_succao'];
-                $succao['medicao_succao_tipo'] = implode(', ', $dados['tags']);
-
-                EntregaTecnica::where('id', $id_entrega_tecnica)->update($succao);
-                EntregaTecnica::where('id', $id_entrega_tecnica)->update(['status_succao' => 2]);
-        } else {
-            Notificacao::gerarAlert('', 'entregaTecnica.cadastro_vazio_succao', 'warning');
-            return redirect()->back();
+        // CHECK IF THE SUCTION FIELDS HAVE POSITIVE VALUES
+        if (($dados['medicao_succao_l'] != null || $dados['medicao_succao_l'] != null || $dados['medicao_succao_l']) &&
+            ($dados['medicao_succao_l'] < 0 || $dados['medicao_succao_l'] < 0 || $dados['medicao_succao_l'] < 0 )) {
+                Notificacao::gerarAlert('', 'entregaTecnica.dados_invalidos', 'warning');
+                return redirect()->back();
         }
 
-        Notificacao::gerarAlert('', 'entregaTecnica.succao', 'success');
-        return redirect()->route('edit_technical_delivery', $id_entrega_tecnica);
+        $succao['medicao_succao_l'] = $dados['medicao_succao_l'];
+        $succao['medicao_succao_h'] = $dados['medicao_succao_h'];
+        $succao['medicao_succao_e'] = $dados['medicao_succao_e'];
+        $succao['medicao_succao_diametro'] = $dados['medicao_succao_diametro'];
+        $succao['tipo_tubo_succao'] = $dados['tipo_tubo_succao'];
+        $succao['medicao_succao_tipo'] = implode(', ', $dados['tags']);
+
+        EntregaTecnica::where('id', $id_entrega_tecnica)->update($succao);
+
+        if (!empty($dados['medicao_succao_l']) && !empty($dados['medicao_succao_h']) && !empty($dados['medicao_succao_e']) && 
+        !empty($dados['medicao_succao_diametro']) && !empty($dados['tags'])) {
+            EntregaTecnica::where('id', $id_entrega_tecnica)->update(['status_succao' => 2]);
+        } else if (!empty($dados['medicao_succao_l']) || !empty($dados['medicao_succao_h']) || !empty($dados['medicao_succao_e']) || 
+        !empty($dados['medicao_succao_diametro']) || !empty($dados['tags'])) {
+            EntregaTecnica::where('id', $id_entrega_tecnica)->update(['status_succao' => 1]);
+        }
+            
+        Notificacao::gerarAlert('', 'entregaTecnica.cadastro_succao', 'success');
+        if ($dados['savebuttonvalue'] == "saveout") {
+            return redirect()->route('edit_technical_delivery', $id_entrega_tecnica);                        
+        } else {
+            return redirect()->back();
+        }
     }
 
-    // ENTREGA TÉCNICA LIGAÇÃO DE PRESSAO E ACESSORIOS
+    // TECHNICAL DELIVERY PRESSURE CONNECTION AND ACCESSORIES
 
     public function createPressureConnectionMeasurementsTechnicalDelivery($id_entrega_tecnica)
     {
@@ -995,12 +1033,6 @@ class EntregaTecnicaController extends Controller
         'valvula_antecondas_marca', 'valvula_antecondas_modelo', 'registro_eletrico_diametro', 'registro_eletrico_marca', 'registro_eletrico_modelo',
         'medicoes_ligpress_outros')->where('id', $id_entrega_tecnica)->first();
 
-        if ($ligacao['status_ligacao'] == 0) {
-            EntregaTecnica::where('id', $id_entrega_tecnica)->update([
-                'status_ligacao' => 1
-            ]);
-        }
-
         return view('entregaTecnica.cadastro.createConnectionAndAccessories', compact('id_entrega_tecnica', 'ligacao'));     
     }
 
@@ -1009,40 +1041,45 @@ class EntregaTecnicaController extends Controller
         $dados = $request->all();   
         $id_entrega_tecnica = $dados['id_entrega_tecnica'];
 
-        if (!empty($dados['tubo_az1_comprimento']) && !empty($dados['tubo_az1_diametro']) && 
-            !empty($dados['tubo_az2_comprimento']) && !empty($dados['tubo_az2_diametro'])) {  
-                $pressao['tubo_az1_comprimento'] = $dados['tubo_az1_comprimento'];      
-                $pressao['tubo_az1_diametro'] = $dados['tubo_az1_diametro'];
-                $pressao['tubo_az2_comprimento'] = $dados['tubo_az2_comprimento'];
-                $pressao['tubo_az2_diametro'] = $dados['tubo_az2_diametro'];
-                $pressao['peca_aumento_diametro_maior'] = $dados['peca_aumento_diametro_maior'];            
-                $pressao['peca_aumento_diametro_menor'] = $dados['peca_aumento_diametro_menor'];
-                $pressao['registro_gaveta_diametro'] = $dados['registro_gaveta_diametro'];
-                $pressao['registro_gaveta_marca'] = $dados['registro_gaveta_marca'];
-                $pressao['valvula_retencao_diametro'] = $dados['valvula_retencao_diametro'];
-                $pressao['valvula_retencao_marca'] = $dados['valvula_retencao_marca'];  
-                $pressao['valvula_retencao_material'] = $dados['valvula_retencao_material'];  
-                $pressao['valvula_ventosa_diametro'] = $dados['valvula_ventosa_diametro'];  
-                $pressao['valvula_ventosa_marca'] = $dados['valvula_ventosa_marca'];  
-                $pressao['valvula_ventosa_modelo'] = $dados['valvula_ventosa_modelo'];  
-                $pressao['quantidade_valv_ventosa'] = $dados['quantidade_valv_ventosa'];  
-                $pressao['valvula_antecondas_diametro'] = $dados['valvula_antecondas_diametro'];  
-                $pressao['valvula_antecondas_marca'] = $dados['valvula_antecondas_marca'];  
-                $pressao['valvula_antecondas_modelo'] = $dados['valvula_antecondas_modelo'];  
-                $pressao['registro_eletrico_diametro'] = $dados['registro_eletrico_diametro'];  
-                $pressao['registro_eletrico_marca'] = $dados['registro_eletrico_marca'];  
-                $pressao['registro_eletrico_modelo'] = $dados['registro_eletrico_modelo'];  
-                $pressao['medicoes_ligpress_outros'] = $dados['medicoes_ligpress_outros'];
+        $pressao['tubo_az1_comprimento'] = $dados['tubo_az1_comprimento'];      
+        $pressao['tubo_az1_diametro'] = $dados['tubo_az1_diametro'];
+        $pressao['tubo_az2_comprimento'] = $dados['tubo_az2_comprimento'];
+        $pressao['tubo_az2_diametro'] = $dados['tubo_az2_diametro'];
+        $pressao['peca_aumento_diametro_maior'] = $dados['peca_aumento_diametro_maior'];            
+        $pressao['peca_aumento_diametro_menor'] = $dados['peca_aumento_diametro_menor'];
+        $pressao['registro_gaveta_diametro'] = $dados['registro_gaveta_diametro'];
+        $pressao['registro_gaveta_marca'] = $dados['registro_gaveta_marca'];
+        $pressao['valvula_retencao_diametro'] = $dados['valvula_retencao_diametro'];
+        $pressao['valvula_retencao_marca'] = $dados['valvula_retencao_marca'];  
+        $pressao['valvula_retencao_material'] = $dados['valvula_retencao_material'];  
+        $pressao['valvula_ventosa_diametro'] = $dados['valvula_ventosa_diametro'];  
+        $pressao['valvula_ventosa_marca'] = $dados['valvula_ventosa_marca'];  
+        $pressao['valvula_ventosa_modelo'] = $dados['valvula_ventosa_modelo'];  
+        $pressao['quantidade_valv_ventosa'] = $dados['quantidade_valv_ventosa'];  
+        $pressao['valvula_antecondas_diametro'] = $dados['valvula_antecondas_diametro'];  
+        $pressao['valvula_antecondas_marca'] = $dados['valvula_antecondas_marca'];  
+        $pressao['valvula_antecondas_modelo'] = $dados['valvula_antecondas_modelo'];  
+        $pressao['registro_eletrico_diametro'] = $dados['registro_eletrico_diametro'];  
+        $pressao['registro_eletrico_marca'] = $dados['registro_eletrico_marca'];  
+        $pressao['registro_eletrico_modelo'] = $dados['registro_eletrico_modelo'];  
+        $pressao['medicoes_ligpress_outros'] = $dados['medicoes_ligpress_outros'];
 
-                EntregaTecnica::where('id', $id_entrega_tecnica)->update($pressao);
+        EntregaTecnica::where('id', $id_entrega_tecnica)->update($pressao);
+
+        if (!empty($dados['tubo_az1_comprimento']) && !empty($dados['tubo_az1_diametro']) && 
+            !empty($dados['tubo_az2_comprimento']) && !empty($dados['tubo_az2_diametro'])) {
                 EntregaTecnica::where('id', $id_entrega_tecnica)->update(['status_ligacao' => 2]);
-        } else {
-            Notificacao::gerarAlert('', 'entregaTecnica.cadastro_vazio_ligacao', 'warning');
-            return redirect()->back();
+        } else if (!empty($dados['tubo_az1_comprimento']) || !empty($dados['tubo_az1_diametro']) || 
+            !empty($dados['tubo_az2_comprimento']) || !empty($dados['tubo_az2_diametro'])) {
+                EntregaTecnica::where('id', $id_entrega_tecnica)->update(['status_ligacao' => 1]);
         }
 
         Notificacao::gerarAlert('', 'entregaTecnica.cadastro_ligacao', 'success');
-        return redirect()->route('edit_technical_delivery', $id_entrega_tecnica);
+        if ($dados['savebuttonvalue'] == "saveout") {
+            return redirect()->route('edit_technical_delivery', $id_entrega_tecnica);                        
+        } else {
+            return redirect()->back();
+        }
     }
 
     // ENTREGA TÉCNICA ADUTORA
@@ -1109,7 +1146,11 @@ class EntregaTecnicaController extends Controller
         }
 
         Notificacao::gerarAlert('', 'entregaTecnica.cadastro_adutora', 'success');
-        return redirect()->route('edit_technical_delivery', $id_entrega_tecnica);
+        if ($dados['savebuttonvalue'] == "saveout") {
+            return redirect()->route('edit_technical_delivery', $id_entrega_tecnica);                        
+        } else {
+            return redirect()->back();
+        }
     }
 
     // ENTREGA TECNICA TESTES
@@ -1499,10 +1540,13 @@ class EntregaTecnicaController extends Controller
                 }
             }
         }
-        
-
-        Notificacao::gerarAlert('', 'entregaTecnica.cadastro_verificacao', 'success');
-        return redirect()->route('edit_technical_delivery', $id_entrega_tecnica);
+            
+        Notificacao::gerarAlert('', 'entregaTecnica.cadastro_testes', 'success');
+        if ($dados['savebuttonvalue'] == "saveout") {
+            return redirect()->route('edit_technical_delivery', $id_entrega_tecnica);                        
+        } else {
+            return redirect()->back();
+        }
     }
 
     // RELATÓRIO ENTREGA TECNICA
@@ -1574,7 +1618,6 @@ class EntregaTecnicaController extends Controller
     public function sendCompleteTechnicalDelivery(Request $request)
     {
         $dados = $request->all();
-
         $id_entrega_tecnica = $dados['id_entrega_tecnica'];
         if (!empty($dados['data_envio_entrega_tecnica']) && !empty($dados['declaracao_img'])) {
                 $extension = $dados['declaracao_img']->extension();
@@ -1632,6 +1675,8 @@ class EntregaTecnicaController extends Controller
     public function manageAnalysisTechnicalDelivery() 
     {   
         
+        session()->put('current_module', 'entrega_tecnica_analise');
+
         $entrega_tecnica = EntregaTecnica::select('entrega_tecnica.*', 'P.nome as nome_proprietario', 'U.nome as nome_usuario')
         ->join('fazendas', 'entrega_tecnica.id_fazenda', '=', 'fazendas.id')
         ->join('usuario_superiores as US', 'fazendas.id_consultor', '=', 'US.id_usuario')
@@ -1723,7 +1768,6 @@ class EntregaTecnicaController extends Controller
 
             if ($dados['situacao'] == 1) {
                 EntregaTecnica::where('id', $id_entrega_tecnica)->update(['status' => 4]);
-
             } else if ($dados['situacao'] == 0) {
                 EntregaTecnica::where('id', $id_entrega_tecnica)->update(['status' => 5]);
             }
@@ -1758,7 +1802,7 @@ class EntregaTecnicaController extends Controller
                 } else if ($entrega_tecnica['status'] === 5) {
                     $msgTec = 'A situação da Entrega Técnica Nº ' . $entrega_tecnica['numero_pedido'] . ', foi reprovada!';
                     $msgClient = 'A Entrega Técnica Nº ' . $entrega_tecnica['numero_pedido'] . ', foi realizada com sucesso!';
-                }
+        }
 
                 $fromSend = 'noreply@valleycheckpivot.com';
                 $subjectTitle = 'Confirmação Envio de Análise da Entrega Técnica';        
@@ -1775,7 +1819,7 @@ class EntregaTecnicaController extends Controller
         }
         return redirect()->route('manage_analysis_technical_delivery');
     }
-    
+
     // EXCLUIR ENTREGA TECNICA
     public function delete($id)
     {

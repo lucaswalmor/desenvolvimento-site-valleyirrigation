@@ -28,6 +28,15 @@
                         <i class="fas fa-save fa-stack-1x fa-inverse"></i>
                     </span>
                 </button>
+
+                <!-- modificação para botão salvar sair -->
+                <button type="button" id="saveoutbutton" data-toggle="tooltip" data-placement="bottom" title="Salvar e Sair">
+                    <span class="fa-stack fa-2x">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fas fa-chevron-right fa-stack-1x fa-inverse" style="margin-left:15px;"></i>
+                        <i class="fas fa-save fa-stack-1x fa-inverse"style=" margin-left:-6px;"></i>
+                    </span>
+                </button>
             </div>
         </div>
     </div>
@@ -54,8 +63,9 @@
                 @include('_layouts._includes._alert')    
             </div>
             <input type="hidden" name="id_entrega_tecnica" id="id_entrega_tecnica" value="{{$id_entrega_tecnica}}">
-            <div class="tab-content" id="myTabContent">
-                
+            <!-- modificação para botão salvar sair -->
+            <input type="hidden" name="savebuttonvalue" id="savebuttonvalue" value="save">
+            <div class="tab-content" id="myTabContent">                
                 <div class="tab-pane fade show active" id="ligacao" role="tabpanel" aria-labelledby="ligacao-tab">                        
                     <div class="col-md-12">
                         {{-- TUBO AZ --}}
@@ -239,6 +249,12 @@
             $('#botaosalvar').on('click', function() {
                 $('#formdados').submit();
             });
+
+            /* modificação para botão salvar sair */
+            $('#saveoutbutton').on('click', function() {  
+                $("#savebuttonvalue").val("saveout");
+                $('#formdados').submit();
+            });      
         });
     </script>
 @endsection

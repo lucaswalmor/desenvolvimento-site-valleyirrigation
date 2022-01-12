@@ -117,6 +117,7 @@
 
     // SETAR ROTAS PARA REDIRECIONAMENTO DAS FAZENDAS LISTADAS
     function setFazenda(IdFazenda) {
+
         $.ajax({
             type: "POST",
             url: "{{ route('farm_setFarm') }}",
@@ -126,8 +127,7 @@
             },
             dataType: "json",
             success: function(data) {
-                // $('#btnSelecionFazenda').html(data['nome']);
-                location.reload();
+                location.href = data.url;
             },
             error: function(data, textStatus, errorThrown) {
                 console.log(data);
@@ -138,8 +138,6 @@
     }
 
     // FILTRO DE BUSCA DAS FAZENDAS LISTADAS
-
-
 
     function filterFunction() {
         var input, filter, ul, li, a, i;

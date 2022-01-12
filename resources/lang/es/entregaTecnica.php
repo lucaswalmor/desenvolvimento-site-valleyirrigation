@@ -26,6 +26,7 @@ return [
     'assinatura_cliente' => 'Firma del Cliente:',
     'assinatura_tecnico' => 'Firma del Técnico:',
     'dados_incompletos' => 'Datos Incompletos',
+    'dados_invalidos' => 'Datos Inválidos',
     'entrega_tecnica_enviada' => 'Entrega técnica enviada con éxito. ¡Será analizado por el departamento de Ingeniería de la aplicación!',
     'entrega_tecnica_analise' => 'Entrega técnica bajo revisión!',
     'tooltip_caracteristicas_equipamento' => 'Se deben completar las características del equipo.',
@@ -51,7 +52,9 @@ return [
     'cadastro_aspersor' => '¡Registro de <b> Aspersores </b> completado con éxito!',
     'cadastro_ligacao' => '¡Registro de <b> Conexiones de presión y accesorios </b> completado con éxito!',
     'cadastro_adutora' => '¡Registro de <b> Aducta </b> completado con éxito!',
+    'cadastro_Autotrafo' => 'Registro de <b> Autotrafo </b> completado con éxito',
     'cadastro_succao' => '¡Registro de <b> Succión </b> completado con éxito!',
+    'cadastro_testes' => 'Registro de <b> pruebas </b> realizado correctamente',
     'editar_parte_aerea' => '<b> Parte aérea </b> editada correctamente.',
     'editar_lances' => '<b> Ofertas </b> editadas correctamente.',
     'editar_aspersores' => '<b> Aspersores </b> editados correctamente.',
@@ -285,6 +288,7 @@ return [
     'cadastro_vazio_gerador' => 'Deben completarse todos los campos <strong> GENERADOR </strong>',
     'cadastro_errado_autotrafo' => 'Solo se debe registrar el <strong> AUTOTRAFO o GENERATOR </strong>',
     'cadastro_errado_autotrafo_rebaixamento' => 'Registro de <strong> AUTOTRAFO ELEVATION </strong> incompleto.',
+    'cadastro_giro_incorreto' => 'Datos de <strong>GIRO</strong> inválidos.',
 
     // FICHA TECNICA
     'ft_entrega_tecnica' => 'INFORME DE ENTREGA TÉCNICA',

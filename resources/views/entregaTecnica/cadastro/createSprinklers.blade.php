@@ -28,6 +28,15 @@
                         <i class="fas fa-save fa-stack-1x fa-inverse"></i>
                     </span>
                 </button>
+
+                <!-- modificação para botão salvar sair -->
+                <button type="button" id="saveoutbutton" data-toggle="tooltip" data-placement="bottom" title="Salvar e Sair">
+                    <span class="fa-stack fa-2x">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fas fa-chevron-right fa-stack-1x fa-inverse" style="margin-left:15px;"></i>
+                        <i class="fas fa-save fa-stack-1x fa-inverse"style=" margin-left:-6px;"></i>
+                    </span>
+                </button>
             </div>
         </div>
     </div>
@@ -49,6 +58,8 @@
             </div>  
             <input type="hidden" name="id_entrega_tecnica" id="id_entrega_tecnica" value="{{$id_entrega_tecnica}}">
             <input type="hidden" name="id_aspersor" id="id_aspersor" value="{{$id_aspersor}}">
+            <!-- modificação para botão salvar sair -->
+            <input type="hidden" name="savebuttonvalue" id="savebuttonvalue" value="save">
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active formcdc" id="cadastro" role="tabpanel" aria-labelledby="cadastro-tab">
                     <div class="col-md-12" id="cssPreloader">
@@ -90,7 +101,6 @@
                             </div>
                            
                         </div>
-
                         {{-- REGULADOR --}}
                         <div class="form-row justify-content-start">
                             <div class="form-group col-md-6">
@@ -111,8 +121,8 @@
                                 @if (count($aspersores['aspersor_regulador_modelo']) > 0)
                                     <label for="regulador_modelo">@lang('entregaTecnica.modelo')</label>
                                     <select multiple="true" name="tags[]" id="tagSelector" class="form-control telo5ce">
-                                        @foreach ($modelos as $modelo)                                    
-                                            <option value="{{ $modelo }}" {{ $modelo == $modelo ? 'selected' : '' }} > {{ $modelo }}</option>
+                                        @foreach ($reguladorModelo as $reg_mod)                                    
+                                                <option value="{{ $reg_mod['modelo'] }}" {{ $reg_mod['modelo'] == $aspersores['aspersor_regulador_modelo'] ? 'selected' : '' }} > {{ $reg_mod['modelo'] }}</option>
                                         @endforeach
                                     </select>    
                                 @else
@@ -312,6 +322,12 @@
                 $('#formdados').submit();
             });
             
+            /* modificação para botão salvar sair */
+            $('#saveoutbutton').on('click', function() {  
+                $("#savebuttonvalue").val("saveout");
+                $('#formdados').submit();
+            });      
+
             //Vai ser acionado cada vez que o equipamento tracar de item selecionado
             $("#marca").change(function () {
                 //Pegando o novo valor selecionado no combo
@@ -319,8 +335,6 @@
                 carregaModeloAspersores(tipo);
             });
             
-            $("#alert").fadeIn(300).delay(2000).fadeOut(400);
-
         });
 
         // Carrega a lista de opcoes do equipamento

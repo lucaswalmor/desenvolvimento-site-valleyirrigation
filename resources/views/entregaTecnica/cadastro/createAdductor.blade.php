@@ -28,6 +28,15 @@
                         <i class="fas fa-save fa-stack-1x fa-inverse"></i>
                     </span>
                 </button>
+
+                <!-- modificação para botão salvar sair -->
+                <button type="button" id="saveoutbutton" data-toggle="tooltip" data-placement="bottom" title="Salvar e Sair">
+                    <span class="fa-stack fa-2x">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fas fa-chevron-right fa-stack-1x fa-inverse" style="margin-left:15px;"></i>
+                        <i class="fas fa-save fa-stack-1x fa-inverse"style=" margin-left:-6px;"></i>
+                    </span>
+                </button>
             </div>
         </div>
     </div>
@@ -44,9 +53,13 @@
         {{-- FORMULARIO DE CADASTRO --}}
         <form action="{{ route('save_technical_delivery_water_supply') }}" method="post" class="mt-3" id="formdados">
             <div class="tab-content" id="myTabContent">
-                @include('_layouts._includes._alert')
+                <div id="alert">                
+                    @include('_layouts._includes._alert')    
+                </div>            
                 <input type="hidden" name="id_entrega_tecnica" id="id_entrega_tecnica" value="{{ $id_entrega_tecnica }}">
                 <input type="hidden" name="adutora" id="adutora" value="{{ count($adutoras) > 0 }}">
+                <!-- modificação para botão salvar sair -->
+                <input type="hidden" name="savebuttonvalue" id="savebuttonvalue" value="save">
                 <div class="tab-pane fade show active formcdc" id="cadastro" role="tabpanel" aria-labelledby="cadastro-tab">
                     @csrf 
 
@@ -167,16 +180,22 @@
     <script type="text/javascript">
 
         $(document).ready(function () {
+            
+            $("#alert").fadeIn(300).delay(2000).fadeOut(400);
             var adutora = $('#adutora').val();
             if (adutora == 0) {
                 AddTableRow();
             }
             
-            $("#alert").fadeIn(300).delay(2000).fadeOut(400);
-            
             $('#botaosalvar').on('click', function() {
                 $('#formdados').submit();
             });
+
+            /* modificação para botão salvar sair */
+            $('#saveoutbutton').on('click', function() {  
+                $("#savebuttonvalue").val("saveout");
+                $('#formdados').submit();
+            });      
         });
     </script>
 

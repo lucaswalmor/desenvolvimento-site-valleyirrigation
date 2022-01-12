@@ -20,7 +20,6 @@
         $token_generated = generate_token($User_Name, $ID_Equipment, $ky, $iv, $utc);    
     }
 
-
     function generate_token($username, $code, $ky, $iv, $utc) {
         //$utc = time();
         //$utc = strtotime("-2 hours"); // simulate expire

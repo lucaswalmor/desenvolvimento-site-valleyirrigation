@@ -23,6 +23,7 @@ return [
     'corrigir' => 'Corrigir',
     'principais' => 'Principais',
     'dados_incompletos' => 'Dados Incompletos',
+    'dados_invalidos' => 'Dados Inválidos',
     'entrega_tecnica_enviada' => 'Entrega Técnica enviada com sucesso. Será analisada pelo departamento Engenharia da aplicação!',
     'entrega_tecnica_analise' => 'Entrega Técnica em análise!',
     'tooltip_caracteristicas_equipamento' => 'Características do equipamento deve ser preenchida.',
@@ -48,7 +49,9 @@ return [
     'cadastro_aspersor' => 'Cadastro de <b> Aspersores </b> realizado com sucesso',
     'cadastro_ligacao' => 'Cadastro de <b>Ligação de Pressão e Acessórios</b> realizado com sucesso',
     'cadastro_adutora' => 'Cadastro de <b> Adutora </b> realizado com sucesso',
+    'cadastro_Autotrafo' => 'Cadastro de <b> Autotrafo </b> realizado com sucesso',
     'cadastro_succao' => 'Cadastro de <b> Sucção </b> realizado com sucesso',
+    'cadastro_testes' => 'Cadastro de <b> Testes </b> realizado com sucesso',
     'editar_parte_aerea' => '<b> Parte aérea </b> editada com sucesso',
     'editar_lances' => '<b> Lances </b> editado com sucesso',
     'editar_aspersores' => '<b> Aspersores </b> editado com sucesso',
@@ -291,6 +294,7 @@ return [
     'cadastro_vazio_gerador' => 'Todos os campos do <strong> GERADOR </strong> devem ser preenchidos',
     'cadastro_errado_autotrafo' => 'Deverá ser cadastrado apenas o <strong> AUTOTRAFO ou GERADOR</strong>',
     'cadastro_errado_autotrafo_rebaixamento' => 'Cadastro de <strong> AUTOTRAFO ELEVAÇÃO </strong> incompleto.',
+    'cadastro_giro_incorreto' => 'Valor do <strong> GIRO </strong> incorreto.',
 
     // FICHA TECNICA
     'ft_entrega_tecnica' => 'RELATÓRIO ENTREGA TÉCNICA',

@@ -28,6 +28,15 @@
                         <i class="fas fa-save fa-stack-1x fa-inverse"></i>
                     </span>
                 </button>
+
+                <!-- modificação para botão salvar sair -->
+                <button type="button" id="saveoutbutton" data-toggle="tooltip" data-placement="bottom" title="Salvar e Sair">
+                    <span class="fa-stack fa-2x">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fas fa-chevron-right fa-stack-1x fa-inverse" style="margin-left:15px;"></i>
+                        <i class="fas fa-save fa-stack-1x fa-inverse"style=" margin-left:-6px;"></i>
+                    </span>
+                </button>
             </div>
         </div>
     </div>
@@ -60,6 +69,8 @@
             <input type="hidden" name="id_entrega_tecnica" id="id_entrega_tecnica" value="{{$id_entrega_tecnica}}">
             <input type="hidden" name="tem_lance" id="tem_lance" value="{{ $tem_lances }}">
             <input type="hidden" name="lances" id="lances" value="{{ $equipamento_tipo['tipo_equipamento'] }}">
+            <!-- modificação para botão salvar sair -->
+            <input type="hidden" name="savebuttonvalue" id="savebuttonvalue" value="save">
 
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active formcdc" id="cadastro" role="tabpanel" aria-labelledby="cadastro-tab">
@@ -156,7 +167,7 @@
 
                             <div class="form-group col-md-3 telo5ce">
                                 <label for="giro">@lang('entregaTecnica.giro')</label>
-                                <input type="number" max="360" min="0" name="giro" id="giro" class="form-control" value="{{ $entrega_tecnica_dados['giro'] }}">
+                                <input type="number" max="360" name="giro" id="giro" class="form-control" value="{{ $entrega_tecnica_dados['giro'] }}">
                             </div>
 
                             <div class="form-group col-md-3 telo5ce">
@@ -227,6 +238,12 @@
 
         $(document).ready(function () {
             $('#botaosalvar').on('click', function() {            
+                $('#formdados').submit();
+            });      
+
+            /* modificação para botão salvar sair */
+            $('#saveoutbutton').on('click', function() {  
+                $("#savebuttonvalue").val("saveout");
                 $('#formdados').submit();
             });      
 

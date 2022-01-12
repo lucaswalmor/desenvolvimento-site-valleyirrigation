@@ -29,6 +29,8 @@ class RedimensionamentoController extends Controller
 {
     public function managerRedimensionamento(){
         if(session()->has('fazenda')){
+            
+            session()->put('current_module', 'redimensionamento');
             $fazenda = session()->get('fazenda');
             $redimensionamentos = AfericaoPivoCentral::select('afericoes_pivos_centrais.id', 'afericoes_pivos_centrais.nome_pivo', 'afericoes_pivos_centrais.data_afericao', 'P.nome as pivo', 'afericoes_pivos_centrais.numero_lances', 'afericoes_pivos_centrais.tem_balanco')
                 ->join('pivos as P', 'P.id', 'afericoes_pivos_centrais.marca_modelo_pivo')

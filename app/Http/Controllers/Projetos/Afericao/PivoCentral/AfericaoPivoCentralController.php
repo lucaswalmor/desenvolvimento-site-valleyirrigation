@@ -34,6 +34,8 @@ class AfericaoPivoCentralController extends Controller
     public function managerMeasurements()
     {
         if (session()->has('fazenda')) {
+            
+            session()->put('current_module', 'afericao');
             $fazenda = session()->get('fazenda');
             $afericoes = AfericaoPivoCentral::select('afericoes_pivos_centrais.id', 'afericoes_pivos_centrais.nome_pivo', 'afericoes_pivos_centrais.data_afericao', 'P.nome as pivo', 'afericoes_pivos_centrais.numero_lances', 'afericoes_pivos_centrais.tem_balanco', 'afericoes_pivos_centrais.versoes')
                 ->join('pivos as P', 'P.id', 'afericoes_pivos_centrais.marca_modelo_pivo')

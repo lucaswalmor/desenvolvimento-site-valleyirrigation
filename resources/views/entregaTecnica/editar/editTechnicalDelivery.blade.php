@@ -151,7 +151,7 @@
                     </div>
                 @elseif($entrega_tecnica['status_lances'] == 1) 
                     <div class="p-2" style="background-color: orange">
-                        <a href="{{ route('create_technical_delivery_span', $id_entrega_tecnica) }}" style="color: #fff"> @lang('entregaTecnica.em_andamento') <i class="fas fa-edit" style="color: #fff"></i></a>
+                        <a href="{{ route('create_technical_delivery_span', $id_entrega_tecnica) }}" style="color: #fff"> @lang('entregaTecnica.em_andamento')</a>
                     </div>
                 @else
                     <div class="p-2" style="background-color: green">

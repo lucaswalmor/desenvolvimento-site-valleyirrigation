@@ -85,8 +85,8 @@ class FazendaController extends Controller
         Session::put('Lista_Fazendas', $fazendas);
         Notificacao::gerarAlert('', 'fazendas.cadastro_fazenda_sucesso', 'success');
         return redirect()->route('farms_manager');
+        
     }
-
 
     public static function selectFarms()
     {
@@ -154,15 +154,28 @@ class FazendaController extends Controller
     {
         $dados = $req->all();
         $fazenda = Fazenda::find($dados['id']);
-
         if (session()->has('fazenda')) {
             Session::forget('fazenda');
         }
 
+        $current_module = session()->get('current_module'); 
+        $current_url = str_replace('index.php', '', (request()->server('HTTP_ORIGIN') . request()->server('SCRIPT_NAME')));
+        
+        if ($current_module == 'afericao') {
+            $current_url .= 'gauging/central_pivot';
+        } else if ($current_module == 'redimensionamento') {
+            $current_url .= 'resizing/central_pivot/manager_resizing';
+        } else if ($current_module == 'entrega_tecnica') {
+            $current_url .= 'technical_delivery';
+        } else if ($current_module == 'entrega_tecnica_analise') {
+            $current_url .= 'technical_delivery';
+        } 
+        
         $fazenda_sessao = [];
         $fazenda_sessao['nome'] = $fazenda['nome'];
         $fazenda_sessao['id'] = $fazenda['id'];
         session(['fazenda' => $fazenda_sessao]);
+        $fazenda_sessao['url'] = $current_url;
 
         return json_encode($fazenda_sessao);
     }

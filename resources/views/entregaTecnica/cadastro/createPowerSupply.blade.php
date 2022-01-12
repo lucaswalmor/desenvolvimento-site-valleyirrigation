@@ -28,6 +28,15 @@
                         <i class="fas fa-save fa-stack-1x fa-inverse"></i>
                     </span>
                 </button>
+
+                <!-- modificação para botão salvar sair -->
+                <button type="button" id="saveoutbutton" data-toggle="tooltip" data-placement="bottom" title="Salvar e Sair">
+                    <span class="fa-stack fa-2x">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fas fa-chevron-right fa-stack-1x fa-inverse" style="margin-left:15px;"></i>
+                        <i class="fas fa-save fa-stack-1x fa-inverse"style=" margin-left:-6px;"></i>
+                    </span>
+                </button>
             </div>
         </div>
     </div>
@@ -48,6 +57,8 @@
                 @include('_layouts._includes._alert')    
             </div>  
             <input type="hidden" name="id_entrega_tecnica" id="id_entrega_tecnica" value="{{$id_entrega_tecnica}}">
+            <!-- modificação para botão salvar sair -->
+            <input type="hidden" name="savebuttonvalue" id="savebuttonvalue" value="save">
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active formcdc" id="cadastro" role="tabpanel" aria-labelledby="cadastro-tab">
                     <div class="col-md-12" id="cssPreloader">
@@ -57,10 +68,9 @@
                                 <h3 for="gerador">@lang('entregaTecnica.autotrafo_elevacao')</h3>
                             </div>
                         </div>
-
                         <div class="form-row justify-content-start">
                             <div class="form-group col-md-4 telo5ce">
-                                <label for="potencia">@lang('entregaTecnica.potencia') @lang('unidadesAcoes.(cv)')</label>
+                                <label for="potencia">@lang('entregaTecnica.potencia') @lang('unidadesAcoes.(kVA)')</label>
                                 <input type="number" id="potencia_" name="potencia_elevacao" class="form-control" value="{{ $autotrafos['potencia_elevacao'] }}">
                             </div>
                             <div class="form-group col-md-4 telo5ce">
@@ -78,7 +88,7 @@
                                 <input type="text" id="numero_serie" name="numero_serie_elevacao" class="form-control" value="{{ $autotrafos['numero_serie_elevacao'] }}">
                             </div>
                             <div class="form-group col-md-4 telo5ce">
-                                <label for="corrente_disjuntor">@lang('entregaTecnica.corrente_disjuntor')</label>
+                                <label for="corrente_disjuntor">@lang('entregaTecnica.corrente_disjuntor') @lang('unidadesAcoes.(A)')</label>
                                 <input type="number" id="corrente_disjuntor" name="corrente_disjuntor" class="form-control" value="{{ $autotrafos['corrente_disjuntor'] }}">
                             </div>
                         </div>
@@ -91,7 +101,7 @@
                         </div>
                         <div class="form-row justify-content-start">
                             <div class="form-group col-md-3 telo5ce">
-                                <label for="potencia">@lang('entregaTecnica.potencia') @lang('unidadesAcoes.(cv)')</label>
+                                <label for="potencia">@lang('entregaTecnica.potencia') @lang('unidadesAcoes.(kVA)')</label>
                                 <input type="number" id="potencia_" name="potencia_rebaixamento" class="form-control" value="{{ $autotrafos['potencia_rebaixamento'] }}">
                             </div>
                             <div class="form-group col-md-3 telo5ce">
@@ -162,20 +172,26 @@
 
 @section('scripts')
 
-    {{-- VALIDAÇÕES DE CAMPOS --}}
-    <script src="http://jqueryvalidation.org/files/dist/jquery.validate.js"></script>
-    <script>
-        $(document).ready(function() {
+{{-- VALIDAÇÕES DE CAMPOS --}}
+<script src="http://jqueryvalidation.org/files/dist/jquery.validate.js"></script>
+<script>
+    $(document).ready(function() {
 
-            $("#alert").fadeIn(300).delay(2000).fadeOut(400);
-            $('#botaosalvar').on('click', function() {
-                $('#formdados').submit();
-            });
+        $("#alert").fadeIn(300).delay(2000).fadeOut(400);
+        $('#botaosalvar').on('click', function() {
+            $('#formdados').submit();
         });
-    </script>
 
-    {{-- SCRIPT DE FUNCIONALIDADE DO TOOLTIP --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
-    </script>
+        /* modificação para botão salvar sair */
+        $('#saveoutbutton').on('click', function() {  
+            $("#savebuttonvalue").val("saveout");
+            $('#formdados').submit();
+        });      
+    });
+</script>
+
+{{-- SCRIPT DE FUNCIONALIDADE DO TOOLTIP --}}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
+</script>
 @endsection
