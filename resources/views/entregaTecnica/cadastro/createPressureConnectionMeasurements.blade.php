@@ -13,7 +13,7 @@
             {{-- BOTOES SALVAR E VOLTAR --}}
             <div class="col-6 text-right botoes mobile">
                 <a href="{{ route('edit_technical_delivery', $id_entrega_tecnica) }}" style="color: #3c8dbc" data-toggle="tooltip"
-                    data-placement="bottom" title="Voltar">
+                    data-placement="bottom" title="@lang('entregaTecnica.voltar')">
                     <button type="button">
                         <span class="fa-stack fa-lg">
                             <i class="fas fa-circle fa-stack-2x"></i>
@@ -22,10 +22,19 @@
                     </button>
                 </a>
 
-                <button type="button" id="botaosalvar" data-toggle="tooltip" data-placement="bottom" title="Salvar" name="botao" value="sair">
+                <button type="button" id="botaosalvar" data-toggle="tooltip" data-placement="bottom" title="@lang('entregaTecnica.salvar')" name="botao" value="sair">
                     <span class="fa-stack fa-2x">
                         <i class="fas fa-circle fa-stack-2x"></i>
                         <i class="fas fa-save fa-stack-1x fa-inverse"></i>
+                    </span>
+                </button>
+
+                <!-- modificação para botão salvar sair -->
+                <button type="button" id="saveoutbutton" data-toggle="tooltip" data-placement="bottom" title="@lang('entregaTecnica.salvar_sair')">
+                    <span class="fa-stack fa-2x">
+                        <i class="fas fa-circle fa-stack-2x"></i>
+                        <i class="fas fa-chevron-right fa-stack-1x fa-inverse" style="margin-left:15px;"></i>
+                        <i class="fas fa-save fa-stack-1x fa-inverse"style=" margin-left:-6px;"></i>
                     </span>
                 </button>
             </div>

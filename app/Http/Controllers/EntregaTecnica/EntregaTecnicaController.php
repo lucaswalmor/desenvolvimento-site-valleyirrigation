@@ -416,20 +416,8 @@ class EntregaTecnicaController extends Controller
         $getListaDiametroTipo = Lista::getListaDiametroTipo();
         $tipoLances = Lista::getListaLances();
         $diametro = EntregaTecnicaLances::select('*')->where('id_entrega_tecnica', $id_entrega_tecnica)->get();        
-
         $motorredutores = Lista::getMotoredutor();
         $marcaMotorredutor = Lista::getMarcaMotorredutor();
-        
-        $status_lance = EntregaTecnica::select('status_lances')->where('id', $id_entrega_tecnica)->first();
-        if ($status_lance['status_lances'] === 0 ) {
-            EntregaTecnica::where('id', $id_entrega_tecnica)->update(['status_lances' => 1]);
-        }
-
-        if ($tipo_equipamento['status_lances'] === 0 || $tipo_equipamento['status_lances'] === 1) {
-            EntregaTecnica::where('id', $id_entrega_tecnica)->update([
-                'status_parte_aerea' => 2
-            ]);
-        }
 
         return view('entregaTecnica.cadastro.createSpans', compact('fazenda', 'id_entrega_tecnica', 'tipo_equipamento', 
         'getListaDiametroTipo', 'diametroLances', 'tipoLances', 'diametro', 'motorredutores', 'marcaMotorredutor'));
@@ -471,23 +459,19 @@ class EntregaTecnicaController extends Controller
                         'id_lance' =>  $id_lance,
                         'id_entrega_tecnica' => $id_entrega_tecnica
                     ]);
-                }                    
+                }   
+                   
+                if (!empty($dados['diametro'][$i]) && !empty($dados['numero_serie'][$i]) && !empty($dados['qtd_tubos'][$i]) &&
+                !empty($dados['motorredutor_marca'][$i]) && !empty($dados['motorredutor_potencia'][$i])) {
+                    EntregaTecnica::where('id', $id_entrega_tecnica)->update([
+                        'status_lances' => 2,
+                    ]);
+                } else if (!empty($dados['diametro'][$i]) || !empty($dados['numero_serie'][$i]) || !empty($dados['qtd_tubos'][$i]) ||
+                !empty($dados['motorredutor_marca'][$i]) || !empty($dados['motorredutor_potencia'][$i])) {
+                    EntregaTecnica::where('id', $id_entrega_tecnica)->update([ 'status_lances' => 1 ]);
+                }                  
             }
-        }       
-        
-        if (!empty($dados['diametro'][$i]) && !empty($dados['numero_serie'][$i]) && !empty($dados['qtd_tubos'][$i]) &&
-        !empty($dados['motorredutor_marca'][$i]) && !empty($dados['motorredutor_potencia'][$i])) {
-            EntregaTecnica::where('id', $id_entrega_tecnica)->update([
-                'status_lances' => 2,
-                'status_parte_aerea' => 2
-            ]);
-        } else if (!empty($dados['diametro'][$i]) && !empty($dados['numero_serie'][$i]) && !empty($dados['qtd_tubos'][$i]) &&
-        !empty($dados['motorredutor_marca'][$i]) && !empty($dados['motorredutor_potencia'][$i])) {
-            EntregaTecnica::where('id', $id_entrega_tecnica)->update([
-                'status_lances' => 1,
-                'status_parte_aerea' => 2
-            ]);
-        } 
+        }    
 
         Notificacao::gerarAlert('', 'entregaTecnica.cadastro_lances', 'success');
         if ($dados['savebuttonvalue'] == "saveout") {

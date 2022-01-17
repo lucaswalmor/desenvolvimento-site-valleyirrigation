@@ -11,6 +11,11 @@ return [
     'nova' => 'New',
     'continuar' => 'Continue',
     'aprovar' => 'To approve',
+    'relatorio' => 'Report',
+    'atencao' => 'Atention',
+    'voltar' => 'Back',
+    'salvar' => 'Save',
+    'salvar_sair' => 'Save And Leave',
     'nao_iniciada' => 'Not started',
     'em_andamento' => 'In progress',
     'finalizado' => 'Finished',
@@ -21,9 +26,9 @@ return [
     'principais' => 'Main',
     'cadastro_incompleto' => 'Incomplete Registration',
     'assinatura_cliente' => "Customer's Signature:",
-    'cpf_cliente' => 'Social Security Client:',
+    'cpf_cliente' => 'Social Secu. Client:',
     'assinatura_tecnico' => 'Technician Signature:',
-    'cpf_tecnico' => 'Social Security Technician:',
+    'cpf_tecnico' => 'Social Secur. Technician:',
     'dados_incompletos' => 'Incomplete Data',
     'dados_invalidos' => 'Invalid Data',
     'entrega_tecnica_enviada' => "Technical delivery successfully sent. It will be analyzed by the application's Engineering department!",
@@ -47,7 +52,7 @@ return [
     'cadastro_entrega_tecnica_sucesso' => 'Registration of <b>Technical Delivery</b> successfully completed!',
     'cadastro_telemetria' => 'Registration of <b>Telemetry</b> successfully completed',
     'cadastro_parte_aerea' => 'Registration of <b>Air Part</b> successfully completed',
-    'cadastro_lances' => 'Registration of <b>Bids </b> performed successfully',
+    'cadastro_lances' => 'Registration of <b>Spans </b> performed successfully',
     'cadastro_bomba' => 'Registration of <b> Motopump </b> successfully completed',
     'cadastro_aspersor' => '<b>Sprinkler</b> registration successfully completed',
     'cadastro_ligacao' => 'Registration of <b>Pressure Connection and Accessories</b> successfully completed',
@@ -56,14 +61,16 @@ return [
     'cadastro_succao' => '<b> Suction </b> registration performed successfully',
     'cadastro_testes' => 'Registration of <b>Tests</b> performed successfully',
     'editar_parte_aerea' => '<b> Aerial part </b> successfully edited',
-    'editar_lances' => '<b>Bids </b> edited successfully',
+    'editar_lances' => '<b>Spans </b> edited successfully',
     'editar_pressurizacao' => '<b> Pressurization </b> edited successfully',
     'editar_aspersores' => '<b> Sprinkler </b> edited successfully',
     'editar_ligacao' => '<b> Pressure Connection and Accessories </b> edited successfully',
     'editar_adutora' => '<b> Adductor </b> edited successfully',
     'editar_succao' => '<b> Suction </b> edited successfully',
-    'declaracao_texto_1' => 'I <input type="text" name="customer_name" id="customer_name" class="declaracao pl-2 pr-2"> declare to have received the manuals and instructions necessary to operate the equipment.',
-    'declaracao_texto_2' => 'I <input type="text" name="customer_name" id="customer_name" class="declaracao pl-2 pr-2"> declare the technical delivery of this equipment in perfect operating condition to be completed.',
+    'eu' => 'I',
+    'declaracao_texto_cliente' => ' declare that I have received the manuals listed below and the instructions necessary to operate the equipment.',
+    'declaracao_texto_tecnico_pt_1' => ' declare the technical delivery of the equipment in the order completed No.  ',
+    'declaracao_texto_tecnico_pt_2' => ' operating properly.',
 
     // CADASTRAR VERIFICAÇÃO
     'motor' => 'Motor',
@@ -133,12 +140,13 @@ return [
     'pedidoEfazenda' => 'Order No. ',
 
     // LANCES
-    'lances' => 'Bids',
+    'lances' => 'Spans',
     'diametro' => 'Diameter',
     'qtd_tubos' => 'Quantity Tubes',
     'qtd_lances' => 'Number of Bids',
     'comprimento_lance' => 'Length',
     'comprimento_total' => 'Total Length',
+    'comprimento' => 'Lenght',
 
     // PRESSURIZAÇÃO
     'moto_bomba' => 'Motor Pump Set',
@@ -187,6 +195,7 @@ return [
     'tap_saida' => 'Outlet Tap',
     'corrente_disjuntor' => 'Circuit Breaker Current',
     'tipo_gerador' => 'Type Generator',
+    'gerador' => 'Generator',
     'gerador_marca' => 'Brand',
     'gerador_modelo' => 'Model',
     'gerador_potencia' => 'Power',
@@ -202,16 +211,16 @@ return [
     'pressao' => 'Pressure',
     'outros' => 'Others',
     'canhao_final' => 'Final Cannon',
-    'bomba_booster' => 'Bomba Booster',
+    'bomba_booster' => 'Booster Pump',
 
     // MEDIÇÃO DE SUCÇÃO
     'succao' => 'Suction', 
     'medicao_succao_l' => 'Length L',
     'medicao_succao_h' => 'Length H',
     'medicao_succao_e' => 'Length E',
-    'medicao_succao_diametro' => 'Diâmetro',
-    'medicao_succao_tipo' => 'Tipo de Conexão',
-    'engate_rapido' => 'Engate Rápido',
+    'medicao_succao_diametro' => 'Diameter',
+    'medicao_succao_tipo' => 'Connection Type',
+    'engate_rapido' => 'Quick Coupler',
     'flange' => 'Flange',
 
     // MEDIÇÕES DE PRESSÃO
@@ -226,7 +235,7 @@ return [
     'valvula_antecipadora' => 'Wave Anticipation Valve',
     'hidrometro' => 'Hydrometer',
     'ligacao' => 'Connection',
-    'ligacao_acessorios' => 'Connection and Accessories',
+    'ligacao_acessorios' => 'Connect. and Access.',
     
     //MEDIÇÕES DE ADUTORA
     'observacoes' => 'Comments',
@@ -334,7 +343,7 @@ return [
     'icon_link' => 'Icon Link',
     'crop_link' => 'Crop Link',
     'base_station3' => 'BaseStation3',
-    'estacao_metereologica_valley' => 'Estação Metereológica Valley',
+    'estacao_metereologica_valley' => 'Valley Weather Station',
     'field_commander' => 'Field Commander',
 
     // ENVIAR ENTREGA TECNICA

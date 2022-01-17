@@ -61,7 +61,7 @@
                 @foreach ($entrega_tecnica as $item)
                     <tr>
                         <td>{{ date('d/m/Y', strtotime($item['data_entrega_tecnica'])) }}</td>
-                        <td>{{ $item['tipo_entrega_tecnica'] }}</td>
+                        <td>{{ __('entregaTecnica.' . $item['tipo_entrega_tecnica']) }}</td>
                         <td>{{ $item->numero_pedido }}</td>
                         <td>{{ $item['nome_proprietario'] }}</td>
                         <td>{{ $item['nome_usuario'] }}</td>

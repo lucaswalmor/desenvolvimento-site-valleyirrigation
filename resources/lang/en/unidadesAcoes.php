@@ -18,6 +18,7 @@ return [
     //Medidas, abreviações, valores e etc...
     'ou' => 'or',
     'porcentagem' => '(%)',
+    '(pol)' => ' (pol)',
     '(ha)' => '(ha)',
     '(m3h)' => '(m³/h)',
     '(m/h)' => '(m/h)',
@@ -27,6 +28,7 @@ return [
     '(cv)' => '(cv)',
     '(graus)' => '(Degrees)',
     '(mm)' => '(mm)',
+    '(kVA)' => ' (kVA)',
     'kwh/mm' => 'kWh/mm',
     '($/kWh)' => '($/kWh)',
     '($/L)' => '($/L)',

@@ -26,7 +26,7 @@
             {{-- BOTOES SALVAR E VOLTAR --}}
             <div class="col-6 text-right botoes mobile">
                 <a href="{{ route('manage_analysis_technical_delivery', $id_entrega_tecnica) }}" style="color: #3c8dbc" data-toggle="tooltip"
-                    data-placement="bottom" title="Voltar">
+                    data-placement="bottom" title="@lang('entregaTecnica.voltar')">
                     <button type="button">
                         <span class="fa-stack fa-lg">
                             <i class="fas fa-circle fa-stack-2x"></i>
@@ -54,7 +54,7 @@
             </div>
         </div>
 
-    {{-- ENVIAR ANÁLISE DA ENTREGA TECNICA --}}
+    {{-- ENVIAR ANï¿½LISE DA ENTREGA TECNICA --}}
     <div class="modal fade" id="envar_analise" tabindex="-1" aria-labelledby="envar_analiseLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">

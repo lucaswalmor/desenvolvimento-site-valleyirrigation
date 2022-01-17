@@ -107,6 +107,15 @@
         img {
             width: 310px;
         }
+
+        @media screen and (max-width: 768px) {            
+            img {
+                width: 200px;
+            }
+            .declaracao {
+                width: 290px;
+            }
+        }
         
         .cor-fundo {
             background-color: #005F8D;

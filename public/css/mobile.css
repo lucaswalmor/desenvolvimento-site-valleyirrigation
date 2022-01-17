@@ -303,7 +303,7 @@
 
     /* STATUS DA AFERIÇÃO */
     .afericao h3 {
-        font-size: 15px;
+        font-size: 1rem;
     }
 
     .afericao a {
@@ -360,4 +360,11 @@
     }
 }
 
+@media screen and (max-width: 1024) {
 
+    /* STATUS DA AFERIÇÃO */
+    .fericao > .h3-ligacao-et {
+        font-size: 1rem !important;
+    }
+
+}

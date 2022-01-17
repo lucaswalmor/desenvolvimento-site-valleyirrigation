@@ -16,7 +16,7 @@
             <div class="col-6 text-right botoes mobile">
 
                 <a href="{{ route('manage_technical_delivery') }}" style="color: #3c8dbc">
-                    <button type="button" data-toggle="tooltip" data-placement="bottom" title="Voltar">
+                    <button type="button" data-toggle="tooltip" data-placement="bottom" title="@lang("entregaTecnica.voltar")">
                         <span class="fa-stack fa-lg">
                             <i class="fas fa-circle fa-stack-2x"></i>
                             <i class="fas fa-angle-double-left fa-stack-1x fa-inverse"></i>
@@ -38,7 +38,7 @@
                     </span>
                 </button>
 
-                <button type="button" data-toggle="tooltip" data-placement="bottom" title="Enviar" id="criarTab">
+                <button type="button" data-toggle="tooltip" data-placement="bottom" title="@lang("entregaTecnica.enviar")" id="criarTab">
                     <span class="fa-stack fa-2x">
                         <i class="fas fa-circle fa-stack-2x"></i>
                         @if ($entrega_tecnica['status'] == 2)
@@ -60,7 +60,7 @@
                 <h3> @lang('entregaTecnica.data'):  <span style="color: #003A5D">{{ date('d/m/Y', strtotime($entrega_tecnica['data_entrega_tecnica'])) }}</span></h3> 
             </div>
             <div class="ml-5">
-                <h3> @lang('entregaTecnica.tipo_entrega_tecnica'):  <span style="color: #003A5D">{{ strtoupper($entrega_tecnica['tipo_entrega_tecnica']) }}</span></h3> 
+                <h3> @lang('entregaTecnica.tipo_entrega_tecnica'):  <span style="color: #003A5D">{{ strtoupper( __('entregaTecnica.'. $entrega_tecnica['tipo_entrega_tecnica'] )) }}</span></h3> 
             </div>
         </div>
     </div>
@@ -134,7 +134,7 @@
                             @lang('entregaTecnica.lances') 
                             <i class="fas fa-edit" style="color: orange; float: right;"></i>
                         @else
-                            @lang('entregaTecnica.lances') 
+                            @lang('entregaTecnica.lances')
                             <i class="fas fa-check" style="color: green; float: right;"></i>
                         @endif
                     </h3>
@@ -223,7 +223,7 @@
     <div class="form-row form-row-statusAfericao justify-content-center mobileStatus">
         <div class="form-group col-md-2 col-10 text-center afericao">
             <div>
-                <h3>
+                <h3 class="h3-ligacao-et">
                     @if ($entrega_tecnica['status_ligacao'] == 0)
                         @lang('entregaTecnica.ligacao_acessorios') 
                     @elseif($entrega_tecnica['status_ligacao'] == 1) 

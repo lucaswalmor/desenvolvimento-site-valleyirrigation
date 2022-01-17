@@ -13,7 +13,7 @@
             {{-- BOTOES SALVAR E VOLTAR --}}
             <div class="col-6 text-right botoes mobile">
                 <a href="{{ route('edit_technical_delivery', $id_entrega_tecnica) }}" style="color: #3c8dbc" data-toggle="tooltip"
-                    data-placement="bottom" title="Voltar">
+                    data-placement="bottom" title="@lang('entregaTecnica.voltar')">
                     <button type="button">
                         <span class="fa-stack fa-lg">
                             <i class="fas fa-circle fa-stack-2x"></i>
@@ -22,7 +22,7 @@
                     </button>
                 </a>
 
-                <button type="button" id="botaosalvar" data-toggle="tooltip" data-placement="bottom" title="Salvar" name="botao" value="sair">
+                <button type="button" id="botaosalvar" data-toggle="tooltip" data-placement="bottom" title="@lang('entregaTecnica.salvar')" name="botao" value="sair">
                     <span class="fa-stack fa-2x">
                         <i class="fas fa-circle fa-stack-2x"></i>
                         <i class="fas fa-save fa-stack-1x fa-inverse"></i>
@@ -30,7 +30,7 @@
                 </button>
 
                 <!-- modificação para botão salvar sair -->
-                <button type="button" id="saveoutbutton" data-toggle="tooltip" data-placement="bottom" title="Salvar e Sair">
+                <button type="button" id="saveoutbutton" data-toggle="tooltip" data-placement="bottom" title="@lang('entregaTecnica.salvar_sair')">
                     <span class="fa-stack fa-2x">
                         <i class="fas fa-circle fa-stack-2x"></i>
                         <i class="fas fa-chevron-right fa-stack-1x fa-inverse" style="margin-left:15px;"></i>
@@ -49,7 +49,6 @@
                 <a class="nav-link active" aria-current="page" href="#">@lang('entregaTecnica.principais')</a>
             </li>
         </ul>
-
         {{-- FORMULARIO DE CADASTRO --}}
         <form action="{{ route('save_technical_delivery_span') }}" method="post" class="mt-3" id="formdados">
             @csrf
@@ -65,8 +64,7 @@
                 <div class="tab-pane fade show active formcdc" id="cadastro" role="tabpanel" aria-labelledby="cadastro-tab">
                     <div class="col-md-12" id="cssPreloader">
                         <div class="table-responsive m-auto tabela">
-                            <div class="table mx-auto">
-                                
+                            <div class="table mx-auto">                                
                                 <table class="table table-striped mx-auto text-center" id="tabelaTrechos">
                                     <thead class="headertable">
                                         <tr class="text-center">
@@ -82,16 +80,16 @@
                                     </thead>
                                     <tbody>
                                         @if (count($diametro) > 0)
-                                            @foreach ($diametro as $item)                                            
+                                            @foreach ($diametro as $item)       
                                                 <tr>
                                                     <td>
                                                         <input type="hidden" name="diametro[]" id="diametro_value_<?= $item['id_lance'] ?>" value="{{ $item['diametro_tubo']}}">
                                                         <input type="hidden" name="id_lance[]" id="id_lance_<?= $item['id_lance'] ?>" value="<?= $item['id_lance'] ?>">
                                                         <span><?= $item['id_lance'] ?></span>
                                                     </td>
-                                                    @if (!empty($diametro['diametro_tubo']))
+                                                    @if (!empty($item['diametro_tubo']))
                                                         <td class="col-md-2" >
-                                                            <select name="diametro_select" id="diametro_<?= $item['id_lance'] ?>" class="form-control diametro" onchange="carregaQtdTubos($(this).val(), <?= $item['id_lance'] ?>)">
+                                                            <select name="diametro_select" id="diametro_<?= $item['id_lance'] ?>" class="form-control diametro" onchange="carregaQtdTubos($(this).val(), <?= $item['id_lance'] ?>); disableButtonAddRow(<?= $item['id_lance'] ?>);">
                                                                 <option value=""></option>
                                                                 @foreach ($getListaDiametroTipo as $lista)
                                                                     @if ($lista['tipo'] == $tipo_equipamento)
@@ -102,7 +100,7 @@
                                                         </td>
                                                     @else                                                    
                                                         <td class="col-md-2">
-                                                            <select name="diametro_select" id="diametro_1" class="form-control diametro" onchange="carregaQtdTubos($(this).val(), 1)">
+                                                            <select name="diametro_select" id="diametro_1" class="form-control diametro" onchange="carregaQtdTubos($(this).val(), 1); disableButtonAddRow(1);">
                                                                 <option value=""></option>
                                                             </select>
                                                         </td>
@@ -154,7 +152,7 @@
                                                     <span class="align-middle">1</span>
                                                 </td>
                                                 <td class="col-md-2">
-                                                    <select name="diametro_select" id="diametro_1" class="form-control diametro" onchange="carregaQtdTubos($(this).val(), 1)">
+                                                    <select name="diametro_select" id="diametro_1" class="form-control diametro" onchange="carregaQtdTubos($(this).val(), 1); disableButtonAddRow(1);">
                                                         <option value=""></option>
                                                     </select>
                                                 </td>
@@ -219,7 +217,7 @@
 @endsection
 
 @section('scripts')
-    {{-- REMOVER LINHAS DA TABELA --}}
+    {{-- REMOVE LINES FROM THE TABLE --}}
     <script>
         (function($) {
             remove = function(item)
@@ -240,25 +238,25 @@
 
     </script>
 
-    {{-- COMBOS DE SELECTS --}}
+    {{-- SELECT COMBOS --}}
     <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
     <script type="text/javascript">
 
-        //Array de diametro em JSON puro
+        //Diameter array in pure JSON
         var diametro = [
             @php for ($i = 0; $i < count($getListaDiametroTipo); $i++) { @endphp
                 { diame: "{{ $getListaDiametroTipo[$i]['tipo'] }}", value: "{{ $getListaDiametroTipo[$i]['diametro'] }}" },
             @php } @endphp
         ];
 
-        //Array de tipoLances em JSON puro
+        //Array of typeBids in pure JSON
         var tipoLances = [
             @php for ($i = 0; $i < count($tipoLances); $i++) { @endphp
                 { diam: "{{ $tipoLances[$i]['diametro'] }}", value: "{{ $tipoLances[$i]['qtd_tubo'] . '_' . $tipoLances[$i]['modelo'] }}", qtd: "{{ $tipoLances[$i]['qtd_tubo'] }} ({{ __('listas.'. $tipoLances[$i]['modelo'] ) }})",  comprimento: "{{ $tipoLances[$i]['tamanho']}}" },
             @php } @endphp
         ];
 
-        //Array de diametroLances em JSON puro        
+        //Diameter ArrayBids in pure JSON  
         var diametroLances = [
             @php for ($i = 0; $i < count($diametroLances); $i++) { @endphp
                 { diametro: "{{ $diametroLances[$i]['diametro'] }}"},
@@ -277,23 +275,15 @@
             $('#saveoutbutton').on('click', function() {  
                 $("#savebuttonvalue").val("saveout");
                 $('#formdados').submit();
-            });      
-
-            var count_lines = $('#tabelaTrechos > tbody > tr').length + 1;
-            last_value = $('#diametro_' + (count_lines - 1));
-            $(last_value).on('change', function(){
-                verify_value = $('#diametro_' + (count_lines - 1)).val();
-                console.log(verify_value)
-                if (verify_value != null && verify_value != undefined) {
-                    $('#addtablerow').prop('disabled', false);
-                }
             });
+
+
             calculoLances();
 
             var tipo_equipamento = $('#tipo_equipamento').val();            
         });
 
-        // Carrega a lista de opcoes do equipamento
+        // Load the equipment options list
         function carregaDiametroEquipamento() {
 
             var tipo_equipamento = $('#tipo_equipamento').val();
@@ -309,7 +299,7 @@
             });            
         }
 
-        // carrega a quantidade de tubos do lance
+        // loads the amount of tubes in the bid
         function carregaQtdTubos(diam, id_diametro) {
             $("#diametro_value_" + id_diametro).attr('value', diam);
             //Fazer um filtro dentro do array de categorias com base no Id da Categoria selecionada no equipamento
@@ -326,7 +316,16 @@
 
         }
 
-        // adiciona linhas dinamicas na tabela de lances
+        // function to enable and disable the add line button
+        function disableButtonAddRow (line) {
+            last_value = $('#diametro_' + line);
+            verify_value = $('#diametro_' + line).val();
+            if (verify_value != null && verify_value != undefined) {
+                $('#addtablerow').prop('disabled', false);
+            }
+        }
+
+        // add dynamic rows to the bid table
         function AddTableRow() {
             $('#addtablerow').prop('disabled', true);
             var rowCount = $('#tabelaTrechos > tbody > tr').length + 1;
@@ -348,7 +347,7 @@
             cols += '</td>';       
 
             cols += '<td>';
-            cols +=     '<select name="diametro_select" id="diametro_' + rowCount + '" class="diametro form-control" onchange="carregaQtdTubos($(this).val(), '+ rowCount +')">';
+            cols +=     '<select name="diametro_select" id="diametro_' + rowCount + '" class="diametro form-control" onchange="carregaQtdTubos($(this).val(), '+ rowCount +'); disableButtonAddRow('+ rowCount +')">';
             cols +=         '<option value=""></option>';
             for (i = 0; i < lista_diametros.length; i++) {
                 valor_atual = parseInt(lista_diametros[i]['value'].substring(0, 3));
@@ -406,6 +405,7 @@
             return false;
         }
 
+        // Calculate average bid length values
         function calculoLances(input) {
             var id_qtd_tubos = $(input).attr('id');
             var xArray = id_qtd_tubos.split("_");
@@ -452,7 +452,7 @@
         }
     </script>
 
-    {{-- SCRIPT DE FUNCIONALIDADE DO TOOLTIP --}}
+    {{-- TOOLTIP FUNCTIONALITY SCRIPT --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
     </script>
