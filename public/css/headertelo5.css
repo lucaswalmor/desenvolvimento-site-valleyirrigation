@@ -258,7 +258,8 @@ body {
 #menu ul {
     position: absolute;
     top: 50px;
-    right: -1px;
+    /*right: -1px;*/
+    right: -79px;
     background: #fff;
     z-index: 2;
 }

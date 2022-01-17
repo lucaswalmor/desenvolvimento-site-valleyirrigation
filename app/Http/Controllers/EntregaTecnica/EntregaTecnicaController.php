@@ -524,9 +524,8 @@ class EntregaTecnicaController extends Controller
             $chavePartida = Lista::getChavePartida();
             $chavePartidaAcionamento = Lista::getChavePartidaAcionamento();
             $chaveSeccionadora = Lista::getChaveSeccionadora();
-            $chave_partida = EntregaTecnicaChavePartida::select('*')->where('id_entrega_tecnica', $id_entrega_tecnica)->where('id_bomba', $bombas['id_bomba'])->where('id_motor', $motores['id_motor'])->get();
-            
-        /////////////////////
+            $chave_partida = EntregaTecnicaChavePartida::select('*')->where('id_entrega_tecnica', $id_entrega_tecnica)->orderby('id_bomba')->orderby('id_motor')->orderby('id_chave_partida')->get();
+            /////////////////////
 
         return view('entregaTecnica.cadastro.createMotoPump', compact('id_entrega_tecnica', 'fazenda', 'tipo_succao', 'tipo_succao_auxiliar', 'motobomba',
         'bombaLigacao', 'bomba_marca', 'tipo_bomba', 'total_bomba_padrao', 'total_bomba_auxiliar',
@@ -538,7 +537,6 @@ class EntregaTecnicaController extends Controller
     {
         $dados = $request->all();
         $id_entrega_tecnica = $dados['id_entrega_tecnica'];
-
         if ($dados['quantidade_motobomba'] == 0 || empty($dados['quantidade_motobomba'])) {
             Notificacao::gerarAlert('', 'entregaTecnica.qtd_bombas_erro', 'warning');
             return redirect()->back();
@@ -651,15 +649,15 @@ class EntregaTecnicaController extends Controller
                             'id_entrega_tecnica' => $dados['id_entrega_tecnica']
                         ]);
                     }
-
+                    
                     if ($dados['tipo_motor_' . $id_bomba][$k] == 'eletrico') {
                         // salva a 1º chave de partida
                         $id_chave_partida = $dados['id_chave_partida_0'.$id_bomba.'_0'.$id_motor.'_1'];
                         
-                        $chave_partida['marca'] = $dados['marca_cp_0'.$id_bomba.'_0'.$id_motor.'_1'][$k];
-                        $chave_partida['acionamento'] = $dados['acionamento_cp_0'.$id_bomba.'_0'.$id_motor.'_1'][$k];
+                        $chave_partida['marca'] = $dados['marca_0'.$id_bomba.'_0'.$id_motor.'_1'][$k];
+                        $chave_partida['acionamento'] = $dados['acionamento_0'.$id_bomba.'_0'.$id_motor.'_1'][$k];
                         $chave_partida['regulagem_reles'] = $dados['regulagem_reles_0'.$id_bomba.'_0'.$id_motor.'_1'][$k];
-                        $chave_partida['numero_serie'] = $dados['numero_serie_cp_0'.$id_bomba.'_0'.$id_motor.'_1'][$k];
+                        $chave_partida['numero_serie'] = $dados['numero_serie_0'.$id_bomba.'_0'.$id_motor.'_1'][$k];
                         $chave_partida['id_chave_partida'] = $dados['id_chave_partida_0'.$id_bomba.'_0'.$id_motor.'_1'];
                         $chave_partida['id_bomba'] = $id_bomba;
                         $chave_partida['id_motor'] = $id_motor;
@@ -670,7 +668,6 @@ class EntregaTecnicaController extends Controller
                         ->where('id_motor', $id_motor)
                         ->where('id_chave_partida', $id_chave_partida)
                         ->count();
-
                         if ($chave_partida_existente > 0) {
                             EntregaTecnicaChavePartida::where('id_entrega_tecnica', $id_entrega_tecnica)
                             ->where('id_bomba', $id_bomba)
@@ -680,50 +677,73 @@ class EntregaTecnicaController extends Controller
                         } else {
                             EntregaTecnicaChavePartida::create($chave_partida);
                         }
-                    }
-                }
 
-                if ($dados['marca'][$i] != null && $dados['modelo'][$i] != null && $dados['numero_estagio'][$i] != null && 
-                $dados['rotor'][$i] != null && $dados['opcionais'][$i] != null && $dados['fornecedor'][$i] != null && 
-                $dados['numero_serie'][$i] != null && $dados['quantidade_motobomba'] && $dados['tipo_succao'] ) {
-                    // BOMBA
-                    if (!empty($dados['tipo_motor_' . $id_bomba][$k]) && !empty($dados['marca_motor_'.$j][$k]) && !empty($dados['modelo_motor_'.$j][$k]) 
-                    && !empty($dados['marca_motor_eletrico_'.$j][$k]) && !empty($dados['modelo_motor_eletrico_'.$j][$k])
-                    && !empty($dados['potencia_'.$j][$k]) && !empty($dados['numero_serie_'.$j][$k]) && !empty($dados['rotacao_'.$j][$k])) {
-                        // MOTOR
-                        if(!empty($dados['marca_0'.$id_bomba.'_0'.$id_motor.'_1']) && !empty($dados['acionamento_0'.$id_bomba.'_0'.$id_motor.'_1']) && 
-                        !empty($dados['regulagem_reles_0'.$id_bomba.'_0'.$id_motor.'_1']) && !empty($dados['numero_serie_0'.$id_bomba.'_0'.$id_motor.'_1'])) {
-                            // CHAVE DE PARTIDA
-                            EntregaTecnica::where('id', $id_entrega_tecnica)->update([
-                                'status_motobomba' => 2
-                            ]);
-                        }
-                    }
-                } else if ($dados['marca'][$i] != null || $dados['modelo'][$i] != null || $dados['numero_estagio'][$i] != null || 
-                $dados['rotor'][$i] != null || $dados['opcionais'][$i] != null || $dados['fornecedor'][$i] != null || 
-                $dados['numero_serie'][$i] != null || $dados['quantidade_motobomba'] || $dados['tipo_succao']) {
-                    // BOMBA
-                    EntregaTecnica::where('id', $id_entrega_tecnica)->update([
-                        'status_motobomba' => 1
-                    ]);
-                    if (!empty($dados['tipo_motor_' . $id_bomba][$k]) || !empty($dados['marca_motor_'.$j][$k]) || !empty($dados['modelo_motor_'.$j][$k]) 
-                    || !empty($dados['marca_motor_eletrico_'.$j][$k]) || !empty($dados['modelo_motor_eletrico_'.$j][$k])
-                    || !empty($dados['potencia_'.$j][$k]) || !empty($dados['numero_serie_'.$j][$k]) || !empty($dados['rotacao_'.$j][$k])) {
-                        // MOTOR
-                        EntregaTecnica::where('id', $id_entrega_tecnica)->update([
-                            'status_motobomba' => 1
-                        ]);
-                        if(!empty($dados['marca_0'.$id_bomba.'_0'.$id_motor.'_1']) || !empty($dados['acionamento_0'.$id_bomba.'_0'.$id_motor.'_1']) || 
-                        !empty($dados['regulagem_reles_0'.$id_bomba.'_0'.$id_motor.'_1']) || !empty($dados['numero_serie_0'.$id_bomba.'_0'.$id_motor.'_1'])) {
-                            // CHAVE DE PARTIDA
+                        // Checks the fields if it is electric to change the registration status
+                        if ($dados['marca'][$i] != null && $dados['modelo'][$i] != null && $dados['numero_estagio'][$i] != null && 
+                        $dados['rotor'][$i] != null && $dados['opcionais'][$i] != null && $dados['fornecedor'][$i] != null && 
+                        $dados['numero_serie'][$i] != null && $dados['quantidade_motobomba'] != null && $dados['img_succao'] != null ) {
+                            // BOMBA
+                            if (!empty($dados['tipo_motor_' . $id_bomba][$k]) && !empty($dados['marca_motor_eletrico_'.$j][$k]) && !empty($dados['modelo_motor_eletrico_'.$j][$k])
+                            && !empty($dados['potencia_'.$j][$k]) && !empty($dados['numero_serie_'.$j][$k]) && !empty($dados['rotacao_'.$j][$k])) {
+                                // MOTOR
+                                if(!empty($dados['marca_0'.$id_bomba.'_0'.$id_motor.'_1']) && !empty($dados['acionamento_0'.$id_bomba.'_0'.$id_motor.'_1']) && 
+                                !empty($dados['regulagem_reles_0'.$id_bomba.'_0'.$id_motor.'_1']) && !empty($dados['numero_serie_0'.$id_bomba.'_0'.$id_motor.'_1'])) {
+                                    // CHAVE DE PARTIDA
+                                    EntregaTecnica::where('id', $id_entrega_tecnica)->update(['status_motobomba' => 2]);
+                                }
+                            }
+                        } else if ($dados['marca'][$i] != null || $dados['modelo'][$i] != null || $dados['numero_estagio'][$i] != null || 
+                        $dados['rotor'][$i] != null || $dados['opcionais'][$i] != null || $dados['fornecedor'][$i] != null || 
+                        $dados['numero_serie'][$i] != null || $dados['quantidade_motobomba'] != null && $dados['img_succao'] != null) {
+                            // BOMBA
                             EntregaTecnica::where('id', $id_entrega_tecnica)->update([
                                 'status_motobomba' => 1
                             ]);
+                            if (!empty($dados['tipo_motor_' . $id_bomba][$k]) || !empty($dados['marca_motor_'.$j][$k]) || !empty($dados['modelo_motor_'.$j][$k]) 
+                            || !empty($dados['marca_motor_eletrico_'.$j][$k]) || !empty($dados['modelo_motor_eletrico_'.$j][$k])
+                            || !empty($dados['potencia_'.$j][$k]) || !empty($dados['numero_serie_'.$j][$k]) || !empty($dados['rotacao_'.$j][$k])) {
+                                // MOTOR
+                                EntregaTecnica::where('id', $id_entrega_tecnica)->update([
+                                    'status_motobomba' => 1
+                                ]);
+                                // CHAVE DE PARTIDA
+                                if (!empty($dados['marca_0'.$id_bomba.'_0'.$id_motor.'_1']) || !empty($dados['acionamento_0'.$id_bomba.'_0'.$id_motor.'_1']) || 
+                                !empty($dados['regulagem_reles_0'.$id_bomba.'_0'.$id_motor.'_1']) || !empty($dados['numero_serie_0'.$id_bomba.'_0'.$id_motor.'_1'])) {
+                                    // CHAVE DE PARTIDA
+                                    EntregaTecnica::where('id', $id_entrega_tecnica)->update([
+                                        'status_motobomba' => 1
+                                    ]);
+                                }
+                            }
+                        }
+                    }
+                    
+                    // Checks the fields if it is diesel to change the registration status
+                    if ($dados['tipo_motor_' . $id_bomba][$k] == 'diesel') {
+                        if ($dados['marca'][$i] != null && $dados['modelo'][$i] != null && $dados['numero_estagio'][$i] != null && 
+                        $dados['rotor'][$i] != null && $dados['opcionais'][$i] != null && $dados['fornecedor'][$i] != null && 
+                        $dados['numero_serie'][$i] != null && $dados['quantidade_motobomba'] != null && $dados['img_succao'] != null) {
+                            // BOMBA
+                            if (!empty($dados['tipo_motor_' . $id_bomba][$k]) && !empty($dados['marca_motor_'.$j][$k]) && !empty($dados['modelo_motor_'.$j][$k]) 
+                            && !empty($dados['potencia_'.$j][$k]) && !empty($dados['numero_serie_'.$j][$k]) && !empty($dados['rotacao_'.$j][$k])) {
+                                // MOTOR
+                                EntregaTecnica::where('id', $id_entrega_tecnica)->update(['status_motobomba' => 2]);
+                            }
+                        } else if ($dados['marca'][$i] != null || $dados['modelo'][$i] != null || $dados['numero_estagio'][$i] != null || 
+                        $dados['rotor'][$i] != null || $dados['opcionais'][$i] != null || $dados['fornecedor'][$i] != null || 
+                        $dados['numero_serie'][$i] != null || $dados['quantidade_motobomba'] || $dados['img_succao']) {
+                            // BOMBA
+                                EntregaTecnica::where('id', $id_entrega_tecnica)->update(['status_motobomba' => 1]);
+                            if (!empty($dados['tipo_motor_' . $id_bomba][$k]) || !empty($dados['marca_motor_'.$j][$k]) || !empty($dados['modelo_motor_'.$j][$k]) 
+                            || !empty($dados['potencia_'.$j][$k]) || !empty($dados['numero_serie_'.$j][$k]) || !empty($dados['rotacao_'.$j][$k])) {
+                                // MOTOR
+                                EntregaTecnica::where('id', $id_entrega_tecnica)->update(['status_motobomba' => 1]);
+                            }
                         }
                     }
                 }
             }
-            
+
             Notificacao::gerarAlert('', 'entregaTecnica.cadastro_bomba', 'success');
             if ($dados['savebuttonvalue'] == "saveout") {
                 return redirect()->route('edit_technical_delivery', $id_entrega_tecnica);                        

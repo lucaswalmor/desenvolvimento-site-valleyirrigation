@@ -4,7 +4,7 @@ return [
 
     //Ações
     'salvar' => 'Save',
-    'salvarSair' => 'Save and exit',
+    'salvarSair' => 'Save & Exit',
     'editar' => 'Edit',
     'sair' => 'Exit',
     'fechar' => 'Close',

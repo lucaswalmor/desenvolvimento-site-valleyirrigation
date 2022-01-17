@@ -369,48 +369,6 @@
                                                                     </div>
                                                                 </div> 
 
-                                                                                                
-                                                                <div class="form-row justify-content-start">
-                                                                    <div class="form-group col-md-4 telo5ce">
-                                                                        <h4>@lang('entregaTecnica.chave_partida')</h4>
-                                                                    </div>
-                                                                </div>       
-                                                                                                                        
-                                                                <div class="form-row justify-content-start">
-                                                                    <div class="form-group col-md-4 telo5ce">
-                                                                        <input type="hidden" name="id_chave_partida_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1" id="id_chave_partida_cp_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1" value="1">
-                                                                        <label for="marca_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}">@lang('entregaTecnica.marca')</label>
-                                                                        <select name="marca_cp_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1[]" id="marca_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1" class="form-control marca"  onchange="carregaAcionamento(this, $(this).val(), {{ $bomba['id_bomba']}}, {{$motor['id_motor']}})">
-                                                                            <option value=""></option>
-                                                                            @foreach ($chavePartida as $chave)
-                                                                                <option value="{{ $chave['tipo'] }}" {{ ($chave['tipo'] == $cp['marca']) ? 'selected' : ''}}>{{ $chave['tipo'] }}</option>
-                                                                            @endforeach
-                                                                        </select>
-                                                                    </div>
-                                                                    <div class="form-group col-md-4 telo5ce">
-                                                                        <label for="acionamento">@lang('entregaTecnica.acionamento')</label>
-                                                                        <select name="acionamento_cp_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1[]" id="acionamento_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1" class="form-control">
-                                                                            <option value=""></option>
-                                                                            @foreach ($chavePartidaAcionamento as $acionamento)
-                                                                                @if ($acionamento['tipo'] == $cp['marca'])
-                                                                                    <option value="{{ $acionamento['modelo'] }}" {{ ($acionamento['modelo'] == $cp['acionamento']) ? 'selected' : ''}}>{{ __('listas.' . $acionamento['modelo'] ) }}</option>
-                                                                                @endif
-                                                                            @endforeach                                                            
-                                                                        </select>
-                                                                    </div>
-                                                                    <div class="form-group col-md-4 telo5ce">
-                                                                        <label for="regulagem_reles">@lang('entregaTecnica.regulagem_reles') (A)</label>
-                                                                        <input type="number" class="form-control" name="regulagem_reles_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1[]" id="regulagem_reles_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1" value="{{ $cp['regulagem_reles'] }}">
-                                                                    </div>
-                                                                </div>
-                                
-                                                                <div class="form-row justify-content-start">
-                                                                    <div class="form-group col-md-4 telo5ce">
-                                                                        <label for="numero_serie">@lang('entregaTecnica.numero_serie')</label>
-                                                                        <input type="text" class="form-control" name="numero_serie_cp_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1[]" id="numero_serie__0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1" value="{{ $cp['numero_serie'] }}">
-                                                                    </div>
-                                                                </div>
-
                                                                 {{-- CHAVE DE PARTIDA --}}
                                                                 @foreach ($chave_partida as $cp)     
                                 
@@ -422,9 +380,9 @@
 
                                                                     <div class="form-row justify-content-start">
                                                                         <div class="form-group col-md-4 telo5ce">
-                                                                            <input type="hidden" name="id_chave_partida_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1" id="id_chave_partida_cp_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1" value="1">
+                                                                            <input type="hidden" name="id_chave_partida_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1" id="id_chave_partida_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1" value="1">
                                                                             <label for="marca_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}">@lang('entregaTecnica.marca')</label>
-                                                                            <select name="marca_cp_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1[]" id="marca_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1" class="form-control marca"  onchange="carregaAcionamento(this, $(this).val(), {{ $bomba['id_bomba']}}, {{$motor['id_motor']}})">
+                                                                            <select name="marca_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1[]" id="marca_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1" class="form-control marca"  onchange="carregaAcionamento(this, $(this).val(), {{ $bomba['id_bomba']}}, {{$motor['id_motor']}})">
                                                                                 <option value=""></option>
                                                                                 @foreach ($chavePartida as $chave)
                                                                                     <option value="{{ $chave['tipo'] }}" {{ ($chave['tipo'] == $cp['marca']) ? 'selected' : ''}}>{{ $chave['tipo'] }}</option>
@@ -433,7 +391,7 @@
                                                                         </div>
                                                                         <div class="form-group col-md-4 telo5ce">
                                                                             <label for="acionamento">@lang('entregaTecnica.acionamento')</label>
-                                                                            <select name="acionamento_cp_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1[]" id="acionamento_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1" class="form-control">
+                                                                            <select name="acionamento_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1[]" id="acionamento_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1" class="form-control">
                                                                                 <option value=""></option>
                                                                                 @foreach ($chavePartidaAcionamento as $acionamento)
                                                                                     @if ($acionamento['tipo'] == $cp['marca'])
@@ -451,7 +409,7 @@
                                                                     <div class="form-row justify-content-start">
                                                                         <div class="form-group col-md-4 telo5ce">
                                                                             <label for="numero_serie">@lang('entregaTecnica.numero_serie')</label>
-                                                                            <input type="text" class="form-control" name="numero_serie_cp_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1[]" id="numero_serie__0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1" value="{{ $cp['numero_serie'] }}">
+                                                                            <input type="text" class="form-control" name="numero_serie_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1[]" id="numero_serie__0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1" value="{{ $cp['numero_serie'] }}">
                                                                         </div>
                                                                     </div>
                                                                 @endforeach
@@ -847,7 +805,7 @@
                                         
                         HTML += '                                                <div class="form-row justify-content-start">';
                         HTML += '                                                    <div class="form-group col-md-4 telo5ce">';
-                        HTML += '                                                        <label for="corrente_nominal">@lang("entregaTecnica.corrente_nominal") (v)</label>';
+                        HTML += '                                                        <label for="corrente_nominal">@lang("entregaTecnica.corrente_nominal") (A)</label>';
                         HTML += '                                                        <input type="number" class="form-control" name="corrente_nominal_'+ i +'[]" id="corrente_nominal_0'+ i +'_01">';
                         HTML += '                                                    </div>';
                         HTML += '                                                    <div class="form-group col-md-4 telo5ce">';
@@ -1050,8 +1008,7 @@
         function carregaAcionamento(input, tipo, id_bomba, id_motor) {
             var id = $(input).attr('id');
             var id = id.substring(12);
-            console.log(id_bomba);
-            console.log(id_motor);
+
             //Fazer um filtro dentro do array de categorias com base no Id da Categoria selecionada no equipamento
             var acionamento_chave = $.grep(acionamento, function (e) { return e.tipo == tipo; });
             //Faz o append (adiciona) cada um dos itens do array filtrado no Acionamento
@@ -1155,7 +1112,7 @@
         
             newCard += '                                        <div class="form-row justify-content-start">';
             newCard += '                                            <div class="form-group col-md-4 telo5ce">';
-            newCard += '                                                 <label for="corrente_nominal">@lang("entregaTecnica.corrente_nominal") (v)</label>';
+            newCard += '                                                 <label for="corrente_nominal">@lang("entregaTecnica.corrente_nominal") (A)</label>';
             newCard += '                                                 <input type="number" class="form-control" name="corrente_nominal_'+ bomba +'[]" id="corrente_nominal_0' + bomba + '_' + qt_card +'">';
             newCard += '                                            </div>';
             newCard += '                                            <div class="form-group col-md-4 telo5ce">';

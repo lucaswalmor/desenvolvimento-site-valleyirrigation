@@ -66,7 +66,7 @@
                     <div class="col-md-12" id="cssPreloader"> 
                         <div class="form-row">
                             <div class="form-group col-md-4">
-                                <div class="card" style="width: 335px;">
+                                <div class="card">
                                     <div class="card-body">
                                         <img src="{{ asset('img/image_none.png')}}" id="myImg" alt="none" class="img-fluid img-succao">
                                         <img src="{{ asset('img/img_succao/afogadaPb.png') }}" id="afogada" class="img-fluid img-succao abrirModal" style="display: none">

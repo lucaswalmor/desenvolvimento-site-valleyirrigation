@@ -54,7 +54,7 @@
             </div>
         </div>
 
-    {{-- ENVIAR ANÁLISE DA ENTREGA TECNICA --}}
+    {{-- ENVIAR AN�LISE DA ENTREGA TECNICA --}}
     <div class="modal fade" id="envar_analise" tabindex="-1" aria-labelledby="envar_analiseLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">

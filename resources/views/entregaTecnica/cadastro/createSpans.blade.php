@@ -58,6 +58,7 @@
             <input type="hidden" name="id_entrega_tecnica" id="id_entrega_tecnica" value="{{$id_entrega_tecnica}}">
             <input type="hidden" name="tipo_equipamento" id="tipo_equipamento" value="{{$tipo_equipamento}}">
             <input type="hidden" name="tem_lance" id="tem_lance" value="{{ $tem_lances }}">
+            <input type="hidden" name="diametro_total" id="diametro_total" value="{{ count($diametro) }}">
             <!-- modificação para botão salvar sair -->
             <input type="hidden" name="savebuttonvalue" id="savebuttonvalue" value="save">
             <div class="tab-content" id="myTabContent">
@@ -264,9 +265,14 @@
         ];
 
         $(document).ready(function () {
+            // Check if you already have a diameter registered, if not, it will load the list of diameters
+            var qtd_diameter = $('#diametro_total').val();
+            if (qtd_diameter < 1) {
+                carregaDiametroEquipamento();
+            }
+
             $("#alert").fadeIn(300).delay(2000).fadeOut(400);
             
-            carregaDiametroEquipamento();
             $('#botaosalvar').on('click', function() {
                 $('#formdados').submit();
             });
@@ -277,15 +283,12 @@
                 $('#formdados').submit();
             });
 
-
             calculoLances();
-
-            var tipo_equipamento = $('#tipo_equipamento').val();            
+            var tipo_equipamento = $('#tipo_equipamento').val();    
         });
 
         // Load the equipment options list
         function carregaDiametroEquipamento() {
-
             var tipo_equipamento = $('#tipo_equipamento').val();
             //Fazer um filtro dentro do array de categorias com base no Id da Categoria selecionada no equipamento
             var diametroEquipamentoFiltro = $.grep(diametro, function (e) { return e.diame == tipo_equipamento; });

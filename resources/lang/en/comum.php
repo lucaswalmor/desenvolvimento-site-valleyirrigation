@@ -27,7 +27,7 @@ return [
    'bocais' => 'Nozzle: ',
    'pivos' => 'Pivot: ',
    'afericao' => 'Gauging: ',
-   'revendas' => 'Resale: ',
+   'revendas' => 'Dealer: ',
    'redimensionamento' => 'Resizing',
    'inativar' => 'Do you want to inactivate this user?',
    'ativar' => 'Do you want to activate this user?',

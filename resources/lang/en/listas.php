@@ -58,7 +58,7 @@ return [
 
     //FORNECEDORES
     'valmont' => 'Valmont',
-    'revenda' => 'Resale',
+    'revenda' => 'Dealer',
     'cliente' => 'Client',
 
     // CHAVE DE PARTIDA / AUTOTRÁFO
@@ -114,7 +114,7 @@ return [
     'prfv' => 'PRFV',    
     'valmont' => 'Valmont',
     'cliente' => 'Client',
-    'revenda' => 'Resale',
+    'revenda' => 'Dealer',
     'tigre' => 'Tiger',
     'amanco' => 'Amanco',
     'corr_plastic' => 'Corr Plastic',

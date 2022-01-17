@@ -141,8 +141,8 @@
                 @endif
             </div>    
             @if ($tem_pivo['tipo_equipamento'] == null)   
-                <div class="p-2" style="background-color: #6d97ac; color: #fff">
-                    <span class="cad-lance-bloqueado">@lang('entregaTecnica.bloqueado')</i></span>
+                <div style="background-color: #6d97ac; color: #fff">
+                    <a class="cad-lance-bloqueado">@lang('entregaTecnica.bloqueado')</i></a>
                 </div>
             @else
                 @if ($entrega_tecnica['status_lances'] == 0)   
@@ -376,8 +376,8 @@
                     </div>
                 @endif
             @else
-                <div class="p-2" style="background-color: #6d97ac; color: #fff">
-                    @lang('entregaTecnica.bloqueado')</i>
+                <div class="p-2 cad-lance-bloqueado" style="background-color: #6d97ac; color: #fff">
+                    <a href="#">@lang('entregaTecnica.bloqueado')</i></a>
                 </div>
             @endif
         </div>

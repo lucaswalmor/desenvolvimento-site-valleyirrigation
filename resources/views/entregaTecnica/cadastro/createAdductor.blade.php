@@ -120,7 +120,7 @@
                                 </tbody>
                                 <tfoot>
                                     <td>
-                                        <button onclick="AddTableRow()" type="button" class="addtablerow" style="outline: none; cursor: pointer;">
+                                        <button onclick="AddTableRow()" type="button" class="addtablerow" style="outline: none; cursor: pointer; margin-left: 0;">
                                             <span class="fa-stack fa-sm">
                                                 <i class="fas fa-plus-circle fa-stack-2x"></i>
                                             </span>
@@ -152,7 +152,7 @@
                                 <tfoot>
                                     <td>
                                         <button onclick="AddTableRow()" type="button" class="addtablerow"
-                                            style="outline: none; cursor: pointer;">
+                                            style="outline: none; cursor: pointer; margin-left: 0;">
                                             <span class="fa-stack fa-sm">
                                                 <i class="fas fa-plus-circle fa-stack-2x"></i>
                                             </span>
