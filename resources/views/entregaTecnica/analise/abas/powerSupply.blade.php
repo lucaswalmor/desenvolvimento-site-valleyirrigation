@@ -1,84 +1,124 @@
-<div class="container-fluid mt-5">
+<style>
+    .table tr th, td {
+        font-size: 15px !important;
+    }
+</style>
 
+<div class="row mt-5">
     @if (!empty($autotrafo['potencia_elevacao']) || !empty($autotrafo['tap_entrada_elevacao']) || !empty($autotrafo['tap_saida_elevacao']) || 
-        !empty($autotrafo['corrente_disjuntor']))
-        {{-- AUTOTRÁFO --}}
-        <div class="do-not-break espacamento-cabecalho">
-            <div class='row col-md-12'>
-                <h3><b>@lang('entregaTecnica.autotrafo_elevacao')</b></h3>
+    !empty($autotrafo['corrente_disjuntor']))
+        <div class="col-md-6">
+            <div class="table-responsive m-auto tabela" id="cssPreloader">
+                <table class="table table-striped mx-auto text-center">
+                    <thead>
+                        <tr>
+                            <th colspan="5">@lang('entregaTecnica.autotrafo_elevacao')</th>
+                        </tr>
+                        <tr>
+                            <th>@lang('entregaTecnica.potencia') @lang('unidadesAcoes.(cv)')</th>
+                            <th>@lang('entregaTecnica.tap_entrada') @lang('unidadesAcoes.(v)')</th>
+                            <th>@lang('entregaTecnica.tap_saida') @lang('unidadesAcoes.(v)')</th>
+                            <th>@lang('entregaTecnica.corrente_disjuntor')</th>
+                            <th>@lang('entregaTecnica.numero_serie')</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ $autotrafo['potencia_elevacao']}}</td>
+                            <td>{{ $autotrafo['tap_entrada_elevacao']}}</td>
+                            <td>{{ $autotrafo['tap_saida_elevacao']}}</td>
+                            <td>{{ $autotrafo['corrente_disjuntor']}}</td>
+                            <td>{{ $autotrafo['numero_serie_elevacao']}}</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tfoot>
+                </table>
             </div>
-            <div class='row'>
-                <div class="col-md-2"><b>@lang('entregaTecnica.potencia') @lang('unidadesAcoes.(cv)')</b></div>
-                <div class="col-md-1"><span class="span-mobile-et">{{ $autotrafo['potencia_elevacao'] }}</span></div>
-
-                <div class="col-md-2 "><b>@lang('entregaTecnica.tap_entrada') @lang('unidadesAcoes.(v)')</b></div>
-                <div class="col-md-1"><span class="span-mobile-et">{{ $autotrafo['tap_entrada_elevacao'] }}</span></div>
-
-                <div class="col-md-2 "><b>@lang('entregaTecnica.tap_saida') @lang('unidadesAcoes.(v)')</b></div>
-                <div class="col-md-1"><span class="span-mobile-et">{{ $autotrafo['tap_saida_elevacao'] }}</span></div>
-
-                <div class="col-md-2 "><b>@lang('entregaTecnica.corrente_disjuntor')</b></div>
-                <div class="col-md-1"><span class="span-mobile-et">{{  $autotrafo['corrente_disjuntor'] }}</span></div>
-            </div>
-            <div class='row'>
-                <div class="col-md-2"><b>@lang('entregaTecnica.numero_serie')</b></div>
-                <div class="col-md-2"><span class="span-mobile-et">{{ $autotrafo['numero_serie_elevacao'] }}</span></div>
-            </div>
-            <div class='row col-md-12 mt-3'>
-                <h3><b>@lang('entregaTecnica.autotrafo_rebaixamento')</b></h3>
-            </div>
-            <div class='row'>
-                <div class="col-md-2 "><b>@lang('entregaTecnica.potencia') @lang('unidadesAcoes.(cv)')</b></div>
-                <div class="col-md-1"><span class="span-mobile-et">{{ $autotrafo['potencia_rebaixamento'] }}</span></div>
-
-                <div class="col-md-2 "><b>@lang('entregaTecnica.tap_entrada') @lang('unidadesAcoes.(v)')</b></div>
-                <div class="col-md-1"><span class="span-mobile-et">{{ $autotrafo['tap_entrada_rebaixamento'] }}</span></div>
-
-                <div class="col-md-2 "><b>@lang('entregaTecnica.tap_saida') @lang('unidadesAcoes.(v)')</b></div>
-                <div class="col-md-1"><span class="span-mobile-et">{{  $autotrafo['tap_saida_rebaixamento'] }}</span></div>
-
-                <div class="col-md-2"><b>@lang('entregaTecnica.numero_serie')</b></div>
-                <div class="col-md-1"><span class="span-mobile-et">{{ $autotrafo['numero_serie_rebaixamento'] }}</span></div>
-            </div>
-        </div>                                
+        </div>
     @endif
 
-    {{-- GERADOR --}}
-    @if ($autotrafo['gerador'] != null || $autotrafo['gerador_marca'] != null || $autotrafo['gerador_modelo'] != null || 
-        $autotrafo['gerador_potencia'] != null || $autotrafo['gerador_frequencia'] != null || 
-        $autotrafo['gerador_tensao'] != null || $autotrafo['numero_serie_gerador'] != null)
-        <div class="do-not-break espacamento-cabecalho">
-            <div class='row col-md-12'>
-                <h3><b>@lang('entregaTecnica.gerador')</b></h3>
-            </div>
-            <div class='row'>
-                <div class="col-md-2 "><b>@lang('entregaTecnica.gerador')</b></div>
-                <div class="col-md-2">
-                    @if ($autotrafo['gerador'] == null)
-                        
-                    @else 
-                        <span class="span-mobile-et">{{ __('listas.'. $autotrafo['gerador'] ) }}</span>
-                    @endif
-                </div>
-
-                <div class="col-md-2 "><b>@lang('entregaTecnica.gerador_marca')</b></div>
-                <div class="col-md-2"><span class="span-mobile-et">{{ $autotrafo['gerador_marca'] }}</span></div>
-
-                <div class="col-md-2 "><b>@lang('entregaTecnica.gerador_modelo')</b></div>
-                <div class="col-md-2"><span class="span-mobile-et">{{ $autotrafo['gerador_modelo'] }}</span></div>
-
-                <div class="col-md-2 "><b>@lang('entregaTecnica.gerador_potencia')</b></div>
-                <div class="col-md-2"><span class="span-mobile-et">{{ $autotrafo['gerador_potencia'] }}</span></div>
-
-                <div class="col-md-2 "><b>@lang('entregaTecnica.gerador_frequencia')</b></div>
-                <div class="col-md-2"><span class="span-mobile-et">{{ $autotrafo['gerador_frequencia'] }}</span></div>
-
-                <div class="col-md-2 "><b>@lang('entregaTecnica.gerador_tensao')</b></div>
-                <div class="col-md-2"><span class="span-mobile-et">{{ $autotrafo['gerador_tensao'] }}</span></div>
-
-                <div class="col-md-2 "><b>@lang('entregaTecnica.numero_serie')</b></div>
-                <div class="col-md-2"><span class="span-mobile-et">{{ $autotrafo['numero_serie_gerador'] }}</span></div>
+    @if (!empty($autotrafo['potencia_rebaixamento']) || !empty($autotrafo['tap_entrada_rebaixamento']) || !empty($autotrafo['tap_saida_rebaixamento']) || 
+        !empty($autotrafo['numero_serie_rebaixamento']))
+        <div class="col-md-6">
+            <div class="table-responsive m-auto tabela" id="cssPreloader">
+                <table class="table table-striped mx-auto text-center">
+                    <thead>
+                        <tr>
+                            <th colspan="4">@lang('entregaTecnica.autotrafo_rebaixamento')</th>
+                        </tr>
+                        <tr>
+                            <th>@lang('entregaTecnica.potencia') @lang('unidadesAcoes.(cv)')</th>
+                            <th>@lang('entregaTecnica.tap_entrada') @lang('unidadesAcoes.(v)')</th>
+                            <th>@lang('entregaTecnica.tap_saida') @lang('unidadesAcoes.(v)')</th>
+                            <th>@lang('entregaTecnica.numero_serie')</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ $item['potencia_rebaixamento']}}</td>
+                            <td>{{ $item['tap_entrada_rebaixamento']}}</td>
+                            <td>{{ $item['tap_saida_rebaixamento']}}</td>
+                            <td>{{ $item['numero_serie_rebaixamento']}}</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tfoot>
+                </table>
             </div>
         </div>
     @endif
 </div>
+
+{{-- GERADOR --}}
+@if ($autotrafo['gerador'] != null || $autotrafo['gerador_marca'] != null || $autotrafo['gerador_modelo'] != null || 
+    $autotrafo['gerador_potencia'] != null || $autotrafo['gerador_frequencia'] != null || 
+    $autotrafo['gerador_tensao'] != null || $autotrafo['numero_serie_gerador'] != null)
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <div class="table-responsive m-auto tabela" id="cssPreloader">
+                <table class="table table-striped mx-auto text-center">
+                    <thead>
+                        <tr>
+                            <th colspan="4">@lang('entregaTecnica.gerador')</th>
+                        </tr>
+                        <tr>
+                            <th>@lang('entregaTecnica.gerador_marca')</th>
+                            <th>@lang('entregaTecnica.gerador_modelo')</th>
+                            <th>@lang('entregaTecnica.gerador_potencia') @lang('unidadesAcoes.(cv)')</th>
+                            <th>@lang('entregaTecnica.gerador_frequencia')</th>
+                            <th>@lang('entregaTecnica.gerador_tensao')</th>
+                            <th>@lang('entregaTecnica.numero_serie')</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ $autotrafo['gerador_marca']}}</td>
+                            <td>{{ $autotrafo['gerador_modelo']}}</td>
+                            <td>{{ $autotrafo['gerador_potencia']}}</td>
+                            <td>{{ $autotrafo['gerador_frequencia']}}</td>
+                            <td>{{ $autotrafo['gerador_tensao']}}</td>
+                            <td>{{ $autotrafo['numero_serie_gerador']}}</td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+@endif

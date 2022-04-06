@@ -36,13 +36,13 @@
         @if (Session::has('send'))
             <div class="alert alert-success mr-3 ml-3" id="alert2" role="alert">{{ Session::get('send') }}</div>
         @endif
-        
         <table class="table table-striped mx-auto" id="filtertable">
             <thead>
                 <tr class="text-center">
                     <th>@lang('entregaTecnica.data')</th>
                     <th>@lang('entregaTecnica.tipo_entrega_tecnica')</th>
                     <th>@lang('entregaTecnica.numero_pedido')</th>
+                    <th>@lang('entregaTecnica.fazenda')</th>
                     <th>@lang('entregaTecnica.proprietario')</th>
                     <th>@lang('entregaTecnica.tecnico_responsavel')</th>
                     <th>@lang('entregaTecnica.status')</th>
@@ -51,20 +51,16 @@
             </thead>
             <tbody>
                 @foreach ($entrega_tecnica as $item)
+                    @if ($item['status'] === 3)                        
                     <tr>
                         <td>{{ date('d/m/Y', strtotime($item['data_entrega_tecnica'])) }}</td>
                         <td>{{ __('entregaTecnica.' . $item['tipo_entrega_tecnica']) }}</td>
                         <td>{{ $item->numero_pedido }}</td>
+                            <td>{{ $item['nome_fazenda'] }}</td>
                         <td>{{ $item['nome_proprietario'] }}</td>
                         <td>{{ $item['nome_usuario'] }}</td>
                         <td>
-                            @if ($item['status'] === 0)
-                                @lang('entregaTecnica.nao_iniciada')
-                            @elseif($item['status'] === 1)
-                                @lang('entregaTecnica.incompleta')
-                            @elseif($item['status'] === 2)
-                                @lang('entregaTecnica.completa')
-                            @elseif($item['status'] === 3)
+                                @if($item['status'] === 3)
                                 @lang('entregaTecnica.analise')
                             @elseif($item['status'] === 4)
                                 @lang('entregaTecnica.aprovada')
@@ -78,11 +74,15 @@
                             @else
                                 <button type="button" class="botaoTabela" disabled style="font-size: 20px; cursor: default;"><i class="fas fa-eye"></i></button>
                             @endif
+
+                            <a href="{{ route('datasheet_technical_delivery', $item->id ) }}" target="_blank" style="font-size: 20px"><button type="button" class="botaoTabela"><i class="far fa-file-pdf"></i></button></a>
                         </td> 
                     </tr>
+                    @endif
                 @endforeach
             </tbody>
             <tfoot>
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>

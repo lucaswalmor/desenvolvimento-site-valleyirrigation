@@ -32,6 +32,12 @@ return [
     'redimensionamento' => 'Rediemnsionamento',
     'inativar' => '¿Quieres desactivar este usuario?',
     'ativar' => '¿Quieres activar este usuario?',
+    'permissions' => 'Permisos',
+    'modules' => 'Módulos',
+    'rules' => 'Reglas',
+    'fullAccess' => 'Acceso Total',
+    'noAccess' => 'No Hay Acceso',
+    'readOnly' => 'Ver Sólo',
 
     'cadastrar' => 'Registrar',
     'editar' => 'Editar',
@@ -41,5 +47,32 @@ return [
 
     'calc' => 'Calcular',
     'checkInput' => 'Rellene los campos correctamente para realizar los cálculos.',
-    'checkInput2' => 'Para realizar el cálculo se necesita al menos un área y un caudal.'
+    'checkInput2' => 'Para realizar el cálculo se necesita al menos un área y un caudal.',
+    // meses abreviados
+    'mesAbr_jan' => 'Ene',
+    'mesAbr_fev' => 'Feb',
+    'mesAbr_mar' => 'Mar',
+    'mesAbr_abr' => 'Abr',
+    'mesAbr_mai' => 'May',
+    'mesAbr_jun' => 'Jun',
+    'mesAbr_jul' => 'Jul',
+    'mesAbr_ago' => 'Ago',
+    'mesAbr_set' => 'Sep',
+    'mesAbr_out' => 'Oct',
+    'mesAbr_nov' => 'Nov',
+    'mesAbr_dez' => 'Dic',
+
+    // meses extenso
+    'mesExt_jan' => 'Enero',
+    'mesExt_fev' => 'Febrero',
+    'mesExt_mar' => 'Marzo',
+    'mesExt_abr' => 'Abril',
+    'mesExt_mai' => 'Mayo',
+    'mesExt_jun' => 'Junio',
+    'mesExt_jul' => 'Julio',
+    'mesExt_ago' => 'Agosto',
+    'mesExt_set' => 'Septiembre',
+    'mesExt_out' => 'Octubre',
+    'mesExt_nov' => 'Noviembre',
+    'mesExt_dez' => 'Diciembre',
 ];

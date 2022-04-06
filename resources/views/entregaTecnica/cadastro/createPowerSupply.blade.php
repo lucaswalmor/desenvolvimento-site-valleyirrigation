@@ -68,18 +68,22 @@
                                 <h3 for="gerador">@lang('entregaTecnica.autotrafo_elevacao')</h3>
                             </div>
                         </div>
+
                         <div class="form-row justify-content-start">
                             <div class="form-group col-md-4 telo5ce">
-                                <label for="potencia">@lang('entregaTecnica.potencia') @lang('unidadesAcoes.(kVA)')</label>
+                                <label for="potencia">@lang('entregaTecnica.potencia')</label>
                                 <input type="number" id="potencia_" name="potencia_elevacao" class="form-control" value="{{ $autotrafos['potencia_elevacao'] }}">
+                                <em class="input-unidade">@lang('unidadesAcoes._kVA')</em>
                             </div>
                             <div class="form-group col-md-4 telo5ce">
-                                <label for="tap_entrada">@lang('entregaTecnica.tap_entrada') @lang('unidadesAcoes.(v)')</label>
+                                <label for="tap_entrada">@lang('entregaTecnica.tap_entrada')</label>
                                 <input type="number" id="tap_entrada_" name="tap_entrada_elevacao" class="form-control" value="{{ $autotrafos['tap_entrada_elevacao'] }}">
+                                <em class="input-unidade">@lang('unidadesAcoes._v')</em>
                             </div>
                             <div class="form-group col-md-4 telo5ce">
-                                <label for="tap_saida">@lang('entregaTecnica.tap_saida') @lang('unidadesAcoes.(v)')</label>
+                                <label for="tap_saida">@lang('entregaTecnica.tap_saida')</label>
                                 <input type="number" id="tap_saida_" name="tap_saida_elevacao" class="form-control" value="{{ $autotrafos['tap_saida_elevacao'] }}">
+                                <em class="input-unidade">@lang('unidadesAcoes._v')</em>
                             </div>
                         </div>
                         <div class="form-row justify-content-start">
@@ -88,8 +92,9 @@
                                 <input type="text" id="numero_serie" name="numero_serie_elevacao" class="form-control" value="{{ $autotrafos['numero_serie_elevacao'] }}">
                             </div>
                             <div class="form-group col-md-4 telo5ce">
-                                <label for="corrente_disjuntor">@lang('entregaTecnica.corrente_disjuntor') @lang('unidadesAcoes.(A)')</label>
+                                <label for="corrente_disjuntor">@lang('entregaTecnica.corrente_disjuntor')</label>
                                 <input type="number" id="corrente_disjuntor" name="corrente_disjuntor" class="form-control" value="{{ $autotrafos['corrente_disjuntor'] }}">
+                                <em class="input-unidade">@lang('unidadesAcoes._A')</em>
                             </div>
                         </div>
                         
@@ -101,16 +106,19 @@
                         </div>
                         <div class="form-row justify-content-start">
                             <div class="form-group col-md-3 telo5ce">
-                                <label for="potencia">@lang('entregaTecnica.potencia') @lang('unidadesAcoes.(kVA)')</label>
+                                <label for="potencia">@lang('entregaTecnica.potencia')</label>
                                 <input type="number" id="potencia_" name="potencia_rebaixamento" class="form-control" value="{{ $autotrafos['potencia_rebaixamento'] }}">
+                                <em class="input-unidade">@lang('unidadesAcoes._kVA')</em>
                             </div>
                             <div class="form-group col-md-3 telo5ce">
-                                <label for="tap_entrada">@lang('entregaTecnica.tap_entrada') @lang('unidadesAcoes.(v)')</label>
+                                <label for="tap_entrada">@lang('entregaTecnica.tap_entrada')</label>
                                 <input type="number" id="tap_entrada_" name="tap_entrada_rebaixamento" class="form-control" value="{{ $autotrafos['tap_entrada_rebaixamento'] }}">
+                                <em class="input-unidade">@lang('unidadesAcoes._v')</em>
                             </div>
                             <div class="form-group col-md-3 telo5ce">
-                                <label for="tap_saida">@lang('entregaTecnica.tap_saida') @lang('unidadesAcoes.(v)')</label>
+                                <label for="tap_saida">@lang('entregaTecnica.tap_saida')</label>
                                 <input type="number" id="tap_saida_" name="tap_saida_rebaixamento" class="form-control" value="{{ $autotrafos['tap_saida_rebaixamento'] }}">
+                                <em class="input-unidade">@lang('unidadesAcoes._v')</em>
                             </div>
                             <div class="form-group col-md-3 telo5ce">
                                 <label for="numero_serie">@lang('entregaTecnica.numero_serie')</label>
@@ -144,19 +152,22 @@
                                 <input type="text" id="gerador_modelo" name="gerador_modelo" class="form-control" value="{{ $autotrafos['gerador_modelo'] }}">
                             </div>
                             <div class="form-group col-md-3 telo5ce">
-                                <label for="gerador_potencia">@lang('entregaTecnica.gerador_potencia') @lang('unidadesAcoes.(cv)')</label>
+                                <label for="gerador_potencia">@lang('entregaTecnica.gerador_potencia')</label>
                                 <input type="number" id="gerador_potencia" name="gerador_potencia" class="form-control" value="{{ $autotrafos['gerador_potencia'] }}">
+                                <em class="input-unidade">@lang('unidadesAcoes._cv')</em>
                             </div>
                         </div>
 
                         <div class="form-row justify-content-start">
                             <div class="form-group col-md-3 telo5ce">
-                                <label for="gerador_frequencia">@lang('entregaTecnica.gerador_frequencia') @lang('unidadesAcoes.(hz)')</label>
+                                <label for="gerador_frequencia">@lang('entregaTecnica.gerador_frequencia')</label>
                                 <input type="number" id="gerador_frequencia" name="gerador_frequencia" class="form-control" value="{{ $autotrafos['gerador_frequencia'] }}">
+                                <em class="input-unidade">@lang('unidadesAcoes._hz')</em>
                             </div>
                             <div class="form-group col-md-3 telo5ce">
-                                <label for="gerador_tensao">@lang('entregaTecnica.gerador_tensao') @lang('unidadesAcoes.(v)')</label>
+                                <label for="gerador_tensao">@lang('entregaTecnica.gerador_tensao')</label>
                                 <input type="number" id="gerador_tensao" name="gerador_tensao" class="form-control" value="{{ $autotrafos['gerador_tensao'] }}">
+                                <em class="input-unidade">@lang('unidadesAcoes._v')</em>
                             </div>
                             <div class="form-group col-md-3 telo5ce">
                                 <label for="numero_serie_gerador">@lang('entregaTecnica.numero_serie')</label>
@@ -172,26 +183,26 @@
 
 @section('scripts')
 
-{{-- VALIDAÇÕES DE CAMPOS --}}
-<script src="http://jqueryvalidation.org/files/dist/jquery.validate.js"></script>
-<script>
-    $(document).ready(function() {
+    {{-- VALIDAÇÕES DE CAMPOS --}}
+    <script src="http://jqueryvalidation.org/files/dist/jquery.validate.js"></script>
+    <script>
+        $(document).ready(function() {
 
-        $("#alert").fadeIn(300).delay(2000).fadeOut(400);
-        $('#botaosalvar').on('click', function() {
-            $('#formdados').submit();
-        });
+            $("#alert").fadeIn(300).delay(2000).fadeOut(400);
+            $('#botaosalvar').on('click', function() {
+                $('#formdados').submit();
+            });
 
         /* modificação para botão salvar sair */
         $('#saveoutbutton').on('click', function() {  
             $("#savebuttonvalue").val("saveout");
             $('#formdados').submit();
         });      
-    });
-</script>
+        });
+    </script>
 
-{{-- SCRIPT DE FUNCIONALIDADE DO TOOLTIP --}}
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
-</script>
+    {{-- SCRIPT DE FUNCIONALIDADE DO TOOLTIP --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
+    </script>
 @endsection

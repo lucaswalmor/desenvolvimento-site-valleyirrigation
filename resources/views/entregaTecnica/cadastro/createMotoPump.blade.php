@@ -12,6 +12,7 @@
 
             {{-- BOTOES SALVAR E VOLTAR --}}
             <div class="col-6 text-right botoes mobile">
+
                 <a href="{{ route('edit_technical_delivery', $id_entrega_tecnica) }}" style="color: #3c8dbc" data-toggle="tooltip"
                     data-placement="bottom" title="@lang('entregaTecnica.voltar')">
                     <button type="button">
@@ -65,7 +66,7 @@
         </div>
 
         {{-- FORMULARIO DE CADASTRO --}}
-        <form action="{{ route('save_technical_delivery_pressurization') }}" method="post" class="mt-3" id="formdados">
+        <form action="{{ route('save_technical_delivery_pressurization') }}" method="post" class="mt-3" id="formdados" enctype="multipart/form-data">
             @csrf
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active formcdc" id="motobomba" role="tabpanel" aria-labelledby="motobomba-tab">
@@ -231,8 +232,9 @@
                 
                                     <div class="form-row justify-content-start">
                                         <div class="form-group col-md-4 telo5ce">
-                                            <label for="rotor">@lang('entregaTecnica.rotor') (mm)</label>
+                                            <label for="rotor">@lang('entregaTecnica.rotor')</label>
                                             <input type="number" class="form-control" name="rotor[]" id="rotor_{{$bomba['id_bomba']}}" value="{{$bomba['rotor']}}">
+                                            <em class="input-unidade">@lang('unidadesAcoes._mm')</em>
                                         </div>
                                         <div class="form-group col-md-4 telo5ce">
                                             <label for="numero_serie">@lang('entregaTecnica.numero_serie')</label>
@@ -255,7 +257,6 @@
                                             <input type="text" class="form-control" name="opcionais[]" id="opcionais_{{$bomba['id_bomba']}}" value="{{$bomba['opcionais']}}">
                                         </div>
                                     </div>
-
                                     <div class="accordion card_cadastro_et" id="accordionMotor_{{ $bomba['id_bomba'] }}">
                                         @foreach ($motores as $motor)
                                             @if ($motor['id_bomba'] == $bomba['id_bomba'])
@@ -271,7 +272,25 @@
                     
                                                     <div id="collapse_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}" class="collapse show" aria-labelledby="heading_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}" data-parent="#accordionMotor_{{ $bomba['id_bomba'] }}">
                                                         <div class="card-body">
-                                                            <div class="form-row justify-content-start">
+                                                            <div class="form-row justify-content-start"> 
+                                                                <div class="form-group col-md-4">
+                                                                    <div class="d-flex justify-content-start">
+                                                                        <div class="campos_tensao col-6 mt-2">
+                                                                            <label for="plaqueta_img">@lang('entregaTecnica.img_plaqueta')</label>
+                                                                            <label for="plaqueta_img_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}" id="lbplaqueta_img_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}" class="label_input_file_enviar_et">@lang('entregaTecnica.carregar_imagem')</label>
+                                                                            <input type="file" onchange="myfn(this)" style="display: none;" name="plaqueta_img_{{ $bomba['id_bomba'] }}[]" id="plaqueta_img_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}" class="form-control" accept="image/gif, image/png, image/jpeg, image/pjpeg" required/>
+                                                                        </div>    
+                                                                        <div>
+                                                                            @if (count($motor['plaqueta_img']) > 0)
+                                                                                <img src="{{ asset('../storage/app/public/'. $motor['plaqueta_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="plaqueta_preview_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}" data-imgval="1" />   
+                                                                            @else                                                             
+                                                                                <img id="plaqueta_preview_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}" class="img_preview" onclick="expandImage(this)" data-toggle="modal" data-target="#modal_imagem" data-imgval=""/>
+                                                                            @endif
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-row justify-content-start mt-3">
                                                                 <div class="form-group col-md-4 telo5ce">
                                                                     <label for="tipo_motor">@lang('entregaTecnica.tipo_motor')</label>
                                                                     <select class="form-control motor_existente" name="tipo_motor_{{ $bomba['id_bomba'] }}[]" id="tipo_motor_0{{ $bomba['id_bomba'] }}_{{ str_pad($motor['id_bomba'],2,'0', STR_PAD_LEFT) }}" onchange="alterarMotor($(this).val(), {{ $bomba['id_bomba']}}, {{$motor['id_motor']}})">
@@ -314,8 +333,9 @@
             
                                                             <div class="form-row justify-content-start" id="diesel_eletrico_0{{$bomba['id_bomba']}}_0{{$motor['id_motor']}}">
                                                                 <div class="form-group col-md-4 telo5ce">
-                                                                    <label for="potencia">@lang('entregaTecnica.potencia') (cv)</label>
+                                                                    <label for="potencia">@lang('entregaTecnica.potencia')</label>
                                                                     <input type="number" class="form-control" name="potencia_{{ $bomba['id_bomba'] }}[]" id="potencia_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}"  value="{{$motor['potencia']}}" >
+                                                                    <em class="input-unidade">@lang('unidadesAcoes._cv')</em>
                                                                 </div>
                                                                 <div class="form-group col-md-4 telo5ce">
                                                                     <label for="numero_serie">@lang('entregaTecnica.numero_serie')</label>
@@ -330,7 +350,7 @@
                                                             <div id="campos_motor_eletrico_0{{ $bomba['id_bomba']}}_0{{$motor['id_motor']}}" style=" <?= ($motor['tipo_motor'] == 'eletrico') ? 'display: block;' : 'display: none;' ?> ">
                                                                 <div class="form-row justify-content-start">
                                                                     <div class="form-group col-md-4 telo5ce">
-                                                                        <label for="tensao">@lang('entregaTecnica.tensao') (v)</label>
+                                                                        <label for="tensao">@lang('entregaTecnica.tensao')</label>
                                                                         <input type="number" class="form-control" name="tensao_{{ $bomba['id_bomba'] }}[]" id="tensao_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}" value="{{$motor['tensao']}}" >
                                                                     </div>
                                                                     <div class="form-group col-md-4 telo5ce">
@@ -345,8 +365,9 @@
                                 
                                                                 <div class="form-row justify-content-start">
                                                                     <div class="form-group col-md-4 telo5ce">
-                                                                        <label for="corrente_nominal">@lang('entregaTecnica.corrente_nominal') (v)</label>
+                                                                        <label for="corrente_nominal">@lang('entregaTecnica.corrente_nominal')</label>
                                                                         <input type="number" class="form-control" name="corrente_nominal_{{ $bomba['id_bomba'] }}[]" id="corrente_nominal_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}" value="{{$motor['corrente_nominal']}}" >
+                                                                        <em class="input-unidade">@lang('unidadesAcoes._A')</em>
                                                                     </div>
                                                                     <div class="form-group col-md-4 telo5ce">
                                                                         <label for="fs">@lang('entregaTecnica.fs')</label>
@@ -362,56 +383,75 @@
                                                                     <div class="form-group col-md-4 telo5ce">
                                                                         <label for="rendimento">@lang('entregaTecnica.rendimento')</label>
                                                                         <input type="number" class="form-control" name="rendimento_{{ $bomba['id_bomba'] }}[]" id="rendimento_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}" value="{{$motor['rendimento']}}" >
+                                                                        <em class="input-unidade">@lang('unidadesAcoes._%')</em>
                                                                     </div>
                                                                     <div class="form-group col-md-4 telo5ce">
                                                                         <label for="cos">@lang('entregaTecnica.cos')</label>
                                                                         <input type="number" class="form-control" name="cos_{{ $bomba['id_bomba'] }}[]" id="cos_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}" value="{{$motor['cos']}}" >
                                                                     </div>
                                                                 </div> 
-
-                                                                {{-- CHAVE DE PARTIDA --}}
-                                                                @foreach ($chave_partida as $cp)     
                                 
-                                                                    <div class="form-row justify-content-start">
-                                                                        <div class="form-group col-md-4 telo5ce">
-                                                                            <h4>@lang('entregaTecnica.chave_partida')</h4>
-                                                                        </div>
-                                                                    </div>       
-
-                                                                    <div class="form-row justify-content-start">
-                                                                        <div class="form-group col-md-4 telo5ce">
-                                                                            <input type="hidden" name="id_chave_partida_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1" id="id_chave_partida_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1" value="1">
-                                                                            <label for="marca_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}">@lang('entregaTecnica.marca')</label>
-                                                                            <select name="marca_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1[]" id="marca_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1" class="form-control marca"  onchange="carregaAcionamento(this, $(this).val(), {{ $bomba['id_bomba']}}, {{$motor['id_motor']}})">
-                                                                                <option value=""></option>
-                                                                                @foreach ($chavePartida as $chave)
-                                                                                    <option value="{{ $chave['tipo'] }}" {{ ($chave['tipo'] == $cp['marca']) ? 'selected' : ''}}>{{ $chave['tipo'] }}</option>
-                                                                                @endforeach
-                                                                            </select>
-                                                                        </div>
-                                                                        <div class="form-group col-md-4 telo5ce">
-                                                                            <label for="acionamento">@lang('entregaTecnica.acionamento')</label>
-                                                                            <select name="acionamento_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1[]" id="acionamento_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1" class="form-control">
-                                                                                <option value=""></option>
-                                                                                @foreach ($chavePartidaAcionamento as $acionamento)
-                                                                                    @if ($acionamento['tipo'] == $cp['marca'])
-                                                                                        <option value="{{ $acionamento['modelo'] }}" {{ ($acionamento['modelo'] == $cp['acionamento']) ? 'selected' : ''}}>{{ __('listas.' . $acionamento['modelo'] ) }}</option>
-                                                                                    @endif
-                                                                                @endforeach                                                            
-                                                                            </select>
-                                                                        </div>
-                                                                        <div class="form-group col-md-4 telo5ce">
-                                                                            <label for="regulagem_reles">@lang('entregaTecnica.regulagem_reles') (A)</label>
-                                                                            <input type="number" class="form-control" name="regulagem_reles_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1[]" id="regulagem_reles_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1" value="{{ $cp['regulagem_reles'] }}">
-                                                                        </div>
-                                                                    </div>
-                                    
-                                                                    <div class="form-row justify-content-start">
-                                                                        <div class="form-group col-md-4 telo5ce">
-                                                                            <label for="numero_serie">@lang('entregaTecnica.numero_serie')</label>
-                                                                            <input type="text" class="form-control" name="numero_serie_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1[]" id="numero_serie__0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1" value="{{ $cp['numero_serie'] }}">
-                                                                        </div>
-                                                                    </div>
+                                                                {{-- CHAVE DE PARTIDA --}}
+                                                                @foreach ($chave_partida as $cp)
+                                                                
+                                                                    @if ($cp['id_bomba'] == $bomba['id_bomba'])
+                                                                        @if ($cp['id_motor'] == $motor['id_motor'])
+                                                                            <div class="form-row justify-content-start">
+                                                                                <div class="form-group col-md-4 telo5ce">
+                                                                                    <h4>@lang('entregaTecnica.chave_partida')</h4>
+                                                                                </div>
+                                                                            </div>       
+                                                                            <div class="form-row justify-content-start">
+                                                                                <div class="form-group col-md-4 telo5ce">
+                                                                                    <input type="hidden" name="id_chave_partida_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1" id="id_chave_partida_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1" value="1">
+                                                                                    <label for="marca_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}">@lang('entregaTecnica.marca')</label>
+                                                                                    <select name="marca_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1" id="marca_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1" class="form-control marca"  onchange="carregaAcionamento(this, $(this).val(), {{ $bomba['id_bomba']}}, {{$motor['id_motor']}})">
+                                                                                        <option value=""></option>
+                                                                                        @foreach ($chavePartida as $chave)
+                                                                                            <option value="{{ $chave['tipo'] }}" {{ ($chave['tipo'] == $cp['marca']) ? 'selected' : ''}}>{{ $chave['tipo'] }}</option>
+                                                                                        @endforeach
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="form-group col-md-4 telo5ce">
+                                                                                    <label for="acionamento">@lang('entregaTecnica.acionamento')</label>
+                                                                                    <select name="acionamento_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1" id="acionamento_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1" class="form-control" onchange="driveConnect(this);">
+                                                                                        <option value=""></option>
+                                                                                        @foreach ($chavePartidaAcionamento as $acionamento)
+                                                                                            @if ($acionamento['tipo'] == $cp['marca'])
+                                                                                                <option value="{{ $acionamento['modelo'] }}" {{ ($acionamento['modelo'] == $cp['acionamento']) ? 'selected' : ''}}>{{ __('listas.' . $acionamento['modelo'] ) }}</option>
+                                                                                            @endif
+                                                                                        @endforeach                                                            
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="form-group col-md-4 telo5ce">
+                                                                                    <label for="regulagem_reles">@lang('entregaTecnica.regulagem_reles')</label>
+                                                                                    <input type="number" class="form-control" name="regulagem_reles_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1" id="regulagem_reles_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1" value="{{ $cp['regulagem_reles'] }}">
+                                                                                    <em class="input-unidade">@lang('unidadesAcoes._A')</em>
+                                                                                </div>
+                                                                            </div>
+                                            
+                                                                            <div class="form-row justify-content-start">
+                                                                                <div class="form-group col-md-4 telo5ce">
+                                                                                    <label for="numero_serie">@lang('entregaTecnica.numero_serie')</label>
+                                                                                    <input type="text" class="form-control" name="numero_serie_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1" id="numero_serie__0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1" value="{{ $cp['numero_serie'] }}">
+                                                                                </div>
+                                                                                <div class="form-group col-md-4 input-radio-motobomba" style="display: none;" id="drive_connect_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1">
+                                                                                    <label for="numero_serie">Drive Connect</label>
+                                                                                    <div class="form-check d-flex pt-2">
+                                                                                        <div>
+                                                                                            <input class="form-check-input" type="radio" name="drive_connect_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1" id="radio-sim" value="1">
+                                                                                            <label class="form-check-label" for="radio-sim">@lang('comum.sim')</label>                                                                                        
+                                                                                        </div>
+                                                                                        
+                                                                                        <div class="ml-5">
+                                                                                            <input class="form-check-input" type="radio" name="drive_connect_0{{ $bomba['id_bomba'] }}_0{{$motor['id_motor']}}_1" id="radio-nao" value="0" >
+                                                                                            <label class="form-check-label" for="radio-nao">@lang('comum.nao')</label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        @endif
+                                                                    @endif
                                                                 @endforeach
                                                             </div>
                                                         </div>
@@ -434,11 +474,71 @@
             </div>
         </form>
 
-
+        <!-- Modal imagens torre central -->
+        <div class="modal fade" id="modal_imagem" tabindex="-1" role="dialog" aria-labelledby="modal_imagem_Label">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal_label_"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">     
+                    <img src="" class="img_modal"/>      
+                </div>
+            </div>
+            </div>
+        </div>
 @endsection
 
 @section('scripts')
     <script>
+        function expandImage(imagem_modal) {
+            var src_img = $(imagem_modal).attr("src");
+            $("#modal_imagem img").attr("src", src_img);
+            $('#modal_imagem').modal('show');
+        }
+
+        function myfn(myinput) {
+            var name = $(myinput).attr("name");
+            var id = $(myinput).attr("id");
+            var val = $(myinput).val();
+            switch(val.substring(val.lastIndexOf('.') + 1).toLowerCase()){
+                case 'gif': case 'jpg': case 'png': case 'jpeg':
+                    readURL(myinput);
+                    break;
+                default:
+                    $(this).val('');
+                    break;
+            }
+        }
+
+        function readURL(myinput) {
+            console.log(myinput)
+            var id_image = $(myinput).attr("id").replace("img", "preview");
+            var id_label = 'lb' + $(myinput).attr("id");
+
+            if (myinput.files && myinput.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#' + id_image).attr('src', e.target.result);
+                    $('#' + id_image).css('background-image', 'none');                    
+                    $('#' + id_label ).html(' @lang("entregaTecnica.alterar_imagem") ');
+                }
+                
+                reader.readAsDataURL(myinput.files[0]);
+            }
+        }
+
+        function driveConnect(val) {
+            var value = $(val).val();
+            var id = $(val).attr('id');
+            let id_acionamento = id.substring(11);
+            
+            (value == 'inversora') ? $('#drive_connect' + id_acionamento).show() : $('#drive_connect' + id_acionamento).hide();
+        }
 
         $(document).ready(function () {
 
@@ -447,7 +547,7 @@
             $('#botaosalvar').on('click', function() {
                 $('#formdados').submit();
             });
-
+            
             /* modificação para botão salvar sair */
             $('#saveoutbutton').on('click', function() {  
                 $("#savebuttonvalue").val("saveout");
@@ -622,26 +722,34 @@
             var qtBombaAtual = 0;
             var motor = 1;
             var tipo_motobomba = '';
+            var titulo = '';
 
             qtBombaAtual = qtTab - 1;
             if (quantidade > qtBombaAtual) {
                 for (x = 0; x <= qtBombaAtual; x++) {
                     if (x <= quantidade_padrao) {
                         $('#tipo_motobomba_0' + x).val('padrao');
+                        titulo = '@lang("afericao.bomba")';
+                        $('#bombas-' + x +'-tab').text(titulo);
                     } else {
                         if ((quantidade_submersa > 0 && quantidade_submersa != null) || 
                             (quantidade_balsa > 0 && quantidade_balsa != null)) {
                             $('#tipo_motobomba_0' + x).val('auxiliar');
+                            titulo = '@lang("afericao.bomba")' + ' @lang("entregaTecnica.bomba_auxiliar")';
+                            $('#bombas-' + x +'-tab').text(titulo);
                         }
                     }
                 }
                 for (i = (qtBombaAtual + 1); i <= quantidade; i++) {
                     if (i <= quantidade_padrao) {
                         tipo_motobomba = 'padrao';
+                        titulo = '@lang("afericao.bomba")';
+                        
                     } else {
                         if ((quantidade_submersa > 0 && quantidade_submersa != null) || 
                             (quantidade_balsa > 0 && quantidade_balsa != null)) {
                             tipo_motobomba = 'auxiliar';
+                            titulo = '@lang("afericao.bomba")' + ' @lang("entregaTecnica.bomba_auxiliar")';
                         }
                     }
 
@@ -650,7 +758,7 @@
                     var id_cp2 = '_0'+ i + '_01_2';
 
                     CabTab += "<li class='nav-item' id='liBombas-"+ i +"'>";
-                    CabTab += '     <a class="nav-link" id="bombas-' + i +'-tab " data-toggle="tab" href="#bomba-' + i + '" role="tab" aria-controls="bomba_' + i + '" aria-selected="true" > @lang("afericao.bomba") ' + i + ' </a>';
+                        CabTab += '     <a class="nav-link" id="bombas-' + i +'-tab" data-toggle="tab" href="#bomba-' + i + '" role="tab" aria-controls="bomba_' + i + '" aria-selected="true" >' + titulo + ' </a>';
                     CabTab += '</li>';
 
                     HTML += '        <div class="tab-pane fade" id="bomba-' + i + '" role="tabpanel" aria-labelledby="bomba_' + i + '" >';
@@ -695,31 +803,31 @@
                     
                     HTML += '                    <div class="form-row justify-content-start">';
                     HTML += '                        <div class="form-group col-md-4 telo5ce">';
-                    HTML += '                            <label for="rotor">@lang("entregaTecnica.rotor") (mm)</label>';
+                    HTML += '                            <label for="rotor">@lang("entregaTecnica.rotor")</label>';
                     HTML += '                            <input type="number" class="form-control" name="rotor[]" id="rotor_'+ i +'">';
+                    HTML += '                            <em class="input-unidade">@lang("unidadesAcoes._mm")</em>';
                     HTML += '                        </div>';
-
-                    HTML += '                       <div class="form-group col-md-4 telo5ce">';
-                    HTML += '                           <label for="numero_serie">@lang("entregaTecnica.numero_serie")</label>';
-                    HTML += '                           <input type="text" class="form-control" name="numero_serie[]" id="numero_serie_'+ i +'">';
-                    HTML += '                       </div>';
+                    HTML += '                    <div class="form-group col-md-4 telo5ce">';
+                    HTML += '                        <label for="numero_serie">@lang("entregaTecnica.numero_serie")</label>';
+                    HTML += '                        <input type="text" class="form-control" name="numero_serie[]" id="numero_serie_'+ i +'">';
+                    HTML += '                    </div>';
                     
-                    HTML += '                       <div class="form-group col-md-4 telo5ce">';
-                    HTML += '                           <label for="fornecedor">@lang("entregaTecnica.fornecedor")</label>';
-                    HTML += '                           <select class="form-control" name="fornecedor[]" id="fornecedor_'+ i +'">';
-                    HTML += '                               <option value=""></option>';
-                    HTML += '                               @foreach ($fornecedores as $fornecedor)';
-                    HTML += '                                   <option value="{{ $fornecedor["fornecedor"] }}" {{ (($fornecedor["fornecedor"] == $bomba["fornecedor"]) ? "selected" : '') }}>{{ __("listas." . $fornecedor["fornecedor"] ) }}</option>';
-                    HTML += '                               @endforeach';
-                    HTML += '                           </select>';
-                    HTML += '                       </div>';
+                    HTML += '                    <div class="form-group col-md-4 telo5ce">';
+                    HTML += '                        <label for="fornecedor">@lang("entregaTecnica.fornecedor")</label>';
+                    HTML += '                        <select class="form-control" name="fornecedor[]" id="fornecedor_'+ i +'">';
+                    HTML += '                            <option value=""></option>';
+                    HTML += '                            @foreach ($fornecedores as $fornecedor)';
+                    HTML += '                                <option value="{{ $fornecedor["fornecedor"] }}" {{ (($fornecedor["fornecedor"] == $bomba["fornecedor"]) ? "selected" : '') }}>{{ __("listas." . $fornecedor["fornecedor"] ) }}</option>';
+                    HTML += '                            @endforeach';
+                    HTML += '                        </select>';
+                    HTML += '                    </div>';
                     HTML += '                    </div>';
                     
                     HTML += '                    <div class="form-row justify-content-start">';
-                    HTML += '                       <div class="form-group col-md-4 telo5ce">';
-                    HTML += '                            <label for="opcionais">@lang("entregaTecnica.outros")</label>';
-                    HTML += '                            <input type="text" class="form-control" name="opcionais[]" id="opcionais_'+ i +'" value="{{$bomba["opcionais"]}}">';
-                    HTML += '                       </div>';
+                    HTML += '                    <div class="form-group col-md-4 telo5ce">';
+                    HTML += '                                <label for="opcionais">@lang("entregaTecnica.outros")</label>';
+                    HTML += '                                <input type="text" class="form-control" name="opcionais[]" id="opcionais_'+ i +'" value="{{$bomba["opcionais"]}}">';
+                    HTML += '                            </div>';
                     HTML += '                    </div>';
                     HTML += '                </div>';
 
@@ -735,8 +843,24 @@
                         HTML += '                                    </div>';
                         HTML += '                                    <div id="collapse_0'+ i +'_01" class="collapse show" aria-labelledby="heading_0'+ i +'_01" data-parent="#accordionMotor_'+ i +'">';
                         HTML += '                                        <div class="card-body">';
-
-
+                        HTML += '                                           <div class="form-row justify-content-start">';
+                        HTML += '                                               <div class="form-group col-md-4">';
+                        HTML += '                                                   <div class="d-flex justify-content-start">';
+                        HTML += '                                                       <div class="campos_tensao col-6 mt-2">';
+                        HTML += '                                                           <label for="plaqueta_img">@lang("entregaTecnica.img_plaqueta")</label>';
+                        HTML += '                                                           <label for="plaqueta_img_'+ i +'" id="lbplaqueta_img_'+ i +'" class="label_input_file_enviar_et">@lang("entregaTecnica.carregar_imagem")</label>';
+                        HTML += '                                                           <input type="file" onchange="myfn(this)" style="display: none;" name="plaqueta_img_'+ i +'[]" id="plaqueta_img_'+ i +'" class="form-control" accept="image/gif, image/png, image/jpeg, image/pjpeg" required/>';
+                        HTML += '                                                       </div>';
+                        HTML += '                                                       <div>';
+                        HTML += '                                                           @if (count($motor["plaqueta_img"]) > 0)';
+                        HTML += '                                                               <img src="{{ asset("../storage/app/public/". $velocidade["plaqueta_img"])}}" class="img_preview_editar" onclick="expandImage(this)" id="plaqueta_preview__'+ i +'[]" data-imgval="1" />';
+                        HTML += '                                                           @else';
+                        HTML += '                                                               <img id="plaqueta_preview__'+ i +'" class="img_preview" onclick="expandImage(this)" data-toggle="modal" data-target="#modal_imagem" data-imgval=""/>';
+                        HTML += '                                                           @endif';
+                        HTML += '                                                        </div>';
+                        HTML += '                                                     </div>';
+                        HTML += '                                                 </div>';
+                        HTML += '                                           </div>';
                         HTML += '                                            <div class="form-row justify-content-start">';
                         HTML += '                                                <div class="form-group col-md-4 telo5ce">';
                         HTML += '                                                    <label for="tipo_motor">@lang("entregaTecnica.tipo_motor")</label>';
@@ -774,8 +898,9 @@
                 
                         HTML += '                                            <div class="form-row justify-content-start" id="diesel_eletrico_0'+ i +'_01">';
                         HTML += '                                                <div class="form-group col-md-4 telo5ce">';
-                        HTML += '                                                    <label for="potencia">@lang("entregaTecnica.potencia") (cv)</label>';
+                        HTML += '                                                    <label for="potencia">@lang("entregaTecnica.potencia")</label>';
                         HTML += '                                                    <input type="number" class="form-control" name="potencia_'+ i +'[]" id="potencia_0'+ i +'_01" disabled>';
+                        HTML += '                                                    <em class="input-unidade">@lang("unidadesAcoes._cv")</em>';
                         HTML += '                                                </div>';
                         HTML += '                                                <div class="form-group col-md-4 telo5ce">';
                         HTML += '                                                    <label for="numero_serie">@lang("entregaTecnica.numero_serie")</label>';
@@ -790,7 +915,7 @@
                         HTML += '                                            <div id="campos_motor_eletrico_0'+ i +'_01" style="display: none;">';
                         HTML += '                                                <div class="form-row justify-content-start">';
                         HTML += '                                                    <div class="form-group col-md-4 telo5ce">';
-                        HTML += '                                                        <label for="tensao">@lang("entregaTecnica.tensao") (v)</label>';
+                        HTML += '                                                        <label for="tensao">@lang("entregaTecnica.tensao")</label>';
                         HTML += '                                                        <input type="number" class="form-control" name="tensao_'+ i +'[]" id="tensao_0'+ i +'_01">';
                         HTML += '                                                    </div>';
                         HTML += '                                                    <div class="form-group col-md-4 telo5ce">';
@@ -805,8 +930,9 @@
                                         
                         HTML += '                                                <div class="form-row justify-content-start">';
                         HTML += '                                                    <div class="form-group col-md-4 telo5ce">';
-                        HTML += '                                                        <label for="corrente_nominal">@lang("entregaTecnica.corrente_nominal") (A)</label>';
+                        HTML += '                                                        <label for="corrente_nominal">@lang("entregaTecnica.corrente_nominal")</label>';
                         HTML += '                                                        <input type="number" class="form-control" name="corrente_nominal_'+ i +'[]" id="corrente_nominal_0'+ i +'_01">';
+                        HTML += '                                                        <em class="input-unidade">@lang('unidadesAcoes._A')</em>';
                         HTML += '                                                    </div>';
                         HTML += '                                                    <div class="form-group col-md-4 telo5ce">';
                         HTML += '                                                        <label for="fs">@lang("entregaTecnica.fs")</label>';
@@ -822,6 +948,7 @@
                         HTML += '                                                    <div class="form-group col-md-4 telo5ce">';
                         HTML += '                                                        <label for="rendimento">@lang("entregaTecnica.rendimento")</label>';
                         HTML += '                                                        <input type="number" class="form-control" name="rendimento_'+ i +'[]" id="rendimento_0'+ i +'_01">';
+                        HTML += '                                                        <em class="input-unidade">@lang('unidadesAcoes._%')</em>';
                         HTML += '                                                    </div>';
                         HTML += '                                                    <div class="form-group col-md-4 telo5ce">';
                         HTML += '                                                        <label for="cos">@lang("entregaTecnica.cos")</label>';
@@ -849,7 +976,7 @@
                         HTML += '                                                     </div>';
                         HTML += '                                                     <div class="form-group col-md-4 telo5ce">';
                         HTML += '                                                         <label for="acionamento'+ id_cp1 +'">@lang("entregaTecnica.acionamento")</label>';
-                        HTML += '                                                         <select name="acionamento'+ id_cp1 +'" id="acionamento'+ id_cp1 +'" class="form-control">';
+                        HTML += '                                                         <select name="acionamento'+ id_cp1 +'" id="acionamento'+ id_cp1 +'" class="form-control" onchange="driveConnect(this);">';
                         HTML += '                                                             <option value=""></option>';
                         HTML += '                                                            @foreach ($chavePartidaAcionamento as $acionamento)';
                         HTML += '                                                                  @if ($acionamento["tipo"] == $item["marca"])';
@@ -859,21 +986,33 @@
                         HTML += '                                                          </select>';
                         HTML += '                                                     </div>';
                         HTML += '                                                      <div class="form-group col-md-4 telo5ce">';
-                        HTML += '                                                           <label for="regulagem_reles'+ id_cp1 +'">@lang("entregaTecnica.regulagem_reles") (A)</label>';
+                        HTML += '                                                           <label for="regulagem_reles'+ id_cp1 +'">@lang("entregaTecnica.regulagem_reles")</label>';
                         HTML += '                                                           <input type="number" class="form-control" name="regulagem_reles'+ id_cp1 +'" id="regulagem_reles'+ id_cp1 +'">';
+                        HTML += '                                                           <em class="input-unidade">@lang("unidadesAcoes._A")</em>';
                         HTML += '                                                      </div>';
                         HTML += '                                               </div>';
                         HTML += '                                              <div class="form-row justify-content-start">';
                         HTML += '                                                   <div class="form-group col-md-4 telo5ce">';
                         HTML += '                                                       <label for="numero_serie'+ id_cp1 +'">@lang("entregaTecnica.numero_serie")</label>';
-                        HTML += '                                                       <input type="number" class="form-control" name="numero_serie_cp'+ id_cp1 +'" id="numero_serie'+ id_cp1 +'">';
+                        HTML += '                                                       <input type="number" class="form-control" name="numero_serie'+ id_cp1 +'" id="numero_serie'+ id_cp1 +'">';
                         HTML += '                                                   </div>';
+                        HTML += '                                               <div class="form-group col-md-4 input-radio-motobomba" style="display: none;" id="drive_connect'+ id_cp1 +'">';
+                        HTML += '                                                   <label for="numero_serie">Drive Connect</label>';
+                        HTML += '                                                   <div class="form-check d-flex pt-2">';
+                        HTML += '                                                       <div>';
+                        HTML += '                                                           <input class="form-check-input" type="radio" name="drive_connect'+ id_cp1 +'" id="radio-sim" value="1">';
+                        HTML += '                                                           <label class="form-check-label" for="radio-sim">@lang("comum.sim")</label>';                 
+                        HTML += '                                                       </div>';
+                        HTML += '                                                       <div class="ml-5">';
+                        HTML += '                                                           <input class="form-check-input" type="radio" name="drive_connect'+ id_cp1 +'" id="radio-nao" value="0">';
+                        HTML += '                                                           <label class="form-check-label" for="radio-nao">@lang("comum.nao")</label>';
+                        HTML += '                                                       </div>';
+                        HTML += '                                                   </div>';
+                        HTML += '                                                </div>';                        
                         HTML += '                                              </div>';
-                        HTML += '                                        </div>';
-            
+                        HTML += '                                        </div>';            
                         HTML += '                                   </div>';
-                        HTML += '                                </div>';
-                        
+                        HTML += '                                </div>';                        
                         HTML += '                            </div>';
                         HTML += '                         </div>';
                     HTML += '               <div class="form-row justify-content-start mt-3">';
@@ -893,10 +1032,14 @@
                 for (i = 0; i <= quantidade; i++) {
                     if (i <= quantidade_padrao) {
                         $('#tipo_motobomba_0' + i).val('padrao');
+                        titulo = '@lang("afericao.bomba")';
+                        $('#bombas-' + i +'-tab').text(titulo);
                     } else {
                         if ((quantidade_submersa > 0 && quantidade_submersa != null) || 
                             (quantidade_balsa > 0 && quantidade_balsa != null)) {
                             $('#tipo_motobomba_0' + i).val('auxiliar');
+                            titulo = '@lang("afericao.bomba")' + ' @lang("entregaTecnica.bomba_auxiliar")';
+                            $('#bombas-' + i +'-tab').text(titulo);
                         }
                     }
                 }
@@ -1011,8 +1154,10 @@
 
             //Fazer um filtro dentro do array de categorias com base no Id da Categoria selecionada no equipamento
             var acionamento_chave = $.grep(acionamento, function (e) { return e.tipo == tipo; });
+            
             //Faz o append (adiciona) cada um dos itens do array filtrado no Acionamento
-            $('#acionamento_0' + id_bomba + '_0' + id).html('<option>Selecione...</option>');
+            $('#drive_connect_0' + id_bomba + '_0' + id_motor + '_' + id).hide();
+            $('#acionamento_0' + id_bomba + '_0' + id_motor + '_' + id).html('<option>Selecione...</option>');
             $.each(acionamento_chave, function (i, tipo) {
                 $('#acionamento_0' + id_bomba + '_0' + id_motor + '_' + id).append($('<option>', {
                     value: tipo.modelo, //Id do objeto subcategoria
@@ -1041,6 +1186,24 @@
 
             newCard += '                                <div id="collapse_0'+ bomba + '_' + qt_card+'" class="collapse" aria-labelledby="heading_0'+ bomba + '_' +qt_card+'" data-parent="#accordionMotor_' + bomba + '">';
             newCard += '                                    <div class="card-body">';
+            newCard += '                                           <div class="form-row justify-content-start">';
+            newCard += '                                               <div class="form-group col-md-4">';
+            newCard += '                                                   <div class="d-flex justify-content-start">';
+            newCard += '                                                       <div class="campos_tensao col-6 mt-2">';
+            newCard += '                                                           <label for="plaqueta_img">@lang("entregaTecnica.img_plaqueta")</label>';
+            newCard += '                                                           <label for="plaqueta_img_0' + bomba + '_' + qt_card +'" id="lbplaqueta_img_0' + bomba + '_' + qt_card +'" class="label_input_file_enviar_et">@lang("entregaTecnica.carregar_imagem")</label>';
+            newCard += '                                                           <input type="file" onchange="myfn(this)" style="display: none;" name="plaqueta_img_0' + bomba + '_' + qt_card +'[]" id="plaqueta_img_0' + bomba + '_' + qt_card +'" class="form-control" accept="image/gif, image/png, image/jpeg, image/pjpeg" required/>';
+            newCard += '                                                       </div>';
+            newCard += '                                                       <div>';
+            newCard += '                                                           @if (count($motor["plaqueta_img"]) > 0)';
+            newCard += '                                                               <img src="{{ asset("../storage/app/public/". $velocidade["plaqueta_img"])}}" class="img_preview_editar" onclick="expandImage(this)" id="plaqueta_preview_0' + bomba + '_' + qt_card +'" data-imgval="1" />';
+            newCard += '                                                           @else';
+            newCard += '                                                               <img id="plaqueta_preview_0' + bomba + '_' + qt_card +'" class="img_preview" onclick="expandImage(this)" data-toggle="modal" data-target="#modal_imagem" data-imgval=""/>';
+            newCard += '                                                           @endif';
+            newCard += '                                                        </div>';
+            newCard += '                                                     </div>';
+            newCard += '                                                 </div>';
+            newCard += '                                           </div>';
             newCard += '                                        <div class="form-row justify-content-start">';                
             newCard += '                                            <div class="form-group col-md-4 telo5ce">';
             newCard += '                                                <label for="tipo_motor">@lang("entregaTecnica.tipo_motor")</label>';
@@ -1081,8 +1244,10 @@
         
             newCard += '                                        <div class="form-row justify-content-start" id="diesel_eletrico_0' + bomba + '_' + qt_card +'">';
             newCard += '                                            <div class="form-group col-md-4 telo5ce">';
-            newCard += '                                                 <label for="potencia">@lang("entregaTecnica.potencia") (cv)</label>';
+            newCard += '                                                 <label for="potencia">@lang("entregaTecnica.potencia")</label>';
             newCard += '                                                 <input type="number" class="form-control" name="potencia_'+ bomba +'[]" id="potencia_0' + bomba + '_' + qt_card +'" disabled>';
+            newCard += '                                                 <em class="input-unidade">@lang("unidadesAcoes._cv")</em>';
+
             newCard += '                                            </div>';
             newCard += '                                            <div class="form-group col-md-4 telo5ce">';
             newCard += '                                                 <label for="numero_serie">@lang("entregaTecnica.numero_serie")</label>';
@@ -1097,7 +1262,7 @@
             newCard += '                                        <div id="campos_motor_eletrico_0' + bomba + '_' + qt_card +'" style="display: none;">';
             newCard += '                                            <div class="form-row justify-content-start">';
             newCard += '                                                <div class="form-group col-md-4 telo5ce">';
-            newCard += '                                                     <label for="tensao">@lang("entregaTecnica.tensao") (v)</label>';
+            newCard += '                                                     <label for="tensao">@lang("entregaTecnica.tensao")</label>';
             newCard += '                                                     <input type="number" class="form-control" name="tensao_'+ bomba +'[]" id="tensao_0' + bomba + '_' + qt_card +'">';
             newCard += '                                                </div>';
             newCard += '                                            <div class="form-group col-md-4 telo5ce">';
@@ -1112,8 +1277,9 @@
         
             newCard += '                                        <div class="form-row justify-content-start">';
             newCard += '                                            <div class="form-group col-md-4 telo5ce">';
-            newCard += '                                                 <label for="corrente_nominal">@lang("entregaTecnica.corrente_nominal") (A)</label>';
+            newCard += '                                                 <label for="corrente_nominal">@lang("entregaTecnica.corrente_nominal")</label>';
             newCard += '                                                 <input type="number" class="form-control" name="corrente_nominal_'+ bomba +'[]" id="corrente_nominal_0' + bomba + '_' + qt_card +'">';
+            newCard += '                                                 <em class="input-unidade">@lang('unidadesAcoes._A')</em>';
             newCard += '                                            </div>';
             newCard += '                                            <div class="form-group col-md-4 telo5ce">';
             newCard += '                                                 <label for="fs">@lang("entregaTecnica.fs")</label>';
@@ -1129,6 +1295,7 @@
             newCard += '                                            <div class="form-group col-md-4 telo5ce">';
             newCard += '                                                 <label for="rendimento">@lang("entregaTecnica.rendimento")</label>';
             newCard += '                                                 <input type="number" class="form-control" name="rendimento_'+ bomba +'[]" id="rendimento_0' + bomba + '_' + qt_card +'">';
+            newCard += '                                                 <em class="input-unidade">@lang('unidadesAcoes._%')</em>';
             newCard += '                                            </div>';
             newCard += '                                            <div class="form-group col-md-4 telo5ce">';
             newCard += '                                                    <label for="cos">@lang("entregaTecnica.cos")</label>';
@@ -1156,7 +1323,7 @@
             newCard += '                                         </div>';
             newCard += '                                         <div class="form-group col-md-4 telo5ce">';
             newCard += '                                             <label for="acionamento">@lang("entregaTecnica.acionamento")</label>';
-            newCard += '                                             <select name="acionamento' + idChaveP1 +'" id="acionamento'+ idChaveP1 +'" class="form-control">';
+            newCard += '                                             <select name="acionamento' + idChaveP1 +'" id="acionamento'+ idChaveP1 +'" class="form-control" onchange="driveConnect(this);">';
             newCard += '                                                 <option value=""></option>';
             newCard += '                                                 @foreach ($chavePartidaAcionamento as $acionamento)';
             newCard += '                                                      @if ($acionamento["tipo"] == $item["marca"])';
@@ -1166,56 +1333,32 @@
             newCard += '                                              </select>';
             newCard += '                                          </div>';
             newCard += '                                                   <div class="form-group col-md-4 telo5ce">';
-            newCard += '                                                       <label for="regulagem_reles">@lang("entregaTecnica.regulagem_reles") (A)</label>';
+            newCard += '                                                       <label for="regulagem_reles">@lang("entregaTecnica.regulagem_reles")</label>';
             newCard += '                                                       <input type="number" class="form-control" name="regulagem_reles'+ idChaveP1 +'" id="regulagem_reles'+ idChaveP1 +'">';
+            newCard += '                                                       <em class="input-unidade">@lang('unidadesAcoes._A')</em>';
             newCard += '                                                   </div>';
             newCard += '                                               </div>';                    
             newCard += '                                               <div class="form-row justify-content-start">';
             newCard += '                                                   <div class="form-group col-md-4 telo5ce">';
             newCard += '                                                       <label for="numero_serie">@lang("entregaTecnica.numero_serie")</label>';
-            newCard += '                                                       <input type="number" class="form-control" name="numero_serie_'+ idChaveP1 +'" id="numero_serie'+ idChaveP1 +'">';
+            newCard += '                                                       <input type="number" class="form-control" name="numero_serie'+ idChaveP1 +'" id="numero_serie'+ idChaveP1 +'">';
             newCard += '                                                   </div>';
-            newCard += '                                               </div>';            
-            // newCard += '                                               <div class="form-row justify-content-start">';
-            // newCard += '                                                   <div class="form-group col-md-4 telo5ce">';
-            // newCard += '                                                       <h4>@lang("entregaTecnica.chave_partida") - 2</h4>';
-            // newCard += '                                                   </div>';
-            // newCard += '                                               </div>';                    
-            // newCard += '                                               <div class="form-row justify-content-start">';
-            // newCard += '                                         <div class="form-group col-md-4 telo5ce">';
-                
-            // newCard += '                                              <input type="hidden" name="id_chave_partida' + idChaveP2 + '" id="id_chave_partida' + idChaveP2 + '" value="2">';
-            // newCard += '                                              <label for="marca'+ idChaveP2 +'">@lang("entregaTecnica.marca")</label>';
-            // newCard += '                                              <select name="marca'+ idChaveP2 + '" id="marca'+ idChaveP2 +'" class="form-control marca" onchange="carregaAcionamento(this, $(this).val(), '+ bomba +')">';
-            // newCard += '                                                  <option value=""></option>';
-            // newCard += '                                                  @foreach ($chavePartida as $chave)';
-            // newCard += '                                                      <option value="{{ $chave["tipo"] }}" {{ ($chave["tipo"] == $item["marca"]) ? "selected" : ""}}>{{ $chave["tipo"] }}</option>';
-            // newCard += '                                                  @endforeach';
-            // newCard += '                                              </select>';
-            // newCard += '                                         </div>';
-            // newCard += '                                         <div class="form-group col-md-4 telo5ce">';
-            // newCard += '                                             <label for="acionamento">@lang("entregaTecnica.acionamento")</label>';
-            // newCard += '                                             <select name="acionamento' + idChaveP2 +'" id="acionamento'+ idChaveP2 +'" class="form-control">';
-            // newCard += '                                                 <option value=""></option>';
-            // newCard += '                                                 @foreach ($chavePartidaAcionamento as $acionamento)';
-            // newCard += '                                                      @if ($acionamento["tipo"] == $item["marca"])';
-            // newCard += '                                                          <option value="{{ $acionamento["modelo"] }}" {{ ($acionamento["modelo"] == $item["acionamento"]) ? "selected" : ""}}>{{ __("listas." . $acionamento["modelo"] ) }}</option>';
-            // newCard += '                                                       @endif';
-            // newCard += '                                                  @endforeach';                                                          
-            // newCard += '                                              </select>';
-            // newCard += '                                          </div>';
-            // newCard += '                                                   <div class="form-group col-md-4 telo5ce">';
-            // newCard += '                                                       <label for="regulagem_reles">@lang("entregaTecnica.regulagem_reles")</label>';
-            // newCard += '                                                       <input type="number" class="form-control" name="regulagem_reles'+ idChaveP2 +'" id="regulagem_reles'+ idChaveP2 +'">';
-            // newCard += '                                                   </div>';
-            // newCard += '                                               </div>';                    
-            // newCard += '                                               <div class="form-row justify-content-start">';
-            // newCard += '                                                   <div class="form-group col-md-4 telo5ce">';
-            // newCard += '                                                       <label for="numero_serie">@lang("entregaTecnica.numero_serie")</label>';
-            // newCard += '                                                       <input type="number" class="form-control" name="numero_serie'+ idChaveP2 +'" id="numero_serie'+ idChaveP2 +'">';
-            // newCard += '                                                   </div>';
-            // newCard += '                                               </div>';      
 
+            
+            newCard += '                                               <div class="form-group col-md-4 input-radio-motobomba" style="display: none;" id="drive_connect'+ idChaveP1 +'">';
+            newCard += '                                                   <label for="numero_serie">Drive Connect</label>';
+            newCard += '                                                   <div class="form-check d-flex pt-2">';
+            newCard += '                                                       <div>';
+            newCard += '                                                           <input class="form-check-input" type="radio" name="drive_connect'+ idChaveP1 +'" id="radio-sim" value="1">';
+            newCard += '                                                           <label class="form-check-label" for="radio-sim">@lang("comum.sim")</label>';                 
+            newCard += '                                                       </div>';
+            newCard += '                                                       <div class="ml-5">';
+            newCard += '                                                           <input class="form-check-input" type="radio" name="drive_connect'+ idChaveP1 +'" id="radio-nao" value="0">';
+            newCard += '                                                           <label class="form-check-label" for="radio-nao">@lang("comum.nao")</label>';
+            newCard += '                                                       </div>';
+            newCard += '                                                   </div>';
+            newCard += '                                                </div>';
+            newCard += '                                               </div>';
             newCard += '                                    </div>';
             newCard += '                                </div>';
             newCard += '                            </div>';

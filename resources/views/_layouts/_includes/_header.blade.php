@@ -19,20 +19,21 @@
 
                     {{-- AFERIÇÃO --}}
                     @if (array_search("afericao.pivoCentral", array_column($listModules, 'name')))
+                        @php $index = array_search("afericao.pivoCentral", array_column($listModules, 'name')); @endphp
+
                     <input id="group-1" type="checkbox" hidden />
-                    <label for="group-1"><span class="fa fa-caret-right"></span>@lang('afericao.afericoes')</label>
+                        <label for="group-1"><span class="fa fa-caret-right"></span>{{ $listModules[$index]['description'] }}</label>
+
                     <ul class="group-list">
                         <li class="subnavbar">
                             <input id="sub-group-1" type="checkbox" hidden />
                             <label for="sub-group-1">
-                                <a href="{{ route('gauging_manager') }}" class='nav-link'>
-                                    @lang('afericao.pivoCentral')
-                                </a>
+                                    <a href="{{ route('gauging_manager') }}" class='nav-link'>@lang('afericao.pivoCentral')</a>
                             </label>
 
                             {{-- CAMPOS VAGOS PARA MAIS VIEWS, SOMENTE TIRAR DO COMENTARIO E ADICIONAR A ROTA --}}
-
-                            {{-- <input id="sub-group-1" type="checkbox" hidden />
+                                {{--
+                                <input id="sub-group-1" type="checkbox" hidden />
                                 <label for="sub-group-1"></span><a href="#"> Second level</a></label>
                                 <input id="sub-group-1" type="checkbox" hidden />
                                 <label for="sub-group-1"></span><a href="#"> Second level</a></label>
@@ -44,8 +45,9 @@
 
                     {{-- REDIMENSIONAMENTO --}}
                     @if (array_search("redimensionamento.pivoCentral", array_column($listModules, 'name')))
+                    @php $index = array_search("redimensionamento.pivoCentral", array_column($listModules, 'name')); @endphp
                     <input id="group-2" type="checkbox" hidden />
-                    <label for="group-2"><span class="fa fa-caret-right"></span>@lang('redimensionamento.menuRedimensionamento')</label>
+                    <label for="group-2"><span class="fa fa-caret-right"></span>{{ $listModules[$index]['description'] }}</label>
                     <ul class="group-list">
                         <li class="subnavbar">
                             <input id="redimensionamento" type="checkbox" hidden />
@@ -80,18 +82,20 @@
 
                     {{-- ENTREGA TÉCNICA --}}
                     @if (array_search("entregaTecnica", array_column($listModules, 'name')))
+                    @php $index = array_search("entregaTecnica", array_column($listModules, 'name')); @endphp
                     <input id="group-3" type="checkbox" hidden />
                     
                     <a href="{{ route('manage_technical_delivery') }}" class="nav-link entrega-tecnica-link sub_grupo">
-                        @lang('entregaTecnica.entregaTecnica')
+                        {{ $listModules[$index]['description'] }}
                     </a>
                     @endif
 
                     {{-- ANÁLISE ENTREGA TÉCNICA --}}
                     @if (array_search("analise.entregaTecnica", array_column($listModules, 'name')))
+                    @php $index = array_search("analise.entregaTecnica", array_column($listModules, 'name')); @endphp
                     <input id="group-4" type="checkbox" hidden />
                     <a href="{{ route('manage_analysis_technical_delivery') }}" class="nav-link entrega-tecnica-link sub_grupo">
-                        </span>@lang('entregaTecnica.analise_entregaTecnica')
+                        </span>{{ $listModules[$index]['description'] }}
                     </a>
 
                     {{-- DOWNLOAD --}}

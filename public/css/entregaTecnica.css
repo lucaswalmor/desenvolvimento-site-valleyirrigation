@@ -436,6 +436,14 @@ input[type="radio"] {
     color: #fff;
 }
 
+.titulo-status-entrega-tecnica label {
+    font-size: 1.4rem !important;
+}
+
+.input-radio-motobomba label {
+    font-size: 14px;
+}
+
 @media screen and (max-width: 1420px) {
     .modal-contentt {
         margin: auto;
@@ -566,6 +574,87 @@ input[type=file] {
 .cad-lance-bloqueado {
     height: 36px;
 }
+
+/* ANALISE DE ENTREGA TECNICA INPUT RADIO  */
+
+.card label {
+    cursor: pointer;
+}
+
+.option-input {
+    margin-bottom: 10px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+    position: relative;
+    top: 13.33333px;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    transition: all 0.15s ease-out 0s;
+    background: #cbd1d8;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 0.5rem;
+    outline: none;
+    position: relative;
+    z-index: 1000;
+}
+
+.option-input:hover {
+    background: #9faab7;    
+}
+
+.option-input:checked {
+    background: #059862;
+}
+
+.option-input-reprove:checked {
+    background: red !important;
+}
+
+.option-input-reprove:checked::before {
+    content: '\f00d' !important;
+}
+
+.option-input:checked::before {
+    width: 20px;
+    height: 20px;
+    display:flex;
+    content: '\f00c';
+    font-size: 10px;
+    font-weight:bold;
+    position: absolute;
+    align-items:center;
+    justify-content:center;
+    font-family:'Font Awesome 5 Free';
+}
+
+.option-input:checked::after {
+    -webkit-animation: click-wave 0.65s;
+    -moz-animation: click-wave 0.65s;
+    animation: click-wave 0.65s;
+    background: #40e0d0;
+    content: '';
+    display: block;
+    position: relative;
+    z-index: 100;
+}
+
+.option-input.radio {
+    border-radius: 50%;
+}
+
+.option-input.radio::after {
+    border-radius: 50%;
+}
+
 /* MOBILE ENTREGA TECNICA */
 
 
@@ -592,118 +681,5 @@ input[type=file] {
     
     .espacamento-cabecalho img {
         width: 215px;
-    }
-}
-
-@media screen and (max-width:425px) {
-    .imagens {
-        display: none;
-    }
-
-    #menu > #user {
-        padding: 0px 16px;
-    }
-
-    #menu ul {
-        right: -17px;
-    }
-
-    .idioma {
-        right: -64px !important;
-    }
-
-    .dropdown-content4 {
-        min-width: 375px;
-    }
-
-    .dropbtn {
-        width: 365px;
-    }
-
-    #menu li {
-        padding: 0 13px;
-    }
-
-    #menu li i {
-        margin-left: 60px;
-    }
-
-    #menu ul li {
-        width: 299px;
-        border: none;
-        border-bottom: 1px solid #0088CE;
-    }
-
-    .dropdown-content1 {
-        min-width: 316px;
-    }
-
-    .titulo-entrega-tecnica-mobile-cadastros h4 {
-        font-size: 1.1rem !important;
-    }
-
-    .titulo-entrega-tecnica-mobile {
-        margin-top: 10px;
-    }
-
-    .titulo-entrega-tecnica-mobile h1 {
-        font-size: 2rem;
-    }
-
-    .titulo-entrega-tecnica-mobile h4 {
-        font-size: 1.5rem;
-    }
-
-    .topo {
-        height: 150px;
-    }
-
-    .mobile {
-        margin-top: 15px;
-        font-size: 8px;
-    }
-
-    .acoes .botaoTabela {
-        font-size: 13px !important;
-    }
-
-    .dados-et-mobile {      
-        margin-left: 35px !important;
-    }
-
-    .dados-et-mobile h3 {
-        font-size: 1rem;        
-        margin-left: -20px !important;
-    }
-
-    .afericao a {
-        font-size: 1rem;
-    }
-
-    .afericao .cad-lance-bloqueado {
-        font-size: 1rem;
-    }
-
-    .telo5inputfiltro {
-        margin-top: 0rem !important;
-    }
-
-    .dropbtn>i {
-        padding: 4px 25px 0 0px;
-    }
-
-    .addtablerow {
-        margin: 0;
-    }
-
-    .img_modal {
-        max-height: 300px;
-        min-height: 300px;
-        max-width: 300px;
-        min-width: 300px;
-    }
-
-    .card_img > .col-md-2 {
-        max-width: 41% !important;
     }
 }

@@ -31,6 +31,12 @@ return [
    'redimensionamento' => 'Resizing',
    'inativar' => 'Do you want to inactivate this user?',
    'ativar' => 'Do you want to activate this user?',
+   'permissions' => 'Permissions',
+   'modules' => 'Modules',
+   'rules' => 'Rules',
+   'fullAccess' => 'Full Access',
+   'noAccess' => 'No Access',
+   'readOnly' => 'Read Only',
 
    'cadastrar' => 'Create',
    'editar' => 'Edit',
@@ -40,6 +46,33 @@ return [
 
     'calc' => 'Calcular',
     'checkInput' => 'Fill out the fields correctly to perform the calculations!',
-    'checkInput2' => 'To make the calculation you need at least an area and a flow rate.'
+    'checkInput2' => 'To make the calculation you need at least an area and a flow rate.',
 
+    // meses abreviados
+    'mesAbr_jan' => 'Jan',
+    'mesAbr_fev' => 'Feb',
+    'mesAbr_mar' => 'Mar',
+    'mesAbr_abr' => 'Apr',
+    'mesAbr_mai' => 'May',
+    'mesAbr_jun' => 'Jun',
+    'mesAbr_jul' => 'Jul',
+    'mesAbr_ago' => 'Aug',
+    'mesAbr_set' => 'Sep',
+    'mesAbr_out' => 'Oct',
+    'mesAbr_nov' => 'Nov',
+    'mesAbr_dez' => 'Dec',
+    
+    // meses extenso
+    'mesExt_jan' => 'January',
+    'mesExt_fev' => 'February',
+    'mesExt_mar' => 'March',
+    'mesExt_abr' => 'April',
+    'mesExt_mai' => 'May',
+    'mesExt_jun' => 'June',
+    'mesExt_jul' => 'July',
+    'mesExt_ago' => 'August',
+    'mesExt_set' => 'September',
+    'mesExt_out' => 'October',
+    'mesExt_nov' => 'November',
+    'mesExt_dez' => 'December',
 ];

@@ -115,9 +115,4 @@ return [
     'valmont' => 'Valmont',
     'cliente' => 'Client',
     'revenda' => 'Dealer',
-    'tigre' => 'Tiger',
-    'amanco' => 'Amanco',
-    'corr_plastic' => 'Corr Plastic',
-    
-
 ];

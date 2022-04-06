@@ -85,7 +85,7 @@ class FazendaController extends Controller
         Session::put('Lista_Fazendas', $fazendas);
         Notificacao::gerarAlert('', 'fazendas.cadastro_fazenda_sucesso', 'success');
         return redirect()->route('farms_manager');
-        
+
     }
 
     public static function selectFarms()
@@ -154,6 +154,7 @@ class FazendaController extends Controller
     {
         $dados = $req->all();
         $fazenda = Fazenda::find($dados['id']);
+
         if (session()->has('fazenda')) {
             Session::forget('fazenda');
         }

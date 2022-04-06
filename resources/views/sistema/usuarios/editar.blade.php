@@ -45,10 +45,14 @@
     <div>
 
         {{-- NAVTAB'S --}}
-        <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item" role="presentation">
-                <a class="nav-link active" id="cadastro-tab" data-bs-toggle="tab" role="tab" aria-controls="cadastro"
-                    aria-current="page" aria-selected="true" href="#cadastro">@lang('comum.informacoes_navtabs')</a>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="cadastro-tab" data-toggle="tab" role="tab" aria-controls="cadastro"
+                aria-selected="true" href="#cadastro">@lang('comum.informacoes_navtabs')</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="permissions-tab" data-toggle="tab" href="#permissions" role="tab" aria-controls="permissions"
+                aria-selected="false">@lang('comum.permissions')</a>
             </li>
         </ul>
 
@@ -74,15 +78,36 @@
                                 <input type="text" class="form-control telo5ce" id="nome" name="nome" maxlength="50"
                                     value="{{ $usuarios->nome }}">
                             </div>
+
+                            @php
+                                $typeUserDesc = "";
+
+                                if($usuarios->tipo_usuario == 0){
+                                    $typeUserDesc = __("usuarios.administrador");
+                                } 
+                                else if($usuarios->tipo_usuario == 1){
+                                    $typeUserDesc = __("usuarios.gerente");
+                                }
+                                else if($usuarios->tipo_usuario == 2){
+                                    $typeUserDesc = __("usuarios.supervisor");
+                                }
+                                else if($usuarios->tipo_usuario == 3){
+                                    $typeUserDesc = __("usuarios.consultor");
+                                }
+                                else if($usuarios->tipo_usuario == 4){
+                                    $typeUserDesc = __("usuarios.assistente");
+                                }
+                            @endphp
+
                             <div class="form-group col-md-3 position telo5ce">
                                 <label for="tipo_usuario">@lang('usuarios.tipo_usuario')</label><br>
-                                <select name="tipo_usuario" id="etipo_usuario" class="form-control position telo5ce"
+                                <select name="tipo_usuario" id="tipo_usuario" class="form-control position telo5ce"
                                     onchange="etrocarDivAtivaSuperior()">
-                                    <option value="0" {{ $usuarios->tipo_usuario == '0' ? 'selected' : '' }}>Administrador</option>
-                                    <option value="1" {{ $usuarios->tipo_usuario == '1' ? 'selected' : '' }}>Gerente</option>
-                                    <option value="2" {{ $usuarios->tipo_usuario == '2' ? 'selected' : '' }}>Supervisor</option>
-                                    <option value="3" {{ $usuarios->tipo_usuario == '3' ? 'selected' : '' }}>Consultor</option>
-                                    <option value="4" {{ $usuarios->tipo_usuario == '4' ? 'selected' : '' }}>Assistente</option>
+                                    <option value="0" {{ $usuarios->tipo_usuario == '0' ? 'selected' : '' }}>@lang("usuarios.administrador")</option>
+                                    <option value="1" {{ $usuarios->tipo_usuario == '1' ? 'selected' : '' }}>@lang("usuarios.gerente")</option>
+                                    <option value="2" {{ $usuarios->tipo_usuario == '2' ? 'selected' : '' }}>@lang("usuarios.supervisor")</option>
+                                    <option value="3" {{ $usuarios->tipo_usuario == '3' ? 'selected' : '' }}>@lang("usuarios.consultor")</option>
+                                    <option value="4" {{ $usuarios->tipo_usuario == '4' ? 'selected' : '' }}>@lang("usuarios.assistente")</option>
                                 </select>
                             </div>
                             <div class="form-group col-md-3 telo5ce">
@@ -92,8 +117,13 @@
                             </div>
                             <div class="form-group col-md-3 telo5ce">
                                 <label for="pais">@lang('usuarios.pais')</label><br>
-                                <input type="text" class="form-control telo5ce" id="pais" name="pais" maxlength="60"
-                                    value="{{ $usuarios->pais }}">
+                                <input type="hidden" name="pais" id="pais" />
+                                <select required name="id_country" id="id_country" class="form-control telo5ce">
+                                    <option value="{{ $usuarios->id_country }}">{{ $usuarios->pais }}</option>
+                                @foreach ($countries as $datas)
+                                    <option value="{{ $datas['name'] }}">{{ $datas['name'] }}</option>
+                                @endforeach
+                                </select>
                             </div>
                             </div>
 
@@ -189,6 +219,67 @@
                                     @endforeach
                                 </select>
                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- PERMISSIONS --}}
+                <div class="tab-pane fade" id="permissions" role="tabpanel" aria-labelledby="permissions-tab">
+                    <div class="col-md-12">
+                        <div class="table mx-auto">
+                            <div class="form-row justify-content  ml-4 mt-4 telo5ce formulario-bocais-mobile">
+                                <div class="col-md-3">
+                                    <label for="user_name">@lang('usuarios.userName')</label>
+                                    <input type="text" class="form-control telo5ce" id="user_name" name="user_name" readonly />
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="type_user">@lang('usuarios.tipo_usuario')</label>
+                                    <input type="text" class="form-control telo5ce" id="type_user" name="type_user" readonly />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive m-auto tabela">
+                            <table class="table table-striped mx-auto text-center" id="tabelaTrechos">
+                                <thead class="headertable">
+                                    <tr class="text-center">
+                                        <th scope="col-5">@lang('comum.modules')</th>
+                                        <th scope="col-5">@lang('comum.rules')</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ( $modulesLang as $module )
+                                    <tr>
+                                        <td class="col-md-2" style="width: 40%;">
+                                            <input type="hidden" id="id_module" name="id_module[]" value="{{ $module['id_module'] }}"/>
+                                            <h4>{{ $module['description'] }}</h4>
+                                        </td>
+                                        @php
+                                            $permissionModule = 0;
+
+                                            foreach($userPermissions as $permission) {
+                                                if($permission['id_module'] == $module['id_module']){
+                                                    $permissionModule = $permission['permissions'];
+                                                    break;
+                                                }
+                                            }
+
+                                        @endphp
+                                        <td class="col-md-2" style="width: 40%;">
+                                            <select class="form-control telo5ce" name="permissions[]" id="permissions">
+                                                @foreach ( $rolesList as $roles )
+                                                    <option value="{{ $roles['id'] }}" {{ ($roles['id'] == $permissionModule) ? 'selected' : ''}}>@lang($roles['role'])</option>
+                                                @endforeach
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                                <tfoot>
+                                    <td></td>
+                                    <td></td>
+                                </tfoot>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -290,6 +381,7 @@
         });
             
         $(window).on('load', function() {
+            verifyInputs("{{ $usuarios->nome }}", "{{ $typeUserDesc }}");
             $("#coverScreen").hide();
         });
     </script>
@@ -304,6 +396,8 @@
         $(document).ready(function() {
             trocarDivAtivaSuperior();
             etrocarDivAtivaSuperior();
+            verifyInputsIsEmpty();
+            
             $('#edivSuperiores').show();
 
             $("#formAdicionar").submit(function(e) {
@@ -320,9 +414,36 @@
                 }
             });
 
+            $('#nome').on('change',function() {
+                var userName = $('#nome').val();
+                $('#user_name').val(userName);
+            });
+
+            $('#tipo_usuario').on('change',function() {
+                var typeUser = $('#tipo_usuario :selected').text();
+                $('#type_user').val(typeUser);
+            });
+
+            $('#id_country').on('change',function() {
+                var country = $('#id_country :selected').text();
+                $('#pais').val(country);
+            });
 
         });
 
+        function verifyInputs(userName, typeUser){
+                    $('#user_name').val(userName);
+            $('#type_user').val(typeUser);
+            }
+
+        function verifyInputsIsEmpty(){
+            var country = $('#id_country').val();
+
+            if( country != '' || country != null ){
+                var country = $('#id_country :selected').text();
+                $('#pais').val(country);
+            }
+        }
 
         function trocarDivAtivaSuperior() {
             var papel = $('#tipo_usuario').val();

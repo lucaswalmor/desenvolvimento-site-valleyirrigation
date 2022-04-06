@@ -22,6 +22,7 @@ class CreateTableEntregaTecnicaChavePartida extends Migration
             $table->string('acionamento', 30)->nullable();
             $table->double('regulagem_reles', 6,2)->nullable();
             $table->string('numero_serie', 20)->nullable();
+            $table->tinyInteger('drive_connect')->nullable();
             $table->softDeletes();
             $table->timestamps();
             $table->primary(['id_entrega_tecnica', 'id_chave_partida', 'id_bomba', 'id_motor'], 'key_entrega_tecnica_chave_partida');

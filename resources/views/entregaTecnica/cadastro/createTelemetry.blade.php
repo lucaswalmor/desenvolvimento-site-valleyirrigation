@@ -61,6 +61,9 @@
                     @csrf
                     <input type="hidden" name="id_entrega_tecnica" id="id_entrega_tecnica" value="{{$id_entrega_tecnica}}">
                     <input type="hidden" name="situacao" id="situacao" value="create">
+                    <!-- modificação para botão salvar sair -->
+                    <input type="hidden" name="savebuttonvalue" id="savebuttonvalue" value="save">
+
                     <div class="col-md-12" id="cssPreloader">
                         <div class="form-row justify-content-start">
                             <div class="form-group col-md-4 telo5ce entregaTecnica-checkbox">
@@ -136,7 +139,14 @@
             $('#botaosalvar').on('click', function() {
                 $('#formdados').submit();
             });
-                        
+
+            /* modificação para botão salvar sair */
+            $('#saveoutbutton').on('click', function() {  
+                $("#savebuttonvalue").val("saveout");
+                $('#formdados').submit();
+            });   
+               
+
         });
     </script>
 

@@ -333,6 +333,16 @@ class Lista extends Model
     public static function getBombaMarcaSerie() {
         $bomba_marca = [
             ['bomba_marca' => 'IMBIL', 'modelo' => 'ITA'],
+            ['bomba_marca' => 'IMBIL', 'modelo' => 'ITA 50-200'],
+            ['bomba_marca' => 'IMBIL', 'modelo' => 'ITA 80-160'],
+            ['bomba_marca' => 'IMBIL', 'modelo' => 'ITA 100-160'],
+            ['bomba_marca' => 'IMBIL', 'modelo' => 'ITA 100-260'],
+            ['bomba_marca' => 'IMBIL', 'modelo' => 'ITA 100-400'],
+            ['bomba_marca' => 'IMBIL', 'modelo' => 'ITA 125-400'],
+            ['bomba_marca' => 'IMBIL', 'modelo' => 'ITA 150-400'],
+            ['bomba_marca' => 'IMBIL', 'modelo' => 'ITA 200-330'],
+            ['bomba_marca' => 'IMBIL', 'modelo' => 'ITA 200-400'],
+            ['bomba_marca' => 'IMBIL', 'modelo' => 'ITA 250-400'],
             ['bomba_marca' => 'IMBIL', 'modelo' => 'BEW'],
             ['bomba_marca' => 'IMBIL', 'modelo' => 'INI'],
             ['bomba_marca' => 'IMBIL', 'modelo' => 'INIBLOC'],
@@ -505,9 +515,9 @@ class Lista extends Model
 
     public static function marcaTubos() {
         $marcasTubos = [
-            ['marca' => 'tigre'],
-            ['marca' => 'amanco'],
-            ['marca' => 'corr_plastic']
+            ['marca' => 'tigre', 'descricao' => 'Tigre'],
+            ['marca' => 'amanco', 'descricao' => 'Amanco'],
+            ['marca' => 'corr_plastic', 'descricao' => 'Corr Plastic']
         ];
 
         return $marcasTubos;

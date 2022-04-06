@@ -20,6 +20,7 @@ return [
     'cdc' => 'Centros de Custo',
     'proprietarios' => 'Proprietários',
     'bocais' => 'Bocais',
+    'country' => 'Países',
 
     'admin' => 'Admin',
     'acoes' => 'Ações',

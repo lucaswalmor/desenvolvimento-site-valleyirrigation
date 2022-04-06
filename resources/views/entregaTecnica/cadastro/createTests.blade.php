@@ -1,4 +1,4 @@
-@extends('_layouts._layout_site')
+ @extends('_layouts._layout_site')
 
 @section('topo_detalhe')
     <div class="container-fluid topo">
@@ -12,6 +12,7 @@
 
             {{-- BOTOES SALVAR E VOLTAR --}}
             <div class="col-6 text-right botoes mobile">
+
                 <a href="{{ route('edit_technical_delivery', $id_entrega_tecnica) }}" style="color: #3c8dbc" data-toggle="tooltip"
                     data-placement="bottom" title="@lang('entregaTecnica.voltar')">
                     <button type="button">
@@ -91,13 +92,14 @@
                                                 <div class="d-flex justify-content-center">
                                                     <div class="campos_tensao col-10">
                                                         <input type="number" name="tensao_rs_semcarga_tc" id="tensao_rs_semcarga_tc" class="form-control" value="{{ $item['tensao_rs_semcarga'] }}">
+                                                        <em class="input-ts-unidade">@lang('unidadesAcoes._v')</em>
                                                         <label for="tensao_rs_semcarga_img" id="lbtensao_rs_semcarga_img" class="label_input_file">@lang('entregaTecnica.carregar_imagem')</label>
                                                         <input type="file" onchange="myfn(this)" style="display: none;" name="tensao_rs_semcarga_img_tc" id="tensao_rs_semcarga_img" class="form-control" accept="image/gif, image/png, image/jpeg, image/pjpeg" />
                                                     </div>    
                                                     <div>
                                                         @if (count($item['tensao_rs_semcarga_img']) > 0)
                                                             <img src="{{ asset('storage/'. $item['tensao_rs_semcarga_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="tensao_rs_semcarga_preview" data-imgval="{{ $item['tensao_rs_semcarga_img'] }}" />   
-                                                        @else                                                             
+                                                           @else                                                             
                                                             <img id="tensao_rs_semcarga_preview" class="img_preview" onclick="expandImage(this)" data-imgval=""/>
                                                         @endif
                                                     </div>
@@ -107,6 +109,7 @@
                                                 <div class="d-flex justify-content-center">
                                                     <div class="campos_tensao col-10">
                                                         <input type="number" name="tensao_st_semcarga_tc" id="tensao_st_semcarga_tc" class="form-control" value="{{ $item['tensao_st_semcarga'] }}">
+                                                        <em class="input-ts-unidade">@lang('unidadesAcoes._v')</em>
                                                         <label for="tensao_st_semcarga_img" id="lbtensao_st_semcarga_img" class="label_input_file">@lang('entregaTecnica.carregar_imagem')</label>
                                                         <input type="file" onchange="myfn(this)" style="display: none;" name="tensao_st_semcarga_img_tc" id="tensao_st_semcarga_img" class="form-control" accept="image/gif, image/png, image/jpeg, image/pjpeg" />
                                                     </div>
@@ -124,6 +127,7 @@
                                                 <div class="d-flex justify-content-center">
                                                     <div class="campos_tensao col-10">
                                                         <input type="number" name="tensao_rt_semcarga_tc" id="tensao_rt_semcarga" class="form-control" value="{{ $item['tensao_rt_semcarga'] }}">
+                                                        <em class="input-ts-unidade">@lang('unidadesAcoes._v')</em>
                                                         <label for="tensao_rt_semcarga_img" id="lbtensao_rt_semcarga_img" class="label_input_file">@lang('entregaTecnica.carregar_imagem')</label>
                                                         <input type="file" onchange="myfn(this)" style="display: none;" name="tensao_rt_semcarga_img_tc" id="tensao_rt_semcarga_img" class="form-control" accept="image/gif, image/png, image/jpeg, image/pjpeg" />
                                                     </div>
@@ -144,6 +148,7 @@
                                                 <div class="d-flex justify-content-center">
                                                     <div class="campos_tensao col-10">
                                                         <input type="number" name="tensao_rs_comcarga_tc" id="tensao_rs_comcarga" class="form-control" value="{{ $item['tensao_rs_comcarga'] }}">
+                                                        <em class="input-ts-unidade">@lang('unidadesAcoes._v')</em>
                                                         <label for="tensao_rs_comcarga_img" id="lbtensao_rs_comcarga_img" class="label_input_file">@lang('entregaTecnica.carregar_imagem')</label>
                                                         <input type="file" onchange="myfn(this)" style="display: none;" name="tensao_rs_comcarga_img_tc" id="tensao_rs_comcarga_img" class="form-control" accept="image/gif, image/png, image/jpeg, image/pjpeg" />
                                                     </div>
@@ -151,6 +156,7 @@
                                                     <div>                                                           
                                                         @if (count($item['tensao_rs_comcarga_img']) > 0)
                                                             <img src="{{ asset('storage/'. $item['tensao_rs_comcarga_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="tensao_rs_comcarga_preview" data-imgval="{{ $item['tensao_rs_comcarga_img'] }}" />   
+                                                        
                                                         @else                                                             
                                                             <img id="tensao_rs_comcarga_preview" class="img_preview" onclick="expandImage(this)" data-imgval=""/>
                                                         @endif
@@ -161,6 +167,7 @@
                                                 <div class="d-flex justify-content-center">
                                                     <div class="campos_tensao col-10">
                                                         <input type="number" name="tensao_st_comcarga_tc" id="tensao_st_comcarga" class="form-control" value="{{ $item['tensao_st_comcarga'] }}">
+                                                        <em class="input-ts-unidade">@lang('unidadesAcoes._v')</em>
                                                         <label for="tensao_st_comcarga_img" id="lbtensao_st_comcarga_img" class="label_input_file">@lang('entregaTecnica.carregar_imagem')</label>
                                                         <input type="file" onchange="myfn(this)" style="display: none;" name="tensao_st_comcarga_img_tc" id="tensao_st_comcarga_img" class="form-control" accept="image/gif, image/png, image/jpeg, image/pjpeg" />
                                                     </div>
@@ -181,6 +188,7 @@
                                                 <div class="d-flex justify-content-center">
                                                     <div class="campos_tensao col-10">
                                                         <input type="number" name="tensao_rt_comcarga_tc" id="tensao_rt_comcarga" class="form-control" value="{{ $item['tensao_rt_comcarga'] }}">
+                                                        <em class="input-ts-unidade">@lang('unidadesAcoes._v')</em>
                                                         <label for="tensao_rt_comcarga_img" id="lbtensao_rt_comcarga_img" class="label_input_file">@lang('entregaTecnica.carregar_imagem')</label>
                                                         <input type="file" onchange="myfn(this)" style="display: none;" name="tensao_rt_comcarga_img_tc" id="tensao_rt_comcarga_img" class="form-control" accept="image/gif, image/png, image/jpeg, image/pjpeg" />
                                                     </div>
@@ -207,86 +215,85 @@
                         </div>
                     </div>   
 
-                    
-                        {{-- TESTE MOBOTOMBA --}}
-                        <div class="table-responsive m-auto tabela">
-                            <div class="table mx-auto">
-                                <table class="table table-striped mx-auto text-center" id="tabelaTrechos">
-                                    <thead class="headertable">
-                                        <tr class="text-center">
-                                            {{-- <th>@lang('entregaTecnica.pressoes')</th> --}}
-                                            <th colspan="2"></th>
-                                            <th>@lang('entregaTecnica.pressao_centro')</th>
-                                            <th>@lang('entregaTecnica.pressao_balanco')</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody class="campos_tabela">
-                                        @foreach ($teste_bomba as $item)
-                                                @php 
-                                                    $h = $item['id_testeh_mb'];
-                                                @endphp
-                                                <tr>
-                                                    <td colspan="2">
-                                                        <span style="font-size: 15px;"><strong>@lang('entregaTecnica.pressoes')</strong></span><br>
-                                                        <span>@lang('entregaTecnica.pressao_motobomba')</span>
-                                                    </td>
-                                                    
-                                                    <td>
-                                                        <div class="d-flex justify-content-center">
-                                                            <div class="campos_tensao col-10">
-                                                                <input type="number" name="pressao_centro" id="pressao_centro_{{$h}}" class="form-control" value="{{ $item['pressao_centro'] }}">
-                                                                <label for="pressao_centro_img_{{$h}}" id="lbpressao_centro_img_{{$h}}" class="label_input_file">@lang('entregaTecnica.carregar_imagem')</label>
-                                                                <input type="file" onchange="myfn(this)" style="display: none;" name="pressao_centro_img" id="pressao_centro_img_{{$h}}" class="form-control" accept="image/gif, image/png, image/jpeg, image/pjpeg" />
-                                                            </div>    
-                                                            <div>
-                                                                @if (count($item['pressao_centro_img']) > 0)
-                                                                    <img src="{{ asset('storage/'. $item['pressao_centro_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="pressao_centro_preview_{{$h}}" data-imgval="{{ $item['pressao_centro_img'] }}" />   
-                                                                @else                                                             
-                                                                    <img id="pressao_centro_preview_{{$h}}" class="img_preview" onclick="expandImage(this)" data-imgval=""/>
-                                                                @endif
-                                                            </div>
+                    {{-- TESTE MOBOTOMBA --}}
+                    <div class="table-responsive m-auto tabela">
+                        <div class="table mx-auto">
+                            <table class="table table-striped mx-auto text-center" id="tabelaTrechos">
+                                <thead class="headertable">
+                                    <tr class="text-center">
+                                        {{-- <th>@lang('entregaTecnica.pressoes')</th> --}}
+                                        <th colspan="2"></th>
+                                        <th>@lang('entregaTecnica.pressao_centro')</th>
+                                        <th>@lang('entregaTecnica.pressao_balanco')</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="campos_tabela">
+                                        <tr>
+                                                
+                                                <td colspan="2">
+                                                    <span style="font-size: 15px;"><strong>@lang('entregaTecnica.pressoes')</strong></span><br>
+                                                    <span>@lang('entregaTecnica.pressao_motobomba')</span>
+                                                </td>
+                                                
+                                                <td>
+                                                    <div class="d-flex justify-content-center">
+                                                        <div class="campos_tensao col-10">
+                                                            <input type="number" name="pressao_centro" id="pressao_centro_{{$h}}" class="form-control" value="{{ $teste_bomba[0]['pressao_centro'] }}">
+                                                            <em class="input-ts-unidade">@lang('unidadesAcoes._kgf/cm²')</em>
+                                                            <label for="pressao_centro_img_{{$h}}" id="lbpressao_centro_img_{{$h}}" class="label_input_file">@lang('entregaTecnica.carregar_imagem')</label>
+                                                            <input type="file" onchange="myfn(this)" style="display: none;" name="pressao_centro_img" id="pressao_centro_img_{{$h}}" class="form-control" accept="image/gif, image/png, image/jpeg, image/pjpeg" />
+                                                        </div>    
+                                                        <div>
+                                                            @if (count($teste_bomba[0]['pressao_centro_img']) > 0)
+                                                                <img src="{{ asset('storage/'. $teste_bomba[0]['pressao_centro_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="pressao_centro_preview_{{$h}}" data-imgval="{{ $teste_bomba[0]['pressao_centro_img'] }}" />   
+                                                            @else                                                             
+                                                                <img id="pressao_centro_preview_{{$h}}" class="img_preview" onclick="expandImage(this)" data-imgval=""/>
+                                                            @endif
                                                         </div>
-                                                    </td>
-                                                    <td>
-                                                        <div class="d-flex justify-content-center">
-                                                            <div class="campos_tensao col-10">
-                                                                <input type="number" name="pressao_ult_torre" id="pressao_ult_torre_{{$h}}" class="form-control" value="{{ $item['pressao_ult_torre'] }}">
-                                                                <label for="pressao_ult_torre_img_{{$h}}" id="lbpressao_ult_torre_img_{{$h}}" class="label_input_file">@lang('entregaTecnica.carregar_imagem')</label>
-                                                                <input type="file" onchange="myfn(this)" style="display: none;" name="pressao_ult_torre_img" id="pressao_ult_torre_img_{{$h}}" class="form-control" accept="image/gif, image/png, image/jpeg, image/pjpeg" />
-                                                            </div>    
-                                                            <div>
-                                                                @if (count($item['pressao_ult_torre_img']) > 0)
-                                                                    <img src="{{ asset('storage/'. $item['pressao_ult_torre_img'])}}" class="img_preview_editar" onclick="expandImage(this)" id="pressao_ult_torre_preview_{{$h}}" data-imgval="{{ $item['pressao_ult_torre_img'] }}" />   
-                                                                @else                                                             
-                                                                    <img id="pressao_ult_torre_preview_{{$h}}" class="img_preview" onclick="expandImage(this)" data-imgval=""/>
-                                                                @endif
-                                                            </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="d-flex justify-content-center">
+                                                        <div class="campos_tensao col-10">
+                                                            <input type="number" name="pressao_ult_torre" id="pressao_ult_torre_{{$h}}" class="form-control" value="{{ $teste_bomba[1]['pressao_ult_torre'] }}">
+                                                            <em class="input-ts-unidade">@lang('unidadesAcoes._kgf/cm²')</em>
+                                                            <label for="pressao_ult_torre_img_{{$h}}" id="lbpressao_ult_torre_img_{{$h}}" class="label_input_file">@lang('entregaTecnica.carregar_imagem')</label>
+                                                            <input type="file" onchange="myfn(this)" style="display: none;" name="pressao_ult_torre_img" id="pressao_ult_torre_img_{{$h}}" class="form-control" accept="image/gif, image/png, image/jpeg, image/pjpeg" />
+                                                        </div>    
+                                                        <div> 
+                                                            @if (count($teste_bomba[1]['pressao_ult_torre_img']) > 0)
+                                                                <img src="{{ asset('storage/'. $teste_bomba[1]['pressao_ult_torre_img']) }}" class="img_preview_editar" onclick="expandImage(this)" id="pressao_ult_torre_preview_{{$h}}" data-imgval="{{ $teste_bomba[1]['pressao_ult_torre_img'] }}" />   
+                                                            @else                                                             
+                                                                <img id="pressao_ult_torre_preview_{{$h}}" class="img_preview" onclick="expandImage(this)" data-imgval=""/>
+                                                            @endif
                                                         </div>
-                                                    </td>                                                
-                                                </tr> 
-                                        @endforeach           
-                                    </tbody>
-                                    <tfoot>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tfoot>
-                                </table>
-                            </div>
+                                                    </div>
+                                                </td>
+                                        </tr> 
+                                </tbody>
+                                <tfoot>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tfoot>
+                            </table>
                         </div>
+                    </div>
 
                     <div class="form-row justify-content-start">                            
                         <div class="form-group ml-3 col-md-3 telo5ce">
                             <div class="form-group">
-                                <label for="velocidade_ult_torre">@lang('entregaTecnica.velocidade_ult_torre') (M / H)</label>
+                                <label for="velocidade_ult_torre">@lang('entregaTecnica.velocidade_ult_torre')</label>
                                 <input type="number" class="form-control" name="velocidade_ult_torre" id="velocidade_ult_torre" value="{{ $velocidade['velocidade_ult_torre'] }}" required>
+                                <em class="input-ts2-unidade">@lang('unidadesAcoes._m/h')</em>
                             </div>
                         </div>
                         <div class="form-group col-md-2 telo5ce">
                             <div class="form-group">
-                                <label for="leitura_horímetro">@lang('entregaTecnica.leitura_horímetro') (H)</label>
+                                <label for="leitura_horímetro">@lang('entregaTecnica.leitura_horímetro')</label>
                                 <input type="number" class="form-control" name="leitura_horímetro" id="leitura_horímetro" value="{{ $velocidade['leitura_horímetro']}}" required>
+                                <em class="input-ts2-unidade">@lang('unidadesAcoes._h')</em>
                             </div>
                         </div>
                         
@@ -308,7 +315,6 @@
                     </div>                 
                 </div>
             </div>
-
             @foreach ($bombas as $bomba)
                 <div class="tab-pane fade" id="bomba-{{ $bomba['id_bomba'] }}" role="tabpanel" aria-labelledby="bomba_{{ $bomba['id_bomba'] }}" >
                     <div class="col-md-12" id="cssPreloader">
@@ -339,7 +345,8 @@
                                                     <td>
                                                         <div class="d-flex justify-content-center">
                                                             <div class="campos_tensao col-10">
-                                                                <input type="number" name="pressao_reg_fechado_{{$h}}" id="pressao_reg_fechado_{{$h}}" class="form-control" value="{{ $item['pressao_reg_fechado'] }}">
+                                                                <input type="number" name="pressao_reg_fechado_{{$h}}" id="pressao_reg_fechado_{{$h}}" class="form-control" value="{{ $item['pressao_reg_fechado'] ?? '' }}">
+                                                                <em class="input-ts-unidade">@lang('unidadesAcoes._kgf/cm²')</em>
                                                                 <label for="pressao_reg_fechado_img_{{$h}}" id="lbpressao_reg_fechado_img_{{$h}}" class="label_input_file">@lang('entregaTecnica.carregar_imagem')</label>
                                                                 <input type="file" onchange="myfn(this)" style="display: none;" name="pressao_reg_fechado_img_{{$h}}" id="pressao_reg_fechado_img_{{$h}}" class="form-control" accept="image/gif, image/png, image/jpeg, image/pjpeg" />
                                                             </div>    
@@ -355,7 +362,8 @@
                                                     <td>
                                                         <div class="d-flex justify-content-center">
                                                             <div class="campos_tensao col-10">
-                                                                <input type="number" name="pressao_reg_aberto_{{$h}}" id="pressao_reg_aberto" class="form-control" value="{{ $item['pressao_reg_aberto'] }}">
+                                                                <input type="number" name="pressao_reg_aberto_{{$h}}" id="pressao_reg_aberto" class="form-control" value="{{ $item['pressao_reg_aberto'] ?? '' }}">
+                                                                <em class="input-ts-unidade">@lang('unidadesAcoes._kgf/cm²')</em>
                                                                 <label for="pressao_reg_aberto_img_{{$h}}" id="lbpressao_reg_aberto_img_{{$h}}" class="label_input_file">@lang('entregaTecnica.carregar_imagem')</label>
                                                                 <input type="file" onchange="myfn(this)" style="display: none;" name="pressao_reg_aberto_img_{{$h}}" id="pressao_reg_aberto_img_{{$h}}" class="form-control" accept="image/gif, image/png, image/jpeg, image/pjpeg" />
                                                             </div>    
@@ -420,6 +428,7 @@
                                                         <div class="d-flex justify-content-center">
                                                             <div class="campos_tensao col-10">
                                                                 <input type="number" name="tensao_rs_semcarga_cp_0{{$b}}_{{$m}}_{{$i}}" id="tensao_rs_semcarga_cp_0{{$b}}_{{$m}}_{{$i}}" class="form-control" value="{{ $item['tensao_rs_semcarga'] }}">
+                                                                <em class="input-ts-unidade">@lang('unidadesAcoes._v')</em>
                                                                 <label for="tensao_rs_semcarga_cp_img_0{{$b}}_{{$m}}_{{$i}}" id="lbtensao_rs_semcarga_cp_img_0{{$b}}_{{$m}}_{{$i}}" class="label_input_file">@lang('entregaTecnica.carregar_imagem')</label>
                                                                 <input type="file" onchange="myfn(this)" style="display: none;" name="tensao_rs_semcarga_cp_img_0{{$b}}_{{$m}}_{{$i}}" id="tensao_rs_semcarga_cp_img_0{{$b}}_{{$m}}_{{$i}}" class="form-control" accept="image/gif, image/png, image/jpeg, image/pjpeg" />
                                                             </div>
@@ -437,6 +446,7 @@
                                                         <div class="d-flex justify-content-center">
                                                             <div class="campos_tensao col-10">
                                                                 <input type="number" name="tensao_st_semcarga_cp_0{{$b}}_{{$m}}_{{$i}}" id="tensao_st_semcarga_0{{$b}}_{{$m}}_{{$i}}" class="form-control" value="{{ $item['tensao_st_semcarga'] }}">
+                                                                <em class="input-ts-unidade">@lang('unidadesAcoes._v')</em>
                                                                 <label for="tensao_st_semcarga_cp_img_0{{$b}}_{{$m}}_{{$i}}"  id="lbtensao_st_semcarga_cp_img_0{{$b}}_{{$m}}_{{$i}}" class="label_input_file">@lang('entregaTecnica.carregar_imagem')</label>
                                                                 <input type="file" onchange="myfn(this)" style="display: none;" name="tensao_st_semcarga_cp_img_0{{$b}}_{{$m}}_{{$i}}" id="tensao_st_semcarga_cp_img_0{{$b}}_{{$m}}_{{$i}}" class="form-control" accept="image/gif, image/png, image/jpeg, image/pjpeg" />
                                                             </div>
@@ -454,6 +464,7 @@
                                                         <div class="d-flex justify-content-center">
                                                             <div class="campos_tensao col-10">
                                                                 <input type="number" name="tensao_rt_semcarga_cp_0{{$b}}_{{$m}}_{{$i}}" id="tensao_rt_semcarga_cp_0{{$b}}_{{$m}}_{{$i}}" class="form-control" value="{{ $item['tensao_rt_semcarga'] }}">
+                                                                <em class="input-ts-unidade">@lang('unidadesAcoes._v')</em>
                                                                 <label for="tensao_rt_semcarga_cp_img_0{{$b}}_{{$m}}_{{$i}}" id="lbtensao_rt_semcarga_cp_img_0{{$b}}_{{$m}}_{{$i}}" class="label_input_file">@lang('entregaTecnica.carregar_imagem')</label>
                                                                 <input type="file" onchange="myfn(this)" style="display: none;" name="tensao_rt_semcarga_cp_img_0{{$b}}_{{$m}}_{{$i}}" id="tensao_rt_semcarga_cp_img_0{{$b}}_{{$m}}_{{$i}}" class="form-control" accept="image/gif, image/png, image/jpeg, image/pjpeg" />
                                                             </div>
@@ -476,6 +487,7 @@
                                                         <div class="d-flex justify-content-center">
                                                             <div class="campos_tensao col-10">
                                                                 <input type="number" name="tensao_rs_comcarga_cp_0{{$b}}_{{$m}}_{{$i}}" id="tensao_rs_comcarga_cp_0{{$b}}_{{$m}}_{{$i}}" class="form-control" value="{{ $item['tensao_rs_comcarga'] }}">
+                                                                <em class="input-ts-unidade">@lang('unidadesAcoes._v')</em>
                                                                 <label for="tensao_rs_comcarga_cp_img_0{{$b}}_{{$m}}_{{$i}}" id="lbtensao_rs_comcarga_cp_img_0{{$b}}_{{$m}}_{{$i}}" class="label_input_file">@lang('entregaTecnica.carregar_imagem')</label>
                                                                 <input type="file" onchange="myfn(this)" style="display: none;" name="tensao_rs_comcarga_cp_img_0{{$b}}_{{$m}}_{{$i}}" id="tensao_rs_comcarga_cp_img_0{{$b}}_{{$m}}_{{$i}}" class="form-control" accept="image/gif, image/png, image/jpeg, image/pjpeg" />
                                                             </div>
@@ -493,6 +505,7 @@
                                                         <div class="d-flex justify-content-center">
                                                             <div class="campos_tensao col-10">
                                                                 <input type="number" name="tensao_st_comcarga_cp_0{{$b}}_{{$m}}_{{$i}}" id="tensao_st_comcarga_cp_0{{$b}}_{{$m}}_{{$i}}" class="form-control" value="{{ $item['tensao_st_comcarga'] }}">
+                                                                <em class="input-ts-unidade">@lang('unidadesAcoes._v')</em>
                                                                 <label for="tensao_st_comcarga_cp_img_0{{$b}}_{{$m}}_{{$i}}" id="lbtensao_st_comcarga_cp_img_0{{$b}}_{{$m}}_{{$i}}" class="label_input_file">@lang('entregaTecnica.carregar_imagem')</label>
                                                                 <input type="file" onchange="myfn(this)" style="display: none;" name="tensao_st_comcarga_cp_img_0{{$b}}_{{$m}}_{{$i}}" id="tensao_st_comcarga_cp_img_0{{$b}}_{{$m}}_{{$i}}" class="form-control" accept="image/gif, image/png, image/jpeg, image/pjpeg" />
                                                             </div>
@@ -510,6 +523,7 @@
                                                         <div class="d-flex justify-content-center">
                                                             <div class="campos_tensao col-10">
                                                                 <input type="number" name="tensao_rt_comcarga_cp_0{{$b}}_{{$m}}_{{$i}}" id="tensao_rt_comcarga_cp_0{{$b}}_{{$m}}_{{$i}}" class="form-control" value="{{ $item['tensao_rt_comcarga'] }}">
+                                                                <em class="input-ts-unidade">@lang('unidadesAcoes._v')</em>
                                                                 <label for="tensao_rt_comcarga_cp_img_0{{$b}}_{{$m}}_{{$i}}" id="lbtensao_rt_comcarga_cp_img_0{{$b}}_{{$m}}_{{$i}}" class="label_input_file">@lang('entregaTecnica.carregar_imagem')</label>
                                                                 <input type="file" onchange="myfn(this)" style="display: none;" name="tensao_rt_comcarga_cp_img_0{{$b}}_{{$m}}_{{$i}}" id="tensao_rt_comcarga_cp_img_0{{$b}}_{{$m}}_{{$i}}" class="form-control" accept="image/gif, image/png, image/jpeg, image/pjpeg" />
                                                             </div>
@@ -531,6 +545,7 @@
                                                         <div class="d-flex justify-content-center">
                                                             <div class="campos_tensao col-10">
                                                                 <input type="number" name="corrente_rs_comcarga_cp_0{{$b}}_{{$m}}_{{$i}}" id="corrente_rs_comcarga_cp_0{{$b}}_{{$m}}_{{$i}}" class="form-control" value="{{ $item['corrente_rs_comcarga'] }}">
+                                                                <em class="input-ts-unidade">@lang('unidadesAcoes._v')</em>
                                                                 <label for="corrente_rs_comcarga_cp_img_0{{$b}}_{{$m}}_{{$i}}" id="lbcorrente_rs_comcarga_cp_img_0{{$b}}_{{$m}}_{{$i}}" class="label_input_file">@lang('entregaTecnica.carregar_imagem')</label>
                                                                 <input type="file" onchange="myfn(this)" style="display: none;" name="corrente_rs_comcarga_cp_img_0{{$b}}_{{$m}}_{{$i}}" id="corrente_rs_comcarga_cp_img_0{{$b}}_{{$m}}_{{$i}}" class="form-control" accept="image/gif, image/png, image/jpeg, image/pjpeg" />
                                                             </div>
@@ -548,6 +563,7 @@
                                                         <div class="d-flex justify-content-center">
                                                             <div class="campos_tensao col-10">
                                                                 <input type="number" name="corrente_st_comcarga_cp_0{{$b}}_{{$m}}_{{$i}}" id="corrente_st_comcarga_cp_0{{$b}}_{{$m}}_{{$i}}" class="form-control" value="{{ $item['corrente_st_comcarga'] }}">
+                                                                <em class="input-ts-unidade">@lang('unidadesAcoes._v')</em>
                                                                 <label for="corrente_st_comcarga_cp_img_0{{$b}}_{{$m}}_{{$i}}" id="lbcorrente_st_comcarga_cp_img_0{{$b}}_{{$m}}_{{$i}}" class="label_input_file">@lang('entregaTecnica.carregar_imagem')</label>
                                                                 <input type="file" onchange="myfn(this)" style="display: none;" name="corrente_st_comcarga_cp_img_0{{$b}}_{{$m}}_{{$i}}" id="corrente_st_comcarga_cp_img_0{{$b}}_{{$m}}_{{$i}}" class="form-control" accept="image/gif, image/png, image/jpeg, image/pjpeg" />
                                                             </div>
@@ -565,6 +581,7 @@
                                                         <div class="d-flex justify-content-center">
                                                             <div class="campos_tensao col-10">
                                                                 <input type="number" name="corrente_rt_comcarga_cp_0{{$b}}_{{$m}}_{{$i}}" id="corrente_rt_comcarga_cp_0{{$b}}_{{$m}}_{{$i}}" class="form-control" value="{{ $item['corrente_rt_comcarga'] }}">
+                                                                <em class="input-ts-unidade">@lang('unidadesAcoes._v')</em>
                                                                 <label for="corrente_rt_comcarga_cp_img_0{{$b}}_{{$m}}_{{$i}}" id="lbcorrente_rt_comcarga_cp_img_0{{$b}}_{{$m}}_{{$i}}" class="label_input_file">@lang('entregaTecnica.carregar_imagem')</label>
                                                                 <input type="file" onchange="myfn(this)" style="display: none;" name="corrente_rt_comcarga_cp_img_0{{$b}}_{{$m}}_{{$i}}" id="corrente_rt_comcarga_cp_img_0{{$b}}_{{$m}}_{{$i}}" class="form-control" accept="image/gif, image/png, image/jpeg, image/pjpeg" />
                                                             </div>
@@ -633,6 +650,7 @@
             var name = $(myinput).attr("name");
             var id = $(myinput).attr("id");
             var val = $(myinput).val();
+
             switch(val.substring(val.lastIndexOf('.') + 1).toLowerCase()){
                 case 'gif': case 'jpg': case 'png': case 'jpeg':
                     readURL(myinput);
@@ -656,7 +674,6 @@
                     $('#' + id_image).css('background-image', 'none');                    
                     $('#' + id_label ).html(' @lang("entregaTecnica.alterar_imagem") ');
                 }
-                
                 reader.readAsDataURL(myinput.files[0]);
             }
         }
@@ -744,7 +761,7 @@
             $('#botaosalvar').on('click', function() {
                 $('#formdados').submit();
             }); 
-            
+
             /* modificação para botão salvar sair */
             $('#saveoutbutton').on('click', function() {  
                 $("#savebuttonvalue").val("saveout");

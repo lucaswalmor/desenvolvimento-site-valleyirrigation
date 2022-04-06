@@ -22,7 +22,7 @@
                     </button>
                 </a>
 
-                <button type="button" data-toggle="tooltip" data-placement="bottom" title="Enviar" id="botaosalvar">
+                <button type="button" data-toggle="tooltip" data-placement="bottom" title="Enviar" id="sendbutton">
                     <span class="fa-stack fa-2x">
                         <i class="fas fa-circle fa-stack-2x"></i>
                         <a href="#">
@@ -46,17 +46,67 @@
             </div>
         </div>
     </div>
+
+    {{-- MODAL CPF --}}      
+    <div class="modal fade" id="valida_cpf" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">@lang('entregaTecnica.cpf_invalido')</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ route('send_complete_technical_delivery') }}" id="dados_cpf" method="POST" enctype="multipart/form-data">          
+                @csrf 
+                <input type="hidden" name="id_entrega_tecnica" value="{{ $id_entrega_tecnica }}">
+                <div class="modal-body">
+                    <div class="form-row justify-content-start">
+                        <div class="form-group col-md-12 telo5ce">
+                            <label for="cpf_antigo">CPF {{ $entrega_tecnica['cpf_cliente'] }} @lang('entregaTecnica.msg_cpf_invalido_et')</label>
+                        </div>
+                    </div>
+                    <div class="form-row justify-content-start">
+                        <div class="form-group col-md-4 telo5ce">
+                            <input type="text" name="cpf" id="cpf" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('comum.sair')</button>
+                        <button type="button" class="btn btn-primary" id="enviar_cpf">@lang('comum.salvar')</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 @endsection
 
 @section('conteudo')
         <div id="alert">                
             @include('_layouts._includes._alert')    
         </div>  
+
+        {{-- PRELOADER --}}
+        <div id="coverScreen">
+            <div class="preloader">
+                <i class="fas fa-circle-notch fa-spin fa-2x"></i>
+                <div>@lang('comum.preloader')</div>
+            </div>
+        </div>
+
         <form action="{{ route('send_complete_technical_delivery') }}" id="formdados" method="POST" enctype="multipart/form-data">           
             @csrf 
             <input type="hidden" name="id_entrega_tecnica" value="{{ $id_entrega_tecnica }}">
 
             <div class="col-md-12" id="cssPreloader">
+                <div class="form-row justify-content-start col-md-2">
+                    <select name="assinatura_digital" id="" class="form-control">
+                        <option value="clicksign">ClickSign</option>
+                        <option value="d4sign">D4Sign</option>
+                    </select>
+                </div>
+                
                 <div class="form-row justify-content-start">
                     
                     <div class="form-group col-md-2 mt-2">
@@ -64,7 +114,7 @@
                         <input type="text" name="data_envio_entrega_tecnica" class="form-control text-center" value="{{ date('d/m/Y H:i:s') }}" readonly>
                     </div>
 
-                    <div class="form-group col-md-4">                                
+                    {{-- <div class="form-group col-md-4">                                
                         <div class="d-flex justify-content-start">
                             <div class="campos_tensao col-6 mt-2">
                                 <label for="declaracao_img">@lang('entregaTecnica.img_declaracao')</label>
@@ -79,7 +129,7 @@
                                 @endif
                             </div>
                         </div>
-                    </div>                    
+                    </div>                     --}}
                 </div>
                 <div class="form-row justify-content-start">
                     <div class="form-group col-md-12">
@@ -115,14 +165,18 @@
 @endsection
 
 @section('scripts')
+
+    {{-- MASCARA DE INPUT --}}
+    <script src="{{ asset('js/jquery.mask.js') }}"></script>
+    <script src="{{ asset('js/jquery.mask.min.js') }}"></script>
+
     <script>
-
-
-function expandImage(imagem_modal) {
+        function expandImage(imagem_modal) {
             var src_img = $(imagem_modal).attr("src");
             $("#modal_imagem img").attr("src", src_img);
             $('#modal_imagem').modal('show');
         }
+
         function myfn(myinput) {
             var name = $(myinput).attr("name");
             var id = $(myinput).attr("id");
@@ -157,10 +211,49 @@ function expandImage(imagem_modal) {
 
         $(document).ready(function() {
             $("#alert").fadeIn(300).delay(2000).fadeOut(400);
+            
+            $('#cpf').mask('000.000.000-00');
 
-            $('#botaosalvar').on('click', function() {
-                $('#formdados').submit();
-            });                        
+            $('#enviar_cpf').on('click', function() {                
+                $('#dados_cpf').submit();         
+            });
+
+            $('#sendbutton').on('click', function() {
+                var url_back = "{{ route('manage_technical_delivery') }}"
+
+                $.ajax({
+                    type:'POST',
+                    url: "{{ route('send_complete_technical_delivery') }}",
+                    data: $('#formdados').serialize(),
+                    success:function(data) {
+                        if (data['observacoes_envio'] != null) {
+                            location.href = url_back;
+                            $("#coverScreen").show();
+                            $("#cssPreloader textarea").each(function() {
+                                $(this).css('opacity', '0.2');
+                            });
+                        } else if (data['observacoes_envio'] === null){
+                            $("#coverScreen").show();
+                            $("#cssPreloader input").each(function() {
+                                $(this).css('opacity', '0.2');
+                            });
+                            $("#cssPreloader textarea").each(function() {
+                                $(this).css('opacity', '0.2');
+                            });
+                            $("#alert").fadeIn(300).delay(2000).fadeOut(400);
+                            window.location.reload();
+                        }
+                    },
+                    error:function() {
+                        jQuery.noConflict(); 
+                        $('#valida_cpf').modal("show");
+                    },
+                });
+            });
         });
+            
+            $(window).on('load', function() {
+                $("#coverScreen").hide();
+            });
     </script>
 @endsection

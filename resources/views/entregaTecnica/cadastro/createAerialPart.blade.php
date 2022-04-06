@@ -37,6 +37,7 @@
                         <i class="fas fa-save fa-stack-1x fa-inverse"style=" margin-left:-6px;"></i>
                     </span>
                 </button>
+
             </div>
         </div>
     </div>
@@ -168,12 +169,13 @@
                             <div class="form-group col-md-3 telo5ce">
                                 <label for="giro">@lang('entregaTecnica.giro')</label>
                                 <input type="number" max="360" name="giro" id="giro" class="form-control" value="{{ $entrega_tecnica_dados['giro'] }}">
+                                <em class="input-unidade">@lang('unidadesAcoes._graus')</em>
                             </div>
 
                             <div class="form-group col-md-3 telo5ce">
                                 <label for="injeferd">@lang('entregaTecnica.injeferdPotencia')</label>
                                 <select name="injeferd" class="form-control" id="injeferd">
-                                    <option value="1">@lang('entregaTecnica.opcional')</option>
+                                    <option value="">@lang('entregaTecnica.opcional')</option>
                                     @foreach ($injeferdPotencia as $item)
                                         <option value="{{ $item['potencia'] }}" {{ $item['potencia'] == $entrega_tecnica_dados['injeferd'] ? 'selected' : ''}}> {{ $item['potencia'] }}</option>
                                     @endforeach
@@ -183,7 +185,7 @@
                             <div class="form-group col-md-3 telo5ce">
                                 <label for="canhao_final_valvula">@lang('entregaTecnica.canhaoFinal')</label>
                                 <select name="canhao_final_valvula" class="form-control" id="canhao_final_valvula">
-                                    <option value="1">@lang('entregaTecnica.opcional')</option>
+                                    <option value="">@lang('entregaTecnica.opcional')</option>
                                     @foreach ($canhaoFinal as $item)
                                         <option value="{{ $item['tipo'] }}" {{ $item['tipo'] == $entrega_tecnica_dados['canhao_final_valvula'] ? 'selected' : ''}}>{{ __('listas.' . $item['tipo'] ) }}</option>
                                     @endforeach
@@ -195,17 +197,17 @@
                             <div class="form-group col-md-3 telo5ce">
                                 <label for="parada_automatica">@lang('entregaTecnica.parada_automatica')</label>
                                 <select name="parada_automatica" class="form-control" id="parada_automatica">
-                                    <option value="1">@lang('entregaTecnica.opcional')</option>
+                                    <option value="">@lang('entregaTecnica.opcional')</option>
                                     <option value="0" {{ '0' == $entrega_tecnica_dados['parada_automatica'] ? 'selected' : ''}}>@lang('comum.nao')</option>
-                                    <option value="2" {{ '2' == $entrega_tecnica_dados['parada_automatica'] ? 'selected' : ''}}>@lang('comum.sim')</option>
+                                    <option value="1" {{ '1' == $entrega_tecnica_dados['parada_automatica'] ? 'selected' : ''}}>@lang('comum.sim')</option>
                                 </select>
                             </div>           
                             <div class="form-group col-md-3 telo5ce">
                                 <label for="barreira_seguranca">@lang('entregaTecnica.barreira_seguranca')</label>
                                 <select name="barreira_seguranca" class="form-control" id="barreira_seguranca">
-                                    <option value="1">@lang('entregaTecnica.opcional')</option>
+                                    <option value="">@lang('entregaTecnica.opcional')</option>
                                     <option value="0" {{ '0' == $entrega_tecnica_dados['barreira_seguranca'] ? 'selected' : ''}}>@lang('comum.nao')</option>
-                                    <option value="2" {{ '2' == $entrega_tecnica_dados['barreira_seguranca'] ? 'selected' : ''}}>@lang('comum.sim')</option>
+                                    <option value="1" {{ '1' == $entrega_tecnica_dados['barreira_seguranca'] ? 'selected' : ''}}>@lang('comum.sim')</option>
                                 </select>
                             </div>       
                         </div>

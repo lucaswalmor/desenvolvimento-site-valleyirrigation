@@ -29,6 +29,7 @@ return [
     'confirmar_senha' => 'Confirm Password',
     'cadastrar' => 'Register',
     'voltar' => 'Back',
+    'userName' => 'User Name',
 
     'situacao' => 'Status',
     'editar' => 'Edit',

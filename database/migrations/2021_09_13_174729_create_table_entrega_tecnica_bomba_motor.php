@@ -31,6 +31,7 @@ class CreateTableEntregaTecnicaBombaMotor extends Migration
             $table->double('ip', 6,2)->nullable();
             $table->double('rendimento', 6,2)->nullable();
             $table->double('cos', 6,2)->nullable();
+            $table->string('plaqueta_img', 200)->nullable();
             $table->softDeletes();
             $table->timestamps();
             $table->primary(['id_entrega_tecnica', 'id_bomba', 'id_motor'], 'key_entrega_tecnica_bomba_motor');

@@ -64,7 +64,8 @@
                         <td>{{ __('entregaTecnica.' . $item['tipo_entrega_tecnica']) }}</td>
                         <td>{{ $item->numero_pedido }}</td>
                         <td>{{ $item['nome_proprietario'] }}</td>
-                        <td>{{ $item['nome_usuario'] }}</td>
+                        {{-- <td>{{ $item['nome_usuario'] }}</td> --}}
+                        <td>{{ $item['nome_tecnico'] }}</td>
                         <td>
                             @if ($item['status'] === 0)
                                 @lang('entregaTecnica.nao_iniciada')
@@ -86,12 +87,12 @@
                             @else
                                 <a href="{{ route('edit_technical_delivery', $item->id ) }}" style="font-size: 20px;"><button type="button" class="botaoTabela"><i class="fa fa-pen"></i></button></a>
                             @endif
+                            <a href="{{ route('datasheet_technical_delivery', $item->id ) }}" target="_blank" style="font-size: 20px"><button type="button" class="botaoTabela"><i class="far fa-file-pdf"></i></button></a>
                             
-                            @if ($item['status'] == 0 || $item['status'] == 1)
+                            {{-- @if ($item['status'] == 0 || $item['status'] == 1)
                                 <button type="button" class="botaoTabela" style="font-size: 20px; cursor: default;" data-toggle="modal" data-target="#alert_cad_inco"><i class="far fa-file-pdf"></i></button>
                             @else
-                                <a href="{{ route('datasheet_technical_delivery', $item->id ) }}" target="_blank" style="font-size: 20px"><button type="button" class="botaoTabela"><i class="far fa-file-pdf"></i></button></a>
-                            @endif
+                            @endif --}}
                         </td> 
                     </tr>
                 @endforeach

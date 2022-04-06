@@ -14,7 +14,6 @@ return [
     'sair' => 'Sair',
     'idioma' => 'Idioma',
     'fazenda_selecionada' => 'Fazenda Selecionada',
-
     'erro_carregar_fazendas' => 'Houve um problema ao carregar as fazendas',
     'selecionar_fazenda' => 'Selecionar Fazenda',
 
@@ -33,6 +32,12 @@ return [
     'excluir' => 'Deseja realmente excluir?',
     'inativar' => 'Deseja inativar este usuário?',
     'ativar' => 'Deseja ativar este usuário?',
+    'permissions' => 'Permissões',
+    'modules' => 'Módulos',
+    'rules' => 'Regras',
+    'fullAccess' => 'Acesso Total',
+    'noAccess' => 'Sem Acesso',
+    'readOnly' => 'Apenas Visualização',
 
     'cadastrar' => 'Cadastrar',
     'editar' => 'Editar',
@@ -42,5 +47,33 @@ return [
 
     'calc' => 'Calculate',
     'checkInput' => 'Preencha os Campos Corretamente para Realização dos Cálculos!',
-    'checkInput2' => 'Para realizar o cálculo é necessário pelo menos uma área e uma vazão.'
+    'checkInput2' => 'Para realizar o cálculo é necessário pelo menos uma área e uma vazão.',
+    
+    // meses abreviados
+    'mesAbr_jan' => 'Jan',
+    'mesAbr_fev' => 'Fev',
+    'mesAbr_mar' => 'Mar',
+    'mesAbr_abr' => 'Abr',
+    'mesAbr_mai' => 'Mai',
+    'mesAbr_jun' => 'Jun',
+    'mesAbr_jul' => 'Jul',
+    'mesAbr_ago' => 'Ago',
+    'mesAbr_set' => 'Set',
+    'mesAbr_out' => 'Out',
+    'mesAbr_nov' => 'Nov',
+    'mesAbr_dez' => 'Dez',
+
+    // meses extenso
+    'mesExt_jan' => 'Janeiro',
+    'mesExt_fev' => 'Fevereiro',
+    'mesExt_mar' => 'Março',
+    'mesExt_abr' => 'Abril',
+    'mesExt_mai' => 'Maio',
+    'mesExt_jun' => 'Junho',
+    'mesExt_jul' => 'Julho',
+    'mesExt_ago' => 'Agosto',
+    'mesExt_set' => 'Setembro',
+    'mesExt_out' => 'Outubro',
+    'mesExt_nov' => 'Novembro',
+    'mesExt_dez' => 'Dezembro',
 ];

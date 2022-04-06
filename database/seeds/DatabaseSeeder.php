@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@valmont.com', 
             'password' => Hash::make('123456'), 
             'situacao' => '1', 
+            'id_country' => '24'
         ]);
     }
 }

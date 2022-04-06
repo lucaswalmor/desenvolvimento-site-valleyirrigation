@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Classes\Sistema\Proprietario;
 use App\Classes\Constantes\Notificacao;
+use App\Classes\Comum\Validates;
 use Auth;
 
 
@@ -23,6 +24,7 @@ class ProprietarioController extends Controller
                 $proprietario['tipo_pessoa'] = __('proprietarios.pessoa_juridica');
             }
         }
+        
         return view('sistema.proprietarios.gerenciar', compact('proprietarios', 'filtro'));
     }
 
@@ -60,7 +62,9 @@ class ProprietarioController extends Controller
 
     public function saveOwner(Request $req)
     {
-        // $dados = $req->all();
+        $dados = $req->all();
+        Validates::validateCPF($dados['documento']);
+        
         Proprietario::create($req->all());
         Notificacao::gerarAlert('', 'proprietarios.cadastro_proprietario_sucesso', 'success');
         return redirect()->route('owner_manager');
@@ -73,6 +77,9 @@ class ProprietarioController extends Controller
 
     public function updateOwner(Request $req){
         $dados = $req->all();
+        
+        Validates::validateCPF($dados['documento']);
+        
         Proprietario::find($dados['id'])->update($dados);
         Notificacao::gerarAlert('', 'proprietarios.editar_proprietario_sucesso', 'success');
         return redirect()->route('owner_manager');

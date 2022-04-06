@@ -17,8 +17,7 @@ class CreateTableEntregaTecnicaAnaliseFalha extends Migration
             $table->bigInteger('id_entrega_tecnica')->foreing('id_entrega_tecnica')->references('id')->on('entrega_tecnica');
             $table->increments('id_analise_divergencia');
             $table->tinyInteger('versao')->nullable();
-            $table->string('divergencia')->nullable();
-            $table->string('campo')->nullable();
+            $table->text('divergencia')->nullable();
             $table->text('observacoes')->nullable();
             $table->softDeletes();
             $table->timestamps();

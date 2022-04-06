@@ -13,6 +13,6 @@ class EntregaTecnicaBombaMotor extends Model
     protected $dates =  ['deleted_at'];
     protected $fillable = [
         'id_entrega_tecnica', 'id_motor', 'id_bomba',  'tipo_motor', 'marca', 'modelo', 'potencia', 'rotacao', 'tensao', 'numero_serie',
-        'lp_ln', 'classe_isolamento', 'corrente_nominal', 'fs', 'ip', 'rendimento', 'cos'
+        'lp_ln', 'classe_isolamento', 'corrente_nominal', 'fs', 'ip', 'rendimento', 'cos', 'plaqueta_img'
     ];
 }

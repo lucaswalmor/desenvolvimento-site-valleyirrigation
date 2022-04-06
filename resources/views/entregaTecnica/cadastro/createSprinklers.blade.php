@@ -101,6 +101,7 @@
                             </div>
                            
                         </div>
+
                         {{-- REGULADOR --}}
                         <div class="form-row justify-content-start">
                             <div class="form-group col-md-6">
@@ -215,17 +216,17 @@
                                 <div class="card-body">
                                     <div class="form-row justify-content-start">   
                                         <div class="form-group col-md-2 telo5ce" id="canhao-final-marca-div" >
-                                            <label for="canhao_final">@lang('entregaTecnica.marca')</label>
-                                            <select name="canhao_final" class='form-control' id="canhao_final" >
+                                            <label for="canhao_final_marca">@lang('entregaTecnica.marca')</label>
+                                            <select name="canhao_final_marca" class='form-control' id="canhao_final_marca" >
                                                 <option value=""></option>
-                                                @foreach ($aspersor_canhao_final as $item)
-                                                    <option value="{{ $item['marca'] }}" {{ $item['marca'] == $aspersores['aspersor_canhao_final'] ? 'selected' : ''}}>{{  __('listas.' . $item['marca'] ) }}</option>
+                                                @foreach ($aspersor_canhao_final_marca as $item)
+                                                    <option value="{{ $item['marca'] }}" {{ $item['marca'] == $aspersores['aspersor_canhao_final_marca'] ? 'selected' : ''}}>{{  __('listas.' . $item['marca'] ) }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group col-md-2 telo5ce" id="canhao-final-modelo-div" >
-                                            <label for="canhao_final_bocal">@lang('entregaTecnica.modelo')</label>
-                                            <input type="text" name="canhao_final_bocal" id="canhao_final_bocal" class="form-control" value="{{$aspersores['aspersor_canhao_final_bocal']}}">
+                                            <label for="canhao_final_modelo">@lang('entregaTecnica.modelo')</label>
+                                            <input type="text" name="canhao_final_modelo" id="canhao_final_modelo" class="form-control" value="{{$aspersores['aspersor_canhao_final_modelo']}}">
                                         </div>
                                     </div>
                                 </div>
@@ -267,14 +268,17 @@
                                         <div class="form-group col-md-2 telo5ce">
                                             <label for="mb_booster_rotor">@lang('entregaTecnica.rotor')</label>
                                             <input type="text" name="mb_booster_rotor" id="mb_booster_rotor" class="form-control" value="{{$aspersores['aspersor_mbbooster_rotor']}}">
+                                            <em class="input-unidade">@lang('unidadesAcoes._mm')</em>
                                         </div>
                                         <div class="form-group col-md-2 telo5ce">
                                             <label for="mb_booster_potencia">@lang('entregaTecnica.potencia')</label>
                                             <input type="text" name="mb_booster_potencia" id="mb_booster_potencia" class="form-control" value="{{ $aspersores['aspersor_mbbooster_potencia']}}">
+                                            <em class="input-unidade">@lang('unidadesAcoes._cv')</em>
                                         </div>                            
                                         <div class="form-group col-md-2 telo5ce">
                                             <label for="mb_booster_corrente">@lang('entregaTecnica.corrente')</label>
                                             <input type="text" name="mb_booster_corrente" id="mb_booster_corrente" class="form-control" value="{{ $aspersores['aspersor_mbbooster_corrente']}}">
+                                            <em class="input-unidade">@lang('unidadesAcoes._A')</em>
                                         </div>
                                     </div>
                                 </div>

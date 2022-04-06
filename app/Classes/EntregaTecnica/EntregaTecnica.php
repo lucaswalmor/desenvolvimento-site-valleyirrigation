@@ -2,6 +2,7 @@
 
 namespace App\Classes\EntregaTecnica;
 
+use App\Classes\Sistema\Fazenda;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 

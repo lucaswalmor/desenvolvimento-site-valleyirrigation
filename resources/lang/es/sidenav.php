@@ -20,6 +20,7 @@ return [
     'cdc' => 'Centros de costo',
     'proprietarios' => 'Propietarios',
     'bocais' => 'Boquillas',
+    'country' => 'Paises',
 
     'admin' => 'Administración',
     'acoes' => 'Comportamiento',

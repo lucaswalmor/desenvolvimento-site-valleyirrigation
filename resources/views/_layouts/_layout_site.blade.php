@@ -13,7 +13,7 @@
     </header>
 
     <main>
-        <section>
+        {{-- <section> --}}
             <div>
                 @yield('topo_detalhe')
             </div>
@@ -22,7 +22,7 @@
                     @yield('conteudo')
                 </div>
             </div>
-        </section>
+        {{-- </section> --}}
     </main>
 
     <footer>
@@ -117,7 +117,6 @@
 
     // SETAR ROTAS PARA REDIRECIONAMENTO DAS FAZENDAS LISTADAS
     function setFazenda(IdFazenda) {
-
         $.ajax({
             type: "POST",
             url: "{{ route('farm_setFarm') }}",
@@ -138,6 +137,8 @@
     }
 
     // FILTRO DE BUSCA DAS FAZENDAS LISTADAS
+
+
 
     function filterFunction() {
         var input, filter, ul, li, a, i;

@@ -2,6 +2,7 @@
 
 body {
     font-family: 'Roboto Condensed', sans-serif !important;
+    overflow-x: hidden;
 }
 
 body h1 {
@@ -75,4 +76,72 @@ form div input {
 .tooltip-et-testes:hover:after {
     margin-bottom: 10px;
     display:block;
+}
+
+.input-unidade {
+    position: absolute;
+    color: #3C8DBC;
+    right: 25px;
+    bottom: 5px;
+    z-index: 200;
+    font-size: 0.75em;
+    font-style: normal;
+    font-weight: bold;
+    transition: 0.3s;    
+    opacity: 0.6;
+}
+
+.input-ts-unidade {
+    position: absolute;
+    color: #3C8DBC;
+    right: 25px;
+    bottom: 40px;
+    z-index: 200;
+    font-size: 1.2em;
+    font-style: normal;
+    font-weight: bold;
+    transition: 0.3s;    
+    opacity: 0.6;
+}
+
+.input-ts2-unidade {
+    position: absolute;
+    color: #3C8DBC;
+    right: 25px;
+    bottom: 13px;
+    z-index: 200;
+    font-size: 1em;
+    font-style: normal;
+    font-weight: bold;
+    transition: 0.3s;    
+    opacity: 0.6;
+}
+
+.input-tb-unidade {
+    position: absolute;
+    color: #3C8DBC;
+    right: 25px;
+    bottom: 14px;
+    z-index: 200;
+    font-size: 1.2em;
+    font-style: normal;
+    font-weight: bold;
+    transition: 0.3s;    
+    opacity: 0.6;
+}
+
+.form-group input[type="number"]:hover + .input-unidade { right: 40px; }
+.form-group input[type="number"]:focus + .input-unidade { right: 40px; }
+
+.campos_tensao input[type="number"]:hover + .input-ts-unidade { right: 48px; }
+.campos_tensao input[type="number"]:focus + .input-ts-unidade { right: 48px; }
+
+.form-group input[type="number"]:hover + .input-ts2-unidade { right: 40px; }
+.form-group input[type="number"]:focus + .input-ts2-unidade { right: 40px; }
+
+td input[type="number"]:hover + .input-tb-unidade { right: 40px; }
+td input[type="number"]:focus + .input-tb-unidade { right: 40px; }
+
+textarea {
+    font-size: 1.4rem !important;
 }

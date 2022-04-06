@@ -225,6 +225,15 @@
         span {
             text-align: start;
         }
+
+        .borda-campos-vazios {
+            border-bottom: 1px solid black;
+        }
+
+        .borda-campos-vazios td {
+            border-bottom: 1px solid black;
+            border-right: 1px solid black;
+        }
     </style>
 </head>
 
@@ -320,97 +329,108 @@
                                     {{ $item['numero_pedido'] }}
                                 </div>
                             </div>
-                            {{-- DADOS DA PARTE AÉREA --}}     
+                            {{-- DADOS DA CARACTERÍSTICA GERAIS --}}     
                             <div class="text-center cor-fundo">
                                 <h4>@lang('entregaTecnica.caracteristicas_gerais'){{ $texto_composicao }}</h4>
                             </div>
                 
                             <div class="row">
-                                <div class="col-md-2"><b>@lang('entregaTecnica.numero_serie')</b>:</div>
-                                <div class="col-md-2">
-                                    <span>{{ $item['numero_serie']}}</span>
-                                </div>
-                                <div class="col-md-2"><b>@lang('entregaTecnica.modelo_equipamento')</b>:</div>
-                                <div class="col-md-2">
-                                    <span>{{ $item['modelo_equipamento']}}</span>
-                                </div>
-                                <div class="col-md-2"><b>@lang('entregaTecnica.tipo_equipamento')</b>:</div>
-                                <div class="col-md-2">
-                                    <span>{{ __('listas.'. $item['tipo_equipamento'] )}}</span>
-                                </div>
+                                <div class="col-md-2"><b>@lang('entregaTecnica.numero_serie'):</b></div>
+                                @if(isset($item['numero_serie'])) <div class="col-md-2"> <span>{{ $item['numero_serie']}}</span> </div>
+                                    @else <div class="col-md-2 borda-campos-vazios"></div> 
+                                @endif
+
+                                <div class="col-md-2"><b>@lang('entregaTecnica.modelo_equipamento'):</b></div>
+                                @if(isset($item['modelo_equipamento'])) <div class="col-md-2"> <span>{{ $item['modelo_equipamento']}}</span> </div>
+                                    @else <div class="col-md-2 borda-campos-vazios"></div> 
+                                @endif
+
+                                <div class="col-md-2"><b>@lang('entregaTecnica.tipo_equipamento'):</b></div>
+                                @if(isset($item['tipo_equipamento'])) <div class="col-md-2"> <span>{{ __('listas.'. $item['tipo_equipamento'] )}}</span> </div>
+                                    @else <div class="col-md-2 borda-campos-vazios"></div> 
+                                @endif
                             </div>
                             
                             <div class="row">
                                 <div class="col-md-2"><b>@lang('entregaTecnica.opcao_equipamento'):</b></div>
-                                <div class="col-md-2">
-                                    <span>{{ __('listas.'. $item['tipo_equipamento_op1'])}}</span>
-                                </div>
+                                @if(isset($item['tipo_equipamento_op1'])) <div class="col-md-2"> <span>{{ __('listas.'. $item['tipo_equipamento_op1'])}}</span> </div>
+                                    @else <div class="col-md-2 borda-campos-vazios"></div> 
+                                @endif
                                 
-                                <div class="col-md-2"><b>@lang('entregaTecnica.painel')</b>:</div>
-                                <div class="col-md-2" style="font-size: 12px;">
-                                    <span>{{ $item['painel']}}</span>
-                                </div>
+                                <div class="col-md-2"><b>@lang('entregaTecnica.painel'):</b></div>
+                                @if(isset($item['painel'])) <div class="col-md-2" style="font-size: 12px;"> <span>{{ $item['painel']}}</span> </div>
+                                    @else <div class="col-md-2 borda-campos-vazios"></div> 
+                                @endif
+
                                 <div class="col-md-2"><b>@lang('entregaTecnica.balanco'):</b></div>
-                                <div class="col-md-2">
-                                    <span>{{ $item['balanco_comprimento']}}</span>
-                                </div>
+                                @if(isset($item['balanco_comprimento'])) <div class="col-md-2"> <span>{{ $item['balanco_comprimento']}}</span> </div>
+                                    @else <div class="col-md-2 borda-campos-vazios"></div> 
+                                @endif
                             </div>
                 
                             <div class="row">
-                                <div class="col-md-2"><b>@lang('entregaTecnica.altura')</b>:</div>
-                                <div class="col-md-2">
-                                    <span>{{ $item['altura_equipamento_nome']}}</span>
-                                </div>
-                                <div class="col-md-2"><b>@lang('entregaTecnica.corrente')</b>:</div>
-                                <div class="col-md-2">
-                                    <span>{{ $item['corrente_fusivel_nh500v']}}</span>
-                                </div>
-                                <div class="col-md-2"><b>@lang('entregaTecnica.pneus')</b>:</div>
-                                <div class="col-md-2">
-                                    <span>{{ $item['pneus']}}</span>
-                                </div>
+                                <div class="col-md-2"><b>@lang('entregaTecnica.altura'):</b></div>
+                                @if(isset($item['altura_equipamento_nome'])) <div class="col-md-2"> <span>{{ $item['altura_equipamento_nome']}}</span> </div>
+                                    @else <div class="col-md-2 borda-campos-vazios"></div> 
+                                @endif
+
+                                <div class="col-md-2"><b>@lang('entregaTecnica.corrente'):</b></div>
+                                @if(isset($item['corrente_fusivel_nh500v'])) <div class="col-md-2"> <span>{{ $item['corrente_fusivel_nh500v']}}</span> </div>
+                                    @else <div class="col-md-2 borda-campos-vazios"></div> 
+                                @endif
+
+                                <div class="col-md-2"><b>@lang('entregaTecnica.pneus'):</b></div>
+                                @if(isset($item['pneus'])) <div class="col-md-2"> <span>{{ $item['pneus']}}</span> </div>
+                                    @else <div class="col-md-2 borda-campos-vazios"></div> 
+                                @endif
                             </div>
                 
                             <div class="row">
-                                <div class="col-md-2"><b>@lang('entregaTecnica.giro')</b>:</div>
-                                <div class="col-md-2">
-                                    <span>{{ $item['giro']}}</span>
-                                </div>
+                                <div class="col-md-2"><b>@lang('entregaTecnica.giro'):</b></div>
+                                @if(isset($item['giro']))<div class="col-md-2"> <span>{{ $item['giro']}} @lang('unidadesAcoes._graus')</span> </div>
+                                    @else <div class="col-md-2 borda-campos-vazios"></div> 
+                                @endif
                             </div>                    
                             
                             <div class="row">
-                                @if ($item['telemetria'] != 1)
-                                    <div class="col-md-2"><b>@lang('entregaTecnica.telemetria')</b>:</div>
+                                @if($item['status'] == 0 || $item['status'] == 1)
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.injeferdPotencia'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @else 
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.injeferdPotencia'):</b></div>
                                     <div class="col-md-2">
-                                        <span>{{ $item['telemetria']}}</span>
+                                        <span>{{ $item['injeferd'] ? __('comum.sim') : __('comum.nao')}}</span>
                                     </div>
                                 @endif
-                                @if ($item['injeferd'] != 1)
-                                    <div class="col-md-2"><b>@lang('entregaTecnica.injeferd')</b>:</div>
+
+                                @if($item['status'] == 0 || $item['status'] == 1)
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.canhaoFinal'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @else 
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.canhaoFinal'):</b></div>
                                     <div class="col-md-2">
-                                        <span>{{ $item['injeferd']}}</span>
+                                        <span>{{ $item['canhao_final_valvula'] ? __('comum.sim') : __('comum.nao')}}</span>
                                     </div>
                                 @endif
-                                @if ($item['canhao_final_valvula'] != 1)
-                                    <div class="col-md-2"><b>@lang('entregaTecnica.canhaoFinal')</b>:</div>
+
+                                @if($item['status'] == 0 || $item['status'] == 1)
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.parada_automatica'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @else 
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.parada_automatica'):</b></div>
                                     <div class="col-md-2">
-                                        <span>{{ $item['canhao_final_valvula']}}</span>
+                                        <span>{{ $item['parada_automatica'] ? __('comum.sim') : __('comum.nao') }}</span>
                                     </div>
                                 @endif
                             </div>
                 
-                            <div class="row">
-                                @if ($item['parada_automatica'] != 1)
-                                    <div class="col-md-2"><b>@lang('entregaTecnica.parada_automatica')</b>:</div>
+                            <div class="row mb-3">
+                                @if (isset($item['barreira_seguranca']))
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.barreira_seguranca'):</b></div>
                                     <div class="col-md-2">
-                                        <span>{{ $item['parada_automatica']}}</span>
+                                        <span>{{ $item['barreira_seguranca'] ? __('comum.sim') : __('comum.nao') }} </span>
                                     </div>
-                                @endif
-                                @if ($item['barreira_seguranca'] != 1)
-                                    <div class="col-md-2"><b>@lang('entregaTecnica.barreira_seguranca')</b>:</div>
-                                    <div class="col-md-2">
-                                        <span>{{ $item['barreira_seguranca']}}</span>
-                                    </div>
+                                    @else <div class="col-md-2"><b>@lang('entregaTecnica.barreira_seguranca'):</b></div> <div class="col-md-2 borda-campos-vazios"></div> 
                                 @endif
                             </div>
                             <!------------------------------------------------------------------------------------------------>
@@ -422,7 +442,7 @@
                                 <h4>@lang('entregaTecnica.lances')</h4>
                             </div>
 
-                            <div class="d-flex justify-content-center col-md-12">
+                            <div class="d-flex justify-content-center col-md-12 mb-3">
                                 <table class="col-md-12 text-center">
                                     <thead>
                                         <tr>
@@ -430,23 +450,49 @@
                                             <th>@lang('entregaTecnica.qtd_tubos')</th>
                                             <th>@lang('entregaTecnica.motorredutor_potencia')</th>
                                             <th>@lang('entregaTecnica.motorredutor_marca')</th>
+                                            <th>@lang('entregaTecnica.numero_serie')</th>
                                             <th>@lang('entregaTecnica.comprimento_lance')</th>
-                                            <th>@lang('entregaTecnica.comprimento_total')</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($lances as $lance) 
-                                                <tr>
-                                                <td>{{ $lance['diametro_tubo']}}</td>
-                                                <td>{{ $lance['quantidade_tubo']}}</td>
-                                                <td>{{ $lance['motorredutor_potencia']}}</td>
-                                                <td>{{ $lance['motorredutor_marca']}}</td>
-                                                <td>{{ $lance['comprimento_lance']}}</td>
-                                                <td>{{ $lance['quantidade_tubo'] * $lance['comprimento_lance'] }}</td>
+                                        @if(count($lances) > 0)
+                                            @foreach ($lances as $lance) 
+                                                    <tr>
+                                                    <td>{{ $lance['diametro_tubo']}}</td>
+                                                    <td>{{ $lance['quantidade_tubo']}}</td>
+                                                    <td>{{ $lance['motorredutor_potencia']}}</td>
+                                                    <td>{{ $lance['motorredutor_marca']}}</td>
+                                                    <td>{{ $lance['numero_serie'] }}</td>
+                                                    <td>{{ $lance['comprimento_lance']}} @lang('unidadesAcoes._m')</td>
+                                                </tr>
+                                            @endforeach
+                                        @else 
+                                            <tr class="borda-campos-vazios">
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
                                             </tr>
-                                        @endforeach
+                                            <tr class="borda-campos-vazios">
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                            </tr>
+                                            <tr class="borda-campos-vazios">
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                            </tr>
+                                        @endif
                                     </tbody>
-
                                 </table>
                             </div>
                         </div>
@@ -459,130 +505,123 @@
                                 <h4>@lang('entregaTecnica.aspersores')</h4>
                             </div>
                             <div class="row">
-                                <div class="col-md-2">
-                                    <b>@lang('entregaTecnica.marca_aspersor')</b>:
-                                </div>
-                                <div class="col-md-2 pr-5">
-                                    <span>{{ __('listas.'. $item['aspersor_marca']) }}</span>
-                                </div>
-                                <div class="col-md-2">
-                                    <b>@lang('entregaTecnica.modelo_aspersor')</b>:
-                                </div>
-                                <div class="col-md-2 pr-5">
-                                    <span>{{ $item['aspersor_modelo']}}</span>
-                                </div>
-                                <div class="col-md-2">
-                                    <b>@lang('entregaTecnica.defletor')</b>:
-                                </div>
-                                <div class="col-md-2 pr-5">
-                                    <span>{{ __('listas.'. $item['aspersor_defletor']) }}</span>
-                                </div>
+                                <div class="col-md-2"><b>@lang('entregaTecnica.marca_aspersor'):</b></div>
+                                @if(isset($item['aspersor_marca'])) <div class="col-md-2 pr-5"> <span>{{ __('listas.'. $item['aspersor_marca']) }}</span> </div>
+                                    @else <div class="col-md-2 borda-campos-vazios"></div> 
+                                @endif
+
+                                <div class="col-md-2"><b>@lang('entregaTecnica.modelo_aspersor'):</b></div>
+                                @if(isset($item['aspersor_modelo'])) <div class="col-md-2 pr-5"> <span>{{ $item['aspersor_modelo']}}</span> </div>
+                                    @else <div class="col-md-2 borda-campos-vazios"></div> 
+                                @endif
+
+                                <div class="col-md-2"><b>@lang('entregaTecnica.defletor'):</b></div>
+                                @if(isset($item['aspersor_defletor'])) <div class="col-md-2 pr-5"> <span>{{ __('listas.'. $item['aspersor_defletor']) }}</span> </div>
+                                    @else <div class="col-md-2 borda-campos-vazios"></div> 
+                                @endif
                             </div>
 
                             {{-- ASPERSOR REGULADOR --}}
                             <div class="row">
-                                <div class="col-md-2">
-                                    <b>@lang('entregaTecnica.marca_regulador')</b>:
-                                </div>
-                                <div class="col-md-2 pr-5">
-                                    <span>{{ __('listas.'. $item['aspersor_regulador_marca']) }}</span>
-                                </div>
-                                <div class="col-md-2">
-                                    <b>@lang('entregaTecnica.modelo_regulador')</b>:
-                                </div>
-                                <div class="col-md-2 pr-5">
-                                    <span>{{ $item['aspersor_regulador_modelo']}}</span>
-                                </div>
-                                <div class="col-md-2">
-                                    <b>@lang('entregaTecnica.pressao')</b>:
-                                </div>
-                                <div class="col-md-2 pr-5">
-                                    <span>{{ $item['aspersor_pressao']}}</span>
-                                </div>
+                                <div class="col-md-2"><b>@lang('entregaTecnica.marca_regulador'):</b></div>
+                                @if(isset($item['aspersor_regulador_marca'])) <div class="col-md-2 pr-5"> <span>{{ __('listas.'. $item['aspersor_regulador_marca']) }}</span> </div>
+                                    @else <div class="col-md-2 borda-campos-vazios"></div> 
+                                @endif
+
+                                <div class="col-md-2"><b>@lang('entregaTecnica.modelo_regulador'):</b></div>
+                                @if(isset($item['aspersor_regulador_modelo'])) <div class="col-md-2 pr-5"> <span>{{ $item['aspersor_regulador_modelo']}}</span> </div>
+                                    @else <div class="col-md-2 borda-campos-vazios"></div> 
+                                @endif
+
+                                <div class="col-md-2"><b>@lang('entregaTecnica.pressao'):</b></div>
+                                @if(isset($item['aspersor_pressao'])) <div class="col-md-2 pr-5"> <span>{{ $item['aspersor_pressao']}}</span> </div>
+                                    @else <div class="col-md-2 borda-campos-vazios"></div> 
+                                @endif
                             </div>
 
                             {{-- ASPERSOR DE IMPACTO --}}
-                            @if ($item['aspersor_impacto_marca'] != null)
-                                <div class="row">                                            
-                                    <div class="col-md-2">
-                                        <b>@lang('entregaTecnica.marca_aspersor_impacto')</b>:
-                                    </div>
-                                    <div class="col-md-2 pr-5">
-                                        <span>{{ $item['aspersor_impacto_marca']}}</span>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <b>@lang('entregaTecnica.modelo_aspersor_impacto')</b>:
-                                    </div>
-                                    <div class="col-md-2 pr-5">
-                                        <span>{{ $item['aspersor_impacto_modelo']}}</span>
-                                    </div>
-                                </div>
-                            @endif
+                            <div class="row">
+                                @if($item['status'] == 0 || $item['status'] == 1)
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.marca_aspersor_impacto'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @elseif(isset($item['aspersor_impacto_marca']))
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.marca_aspersor_impacto'):</b></div>
+                                    <div class="col-md-2 pt-2 pr-5"> <span>{{ $item['aspersor_impacto_marca'] }}</span> </div>
+                                @endif
+
+                                @if($item['status'] == 0 || $item['status'] == 1)
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.marca_aspersor_impacto'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @elseif(isset($item['aspersor_impacto_modelo']))
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.modelo_aspersor_impacto'):</b></div>
+                                    <div class="col-md-2 pt-2 pr-5"> <span>{{ $item['aspersor_impacto_modelo'] }}</span> </div>
+                                @endif
+                            </div>
 
                             {{-- ASPERSOR CANHÃO FINAL --}}
-                            @if ($item['aspersor_canhao_final'] != null)
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <b>@lang('entregaTecnica.canhao_final_marca')</b>:
-                                    </div>
-                                    <div class="col-md-2 pr-5">
-                                        <span>{{ $item['aspersor_canhao_final']}}</span>
-                                    </div>
-                                </div>
-                            @endif
+                            <div class="row">
+                                @if($item['status'] == 0 || $item['status'] == 1)
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.canhao_final_marca'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @elseif(isset($item['aspersor_canhao_final']))
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.canhao_final_marca'):</b></div>
+                                    <div class="col-md-2 pt-2 pr-5"> <span>{{ $item['aspersor_canhao_final'] }}</span> </div>
+                                @endif
+                            </div>
 
                             {{-- ASPERSOR OPCIONAIS --}}
-                            @if ($item['aspersor_opcionais'] != null)
-                                <div class="row">                           
-                                    <div class="col-md-2">
-                                        <b>@lang('entregaTecnica.outros')</b>:
-                                    </div>
-                                    <div class="col-md-2 pr-5">
-                                        <span>{{ $item['aspersor_opcionais']}}</span>
-                                    </div>
-                                </div>                                    
-                            @endif
+                            <div class="row"> 
+                                @if($item['status'] == 0 || $item['status'] == 1)
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.outros'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @elseif(isset($item['aspersor_opcionais']))
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.outros'):</b></div>
+                                    <div class="col-md-2 pt-2 pr-5"> <span>{{ $item['aspersor_opcionais'] }}</span> </div>
+                                @endif
+                            </div>    
                             
                             {{-- ASPERSOR BOMBA BOOSTER --}}
-                            @if ($item['aspersor_mbbooster_marca'] != null)
-                                <div class="row">                           
-                                    <div class="col-md-2">
-                                        <b>@lang('entregaTecnica.bomba_booster_marca')</b>:
-                                    </div>
-                                    <div class="col-md-2 pr-5">
-                                        <span>{{ $item['aspersor_mbbooster_marca']}}</span>
-                                    </div>             
-
-                                    <div class="col-md-2">
-                                        <b>@lang('entregaTecnica.bomba_booster_modelo')</b>:
-                                    </div>
-                                    <div class="col-md-2 pr-5">
-                                        <span>{{ $item['aspersor_mbbooster_modelo']}}</span>
-                                    </div>          
-
-                                    <div class="col-md-2">
-                                        <b>@lang('entregaTecnica.bomba_booster_rotor')</b>:
-                                    </div>
-                                    <div class="col-md-2 pr-5">
-                                        <span>{{ $item['aspersor_mbbooster_rotor']}}</span>
-                                    </div>      
-                                                            
-                                    <div class="col-md-2">
-                                        <b>@lang('entregaTecnica.bomba_booster_potencia')</b>:
-                                    </div>
-                                    <div class="col-md-2 pr-5">
-                                        <span>{{ $item['aspersor_mbbooster_potencia']}}</span>
-                                    </div>       
-                                                        
-                                    <div class="col-md-2">
-                                        <b>@lang('entregaTecnica.bomba_booster_corrente')</b>:
-                                    </div>
-                                    <div class="col-md-2 pr-5">
-                                        <span>{{ $item['aspersor_mbbooster_corrente']}}</span>
-                                    </div>
-                                </div>                                    
-                            @endif
-
+                            <div class="row mb-3">
+                                @if($item['status'] == 0 || $item['status'] == 1)
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.bomba_booster_marca'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @elseif(isset($item['aspersor_mbbooster_marca']))
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.bomba_booster_marca'):</b></div>
+                                    <div class="col-md-2 pt-2 pr-5"> <span>{{ $item['aspersor_mbbooster_marca'] }}</span> </div>
+                                @endif
+                                
+                                @if($item['status'] == 0 || $item['status'] == 1)
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.bomba_booster_modelo'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @elseif(isset($item['bomba_booster_modelo']))
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.bomba_booster_modelo'):</b></div>
+                                    <div class="col-md-2 pt-2 pr-5"> <span>{{ $item['bomba_booster_modelo'] }}</span> </div>
+                                @endif
+                                
+                                @if($item['status'] == 0 || $item['status'] == 1)
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.bomba_booster_rotor'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @elseif(isset($item['aspersor_mbbooster_rotor']))
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.bomba_booster_rotor'):</b></div>
+                                    <div class="col-md-2 pt-2 pr-5"> <span>{{ $item['aspersor_mbbooster_rotor'] }}</span> </div>
+                                @endif
+                                
+                                @if($item['status'] == 0 || $item['status'] == 1)
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.bomba_booster_potencia'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @elseif(isset($item['aspersor_mbbooster_potencia']))
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.bomba_booster_potencia'):</b></div>
+                                    <div class="col-md-2 pt-2 pr-5"> <span>{{ $item['aspersor_mbbooster_potencia'] }}</span> </div>
+                                @endif
+                                
+                                @if($item['status'] == 0 || $item['status'] == 1)
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.bomba_booster_corrente'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @elseif(isset($item['aspersor_mbbooster_corrente']))
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.bomba_booster_corrente'):</b></div>
+                                    <div class="col-md-2 pt-2 pr-5"> <span>{{ $item['aspersor_mbbooster_corrente'] }}</span> </div>
+                                @endif
+                            </div>
                             <!------------------------------------------------------------------------------------------------>
                         </div>
 
@@ -591,36 +630,60 @@
                             <div class="text-center cor-fundo">
                                 <h4>@lang('entregaTecnica.adutora')</h4>
                             </div>                                
-
-                            <div class="d-flex justify-content-center col-md-12">
+                            <div class="d-flex justify-content-center col-md-12 mb-3">
                                 <table class="col-md-12 text-center">
                                     <thead>
                                         <tr>
                                             <th scope="col">@lang('afericao.tipoCano')</th>
-                                            <th scope="col">@lang('afericao.diametro') @lang('unidadesAcoes.(pol)')</th>
+                                            <th scope="col">@lang('afericao.diametro')</th>
                                             <th scope="col">@lang('afericao.numeroCanos')</th>
-                                            <th scope="col">@lang('afericao.comprimento') @lang('unidadesAcoes.(m)')</th>
+                                            <th scope="col">@lang('afericao.comprimento')</th>
                                             <th scope="col">@lang('entregaTecnica.fornecedor')</th>
                                             <th scope="col">@lang('entregaTecnica.marca_tubo')</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($adutora as $iten) 
+                                        @if (count($adutora) > 0)
+                                            @foreach ($adutora as $item) 
                                                 <tr>
-                                                <td>{{ __('listas.' . $iten['tipo_tubo']) }}</td>
-                                                <td>{{ $iten['diametro']}}</td>
-                                                <td>{{ $iten['numero_linha']}}</td>
-                                                <td>{{ $iten['comprimento']}}</td>
-                                                <td>{{ __('listas.' . $iten['fornecedor'] ) }}</td>
-                                                <td>{{ __('listas.' . $iten['marca_tubo'] ) }}</td>
+                                                    <td>{{ __('listas.' . $item['tipo_tubo']) }}</td>
+                                                    <td>{{ $item['diametro']}} @lang('unidadesAcoes._pol')</td>
+                                                    <td>{{ $item['numero_linha']}}</td>
+                                                    <td>{{ $item['comprimento']}} @lang('unidadesAcoes._m')</td>
+                                                    <td>{{ __('listas.' . $item['fornecedor'] ) }}</td>
+                                                    <td>{{ __('listas.' . $item['marca_tubo'] ) }}</td>
+                                                </tr>
+                                            @endforeach
+                                        @else
+                                            <tr class="borda-campos-vazios">
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
                                             </tr>
-                                        @endforeach
+                                            <tr class="borda-campos-vazios">
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                            </tr>
+                                            <tr class="borda-campos-vazios">
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                                <td>&nbsp;</td>
+                                            </tr>
+                                        @endif
                                     </tbody>
 
                                 </table>
-                            </div>
-                            
-                            <hr>
+                            </div>                            
                         </div>
 
                         {{-- LIGAÇÃO --}}                               
@@ -633,43 +696,80 @@
                             <div class=''>                                    
                                 <div class="col-md-12 sub_titulo_ft"><b>@lang('entregaTecnica.tubo_az')</b></div>
                             </div>
-                            <div class='row'>
-                                <div class="col-md-2 "><b>@lang('entregaTecnica.comprimento')@lang('unidadesAcoes.(m)') 1</b></div>
-                                <div class="col-md-1">{{ $item['tubo_az1_comprimento'] }}</div>
+                            <div class='row mb-3'>
+                                @if($item['status'] == 0 || $item['status'] == 1)
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.comprimento'): 1</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @elseif(isset($item['tubo_az1_comprimento']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.comprimento') 1:</b></div>
+                                    <div class="col-md-1">{{ $item['tubo_az1_comprimento'] }} @lang('unidadesAcoes._m')</div>
+                                @endif
+                                
+                                @if($item['status'] == 0 || $item['status'] == 1)
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.diametro'): 1</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @elseif(isset($item['tubo_az1_diametro']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.diametro') 1:</b></div>
+                                    <div class="col-md-1">{{ $item['tubo_az1_diametro'] }} @lang('unidadesAcoes._pol')</div>
+                                @endif
 
-                                <div class="col-md-2 "><b>@lang('entregaTecnica.diametro')@lang('unidadesAcoes.(pol)') 1</b></div>
-                                <div class="col-md-1">{{ $item['tubo_az1_diametro'] }}</div>
-
-                                <div class="col-md-2 "><b>@lang('entregaTecnica.comprimento')@lang('unidadesAcoes.(m)') 2</b></div>
-                                <div class="col-md-1">{{ $item['tubo_az2_comprimento'] }}</div>
-
-                                <div class="col-md-2 "><b>@lang('entregaTecnica.diametro')@lang('unidadesAcoes.(pol)') 2</b></div>
-                                <div class="col-md-1">{{ $item['tubo_az2_diametro'] }}</div>
+                                @if($item['status'] == 0 || $item['status'] == 1)
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.comprimento'): 2</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @elseif(isset($item['tubo_az2_comprimento']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.comprimento') 2:</b></div>
+                                    <div class="col-md-1">{{ $item['tubo_az2_comprimento'] }} @lang('unidadesAcoes._m')</div>
+                                @endif
+                                
+                                @if($item['status'] == 0 || $item['status'] == 1)
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.diametro'): 2</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @elseif(isset($item['tubo_az2_diametro']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.diametro') 2:</b></div>
+                                    <div class="col-md-1">{{ $item['tubo_az2_diametro'] }} @lang('unidadesAcoes._pol')</div>
+                                @endif
                             </div>
 
-                            <hr>
-
-                            <br>
                             {{-- PEÇA DE AUMENTO --}}
                             <div class='d-flex justify-content-start'>                                    
-                                <div class="col-md-6 text-start sub_titulo_ft mr-4" style="max-width: 48%;"><b>@lang('entregaTecnica.peca_aumento')</b></div>
-                                <div class="col-md-6 text-start sub_titulo_ft mr-5" style="max-width: 50%;"><b>@lang('entregaTecnica.registro_gaveta')</b></div>
+                                <div class="col-md-6 text-start sub_titulo_ft mr-4" style="max-width: 48%;"><b>@lang('entregaTecnica.registro_gaveta')</b></div>
+                                <div class="col-md-6 text-start sub_titulo_ft mr-5" style="max-width: 50%;"><b>@lang('entregaTecnica.peca_aumento')</b></div>
                             </div>
                             <div class='row'>
-                                <div class="col-md-2 "><b>@lang('entregaTecnica.diametro_maior')@lang('unidadesAcoes.(m)')</b></div>
-                                <div class="col-md-1 pr-3">{{ $item['peca_aumento_diametro_maior'] }}</div>
+                                
+                                @if($item['status'] == 0 || $item['status'] == 1)
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.diametro'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @elseif(isset($item['registro_gaveta_diametro']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.diametro'):</b></div>
+                                    <div class="col-md-1">{{ $item['registro_gaveta_diametro'] }} @lang('unidadesAcoes._pol')</div>
+                                @endif
 
-                                <div class="col-md-2"><b>@lang('entregaTecnica.diametro_menor')@lang('unidadesAcoes.(pol)')</b></div>
-                                <div class="col-md-1">{{ $item['peca_aumento_diametro_menor'] }}</div>
+                                @if($item['status'] == 0 || $item['status'] == 1)
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.marca'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @elseif(isset($item['registro_gaveta_marca']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.marca'):</b></div>
+                                    <div class="col-md-1">{{ $item['registro_gaveta_marca'] }}</div>
+                                @endif
 
-                                <div class="col-md-2 "><b>@lang('entregaTecnica.diametro')@lang('unidadesAcoes.(pol)')</b></div>
-                                <div class="col-md-1 pr-3">{{ $item['registro_gaveta_diametro'] }}</div>
-
-                                <div class="col-md-2 "><b>@lang('entregaTecnica.marca')</b></div>
-                                <div class="col-md-1 pr-3">{{ $item['registro_gaveta_marca'] }}</div>
+                                @if($item['status'] == 0 || $item['status'] == 1)
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.diametro_maior'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @elseif(isset($item['peca_aumento_diametro_maior']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.marca'):</b></div>
+                                    <div class="col-md-1">{{ $item['peca_aumento_diametro_maior'] }} @lang('unidadesAcoes._m')</div>
+                                @endif
+                                
+                                @if($item['status'] == 0 || $item['status'] == 1)
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.diametro_menor'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @elseif(isset($item['peca_aumento_diametro_menor']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.diametro_menor'):</b></div>
+                                    <div class="col-md-1">{{ $item['peca_aumento_diametro_menor'] }} @lang('unidadesAcoes._pol')</div>
+                                @endif
                             </div>
 
-                            <hr>
 
                             {{-- VALVULA VENTOSA --}}
                             <br>
@@ -677,82 +777,157 @@
                                 <div class="col-md-12 sub_titulo_ft"><b>@lang('entregaTecnica.valvula_ventosa')</b></div>
                             </div>
                             <div class='row'>
-                                <div class="col-md-2 "><b>@lang('entregaTecnica.diametro') @lang('unidadesAcoes.(pol)')</b></div>
-                                <div class="col-md-1 pr-3">{{ $item['valvula_ventosa_diametro'] }}</div>
+                                
+                                @if($item['status'] == 0 || $item['status'] == 1)
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.diametro'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @elseif(isset($item['valvula_ventosa_diametro']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.diametro'):</b></div>
+                                    <div class="col-md-1">{{ $item['valvula_ventosa_diametro'] }} @lang('unidadesAcoes._pol')</div>
+                                @endif
 
-                                <div class="col-md-2 "><b>@lang('entregaTecnica.marca')</b></div>
-                                <div class="col-md-1 pr-3">{{ $item['valvula_ventosa_marca'] }}</div>
+                                @if($item['status'] == 0 || $item['status'] == 1)
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.marca'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @elseif(isset($item['valvula_ventosa_marca']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.marca'):</b></div>
+                                    <div class="col-md-1">{{ $item['valvula_ventosa_marca'] }}</div>
+                                @endif
 
-                                <div class="col-md-2 "><b>@lang('entregaTecnica.material')</b></div>
-                                <div class="col-md-1 pr-3">{{ $item['valvula_ventosa_modelo'] }}</div>
+                                @if($item['status'] == 0 || $item['status'] == 1)
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.material'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @elseif(isset($item['valvula_ventosa_modelo']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.material'):</b></div>
+                                    <div class="col-md-1">{{ $item['valvula_ventosa_modelo'] }}</div>
+                                @endif
 
-                                <div class="col-md-2 "><b>@lang('entregaTecnica.material')</b></div>
-                                <div class="col-md-1 pr-3">{{ $item['quantidade_valv_ventosa'] }}</div>
+                                @if($item['status'] == 0 || $item['status'] == 1)
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.quantidade'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @elseif(isset($item['quantidade_valv_ventosa']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.quantidade'):</b></div>
+                                    <div class="col-md-1">{{ $item['quantidade_valv_ventosa'] }}</div>
+                                @endif
                             </div>
-
-                            <hr>
 
                             <br>
                             {{-- VALVULA DE RETENÇÃO --}}
                             <div class=''>                                    
                                 <div class="col-md-12 sub_titulo_ft"><b>@lang('entregaTecnica.valvula_retencao')</b></div>
                             </div>
-                            <div class='row'>
-                                <div class="col-md-2 "><b>@lang('entregaTecnica.diametro') @lang('unidadesAcoes.(pol)')</b></div>
-                                <div class="col-md-1 pr-3">{{ $item['valvula_retencao_diametro'] }}</div>
+                            <div class='row mb-3'>
+                                
+                                @if($item['status'] == 0 || $item['status'] == 1)
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.diametro'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @elseif(isset($item['valvula_retencao_diametro']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.diametro'):</b></div>
+                                    <div class="col-md-1">{{ $item['valvula_retencao_diametro'] }} @lang('unidadesAcoes._pol')</div>
+                                @endif
 
-                                <div class="col-md-2 "><b>@lang('entregaTecnica.marca')</b></div>
-                                <div class="col-md-1 pr-3">{{ $item['valvula_retencao_marca'] }}</div>
+                                @if($item['status'] == 0 || $item['status'] == 1)
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.marca'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @elseif(isset($item['valvula_retencao_marca']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.marca'):</b></div>
+                                    <div class="col-md-1">{{ $item['valvula_retencao_marca'] }}</div>
+                                @endif
 
-                                <div class="col-md-2 "><b>@lang('entregaTecnica.material')</b></div>
-                                <div class="col-md-1 pr-3">{{ $item['valvula_retencao_material'] }}</div>
+                                @if($item['status'] == 0 || $item['status'] == 1)
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.material'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @elseif(isset($item['valvula_retencao_material']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.material'):</b></div>
+                                    <div class="col-md-1">{{ $item['valvula_retencao_material'] }}</div>
+                                @endif
                             </div>
                         </div>
 
                         {{-- ACESSÓRIOS --}}     
-                        @if ($item['valvula_antecondas_diametro'] || $item['valvula_antecondas_marca'] || $item['valvula_antecondas_modelo']
-                            )
-                            <div class="do-not-break">
-                                <div class="text-center cor-fundo">
-                                    <h4>@lang('entregaTecnica.acessorios')</h4>
-                                </div>
-
-                                {{-- VALVULA ANTECIPADORA DE ONDAS --}}
-                                <div class='row'>                                    
-                                    <div class="col-md-12"><b>@lang('entregaTecnica.valvula_antecipadora')</b></div>
-                                </div>
-                                <div class='row'>
-                                    <div class="col-md-2 "><b>@lang('entregaTecnica.diametro') @lang('unidadesAcoes.(m)') 1</b></div>
-                                    <div class="col-md-2">{{ $item['valvula_antecondas_diametro'] }}</div>
-
-                                    <div class="col-md-2 "><b>@lang('entregaTecnica.marca') @lang('unidadesAcoes.(pol)') 1</b></div>
-                                    <div class="col-md-2">{{ $item['valvula_antecondas_marca'] }}</div>
-
-                                    <div class="col-md-2 "><b>@lang('entregaTecnica.modelo') @lang('unidadesAcoes.(m)') 2</b></div>
-                                    <div class="col-md-2">{{ $item['valvula_antecondas_modelo'] }}</div>
-                                </div>
+                        <div class="do-not-break">
+                            <div class="text-center cor-fundo">
+                                <h4>@lang('entregaTecnica.acessorios')</h4>
                             </div>
 
-                            {{-- HIDROMETRO --}}                                                  
-                            <div class="do-not-break">
-                                <div class='row'>                                    
-                                    <div class="col-md-12"><b>@lang('entregaTecnica.hidrometro')</b></div>
-                                </div>
-                                <div class='row'>
-                                    <div class="col-md-2 "><b>@lang('entregaTecnica.diametro') @lang('unidadesAcoes.(pol)')</b></div>
-                                    <div class="col-md-2">{{ $item['registro_eletrico_diametro'] }}</div>
+                            {{-- VALVULA ANTECIPADORA DE ONDAS --}}
+                            <div class='row'>                                    
+                                <div class="col-md-12"><b>@lang('entregaTecnica.valvula_antecipadora')</b></div>
+                            </div>
+                            <div class='row'>
+                                @if($item['status'] == 0 || $item['status'] == 1)
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.material'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @elseif(isset($item['valvula_antecondas_diametro']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.diametro') 1:</b></div>
+                                    <div class="col-md-2">{{ $item['valvula_antecondas_diametro'] }} @lang('unidadesAcoes._m')</div>
+                                @endif
 
-                                    <div class="col-md-2 "><b>@lang('entregaTecnica.marca')</b></div>
-                                    <div class="col-md-2">{{ $item['registro_eletrico_marca'] }}</div>
+                                @if($item['status'] == 0 || $item['status'] == 1)
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.marca'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @elseif(isset($item['valvula_antecondas_marca']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.marca'):</b></div>
+                                    <div class="col-md-1">{{ $item['valvula_antecondas_marca'] }}</div>
+                                @endif
 
-                                    <div class="col-md-2 "><b>@lang('entregaTecnica.modelo')</b></div>
-                                    <div class="col-md-2">{{ $item['registro_eletrico_modelo'] }}</div>
+                                @if($item['status'] == 0 || $item['status'] == 1)
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.marca'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @elseif(isset($item['valvula_antecondas_marca']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.marca'):</b></div>
+                                    <div class="col-md-1">{{ $item['valvula_antecondas_marca'] }}</div>
+                                @endif
 
-                                    <div class="col-md-2 "><b>@lang('entregaTecnica.outros')</b></div>
-                                    <div class="col-md-2">{{ $item['medicoes_ligpress_outros'] }}</div>
-                                </div>
-                            </div>                                
-                        @endif
+                                @if($item['status'] == 0 || $item['status'] == 1)
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.modelo'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @elseif(isset($item['valvula_antecondas_modelo']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.modelo'):</b></div>
+                                    <div class="col-md-1">{{ $item['valvula_antecondas_modelo'] }}</div>
+                                @endif
+                            </div>
+                        </div>
+
+                        {{-- HIDROMETRO --}}                                                  
+                        <div class="do-not-break">
+                            <div class='row'>                                    
+                                <div class="col-md-12"><b>@lang('entregaTecnica.hidrometro')</b></div>
+                            </div>
+                            <div class='row mb-3'>
+                                @if($item['status'] == 0 || $item['status'] == 1)
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.diametro'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @elseif(isset($item['registro_eletrico_diametro']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.diametro'):</b></div>
+                                    <div class="col-md-2">{{ $item['registro_eletrico_diametro'] }} @lang('unidadesAcoes._pol')</div>
+                                @endif
+
+                                @if($item['status'] == 0 || $item['status'] == 1)
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.marca'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @elseif(isset($item['registro_eletrico_marca']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.marca'):</b></div>
+                                    <div class="col-md-1">{{ $item['registro_eletrico_marca'] }}</div>
+                                @endif
+
+                                @if($item['status'] == 0 || $item['status'] == 1)
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.modelo'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @elseif(isset($item['registro_eletrico_modelo']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.modelo'):</b></div>
+                                    <div class="col-md-1">{{ $item['registro_eletrico_modelo'] }}</div>
+                                @endif
+
+                                @if($item['status'] == 0 || $item['status'] == 1)
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.outros'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @elseif(isset($item['medicoes_ligpress_outros']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.outros'):</b></div>
+                                    <div class="col-md-1">{{ $item['medicoes_ligpress_outros'] }}</div>
+                                @endif
+                            </div>
+                        </div>                                
 
                         {{-- CONJUNTO MOTOBOMBA --}}                               
                         <div class="do-not-break espacamento-cabecalho">
@@ -761,21 +936,21 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-md-3"><b>@lang('entregaTecnica.quantidade_motobomba')</b>:</div>
+                                <div class="col-md-3"><b>@lang('entregaTecnica.quantidade_motobomba'):</b></div>
                                 <div class="col-md-1">
                                     {{ $item['quantidade_motobomba']}}
                                 </div>
-                                <div class="col-md-2"><b>@lang('entregaTecnica.tipo_succao')</b>:</div>
+                                <div class="col-md-2"><b>@lang('entregaTecnica.tipo_succao'):</b></div>
                                 <div class="col-md-2">
                                     {{ $item['tipo_succao']}}
                                 </div>
                                 @if ($item['ligacao_serie'] > 0)
-                                    <div class="col-md-2"><b>@lang('entregaTecnica.ligacao_serie')</b>:</div>
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.ligacao_serie'):</b></div>
                                     <div class="col-md-2">
                                         @lang('comum.sim')
                                     </div>                                        
                                 @elseif($item['ligacao_paralelo'] > 0)
-                                    <div class="col-md-2"><b>@lang('entregaTecnica.ligacao_paralela')</b>:</div>
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.ligacao_paralela'):</b></div>
                                     <div class="col-md-2">
                                         @lang('comum.sim')
                                     </div>
@@ -787,25 +962,25 @@
                                     <div class="col-md-12 sub_titulo_ft"><b>@lang('entregaTecnica.bomba') - {{ $bomba['id_bomba'] }}</b></div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-2"><b>@lang('entregaTecnica.marca')</b>:</div>
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.marca'):</b></div>
                                     <div class="col-md-2">
                                         {{ $bomba['marca']}}
                                     </div>
-                                    <div class="col-md-2"><b>@lang('entregaTecnica.modelo')</b>:</div>
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.modelo'):</b></div>
                                     <div class="col-md-2">
                                         {{ $bomba['modelo']}}
                                     </div>
-                                    <div class="col-md-2"><b>@lang('entregaTecnica.numero_estagio')</b>:</div>
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.numero_estagio'):</b></div>
                                     <div class="col-md-2">
                                         {{ $bomba['numero_estagio']}}
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-2"><b>@lang('entregaTecnica.rotor')</b>:</div>
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.rotor'):</b></div>
                                     <div class="col-md-2">
-                                        {{ $bomba['rotor']}}
+                                        {{ $bomba['rotor']}}  @lang('unidadesAcoes._mm')
                                     </div>
-                                    <div class="col-md-2"><b>@lang('entregaTecnica.opcionais')</b>:</div>
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.opcionais'):</b></div>
                                     <div class="col-md-2">
                                         {{ $bomba['opcionais']}}
                                     </div>
@@ -817,29 +992,29 @@
                                             <div class="col-md-12 sub_titulo_ft"><b>@lang('entregaTecnica.motor') - {{ $motor['id_motor'] }}</b></div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-2"><b>@lang('entregaTecnica.tipo_motor')</b>:</div>
+                                            <div class="col-md-2"><b>@lang('entregaTecnica.tipo_motor'):</b></div>
                                             <div class="col-md-2">
                                                 {{ $motor['tipo_motor']}}
                                             </div>
-                                            <div class="col-md-2"><b>@lang('entregaTecnica.marca')</b>:</div>
+                                            <div class="col-md-2"><b>@lang('entregaTecnica.marca'):</b></div>
                                             <div class="col-md-2">
                                                 {{ $motor['marca']}}
                                             </div>
-                                            <div class="col-md-2"><b>@lang('entregaTecnica.modelo')</b>:</div>
+                                            <div class="col-md-2"><b>@lang('entregaTecnica.modelo'):</b></div>
                                             <div class="col-md-2">
                                                 {{ $motor['modelo']}}
                                             </div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-2"><b>@lang('entregaTecnica.potencia')</b>:</div>
+                                            <div class="col-md-2"><b>@lang('entregaTecnica.potencia'):</b></div>
                                             <div class="col-md-2">
-                                                {{ $motor['potencia']}}
+                                                {{ $motor['potencia']}}  @lang('unidadesAcoes._cv')
                                             </div>
-                                            <div class="col-md-2"><b>@lang('entregaTecnica.rotacao')</b>:</div>
+                                            <div class="col-md-2"><b>@lang('entregaTecnica.rotacao'):</b></div>
                                             <div class="col-md-2">
                                                 {{ $motor['rotacao']}}
                                             </div>
-                                            <div class="col-md-2"><b>@lang('entregaTecnica.numero_serie')</b>:</div>
+                                            <div class="col-md-2"><b>@lang('entregaTecnica.numero_serie'):</b></div>
                                             <div class="col-md-2">
                                                 {{ $motor['numero_serie']}}
                                             </div>
@@ -847,69 +1022,71 @@
 
                                         @if ($motor['tipo_motor'] == 'eletrico')                                            
                                             <div class="row">
-                                                <div class="col-md-2"><b>@lang('entregaTecnica.tensao')</b>:</div>
+                                                <div class="col-md-2"><b>@lang('entregaTecnica.tensao'):</b></div>
                                                 <div class="col-md-2">
                                                     {{ $motor['tensao']}}
                                                 </div>
-                                                <div class="col-md-2"><b>@lang('entregaTecnica.lp_ln')</b>:</div>
+                                                <div class="col-md-2"><b>@lang('entregaTecnica.lp_ln'):</b></div>
                                                 <div class="col-md-2">
                                                     {{ $motor['lp_ln']}}
                                                 </div>
-                                                <div class="col-md-2"><b>@lang('entregaTecnica.classe_isolamento')</b>:</div>
+                                                <div class="col-md-2"><b>@lang('entregaTecnica.classe_isolamento'):</b></div>
                                                 <div class="col-md-2">
                                                     {{ $motor['classe_isolamento']}}
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-2"><b>@lang('entregaTecnica.corrente_nominal')</b>:</div>
+                                                <div class="col-md-2"><b>@lang('entregaTecnica.corrente_nominal'):</b></div>
                                                 <div class="col-md-2">
-                                                    {{ $motor['corrente_nominal']}}
+                                                    {{ $motor['corrente_nominal']}} @lang('unidadesAcoes._a')
                                                 </div>
-                                                <div class="col-md-2"><b>@lang('entregaTecnica.fs')</b>:</div>
+                                                <div class="col-md-2"><b>@lang('entregaTecnica.fs'):</b></div>
                                                 <div class="col-md-2">
                                                     {{ $motor['fs']}}
                                                 </div>
-                                                <div class="col-md-2"><b>@lang('entregaTecnica.ip')</b>:</div>
+                                                <div class="col-md-2"><b>@lang('entregaTecnica.ip'):</b></div>
                                                 <div class="col-md-2">
                                                     {{ $motor['ip']}}
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-2"><b>@lang('entregaTecnica.rendimento')</b>:</div>
+                                                <div class="col-md-2"><b>@lang('entregaTecnica.rendimento'):</b></div>
                                                 <div class="col-md-2">
-                                                    {{ $motor['rendimento']}}
+                                                    {{ $motor['rendimento']}} @lang('unidadesAcoes._%')
                                                 </div>
-                                                <div class="col-md-2"><b>@lang('entregaTecnica.cos')</b>:</div>
+                                                <div class="col-md-2"><b>@lang('entregaTecnica.cos'):</b></div>
                                                 <div class="col-md-2">
                                                     {{ $motor['cos']}}
                                                 </div>
                                             </div>
                                             
                                             @foreach ($chave_partida as $cp)  
-                                                @if ($cp['id_motor'] == $motor['id_motor'])                                                    
-                                                    <div class='mt-2'>
-                                                        <div class="col-md-12 sub_titulo_ft"><b>@lang('entregaTecnica.chave_partida') - {{ $cp['id_chave_partida'] }}</b></div>
-                                                    </div>                                          
-                                                    <div class="row">
-                                                        <div class="col-md-2"><b>@lang('entregaTecnica.marca')</b>:</div>
-                                                        <div class="col-md-2">
-                                                            {{ $cp['marca'] }}
+                                                @if ($cp['id_bomba'] == $bomba['id_bomba'])  
+                                                    @if ($cp['id_motor'] == $motor['id_motor'])                                                    
+                                                        <div class='mt-2'>
+                                                            <div class="col-md-12 sub_titulo_ft"><b>@lang('entregaTecnica.chave_partida') - {{ $cp['id_chave_partida'] }}</b></div>
                                                         </div>
-                                                        <div class="col-md-2"><b>@lang('entregaTecnica.acionamento')</b>:</div>
-                                                        <div class="col-md-2">
-                                                            {{ __('listas.'. $cp['acionamento'] )}}
+                                                        <div class="row">
+                                                            <div class="col-md-2"><b>@lang('entregaTecnica.marca'):</b></div>
+                                                            <div class="col-md-2">
+                                                                {{ $cp['marca'] }}
+                                                            </div>
+                                                            <div class="col-md-2"><b>@lang('entregaTecnica.acionamento'):</b></div>
+                                                            <div class="col-md-2">
+                                                                {{ __('listas.'. $cp['acionamento'] )}}
+                                                            </div>
+                                                            <div class="col-md-2"><b>@lang('entregaTecnica.regulagem_reles'):</b></div>
+                                                            <div class="col-md-2">
+                                                                {{ $cp['regulagem_reles']}}
+                                                            </div>
+                                                        </div>                                      
+                                                        <div class="row">
+                                                            <div class="col-md-2"><b>@lang('entregaTecnica.numero_serie'):</b></div>
+                                                            <div class="col-md-2">
+                                                                {{ $cp['numero_serie']}}
+                                                            </div>
                                                         </div>
-                                                        <div class="col-md-2"><b>@lang('entregaTecnica.regulagem_reles')</b>:</div>
-                                                        <div class="col-md-2">
-                                                            {{ $cp['regulagem_reles']}}
-                                                        </div>
-                                                    </div>                                      
-                                                    <div class="row">
-                                                        <div class="col-md-2"><b>@lang('entregaTecnica.numero_serie')</b>:</div>
-                                                        <div class="col-md-2">
-                                                            {{ $motor['numero_serie']}}
-                                                        </div>
-                                                    </div>
+                                                    @endif
                                                 @endif
                                             @endforeach
                                         @endif  
@@ -926,110 +1103,211 @@
                             <div class="text-center cor-fundo">
                                 <h4>@lang('entregaTecnica.succao')</h4>
                             </div>
-                            <div class='row'>
-                                <div class="col-md-2 "><b>@lang('entregaTecnica.medicao_succao_l') @lang('unidadesAcoes.(m)')</b></div>
-                                <div class="col-md-2 pr-3">{{ $item['medicao_succao_l'] }}</div>
+                            <div class='row mb-3'>
+                                @if($item['status'] == 0 || $item['status'] == 1)
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.medicao_succao_l'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @elseif(isset($item['medicao_succao_l']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.medicao_succao_l'):</b></div>
+                                    <div class="col-md-2 pr-3">{{ $item['medicao_succao_l'] }} @lang('unidadesAcoes._m')</div>
+                                @endif
 
-                                <div class="col-md-2 "><b>@lang('entregaTecnica.medicao_succao_h') @lang('unidadesAcoes.(m)')</b></div>
-                                <div class="col-md-2 pr-3">{{ $item['medicao_succao_h'] }}</div>
+                                @if($item['status'] == 0 || $item['status'] == 1)
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.medicao_succao_h'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @elseif(isset($item['medicao_succao_h']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.medicao_succao_h'):</b></div>
+                                    <div class="col-md-2 pr-3">{{ $item['medicao_succao_h'] }} @lang('unidadesAcoes._m')</div>
+                                @endif
 
-                                <div class="col-md-2 "><b>@lang('entregaTecnica.medicao_succao_e') @lang('unidadesAcoes.(m)')</b></div>
-                                <div class="col-md-2 pr-3">{{ $item['medicao_succao_e'] }}</div>
+                                @if($item['status'] == 0 || $item['status'] == 1)
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.medicao_succao_e'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @elseif(isset($item['medicao_succao_e']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.medicao_succao_e'):</b></div>
+                                    <div class="col-md-2 pr-3">{{ $item['medicao_succao_e'] }} @lang('unidadesAcoes._m')</div>
+                                @endif
 
-                                <div class="col-md-2 "><b>@lang('entregaTecnica.medicao_succao_diametro') @lang('unidadesAcoes.(pol)')</b></div>
-                                <div class="col-md-2 pr-3">{{ $item['medicao_succao_diametro'] }}</div>
+                                @if($item['status'] == 0 || $item['status'] == 1)
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.medicao_succao_diametro'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @elseif(isset($item['medicao_succao_diametro']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.medicao_succao_diametro'):</b></div>
+                                    <div class="col-md-2 pr-3">{{ $item['medicao_succao_diametro'] }} @lang('unidadesAcoes._pol')</div>
+                                @endif
 
-                                <div class="col-md-2 "><b>@lang('entregaTecnica.medicao_succao_tipo')</b></div>
-                                <div class="col-md-2 pr-3">{{ $item['medicao_succao_tipo'] }}</div>
+                                @if($item['status'] == 0 || $item['status'] == 1)
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.medicao_succao_tipo'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @elseif(isset($item['medicao_succao_tipo']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.medicao_succao_tipo'):</b></div>
+                                    <div class="col-md-2 pr-3">{{ $item['medicao_succao_tipo'] }}</div>
+                                @endif
                             </div>
-                            {{-- <div class="row">
+                            <div class="row mb-3">
                                 <div class="col-md-4">
-                                    <img src="{{ asset('storage/'. $item['tipo_succaos'])}}"/>   
+                                @if (!empty($item['tipo_succao']))
+                                    <img src="{{ asset('img/img_succao/'. $item['tipo_succao'] . 'Pb.png' )}}"/>
+                                @elseif (!empty($item['succao_auxiliar']))
+                                    <img src="{{ asset('img/img_succao/'. $item['succao_auxiliar'] . 'Pb.png' )}}"/>
+                                @endif
                                 </div>
-                            </div> --}}
+                            </div>
                         </div>
+                        
+                        {{-- AUTOTRÁFO --}}
+                        <div class="do-not-break espacamento-cabecalho mb-3">
+                            <div class='text-center cor-fundo'>
+                                <h4>@lang('entregaTecnica.autotrafo_elevacao')</h4>
+                            </div>
+                            <div class='row'>
+                                @if(isset($autotrafo['potencia_elevacao']))
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.potencia'):</b></div>
+                                    <div class="col-md-2">{{ $autotrafo['potencia_elevacao'] }} @lang('unidadesAcoes._cv')</div>
+                                @else
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.potencia'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @endif
 
-                        @if (!empty($autotrafo['potencia_elevacao']) || !empty($autotrafo['tap_entrada_elevacao']) || !empty($autotrafo['tap_saida_elevacao']) || 
-                            !empty($autotrafo['corrente_disjuntor']))
-                            {{-- AUTOTRÁFO --}}
-                            <div class="do-not-break espacamento-cabecalho">
-                                <div class='row col-md-12 text-center cor-fundo'>
-                                    <h3><b>@lang('entregaTecnica.autotrafo_elevacao')</b></h3>
-                                </div>
-                                <div class='row'>
-                                    <div class="col-md-2"><b>@lang('entregaTecnica.potencia') @lang('unidadesAcoes.(cv)')</b></div>
-                                    <div class="col-md-2">{{ $autotrafo['potencia_elevacao'] }}</div>
-                    
-                                    <div class="col-md-2 "><b>@lang('entregaTecnica.tap_entrada') @lang('unidadesAcoes.(v)')</b></div>
-                                    <div class="col-md-2">{{ $autotrafo['tap_entrada_elevacao'] }}</div>
-                    
-                                    <div class="col-md-2 "><b>@lang('entregaTecnica.tap_saida') @lang('unidadesAcoes.(v)')</b></div>
-                                    <div class="col-md-2">{{ $autotrafo['tap_saida_elevacao'] }}</div>
-                    
-                                    <div class="col-md-2 "><b>@lang('entregaTecnica.corrente_disjuntor')</b></div>
+                                @if(isset($autotrafo['tap_entrada_elevacao']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.tap_entrada'):</b></div>
+                                    <div class="col-md-2">{{ $autotrafo['tap_entrada_elevacao'] }}  @lang('unidadesAcoes._v')</div>
+                                @else
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.tap_entrada'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @endif
+
+                                @if(isset($autotrafo['tap_saida_elevacao']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.tap_saida'):</b></div>
+                                    <div class="col-md-2">{{ $autotrafo['tap_saida_elevacao'] }} @lang('unidadesAcoes._v')</div>
+                                @else
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.tap_saida'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @endif
+                            </div>
+
+                            <div class='row'>
+                                @if(isset($autotrafo['corrente_disjuntor']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.corrente_disjuntor'):</b></div>
                                     <div class="col-md-2">{{  $autotrafo['corrente_disjuntor'] }}</div>
-                                </div>
-                                <div class='row'>
-                                    <div class="col-md-2"><b>@lang('entregaTecnica.numero_serie')</b></div>
-                                    <div class="col-md-2">{{ $autotrafo['numero_serie_elevacao'] }}</div>
-                                </div>
-                                <div class='row col-md-12 mt-3'>
-                                    <h3><b>@lang('entregaTecnica.autotrafo_rebaixamento')</b></h3>
-                                </div>
-                                <div class='row'>
-                                    <div class="col-md-2 "><b>@lang('entregaTecnica.potencia') @lang('unidadesAcoes.(cv)')</b></div>
-                                    <div class="col-md-2">{{ $autotrafo['potencia_rebaixamento'] }}</div>
-                    
-                                    <div class="col-md-2 "><b>@lang('entregaTecnica.tap_entrada') @lang('unidadesAcoes.(v)')</b></div>
-                                    <div class="col-md-2">{{ $autotrafo['tap_entrada_rebaixamento'] }}</div>
-                    
-                                    <div class="col-md-2 "><b>@lang('entregaTecnica.tap_saida') @lang('unidadesAcoes.(v)')</b></div>
-                                    <div class="col-md-2">{{  $autotrafo['tap_saida_rebaixamento'] }}</div>
-                    
-                                    <div class="col-md-2"><b>@lang('entregaTecnica.numero_serie')</b></div>
+                                @else
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.corrente_disjuntor'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @endif
+
+                                @if(isset($autotrafo['numero_serie_elevacao']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.numero_serie'):</b></div>
+                                    <div class="col-md-2">{{  $autotrafo['numero_serie_elevacao'] }}</div>
+                                @else
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.numero_serie'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @endif
+                            </div>
+
+                            <div class='row col-md-12 mt-1'>
+                                <h3><b>@lang('entregaTecnica.autotrafo_rebaixamento')</b></h3>
+                            </div>
+
+                            <div class='row'>
+                                
+                                @if(isset($autotrafo['potencia_rebaixamento']))
+                                <div class="col-md-2 "><b>@lang('entregaTecnica.potencia'):</b></div>
+                                <div class="col-md-2">{{ $autotrafo['potencia_rebaixamento'] }} @lang('unidadesAcoes._cv')</div>
+                                @else
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.potencia'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @endif
+                                
+                                @if(isset($autotrafo['tap_entrada_rebaixamento']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.tap_entrada'):</b></div>
+                                    <div class="col-md-2">{{ $autotrafo['tap_entrada_rebaixamento'] }}  @lang('unidadesAcoes._v')</div>
+                                @else
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.tap_entrada'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @endif
+                                
+                                @if(isset($autotrafo['tap_saida_rebaixamento']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.tap_saida'):</b></div>
+                                    <div class="col-md-2">{{  $autotrafo['tap_saida_rebaixamento'] }}  @lang('unidadesAcoes._v')</div>
+                                @else
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.tap_saida'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @endif
+                                
+                                @if(isset($autotrafo['numero_serie_rebaixamento']))
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.numero_serie'):</b></div>
                                     <div class="col-md-2">{{ $autotrafo['numero_serie_rebaixamento'] }}</div>
-                                </div>
-                            </div>                                
-                        @endif
+                                @else
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.numero_serie'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @endif
+                            </div>
+                        </div>                                
                 
                         {{-- GERADOR --}}
-                        @if ($autotrafo['gerador'] != null || $autotrafo['gerador_marca'] != null || $autotrafo['gerador_modelo'] != null || 
-                            $autotrafo['gerador_potencia'] != null || $autotrafo['gerador_frequencia'] != null || 
-                            $autotrafo['gerador_tensao'] != null || $autotrafo['numero_serie_gerador'] != null)
-                            <div class="do-not-break espacamento-cabecalho">
-                                <div class='row col-md-12 text-center cor-fundo'>
-                                    <h3><b>@lang('entregaTecnica.gerador')</b></h3>
-                                </div>
-                                <div class='row'>
-                                    <div class="col-md-2 "><b>@lang('entregaTecnica.gerador')</b></div>
-                                    <div class="col-md-2">
-                                        @if ($autotrafo['gerador'] == null)
-                                            
-                                        @else 
-                                            {{ __('listas.'. $autotrafo['gerador'] ) }}
-                                        @endif
-                                    </div>
-                    
-                                    <div class="col-md-2 "><b>@lang('entregaTecnica.gerador_marca')</b></div>
-                                    <div class="col-md-2">{{ $autotrafo['gerador_marca'] }}</div>
-                    
-                                    <div class="col-md-2 "><b>@lang('entregaTecnica.gerador_modelo')</b></div>
-                                    <div class="col-md-2">{{ $autotrafo['gerador_modelo'] }}</div>
-                    
-                                    <div class="col-md-2 "><b>@lang('entregaTecnica.gerador_potencia')</b></div>
-                                    <div class="col-md-2">{{ $autotrafo['gerador_potencia'] }}</div>
-                    
-                                    <div class="col-md-2 "><b>@lang('entregaTecnica.gerador_frequencia')</b></div>
-                                    <div class="col-md-2">{{ $autotrafo['gerador_frequencia'] }}</div>
-                    
-                                    <div class="col-md-2 "><b>@lang('entregaTecnica.gerador_tensao')</b></div>
-                                    <div class="col-md-2">{{ $autotrafo['gerador_tensao'] }}</div>
-                    
-                                    <div class="col-md-2 "><b>@lang('entregaTecnica.numero_serie')</b></div>
-                                    <div class="col-md-2">{{ $autotrafo['numero_serie_gerador'] }}</div>
-                                </div>
+                        <div class="do-not-break espacamento-cabecalho mb-3">
+
+                            <div class='text-center cor-fundo'>
+                                <h4>@lang('entregaTecnica.gerador')</h4>
                             </div>
-                        @endif
+                            <div class='row'>                                
+                                @if(isset($autotrafo['gerador']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.gerador'):</b></div>
+                                    <div class="col-md-2">{{ $autotrafo['gerador'] }}</div>
+                                @else
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.gerador'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @endif
+                                
+                                @if(isset($autotrafo['gerador_marca']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.gerador_marca'):</b></div>
+                                    <div class="col-md-2">{{ $autotrafo['gerador_marca'] }}</div>
+                                @else
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.gerador_marca'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @endif
+                                
+                                @if(isset($autotrafo['gerador_modelo']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.gerador_modelo'):</b></div>
+                                    <div class="col-md-2">{{ $autotrafo['gerador_modelo'] }}</div>
+                                @else
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.gerador_modelo'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @endif
+                                
+                                @if(isset($autotrafo['gerador_potencia']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.gerador_potencia'):</b></div>
+                                    <div class="col-md-2">{{ $autotrafo['gerador_potencia'] }}</div>
+                                @else
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.gerador_potencia'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @endif
+                                
+                                @if(isset($autotrafo['gerador_frequencia']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.gerador_frequencia'):</b></div>
+                                    <div class="col-md-2">{{ $autotrafo['gerador_frequencia'] }}</div>
+                                @else
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.gerador_frequencia'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @endif
+                                
+                                @if(isset($autotrafo['gerador_tensao']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.gerador_tensao'):</b></div>
+                                    <div class="col-md-2">{{ $autotrafo['gerador_tensao'] }}</div>
+                                @else
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.gerador_tensao'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @endif
+                                
+                                @if(isset($autotrafo['numero_serie_gerador']))
+                                    <div class="col-md-2 "><b>@lang('entregaTecnica.numero_serie'):</b></div>
+                                    <div class="col-md-2">{{ $autotrafo['numero_serie_gerador'] }}</div>
+                                @else
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.numero_serie'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @endif
+                            </div>
+                        </div>
 
                         <div class="pagebreak"> </div>
 
@@ -1039,63 +1317,88 @@
                                 <h4>@lang('entregaTecnica.teste_torre_central')</h4>
                             </div>
 
-                            <div class="row">
-                                <div class="col-md-3"><b>@lang('entregaTecnica.tensao_rs_sem_carga')</b>:</div>
-                                <div class="col-md-1">
-                                    {{ $teste_torre_central['tensao_rs_semcarga']}}
-                                </div>
-                                <div class="col-md-3"><b>@lang('entregaTecnica.tensao_st_sem_carga')</b>:</div>
-                                <div class="col-md-1">
-                                    {{ $teste_torre_central['tensao_st_semcarga']}}
-                                </div>
-                                <div class="col-md-3"><b>@lang('entregaTecnica.tensao_rt_sem_carga')</b>:</div>
-                                <div class="col-md-1">
-                                    {{ $teste_torre_central['tensao_rt_semcarga']}}
-                                </div>
+                            <div class="row mb-3">
+                                
+                                @if(isset($teste_torre_central['tensao_rs_semcarga']))
+                                    <div class="col-md-3"><b>@lang('entregaTecnica.tensao_rs_sem_carga'):</b></div>
+                                    <div class="col-md-1">{{ $teste_torre_central['tensao_rs_semcarga']}} @lang('unidadesAcoes._v')</div>
+                                @else
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.tensao_rs_sem_carga'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @endif
+                                
+                                @if(isset($teste_torre_central['tensao_st_semcarga']))
+                                    <div class="col-md-3"><b>@lang('entregaTecnica.tensao_st_sem_carga'):</b></div>
+                                    <div class="col-md-1">{{ $teste_torre_central['tensao_st_semcarga']}} @lang('unidadesAcoes._v')</div>
+                                @else
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.tensao_st_sem_carga'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @endif
+                                
+                                @if(isset($teste_torre_central['tensao_rt_semcarga']))
+                                    <div class="col-md-3"><b>@lang('entregaTecnica.tensao_rt_sem_carga'):</b></div>
+                                    <div class="col-md-1">{{ $teste_torre_central['tensao_rt_semcarga']}} @lang('unidadesAcoes._v')</div>
+                                @else
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.tensao_rt_sem_carga'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @endif
                             </div>
 
                             <div class="row">
                                 <div class="col-md-4">
-                                        <img src="{{ asset('storage/'. $teste_torre_central['tensao_rs_semcarga_img'])}}"/>   
+                                    @if (isset($teste_torre_central['tensao_rs_semcarga_img'])) <img src="{{ asset('storage/'. $teste_torre_central['tensao_rs_semcarga_img'])}}"/> @endif
                                 </div>
                                 <div class="col-md-4">
-                                        <img src="{{ asset('storage/'. $teste_torre_central['tensao_st_semcarga_img'])}}"/>   
+                                    @if (isset($teste_torre_central['tensao_st_semcarga_img'])) <img src="{{ asset('storage/'. $teste_torre_central['tensao_st_semcarga_img'])}}"/> @endif
                                 </div>
                                 <div class="col-md-4">
-                                        <img src="{{ asset('storage/'. $teste_torre_central['tensao_rt_semcarga_img'])}}"/>   
+                                    @if (isset($teste_torre_central['tensao_rt_semcarga_img'])) <img src="{{ asset('storage/'. $teste_torre_central['tensao_rt_semcarga_img'])}}"/> @endif   
                                 </div>
                             </div>
+
                             <hr>
-                            <div class="row">
-                                <div class="col-md-3"><b>@lang('entregaTecnica.tensao_rs_com_carga')</b>:</div>
-                                <div class="col-md-1">
-                                    {{ $teste_torre_central['tensao_rs_comcarga']}}
-                                </div>
-                                <div class="col-md-3"><b>@lang('entregaTecnica.tensao_st_com_carga')</b>:</div>
-                                <div class="col-md-1">
-                                    {{ $teste_torre_central['tensao_st_comcarga']}}
-                                </div>
-                                <div class="col-md-3"><b>@lang('entregaTecnica.tensao_rt_com_carga')</b>:</div>
-                                <div class="col-md-1">
-                                    {{ $teste_torre_central['tensao_rt_comcarga']}}
-                                </div>
+
+                            <div class="row mb-3">
+                                @if(isset($teste_torre_central['tensao_rs_comcarga']))
+                                    <div class="col-md-3"><b>@lang('entregaTecnica.tensao_rs_com_carga'):</b></div>
+                                    <div class="col-md-1">{{ $teste_torre_central['tensao_rs_comcarga']}} @lang('unidadesAcoes._v')</div>
+                                @else
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.tensao_rs_com_carga'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @endif
+
+                                @if(isset($teste_torre_central['tensao_st_comcarga']))
+                                    <div class="col-md-3"><b>@lang('entregaTecnica.tensao_st_com_carga'):</b></div>
+                                    <div class="col-md-1">{{ $teste_torre_central['tensao_st_comcarga']}} @lang('unidadesAcoes._v')</div>
+                                @else
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.tensao_st_com_carga'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @endif
+
+                                @if(isset($teste_torre_central['tensao_rt_comcarga']))
+                                    <div class="col-md-3"><b>@lang('entregaTecnica.tensao_rt_com_carga'):</b></div>
+                                    <div class="col-md-1">{{ $teste_torre_central['tensao_rt_comcarga']}} @lang('unidadesAcoes._v')</div>
+                                @else
+                                    <div class="col-md-2"><b>@lang('entregaTecnica.tensao_rt_com_carga'):</b></div> 
+                                    <div class="col-md-2 borda-campos-vazios"></div> 
+                                @endif
                             </div>
 
                             <div class="row">
                                 <div class="col-md-4">
-                                        <img src="{{ asset('storage/'. $teste_torre_central['tensao_rs_comcarga_img'])}}"/>   
+                                    @if (isset($teste_torre_central['tensao_rs_comcarga_img']) )<img src="{{ asset('storage/'. $teste_torre_central['tensao_rs_comcarga_img'])}}"/> @endif   
                                 </div>
                                 <div class="col-md-4">
-                                        <img src="{{ asset('storage/'. $teste_torre_central['tensao_st_comcarga_img'])}}"/>   
+                                    @if (isset($teste_torre_central['tensao_st_comcarga_img'])) <img src="{{ asset('storage/'. $teste_torre_central['tensao_st_comcarga_img'])}}"/> @endif   
                                 </div>
                                 <div class="col-md-4">
-                                        <img src="{{ asset('storage/'. $teste_torre_central['tensao_rt_comcarga_img'])}}"/>   
+                                    @if (isset($teste_torre_central['tensao_rt_comcarga_img'])) <img src="{{ asset('storage/'. $teste_torre_central['tensao_rt_comcarga_img'])}}"/> @endif  
                                 </div>
                             </div>
                         </div>
 
                         {{-- TESTES ELETRICOS --}}                               
-                        <div class="do-not-break espacamento-cabecalho mt-4">
+                        <div class="do-not-break espacamento-cabecalho">
                             <div class="text-center cor-fundo">
                                 <h4>@lang('entregaTecnica.teste_bomba_cp')</h4>
                             </div>
@@ -1103,316 +1406,301 @@
                                 <div class='mt-3'>                                    
                                     <div class="col-md-12 sub_titulo_ft"><b>@lang('entregaTecnica.bomba') - {{ $bomba['id_testeh_mb'] }}</b></div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-3"><b>@lang('entregaTecnica.pressao_reg_fechado')</b>:</div>
-                                    <div class="col-md-1">
-                                        {{ $bomba['pressao_reg_fechado']}}
-                                    </div>
-                                    <div class="col-md-3"><b>@lang('entregaTecnica.pressao_reg_aberto')</b>:</div>
-                                    <div class="col-md-1">
-                                        {{ $bomba['pressao_reg_aberto']}}
-                                    </div>
-                                    <div class="col-md-3"><b>@lang('entregaTecnica.pressao_centro')</b>:</div>
-                                    <div class="col-md-1">
-                                        {{ $bomba['pressao_centro']}}
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                            <img src="{{ asset('storage/'. $bomba['pressao_reg_fechado_img'])}}"/>   
-                                    </div>
-                                    <div class="col-md-4">
-                                            <img src="{{ asset('storage/'. $bomba['pressao_reg_aberto_img'])}}"/>   
-                                    </div>
-                                    <div class="col-md-4">
-                                            <img src="{{ asset('storage/'. $bomba['pressao_centro_img'])}}"/>   
-                                    </div>
-                                </div>
-                                <hr>
 
                                 <div class="row">
-                                    <div class="col-md-3"><b>@lang('entregaTecnica.pressao_ult_torre')</b>:</div>
-                                    <div class="col-md-1">
-                                        {{ $bomba['pressao_ult_torre']}}
+                                    @if(isset($bomba['pressao_reg_fechado']))
+                                        <div class="col-md-4"><b>@lang('entregaTecnica.pressao_reg_fechado'):&nbsp;</b>
+                                            {{ $bomba['pressao_reg_fechado']}} @lang('unidadesAcoes._kgf/cm²')
+                                        </div>
+                                    @else
+                                        <div class="col-md-2"><b>@lang('entregaTecnica.pressao_reg_fechado'):</b></div> 
+                                        <div class="col-md-2 borda-campos-vazios"></div> 
+                                    @endif
+
+                                    @if(isset($bomba['pressao_reg_aberto']))
+                                        <div class="col-md-4"><b>@lang('entregaTecnica.pressao_reg_aberto'):&nbsp;</b>
+                                            {{ $bomba['pressao_reg_aberto']}} @lang('unidadesAcoes._kgf/cm²')
+                                        </div>
+                                    @else
+                                        <div class="col-md-2"><b>@lang('entregaTecnica.pressao_reg_aberto'):</b></div> 
+                                        <div class="col-md-2 borda-campos-vazios"></div> 
+                                    @endif
+
+                                    @if(isset($bomba['pressao_centro']))
+                                        <div class="col-md-4"><b>@lang('entregaTecnica.pressao_centro'):&nbsp;</b>
+                                            {{ $bomba['pressao_centro']}} @lang('unidadesAcoes._kgf/cm²')
+                                        </div>
+                                    @else
+                                        <div class="col-md-2"><b>@lang('entregaTecnica.pressao_centro'):</b></div> 
+                                        <div class="col-md-2 borda-campos-vazios"></div> 
+                                    @endif
+                                    
+                                </div>
+
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        @if (isset($bomba['pressao_reg_fechado_img'])) <img src="{{ asset('storage/'. $bomba['pressao_reg_fechado_img'])}}"/> @endif
+                                    </div>
+                                    <div class="col-md-4">
+                                        @if (isset($bomba['pressao_reg_aberto_img'])) <img src="{{ asset('storage/'. $bomba['pressao_reg_aberto_img'])}}"/> @endif
+                                    </div>
+                                    <div class="col-md-4">
+                                        @if (isset($bomba['pressao_centro_img'])) <img src="{{ asset('storage/'. $bomba['pressao_centro_img'])}}"/> @endif
                                     </div>
                                 </div>
+
+                                <div class="row">
+
+                                    @if(isset($bomba['pressao_ult_torre']))
+                                        <div class="col-md-4"><b>@lang('entregaTecnica.pressao_ult_torre'):&nbsp;</b>
+                                            {{ $bomba['pressao_ult_torre']}} @lang('unidadesAcoes._kgf/cm²')
+                                        </div>
+                                    @else
+                                        <div class="col-md-2"><b>@lang('entregaTecnica.pressao_ult_torre'):</b></div> 
+                                        <div class="col-md-2 borda-campos-vazios"></div> 
+                                    @endif
+                                </div>
+
                                 <div class="row">
                                     <div class="col-md-4">
-                                            <img src="{{ asset('storage/'. $bomba['pressao_ult_torre_img'])}}"/>   
+                                        @if (isset($bomba['pressao_ult_torre_img'])) <img src="{{ asset('storage/'. $bomba['pressao_ult_torre_img'])}}"/> @endif
                                     </div>
                                 </div>
-                            <hr>
+
+                                <hr>
+
                                 @foreach ($teste_chave_partida as $cp)
                                     @if ($cp['id_bomba'] == $bomba['id_testeh_mb'])      
                                         <div class='mt-3'>
                                             <div class="col-md-12 sub_titulo_ft"><b>@lang('entregaTecnica.chave_partida') - {{ $cp['id_chave_partida'] }}</b></div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-md-3"><b>@lang('entregaTecnica.tensao_rs_sem_carga')</b>:</div>
-                                            <div class="col-md-1">
-                                                {{ $cp['tensao_rs_semcarga']}}
-                                            </div>
-                                            <div class="col-md-3"><b>@lang('entregaTecnica.tensao_st_sem_carga')</b>:</div>
-                                            <div class="col-md-1">
-                                                {{ $cp['tensao_st_semcarga']}}
-                                            </div>
-                                            <div class="col-md-3"><b>@lang('entregaTecnica.tensao_rt_sem_carga')</b>:</div>
-                                            <div class="col-md-1">
-                                                {{ $cp['tensao_rt_semcarga']}}
-                                            </div>
+                                            @if(isset($cp['tensao_rs_semcarga']))
+                                                <div class="col-md-4"><b>@lang('entregaTecnica.tensao_rs_sem_carga'):&nbsp;</b>
+                                                    {{ $cp['tensao_rs_semcarga']}} @lang('unidadesAcoes._v')
+                                                </div>
+                                            @else
+                                                <div class="col-md-2"><b>@lang('entregaTecnica.tensao_rs_sem_carga'):</b></div> 
+                                                <div class="col-md-2 borda-campos-vazios"></div> 
+                                            @endif
+
+                                            @if(isset($cp['tensao_st_semcarga']))
+                                                <div class="col-md-4"><b>@lang('entregaTecnica.tensao_st_sem_carga'):&nbsp;</b>
+                                                    {{ $cp['tensao_st_semcarga']}} @lang('unidadesAcoes._v')
+                                                </div>
+                                            @else
+                                                <div class="col-md-2"><b>@lang('entregaTecnica.tensao_st_sem_carga'):</b></div> 
+                                                <div class="col-md-2 borda-campos-vazios"></div> 
+                                            @endif
+                                            
+                                            @if(isset($cp['tensao_rt_semcarga']))
+                                                <div class="col-md-4"><b>@lang('entregaTecnica.tensao_rt_sem_carga'):&nbsp;</b>
+                                                    {{ $cp['tensao_rt_semcarga']}} @lang('unidadesAcoes._v')
+                                                </div>
+                                            @else
+                                                <div class="col-md-2"><b>@lang('entregaTecnica.tensao_rt_sem_carga'):</b></div> 
+                                                <div class="col-md-2 borda-campos-vazios"></div> 
+                                            @endif
                                         </div>
                                         <div class="row">
                                             <div class="col-md-4">
-                                                    <img src="{{ asset('storage/'. $cp['tensao_rs_semcarga_img'])}}"/>   
+                                                @if (isset($cp['tensao_rs_semcarga_img'])) <img src="{{ asset('storage/'. $cp['tensao_rs_semcarga_img'])}}"/> @endif   
                                             </div>
                                             <div class="col-md-4">
-                                                    <img src="{{ asset('storage/'. $cp['tensao_st_semcarga_img'])}}"/>   
+                                                @if (isset($cp['tensao_st_semcarga_img'])) <img src="{{ asset('storage/'. $cp['tensao_st_semcarga_img'])}}"/> @endif   
                                             </div>
                                             <div class="col-md-4">
-                                                    <img src="{{ asset('storage/'. $cp['tensao_rt_semcarga_img'])}}"/>   
+                                                @if (isset($cp['tensao_rt_semcarga_img'])) <img src="{{ asset('storage/'. $cp['tensao_rt_semcarga_img'])}}"/> @endif   
                                             </div>
                                         </div>
+
                                         <hr>
 
                                         <div class="row">
-                                            <div class="col-md-3"><b>@lang('entregaTecnica.tensao_rs_com_carga')</b>:</div>
-                                            <div class="col-md-1">
-                                                {{ $cp['tensao_rs_comcarga']}}
-                                            </div>
-                                            <div class="col-md-3"><b>@lang('entregaTecnica.tensao_st_com_carga')</b>:</div>
-                                            <div class="col-md-1">
-                                                {{ $cp['tensao_st_comcarga']}}
-                                            </div>
-                                            <div class="col-md-3"><b>@lang('entregaTecnica.tensao_rt_com_carga')</b>:</div>
-                                            <div class="col-md-1">
-                                                {{ $cp['tensao_rt_comcarga']}}
-                                            </div>
+                                            
+                                            @if(isset($cp['tensao_rs_comcarga']))
+                                                <div class="col-md-4"><b>@lang('entregaTecnica.tensao_rs_com_carga'):&nbsp;</b>
+                                                    {{ $cp['tensao_rs_comcarga']}} @lang('unidadesAcoes._v')
+                                                </div>
+                                            @else
+                                                <div class="col-md-2"><b>@lang('entregaTecnica.tensao_rs_com_carga'):</b></div> 
+                                                <div class="col-md-2 borda-campos-vazios"></div> 
+                                            @endif
+                                            
+                                            @if(isset($cp['tensao_st_comcarga']))
+                                                <div class="col-md-4"><b>@lang('entregaTecnica.tensao_st_com_carga'):&nbsp;</b>
+                                                    {{ $cp['tensao_st_comcarga']}} @lang('unidadesAcoes._v')
+                                                </div>
+                                            @else
+                                                <div class="col-md-2"><b>@lang('entregaTecnica.tensao_st_com_carga'):</b></div> 
+                                                <div class="col-md-2 borda-campos-vazios"></div> 
+                                            @endif
+                                            
+                                            @if(isset($cp['tensao_rt_comcarga']))
+                                                <div class="col-md-4"><b>@lang('entregaTecnica.tensao_rt_com_carga'):&nbsp;</b>
+                                                    {{ $cp['tensao_rt_comcarga']}} @lang('unidadesAcoes._v')
+                                                </div>
+                                            @else
+                                                <div class="col-md-2"><b>@lang('entregaTecnica.tensao_rt_com_carga'):</b></div> 
+                                                <div class="col-md-2 borda-campos-vazios"></div> 
+                                            @endif
                                         </div>
                                         <div class="row">
                                             <div class="col-md-4">
-                                                    <img src="{{ asset('storage/'. $cp['tensao_rs_comcarga_img'])}}"/>   
+                                                @if (isset($cp['tensao_rs_comcarga_img'])) <img src="{{ asset('storage/'. $cp['tensao_rs_comcarga_img'])}}"/> @endif   
                                             </div>
                                             <div class="col-md-4">
-                                                    <img src="{{ asset('storage/'. $cp['tensao_st_comcarga_img'])}}"/>   
+                                                @if (isset($cp['tensao_st_comcarga_img'])) <img src="{{ asset('storage/'. $cp['tensao_st_comcarga_img'])}}"/> @endif   
                                             </div>
                                             <div class="col-md-4">
-                                                    <img src="{{ asset('storage/'. $cp['tensao_rt_comcarga_img'])}}"/>   
+                                                @if (isset($cp['tensao_rt_comcarga_img'])) <img src="{{ asset('storage/'. $cp['tensao_rt_comcarga_img'])}}"/> @endif   
                                             </div>
                                         </div>
+
                                         <hr>
 
                                         <div class="row">
-                                            <div class="col-md-3"><b>@lang('entregaTecnica.corrente_rs_com_carga')</b>:</div>
-                                            <div class="col-md-1">
-                                                {{ $cp['corrente_rs_comcarga']}}
-                                            </div>
-                                            <div class="col-md-3"><b>@lang('entregaTecnica.corrente_st_com_carga')</b>:</div>
-                                            <div class="col-md-1">
-                                                {{ $cp['corrente_st_comcarga']}}
-                                            </div>
-                                            <div class="col-md-3"><b>@lang('entregaTecnica.corrente_rt_com_carga')</b>:</div>
-                                            <div class="col-md-1">
-                                                {{ $cp['corrente_rt_comcarga']}}
-                                            </div>
+                                            
+                                            @if(isset($cp['tensao_rt_comcarga']))
+                                                <div class="col-md-4"><b>@lang('entregaTecnica.corrente_rs_com_carga'):&nbsp;</b>
+                                                    {{ $cp['tensao_rt_comcarga']}} @lang('unidadesAcoes._a')
+                                                </div>
+                                            @else
+                                                <div class="col-md-2"><b>@lang('entregaTecnica.corrente_rs_com_carga'):</b></div> 
+                                                <div class="col-md-2 borda-campos-vazios"></div> 
+                                            @endif
+                                            
+                                            @if(isset($cp['corrente_st_comcarga']))
+                                                <div class="col-md-4"><b>@lang('entregaTecnica.corrente_st_com_carga'):&nbsp;</b>
+                                                    {{ $cp['corrente_st_comcarga']}} @lang('unidadesAcoes._a')
+                                                </div>
+                                            @else
+                                                <div class="col-md-2"><b>@lang('entregaTecnica.corrente_st_com_carga'):</b></div> 
+                                                <div class="col-md-2 borda-campos-vazios"></div> 
+                                            @endif
+                                            
+                                            @if(isset($cp['corrente_rt_comcarga']))
+                                                <div class="col-md-4"><b>@lang('entregaTecnica.corrente_rt_com_carga'):&nbsp;</b>
+                                                    {{ $cp['corrente_rt_comcarga']}} @lang('unidadesAcoes._a')
+                                                </div>
+                                            @else
+                                                <div class="col-md-2"><b>@lang('entregaTecnica.corrente_rt_com_carga'):</b></div> 
+                                                <div class="col-md-2 borda-campos-vazios"></div> 
+                                            @endif
                                         </div>
                                         <div class="row">
                                             <div class="col-md-4">
-                                                    <img src="{{ asset('storage/'. $cp['corrente_rs_comcarga_img'])}}"/>   
+                                                @if (isset($cp['corrente_rs_comcarga_img'])) <img src="{{ asset('storage/'. $cp['corrente_rs_comcarga_img'])}}"/>    @endif
                                             </div>
                                             <div class="col-md-4">
-                                                    <img src="{{ asset('storage/'. $cp['corrente_st_comcarga_img'])}}"/>   
+                                                @if (isset($cp['corrente_st_comcarga_img'])) <img src="{{ asset('storage/'. $cp['corrente_st_comcarga_img'])}}"/>    @endif
                                             </div>
                                             <div class="col-md-4">
-                                                    <img src="{{ asset('storage/'. $cp['corrente_rt_comcarga_img'])}}"/>   
+                                                @if (isset($cp['corrente_rt_comcarga_img'])) <img src="{{ asset('storage/'. $cp['corrente_rt_comcarga_img'])}}"/>    @endif
                                             </div>
                                         </div>
-                                        <hr>
                                     @endif                                      
                                 @endforeach
                             @endforeach
                         </div>
 
-                        @if (!empty($telemetria['aqua_tec_pro']) || !empty($telemetria['aqua_tec_lite']) || !empty($telemetria['commander_vp']) || 
-                            !empty($telemetria['icon_link']) || !empty($telemetria['crop_link']) || !empty($telemetria['base_station3']) || !empty($telemetria['estacao_metereologica_valley']) || 
-                            !empty($telemetria['field_commander']) )
-                            {{-- TELEMETRIA --}}                      
-                            <div class="do-not-break espacamento-cabecalho">    
-
+                        {{-- TELEMETRIA --}}                      
+                            <div class="do-not-break espacamento-cabecalho mt-4 mb-3">    
                                 <div class="text-center cor-fundo">
                                     <h4>@lang('entregaTecnica.telemetria')</h4>
                                 </div>
-
                                 <div class='row'>
-                                    <div class="col-md-2 "><b>@lang('entregaTecnica.aqua_tec_pro')</b></div>
-                                    <div class="col-md-2">
-                                            @lang('comum.sim')
-                                    </div>
-
-                                    <div class="col-md-2 "><b>@lang('entregaTecnica.aqua_tec_lite')</b></div>
-                                    <div class="col-md-2">
-                                            @lang('comum.sim')
-                                    </div>
-
-                                    <div class="col-md-2 "><b>@lang('entregaTecnica.commander_vp')</b></div>
-                                    <div class="col-md-2">
-                                            @lang('comum.sim')
-                                    </div>
+                                            
+                                    @if(isset($telemetria['aqua_tec_pro']))
+                                        <div class="col-md-3"><b>@lang('entregaTecnica.aqua_tec_pro'):</b></div>
+                                        <div class="col-md-1">
+                                            {{ ($telemetria['aqua_tec_pro']) ? __('comum.sim') : __('comum.nao') }}
+                                        </div>
+                                    @else
+                                        <div class="col-md-2"><b>@lang('entregaTecnica.aqua_tec_pro'):</b></div> 
+                                        <div class="col-md-2 borda-campos-vazios"></div> 
+                                    @endif
+                                            
+                                    @if(isset($telemetria['aqua_tec_lite']))
+                                        <div class="col-md-3"><b>@lang('entregaTecnica.aqua_tec_lite'):</b></div>
+                                        <div class="col-md-1">
+                                            {{ ($telemetria['aqua_tec_lite']) ? __('comum.sim') : __('comum.nao') }}
+                                        </div>
+                                    @else
+                                        <div class="col-md-2"><b>@lang('entregaTecnica.aqua_tec_lite'):</b></div> 
+                                        <div class="col-md-2 borda-campos-vazios"></div> 
+                                    @endif
+                                            
+                                    @if(isset($telemetria['commander_vp']))
+                                        <div class="col-md-3"><b>@lang('entregaTecnica.commander_vp'):</b></div>
+                                        <div class="col-md-1">
+                                            {{ ($telemetria['commander_vp']) ? __('comum.sim') : __('comum.nao') }}
+                                        </div>
+                                    @else
+                                        <div class="col-md-2"><b>@lang('entregaTecnica.commander_vp'):</b></div> 
+                                        <div class="col-md-2 borda-campos-vazios"></div> 
+                                    @endif
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-2"><b>@lang('entregaTecnica.icon_link')</b></div>
-                                    <div class="col-md-2">
-                                            @lang('comum.sim')
-                                    </div>
-                                    
-                                    <div class="col-md-2"><b>@lang('entregaTecnica.crop_link')</b></div>
-                                    <div class="col-md-2">
-                                            @lang('comum.sim')                           
-                                    </div>
-
-                                    <div class="col-md-2"><b>@lang('entregaTecnica.base_station3')</b></div>
-                                    <div class="col-md-2">
-                                            @lang('comum.sim')                           
-                                    </div>
+                                            
+                                    @if(isset($telemetria['icon_link']))
+                                        <div class="col-md-3"><b>@lang('entregaTecnica.icon_link'):</b></div>
+                                        <div class="col-md-1">
+                                            {{ ($telemetria['icon_link']) ? __('comum.sim') : __('comum.nao') }}
+                                        </div>
+                                    @else
+                                        <div class="col-md-2"><b>@lang('entregaTecnica.icon_link'):</b></div> 
+                                        <div class="col-md-2 borda-campos-vazios"></div> 
+                                    @endif
+                                            
+                                    @if(isset($telemetria['crop_link']))
+                                        <div class="col-md-3"><b>@lang('entregaTecnica.crop_link'):</b></div>
+                                        <div class="col-md-1">
+                                            {{ ($telemetria['crop_link']) ? __('comum.sim') : __('comum.nao') }}
+                                        </div>
+                                    @else
+                                        <div class="col-md-2"><b>@lang('entregaTecnica.crop_link'):</b></div> 
+                                        <div class="col-md-2 borda-campos-vazios"></div> 
+                                    @endif
+                                            
+                                    @if(isset($telemetria['base_station3']))
+                                        <div class="col-md-3"><b>@lang('entregaTecnica.base_station3'):</b></div>
+                                        <div class="col-md-1">
+                                            {{ ($telemetria['base_station3']) ? __('comum.sim') : __('comum.nao') }}
+                                        </div>
+                                    @else
+                                        <div class="col-md-2"><b>@lang('entregaTecnica.base_station3'):</b></div> 
+                                        <div class="col-md-2 borda-campos-vazios"></div> 
+                                    @endif
                                 </div>
 
                                 <div class="row">
-                                    
-                                    <div class="col-md-2"><b>@lang('entregaTecnica.field_commander')</b></div>
-                                    <div class="col-md-2">
-                                            @lang('comum.sim')                           
-                                    </div>
-                                    <div class="col-md-3"><b>@lang('entregaTecnica.estacao_metereologica_valley')</b></div>
-                                    <div class="col-md-2">
-                                            @lang('comum.sim')
-                                    </div>
+                                            
+                                    @if(isset($telemetria['field_commander']))
+                                        <div class="col-md-3"><b>@lang('entregaTecnica.field_commander'):</b></div>
+                                        <div class="col-md-1">
+                                            {{ ($telemetria['field_commander']) ? __('comum.sim') : __('comum.nao') }}
+                                        </div>
+                                    @else
+                                        <div class="col-md-2"><b>@lang('entregaTecnica.field_commander'):</b></div> 
+                                        <div class="col-md-2 borda-campos-vazios"></div> 
+                                    @endif
+                                            
+                                    @if(isset($telemetria['estacao_metereologica_valley']))
+                                        <div class="col-md-3"><b>@lang('entregaTecnica.estacao_metereologica_valley'):</b></div>
+                                        <div class="col-md-1">
+                                            {{ ($telemetria['estacao_metereologica_valley']) ? __('comum.sim') : __('comum.nao') }}
+                                        </div>
+                                    @else
+                                        <div class="col-md-2"><b>@lang('entregaTecnica.estacao_metereologica_valley'):</b></div> 
+                                        <div class="col-md-2 borda-campos-vazios"></div> 
+                                    @endif
                                 </div>
                             </div>    
-                            <hr>                            
-                        @endif
+                            <hr>       
 
-                        <div class="pagebreak"> </div>
-    
-                        <div class="container mt-5">
-                            <div id="alert">                
-                                @include('_layouts._includes._alert')    
-                            </div>  
-                            <input type="hidden" name="id_entrega_tecnica" value="{{ $id_entrega_tecnica }}">
-                            <div class="col-md-12" style="background-color: #fff; width: 100%; color: #162E3C;; border-radius: 10px; border: 1px solid #162E3C;">
-                                <div class="col-md-12 mt-4 text-center">
-                                    
-                                </div>           
-    
-                                {{-- DECLARAÇÃO DO CLIENTE --}}       
-                                
-                                <div class="col-md-12">
-                                    <p class="font-declaracao">@lang('entregaTecnica.eu') <strong>{{ strtoupper($item['nome_proprietario']) }}</strong> @lang('entregaTecnica.declaracao_texto_cliente')</p>
-                                </div>
-    
-                                <div class="row justify-content-center pt-3 ml-2">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                    </div>
-                                        </div>
-                                        <label style="margin: 15px 10px;" class="font-declaracao">@lang('entregaTecnica.item_manual_montagem')</label>
-                                    </div>
-                                </div>
-    
-                                <div class="row justify-content-center pt-3 ml-2">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                            </div>
-                                        </div>
-                                        <label style="margin: 15px 10px;" class="font-declaracao">@lang('entregaTecnica.item_listagem_aspersores')</label>
-                                    </div>
-                                </div>
-    
-                                <div class="row justify-content-center pt-3 ml-2">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                            </div>
-                                        </div>
-                                        <label  style="margin: 15px 10px;" class="font-declaracao">@lang('entregaTecnica.item_manual_bomba')</label>
-                                    </div>
-                                </div>
-    
-                                <div class="row justify-content-center pt-3 ml-2">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                            </div>
-                                        </div>
-                                        <label  style="margin: 15px 10px;" class="font-declaracao">@lang('entregaTecnica.item_manual_motor_diesel')</label>
-                                    </div>
-                                </div>
-    
-                                <div class="row justify-content-center pt-3 ml-2">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <div class="input-group-text">
-                                            </div>
-                                        </div>
-                                        <label  style="margin: 15px 10px;" class="font-declaracao">@lang('entregaTecnica.item_manual_chave_partida_ss')</label>
-                                    </div>
-                                </div>
-    
-                                <div class="row justify-content-center pt-3 ml-2">
-                                    <div class="form-group col-md-12">
-                                        <label for="observacoes" class="font-declaracao">@lang('entregaTecnica.observacoes'):</label>
-                                        <textarea class="form-control" id="observacoes" rows="5"></textarea>
-                                      </div>
-                                </div>
-
-
-                                <div class="col-md-12 ml-2 pt-3 pb-3 row">
-                                    <div class="col-md-6">
-                                        <label for="" class="label_declaracao font-declaracao">@lang('entregaTecnica.assinatura_cliente')</label>
-                                        <input type="text" class="declaracao pl-2 pr-2 font-declaracao">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="" class="label_declaracao font-declaracao">@lang('entregaTecnica.cpf_cliente')</label>
-                                        <input type="text" class="declaracao_cpf pl-2 pr-2 font-declaracao">
-                                            </div>
-                                    <div class="col-md-2 font-declaracao-data">
-                                        <label for="" class="label_declaracao font-declaracao">@lang('entregaTecnica.data'):</label>
-                                        <input type="text" class="declaracao_data font-declaracao-data" value="{{ date('d/m/Y') }}" readonly>
-                                        </div>
-                                </div>
-
-                                {{-- DECLARAÇÃO DO TÉCNICO --}}          
-                                <div class="col-md-12 ml-2">
-                                    <hr>
-                                </div>
-                                <div class="col-md-12 ml-2 pt-3">
-                                    <p class="font-declaracao">@lang('entregaTecnica.eu') <strong>{{ strtoupper($item['nome_usuario']) }} </strong> @lang('entregaTecnica.declaracao_texto_tecnico_pt_1') <strong>{{ $item['numero_pedido'] }}</strong> @lang('entregaTecnica.declaracao_texto_tecnico_pt_2')</p>
-                                </div>
-                                
-                                <div class="row justify-content-center ml-2">
-                                    <div class="form-group col-md-12 font-declaracao">
-                                        <label for="observacoes">@lang('entregaTecnica.observacoes'):</label>
-                                        <textarea class="form-control" id="observacoes" rows="5"></textarea>
-                                      </div>
-                                </div>      
-
-                                <div class="col-md-12 ml-2 pt-3 pb-3 row">
-                                    <div class="col-md-6">
-                                        <label for="" class="label_declaracao font-declaracao">@lang('entregaTecnica.assinatura_tecnico')</label>
-                                        <input type="text" class="declaracao pl-2 pr-2 form-group">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label for="" class="label_declaracao font-declaracao">@lang('entregaTecnica.cpf_tecnico')</label>
-                                        <input type="text" class="declaracao_cpf pl-2 pr-2">
-                                    </div>
-                                    <div class="col-md-2">
-                                        <label for="" class="label_declaracao font-declaracao">@lang('entregaTecnica.data'):</label>
-                                        <input type="text" class="declaracao_data font-declaracao-data" value="{{ date('d/m/Y') }}" readonly>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <div class="pagebreak">&nbsp;</div>
     
                         {{-- BORDA FOOTER --}}
                                                         

@@ -127,10 +127,8 @@ return [
     'prfv' => 'PRFV',    
     'valmont' => 'Valmont',
     'cliente' => 'Cliente',
-    'revenda' => 'Revenda',
-    'tigre' => 'Tigre',
-    'amanco' => 'Amanco',
-    'corr_plastic' => 'Corr Plastic',
-
-    
+    'revenda' => 'Revenda',    
+    'tigre' => 'Tigre',    
+    'amanco' => 'Amanco',    
+    'corr_plastic' => 'Corr Plastic',    
 ];

@@ -54,7 +54,7 @@
         <form action="{{ route('save_technical_delivery_water_supply') }}" method="post" class="mt-3" id="formdados">
             <div class="tab-content" id="myTabContent">
                 <div id="alert">                
-                    @include('_layouts._includes._alert')    
+                @include('_layouts._includes._alert')
                 </div>            
                 <input type="hidden" name="id_entrega_tecnica" id="id_entrega_tecnica" value="{{ $id_entrega_tecnica }}">
                 <input type="hidden" name="adutora" id="adutora" value="{{ count($adutoras) > 0 }}">
@@ -84,33 +84,33 @@
                                 <tbody>
                                     @foreach ($adutoras as $adutora)                       
                                         <tr>
-                                            <td>
+                                            <td class="col-md-2">
                                                 <select name="tipo_tubo[]" required class="form-control"  id="tipo_tubo_'{{ $adutora['id_adutora'] }}">
                                                     <option value=""></option>
                                                     @foreach ($tubos as $tubo)
-                                                        <option value="{{ $tubo["tipo"] }}" {{ $tubo["tipo"] == $adutora["tipo_tubo"] ? 'selected' : '' }}>{{ __("listas." . $tubo["tipo"] ) }}</option>
+                                                        <option value="{{ $tubo["tipo"] }}" {{ $tubo["tipo"] == $adutora["tipo_tubo"] ? 'selected' : '' }}>{{ __('listas.' . $tubo["tipo"] ) }}</option>
                                                     @endforeach
                                                 </select>
                                             </td>                
-                                            <td><input type="number" class="form-control" required name="diametro[]" id="diametro_'{{ $adutora['id_adutora'] }}" value="{{ $adutora['diametro'] }}"></td>
-                                            <td><input type="number" class="form-control" required name="numero_linha[]" id="numero_linha_'{{ $adutora['id_adutora'] }}" value="{{ $adutora['numero_linha'] }}"></td>
-                                            <td><input type="number" min=1 class="form-control" required name="comprimento[]" id="comprimento_'{{ $adutora['id_adutora'] }}" value="{{ $adutora['comprimento'] }}"></td>
-                                            <td>                                                          
+                                            <td class="col-md-2"><input type="number" class="form-control" step="0.01" min="0" required name="diametro[]" id="diametro_'{{ $adutora['id_adutora'] }}" value="{{ $adutora['diametro'] }}"><em class="input-tb-unidade">@lang('unidadesAcoes._pol')</em></td>
+                                            <td class="col-md-2"><input type="number" class="form-control" step="0.01" min="0" required name="numero_linha[]" id="numero_linha_'{{ $adutora['id_adutora'] }}" value="{{ $adutora['numero_linha'] }}"></td>
+                                            <td class="col-md-2"><input type="number" min=1 class="form-control" step="0.01" min="0" required name="comprimento[]" id="comprimento_'{{ $adutora['id_adutora'] }}" value="{{ $adutora['comprimento'] }}"><em class="input-tb-unidade">@lang('unidadesAcoes._m')</em></td>
+                                            <td class="col-md-2">                                                          
                                                 <select name="fornecedor[]" required class="form-control"  id="fornecedor_'{{ $adutora['id_adutora'] }}">
                                                     @foreach ($fornecedores as $fornecedor)
                                                         <option value="{{ $fornecedor["fornecedor"] }}" {{ $fornecedor["fornecedor"] == $adutora["fornecedor"] ? 'selected' : '' }}>{{ __("listas." . $fornecedor["fornecedor"] ) }}</option>
                                                     @endforeach
                                                 </select>
                                             </td>
-                                            <td>
+                                            <td class="col-md-2">
                                                 <select name="marca_tubo[]" required class="form-control"  id="marca_tubo_'{{ $adutora['id_adutora'] }}">
                                                     <option value=""></option>
                                                     @foreach ($marcaTubos as $tubo)
-                                                        <option value="{{ $tubo["marca"] }}" {{ $tubo["marca"] == $adutora["marca_tubo"] ? 'selected' : '' }}>{{ __("listas." . $tubo["marca"] ) }}</option>
+                                                        <option value="{{ $tubo["marca"] }}" {{ $tubo["marca"] == $adutora["marca_tubo"] ? 'selected' : '' }}>{{ $tubo['descricao'] }}</option>
                                                     @endforeach
                                                 </select>                                                
                                             </td>
-                                            <td>
+                                            <td class="col-md-1">
                                                 <button type="button" class="removetablerow" onclick="remove(this)"
                                                     style="outline: none; cursor: pointer; margin-top: 4px;"><i class="fa fa-fw fa-times fa-lg"></i>
                                                 </button>
@@ -119,10 +119,10 @@
                                     @endforeach
                                 </tbody>
                                 <tfoot>
-                                    <td>
-                                        <button onclick="AddTableRow()" type="button" class="addtablerow" style="outline: none; cursor: pointer; margin-left: 0;">
+                                    <td style="float: left;">
+                                        <button onclick="AddTableRow()" type="button" class="addtablerow" style="outline: none; cursor: pointer; margin-left: 0 !important;">
                                             <span class="fa-stack fa-sm">
-                                                <i class="fas fa-plus-circle fa-stack-2x"></i>
+                                                <i class="fas fa-plus-circle fa-stack-2x" style="margin-left: 0 !important"></i>
                                             </span>
                                         </button>
                                     </td>
@@ -150,11 +150,10 @@
                                 <tbody>
                                 </tbody>
                                 <tfoot>
-                                    <td>
-                                        <button onclick="AddTableRow()" type="button" class="addtablerow"
-                                            style="outline: none; cursor: pointer; margin-left: 0;">
+                                    <td style="float: left;">
+                                        <button onclick="AddTableRow()" type="button" class="addtablerow" style="outline: none; cursor: pointer; margin-left: 0 !important;">
                                             <span class="fa-stack fa-sm">
-                                                <i class="fas fa-plus-circle fa-stack-2x"></i>
+                                                <i class="fas fa-plus-circle fa-stack-2x" style="margin-left: 0 !important"></i>
                                             </span>
                                         </button>
                                     </td>
@@ -222,9 +221,9 @@
                 var rowCount = $('#tabelaTrechos >tbody >tr').length;
                 var newRow = $("<tr>");
                 var cols = "";
-                cols += '<td hidden><input type="number" class="form-control" name="id_adutora[]" id="id_adutora_' + rowCount + '"></td>';
                 
-                cols += '<td>';
+                cols += '<td class="col-md-2">';
+                cols += '<input type="hidden" class="form-control" name="id_adutora[]" id="id_adutora_' + rowCount + '">';
                 cols += '   <select name="tipo_tubo[]" required class="form-control"  id="tipo_tubo_' + rowCount + '">';
                 cols += '       <option value=""></option>';
                 cols += '       @foreach ($tubos as $tubo)';
@@ -232,28 +231,30 @@
                 cols += '       @endforeach';
                 cols += '   </select>';
                 cols += '</td>';
-                cols += '<td><input type="number" class="form-control" required name="diametro[]" id="diametro_' + rowCount + '"></td>';
-                cols += '<td><input type="number" class="form-control" required name="numero_linha[]" id="numero_linha_' + rowCount + '"></td>';
-                cols += '<td><input type="number" min=1 class="form-control" required name="comprimento[]" id="comprimento_' + rowCount + '"></td>';
+                cols += '<td class="col-md-2"><input type="number" step="0.01" min="0" class="form-control" required name="diametro[]" id="diametro_' + rowCount + '"><em class="input-tb-unidade">@lang('unidadesAcoes._pol')</em></td>';
+                cols += '<td class="col-md-2"><input type="number" step="0.01" min="0" class="form-control" required name="numero_linha[]" id="numero_linha_' + rowCount + '"></td>';
+                cols += '<td class="col-md-2"><input type="number" step="0.01" min="0" class="form-control" required name="comprimento[]" id="comprimento_' + rowCount + '"><em class="input-tb-unidade">@lang('unidadesAcoes._m')</em></td>';
 
-                cols += '<td>';                                                          
+                cols += '<td class="col-md-2">';                                                          
                 cols += '     <select name="fornecedor[]" required class="form-control"  id="fornecedor_"{{ $adutora["id_adutora"] }}">';
                 cols += '          @foreach ($fornecedores as $fornecedor)';
                 cols += '               <option value="{{ $fornecedor["fornecedor"] }}" {{ $fornecedor["fornecedor"] == $adutora["fornecedor"] ? "selected" : '' }}>{{ __("listas." . $fornecedor["fornecedor"] ) }}</option>';
                 cols += '          @endforeach';
                 cols += '     </select>';
                 cols += '</td>';
-                cols += '<td>';
+                cols += '<td class="col-md-2">';
                 cols += '      <select name="marca_tubo[]" required class="form-control"  id="marca_tubo_"{{ $adutora["id_adutora"] }}">';
                 cols += '           <option value=""></option>';
                 cols += '               @foreach ($marcaTubos as $tubo)';
-                cols += '                    <option value="{{ $tubo["marca"] }}" {{ $tubo["marca"] == $adutora["fornecedor"] ? "selected" : '' }}>{{ __("listas." . $tubo["marca"] ) }}</option>';
+                cols += '                    <option value="{{ $tubo["marca"] }}" {{ $tubo["marca"] == $adutora["fornecedor"] ? "selected" : '' }}>{{ $tubo["descricao"] }}</option>';
                 cols += '           @endforeach';
                 cols += '      </select>';
                 cols += '</td>';
 
                 if (rowCount > 0){
-                    cols += '<td><button type="button" class="removetablerow" onclick="remove(this)" style="outline: none; cursor: pointer; margin-top: 4px;"><i class="fa fa-fw fa-times fa-lg"></i></button></td>';
+                    cols += '<td class="col-md-1"><button type="button" class="removetablerow" onclick="remove(this)" style="outline: none; cursor: pointer; margin-top: 4px;"><i class="fa fa-fw fa-times fa-lg"></i></button></td>';
+                } else {
+                    cols += '<td class="col-md-1">&nbsp;&nbsp;</td>';
                 }
                 newRow.append(cols);
                 $("#tabelaTrechos").append(newRow);

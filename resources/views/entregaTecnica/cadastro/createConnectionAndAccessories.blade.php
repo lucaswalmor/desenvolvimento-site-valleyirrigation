@@ -65,7 +65,8 @@
             <input type="hidden" name="id_entrega_tecnica" id="id_entrega_tecnica" value="{{$id_entrega_tecnica}}">
             <!-- modificação para botão salvar sair -->
             <input type="hidden" name="savebuttonvalue" id="savebuttonvalue" value="save">
-            <div class="tab-content" id="myTabContent">                
+            <div class="tab-content" id="myTabContent">
+                
                 <div class="tab-pane fade show active" id="ligacao" role="tabpanel" aria-labelledby="ligacao-tab">                        
                     <div class="col-md-12">
                         {{-- TUBO AZ --}}
@@ -77,20 +78,24 @@
                             </div>
                             <div class="form-row justify-content-start">
                                 <div class="form-group col-md-3 telo5ce">
-                                    <label for="tubo_az1_comprimento">@lang('entregaTecnica.comprimento') @lang('unidadesAcoes.(m)') 1</label>
+                                    <label for="tubo_az1_comprimento">@lang('entregaTecnica.comprimento') 1</label>
                                     <input type="text" id="tubo_az1_comprimento" class="form-control" name="tubo_az1_comprimento" value="{{ $ligacao['tubo_az1_comprimento'] }}">
+                                    <em class="input-unidade">@lang('unidadesAcoes._m')</em>
                                 </div>
                                 <div class="form-group col-md-3 telo5ce">
-                                    <label for="tubo_az1_diametro">@lang('entregaTecnica.diametro') @lang('unidadesAcoes.(pol)') 1</label>
+                                    <label for="tubo_az1_diametro">@lang('entregaTecnica.diametro') 1</label>
                                     <input type="text" id="tubo_az1_diametro" class="form-control" name="tubo_az1_diametro" value="{{ $ligacao['tubo_az1_diametro'] }}">
+                                    <em class="input-unidade">@lang('unidadesAcoes._pol')</em>
                                 </div>
                                 <div class="form-group col-md-3 telo5ce">
-                                    <label for="tubo_az2_comprimento">@lang('entregaTecnica.comprimento') @lang('unidadesAcoes.(m)') 2</label>
+                                    <label for="tubo_az2_comprimento">@lang('entregaTecnica.comprimento') 2</label>
                                     <input type="text" id="tubo_az2_comprimento" class="form-control" name="tubo_az2_comprimento" value="{{ $ligacao['tubo_az2_comprimento'] }}">
+                                    <em class="input-unidade">@lang('unidadesAcoes._m')</em>
                                 </div>
                                 <div class="form-group col-md-3 telo5ce">
-                                    <label for="tubo_az2_diametro">@lang('entregaTecnica.diametro') @lang('unidadesAcoes.(pol)') 2</label>
+                                    <label for="tubo_az2_diametro">@lang('entregaTecnica.diametro') 2</label>
                                     <input type="text" id="tubo_az2_diametro" class="form-control" name="tubo_az2_diametro" value="{{ $ligacao['tubo_az2_diametro'] }}">
+                                    <em class="input-unidade">@lang('unidadesAcoes._pol')</em>
                                 </div>
                             </div>
                         </div>
@@ -107,20 +112,23 @@
                             </div>
                             <div class="form-row justify-content-start">
                                 <div class="form-group col-md-3 telo5ce">
-                                    <label for="registro_gaveta_diametro">@lang('entregaTecnica.diametro') @lang('unidadesAcoes.(pol)')</label>
+                                    <label for="registro_gaveta_diametro">@lang('entregaTecnica.diametro')</label>
                                     <input type="text" id="registro_gaveta_diametro" class="form-control" name="registro_gaveta_diametro" value="{{ $ligacao['registro_gaveta_diametro'] }}">
+                                    <em class="input-unidade">@lang('unidadesAcoes._pol')</em>
                                 </div>
                                 <div class="form-group col-md-3 telo5ce">
                                     <label for="registro_gaveta_marca">@lang('entregaTecnica.marca')</label>
                                     <input type="text" id="registro_gaveta_marca" class="form-control" name="registro_gaveta_marca" value="{{ $ligacao['registro_gaveta_marca'] }}">
                                 </div>
                                 <div class="form-group col-md-3 telo5ce">
-                                    <label for="peca_aumento_diametro_maior">@lang('entregaTecnica.diametro_maior') @lang('unidadesAcoes.(pol)')</label>
+                                    <label for="peca_aumento_diametro_maior">@lang('entregaTecnica.diametro_maior')</label>
                                     <input type="text" id="peca_aumento_diametro_maior" class="form-control" name="peca_aumento_diametro_maior" value="{{ $ligacao['peca_aumento_diametro_maior'] }}">
+                                    <em class="input-unidade">@lang('unidadesAcoes._pol')</em>
                                 </div>
                                 <div class="form-group col-md-3 telo5ce">
-                                    <label for="peca_aumento_diametro_menor">@lang('entregaTecnica.diametro_menor') @lang('unidadesAcoes.(pol)')</label>
+                                    <label for="peca_aumento_diametro_menor">@lang('entregaTecnica.diametro_menor')</label>
                                     <input type="text" id="peca_aumento_diametro_menor" class="form-control" name="peca_aumento_diametro_menor" value="{{ $ligacao['peca_aumento_diametro_menor'] }}">
+                                    <em class="input-unidade">@lang('unidadesAcoes._pol')</em>
                                 </div>
                             </div>
                         </div>
@@ -133,8 +141,9 @@
                         </div>
                         <div class="form-row justify-content-start">
                             <div class="form-group col-md-3 telo5ce">
-                                <label for="valvula_ventosa_diametro">@lang('entregaTecnica.diametro') @lang('unidadesAcoes.(pol)')</label>
+                                <label for="valvula_ventosa_diametro">@lang('entregaTecnica.diametro')</label>
                                 <input type="text" id="valvula_ventosa_diametro" class="form-control" name="valvula_ventosa_diametro" value="{{ $ligacao['valvula_ventosa_diametro'] }}">
+                                <em class="input-unidade">@lang('unidadesAcoes._pol')</em>
                             </div>
                             <div class="form-group col-md-3 telo5ce">
                                 <label for="valvula_ventosa_marca">@lang('entregaTecnica.marca')</label>
@@ -159,8 +168,9 @@
                             </div>
                             <div class="form-row justify-content-start">
                                 <div class="form-group col-md-3 telo5ce">
-                                    <label for="valvula_retencao_diametro">@lang('entregaTecnica.diametro') @lang('unidadesAcoes.(pol)')</label>
+                                    <label for="valvula_retencao_diametro">@lang('entregaTecnica.diametro')</label>
                                     <input type="text" id="valvula_retencao_diametro" class="form-control" name="valvula_retencao_diametro" value="{{ $ligacao['valvula_retencao_diametro'] }}">
+                                    <em class="input-unidade">@lang('unidadesAcoes._pol')</em>
                                 </div>
                                 <div class="form-group col-md-3 telo5ce">
                                     <label for="valvula_retencao_marca">@lang('entregaTecnica.marca')</label>
@@ -187,8 +197,9 @@
                         </div>
                         <div class="form-row justify-content-start">
                             <div class="form-group col-md-3 telo5ce">
-                                <label for="valvula_antecondas_diametro">@lang('entregaTecnica.diametro') @lang('unidadesAcoes.(pol)')</label>
+                                <label for="valvula_antecondas_diametro">@lang('entregaTecnica.diametro')</label>
                                 <input type="text" id="valvula_antecondas_diametro" class="form-control" name="valvula_antecondas_diametro" value="{{ $ligacao['valvula_antecondas_diametro'] }}">
+                                <em class="input-unidade">@lang('unidadesAcoes._pol')</em>
                             </div>
                             <div class="form-group col-md-3 telo5ce">
                                 <label for="valvula_antecondas_marca">@lang('entregaTecnica.marca')</label>
@@ -208,8 +219,9 @@
                         </div>
                         <div class="form-row justify-content-start">
                             <div class="form-group col-md-3 telo5ce">
-                                <label for="registro_eletrico_diametro">@lang('entregaTecnica.diametro') @lang('unidadesAcoes.(pol)')</label>
+                                <label for="registro_eletrico_diametro">@lang('entregaTecnica.diametro')</label>
                                 <input type="text" id="registro_eletrico_diametro" class="form-control" name="registro_eletrico_diametro" value="{{ $ligacao['registro_eletrico_diametro'] }}">
+                                <em class="input-unidade">@lang('unidadesAcoes._pol')</em>
                             </div>
                             <div class="form-group col-md-3 telo5ce">
                                 <label for="registro_eletrico_marca">@lang('entregaTecnica.marca')</label>

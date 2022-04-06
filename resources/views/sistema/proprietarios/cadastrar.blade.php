@@ -88,7 +88,7 @@
                             <div class="form-group col-md-3 telo5ce ">
                                 <label for="documento">@lang('proprietarios.documento')</label>
                                 <input type="text" class="form-control telo5ce" id="documento" name="documento"
-                                    maxlength="22" required="required">
+                                    maxlength="22" required="required"  OnBlur="ValidaCPF();">
                             </div>
                         </div>
                     </div>
@@ -105,7 +105,7 @@
     integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk=" crossorigin="anonymous"></script>
 
     {{-- MASCARA DE INPUT --}}
-    <script src="{{ asset('js/jquery.mask.js') }}"></script>
+    {{-- <script src="{{ asset('js/jquery.mask.js') }}"></script>
     <script src="{{ asset('js/jquery.mask.min.js') }}"></script>
     <script>
         $(document).ready(function() {
@@ -113,6 +113,27 @@
             $('#cep').mask('00000-000');
         });
 
+    </script> --}}
+
+    <script>
+        function ValidaCPF(){   
+
+            var ao_cpf = document.forms.form.documento.value; 
+            var cpfValido = /^(([0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2}))$/;     
+            if (cpfValido.test(ao_cpf) == false)    { 
+                
+                ao_cpf = ao_cpf.replace( /\D/g , ""); //Remove tudo o que não é dígito
+                            
+                if (ao_cpf.length==11){
+                    ao_cpf = ao_cpf.replace( /(\d{3})(\d)/ , "$1.$2"); //Coloca um ponto entre o terceiro e o quarto dígitos
+                    ao_cpf = ao_cpf.replace( /(\d{3})(\d)/ , "$1.$2"); //Coloca um ponto entre o terceiro e o quarto dígitos
+                    //de novo (para o segundo bloco de números)
+                    ao_cpf = ao_cpf.replace( /(\d{3})(\d{1,2})$/ , "$1-$2"); //Coloca um hífen entre o terceiro e o quarto dígitos
+                                
+                    var valorValido = document.getElementById("documento").value = ao_cpf;
+                }
+            }
+        }
     </script>
 
     {{-- VALIDAÇÕES DE CAMPOS --}}

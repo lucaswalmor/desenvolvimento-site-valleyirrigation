@@ -1,11 +1,15 @@
 <?php
 
 use App\Classes\EntregaTecnica\EntregaTecnica;
-use Illuminate\Support\Facades\Mail;
 
 if (version_compare(PHP_VERSION, '7.2.0', '>=')) {
     error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
 }
+
+// ROTA DE FALLBACK CASO ALGUMA ROTA OCASIONE ERRO
+Route::fallback(function(){
+    echo 'Rota não existente. <a href="'.route('dashboard').'">Voltar</a>';
+});
 
 Auth::routes(['verify' => true]);
 //////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -31,7 +35,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 Route::group(['middleware' => 'auth', 'middleware' => 'verified'], function () {
 
-    Route::group(['middleware' => 'administrador'], function () {
+    //Route::group(['middleware' => 'administrador'], function () {
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////// ROTAS DE BOCAIS ///////////////////////////////////////////////////
@@ -156,13 +160,28 @@ Route::group(['middleware' => 'auth', 'middleware' => 'verified'], function () {
             Route::post('/technical_delivery/filter', ['as' => 'technical_delivery_filter', 'uses' => 'EntregaTecnica\EntregaTecnicaController@searchTechnilcalDelivery']);
 
             /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    });
+
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////// ROTAS DE PAÍSES ///////////////////////////////////////////////////
+        /////////////////////////////////////// NOZZLE ROUTE /////////////////////////////////////////////////////
+
+            Route::post('/country/filter', ['as' => 'country_filter', 'uses' => 'Sistema\CountryController@searchCountry']);
+            Route::get('/country', ['as' => 'country_manage', 'uses' => 'Sistema\CountryController@manageCountry']);
+            Route::get('/country/create', ['as' => 'country_create', 'uses' => 'Sistema\CountryController@createCountry']);
+            Route::post('/country/save', ['as' => 'country_save', 'uses' => 'Sistema\CountryController@saveCountry']);
+            Route::get('/country/edit/{id}', ['as' => 'country_edit', 'uses' => 'Sistema\CountryController@editCountry']);
+            Route::post('/country/update', ['as' => 'country_update', 'uses' => 'Sistema\CountryController@updateCountry']);
+            Route::delete('/country/delete/{id}', ['as' => 'country_delete', 'uses' => 'Sistema\CountryController@deleteCountry']);
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //});
 
     /*
      *  Rotas de usuários gerentes
      *  Podem ser acessadas apenas por usuários administradores e gerentes
      */
-    Route::group(['middleware' => 'gerente'], function () {
+    //Route::group(['middleware' => 'gerente'], function () {
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////// ROTAS DE USUÁRIOS ////////////////////////////////////////////////
@@ -192,20 +211,20 @@ Route::group(['middleware' => 'auth', 'middleware' => 'verified'], function () {
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    });
+    //});
 
     /*
      *  Rotas de usuários supervisores
      *  Podem ser acessadas apenas por usuários administradores, gerentes e supervisores
      */
-    Route::group(['middleware' => 'supervisor'], function () {
-    });
+    //Route::group(['middleware' => 'supervisor'], function () {
+    //});
 
     /*
      *  Rotas de usuários consultores
      *  Podem ser acessadas apenas por usuários administradores, gerentes, supervisores e consultores
      */
-    Route::group(['middleware' => 'consultor'], function () {
+    //Route::group(['middleware' => 'consultor'], function () {
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////// ROTAS DE FAZENDAS ////////////////////////////////////////////////
@@ -240,14 +259,14 @@ Route::group(['middleware' => 'auth', 'middleware' => 'verified'], function () {
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    });
+    //});
 
 
     /*
      *  Rotas de usuários assistentes
      *  Podem ser acessadas apenas por usuários administradores, gerentes, supervisores, consultores e assistentes
      */
-    Route::group(['middleware' => 'assistente'], function () {
+    //Route::group(['middleware' => 'assistente'], function () {
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
         /////////////////////////////////////// ROTA DO DASHBOARD ////////////////////////////////////////////////
@@ -393,5 +412,5 @@ Route::group(['middleware' => 'auth', 'middleware' => 'verified'], function () {
             Route::get('resizing/central_pivot/edit/{id_redimensionamento}', ['as' => 'resizing_edit', 'uses' => 'Projetos\Redimensionamento\PivoCentral\RedimensionamentoController@setupViewRedimensionamento']);
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    });
+    //});
 });

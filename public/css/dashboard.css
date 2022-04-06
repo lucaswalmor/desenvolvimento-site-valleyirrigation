@@ -269,3 +269,25 @@ label.error strong {
     color: #3c8dbc;
     z-index: 1;
 }
+
+/* DASHBOARD */
+
+.card-items {
+    display: flex;
+    align-items: center;
+}
+
+.card-items .valor {
+    font-size: 3rem;
+    text-align: center;
+}
+
+.card-items .icon {
+    text-align: end;
+}
+
+.card-items .icon i {
+    font-size: 4rem;
+    margin-bottom: 30px;
+    color: green;
+}

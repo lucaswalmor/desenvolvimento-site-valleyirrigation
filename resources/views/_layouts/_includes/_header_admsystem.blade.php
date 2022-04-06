@@ -44,6 +44,9 @@
                         @lang('sidenav.revendas')
                     </a>
 
+                    <a href="{{ route('country_manage') }}" class="nav-link entrega-tecnica-link sub_grupo">
+                        @lang('sidenav.country')
+                    </a>
                 </li>
             </ul>
         </nav>

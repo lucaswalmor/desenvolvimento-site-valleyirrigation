@@ -84,8 +84,8 @@ class CreateEntregaTecnica extends Migration
             $table->string('aspersor_regulador_marca', 30)->nullable();
             $table->string('aspersor_regulador_modelo', 30)->nullable();
             $table->string('aspersor_pressao', 30)->nullable();
-            $table->string('aspersor_canhao_final', 30)->nullable();
-            $table->double('aspersor_canhao_final_bocal', 6,2)->nullable();
+            $table->string('aspersor_canhao_final_marca', 30)->nullable();
+            $table->string('aspersor_canhao_final_modelo', 30)->nullable();
             $table->string('aspersor_mbbooster_marca', 30)->nullable();
             $table->string('aspersor_mbbooster_modelo', 30)->nullable();
             $table->string('aspersor_mbbooster_rotor', 6,2)->nullable();

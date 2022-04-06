@@ -154,6 +154,15 @@
         width: 314px;
     }
 
+    .dropbtn>i {
+        margin-right: 55px;
+    }
+    
+    .dropdown {
+        width: 0 !important;
+    }
+
+    
     .imagens {
         display: none;
     }
@@ -176,7 +185,7 @@
     }
 
     #menu > #user > i{
-        margin-left: 69px;
+        margin-left: 10px;
     }
 
     #menu ul {
@@ -266,6 +275,263 @@
         font-size: 9px;
     }
 
+    .titulo-entrega-tecnica-mobile h1 {
+        font-size: 1.5rem !important;
+    }
+
+}
+
+@media screen and (max-width:413px) {
+    .dropbtn {
+        text-indent: 0%;
+        width: 170px;
+        outline: none !important;
+        background-image: none !important;
+    }
+
+    .dropdown {
+        width: 0;
+    }
+
+    #user span {
+        display: none;
+    }
+
+    #menu li i {
+        display: none;
+    }
+}
+
+@media screen and (max-width:419px) {
+    .dropbtn {
+        text-indent: 0%;
+        width: 170px;
+        outline: none !important;
+        background-image: none !important;
+    }
+
+    .dropdown {
+        width: 0;
+    }
+
+    #user span {
+        display: none;
+    }
+
+    #menu li i {
+        margin-left: 0px;
+    }
+}
+
+@media screen and (max-width:421px) {
+    .dropbtn {
+        text-indent: 0%;
+        width: 170px;
+        outline: none !important;
+        background-image: none !important;
+    }
+
+    .dropdown {
+        width: 0;
+    }
+
+    #user span {
+        display: none;
+    }
+
+    #menu li i {
+        margin-left: 0px;
+    }  
+}
+
+@media screen and (max-width:423px) {
+    .dropbtn {
+        text-indent: 0%;
+        width: 170px;
+        outline: none !important;
+        background-image: none !important;
+    }
+
+    .dropdown {
+        width: 0;
+    }
+
+    #user span {
+        display: none;
+    }
+
+    #menu li i {
+        margin-left: 0px;
+    } 
+}
+
+@media screen and (max-width:674px) {
+    .dropbtn {
+        text-indent: 0%;
+        width: 170px;
+        outline: none !important;
+        background-image: none !important;
+    }
+
+    .dropdown {
+        width: 0;
+    }
+
+    #user span {
+        display: none;
+    }
+
+    #menu li i {
+        margin-left: 0px;
+    }
+
+    #menu > #user {
+        padding: 0px 20px;
+    }
+
+    #menu ul {
+        right: -17px;
+    }
+
+    .idioma {
+        right: -64px !important;
+    }
+
+    /* .dropdown-content4 {
+        min-width: 425px;
+    } */
+
+    /* .dropbtn {
+        width: 365px;
+    } */
+
+    #menu li {
+        padding: 0 13px;
+    }
+
+    .nav11 a, .nav11 label {
+        font-size: 10px !important;
+    }
+
+    #menu ul li {
+        width: 299px;
+        border: none;
+        border-bottom: 1px solid #0088CE;
+    }
+
+    /* .dropdown-content1 {
+        min-width: 425px;
+        left: -60px;
+    } */
+
+    .titulo-entrega-tecnica-mobile-cadastros h4 {
+        font-size: 1.1rem !important;
+    }
+
+    .titulo-entrega-tecnica-mobile {
+        margin-top: 10px;
+    }
+
+    .titulo-entrega-tecnica-mobile h1 {
+        font-size: 2rem;
+    }
+
+    .titulo-entrega-tecnica-mobile h4 {
+        font-size: 1.5rem;
+    }
+
+    .topo {
+        height: 150px;
+    }
+
+    .mobile {
+        margin-top: 15px;
+        font-size: 8px;
+    }
+
+    .acoes .botaoTabela {
+        font-size: 13px !important;
+    }
+
+    .dados-et-mobile {      
+        margin-left: 35px !important;
+    }
+
+    .dados-et-mobile h3 {
+        font-size: 1rem;        
+        margin-left: -20px !important;
+    }
+
+    .afericao a {
+        font-size: 1rem;
+    }
+
+    .afericao .cad-lance-bloqueado {
+        font-size: 1rem;
+    }
+
+    .telo5inputfiltro {
+        margin-top: 0rem !important;
+    }
+
+    .dropbtn>i {
+        padding: 4px 25px 0 0px;
+    }
+
+    .addtablerow {
+        margin: 0;
+    }
+
+    .img_modal {
+        max-height: 300px;
+        min-height: 300px;
+        max-width: 300px;
+        min-width: 300px;
+    }
+
+    .card_img > .col-md-2 {
+        max-width: 41% !important;
+    }
+}
+
+@media screen and (max-width:674px) {
+    .imagens {
+        display: none;
+    }
+
+    main {
+        height: 155%;
+    }
+
+    footer {
+        bottom: auto;
+    }
+    
+}
+
+@media screen and (max-width:673px) {
+    .imagens {
+        display: none;
+    }
+    
+    /* #user span {
+        display: none;
+    } */
+}
+
+@media screen and (max-width:761px) {
+    .imagens {
+        display: none;
+    }
+
+    main {
+        height: 155%;
+    }
+
+    footer {
+        bottom: auto;
+    }
+    
 }
 
 @media screen and (max-width: 768px) {
@@ -458,6 +724,102 @@
 
     .cad-lance-bloqueado {
         /* padding: 0 !important; */
+        height: 30px !important;
+    }
+}
+
+@media screen and (max-width: 972px) {
+    /* CABEÇALHO */
+    .header-logo {
+        display: none;
+    }
+
+    #main {
+        float: right;
+    }
+
+    .imagens {
+        height: 50px;
+        width: 88px;
+        float: left;
+    }
+
+    .imagens > a {
+        margin-left: -6px;
+    }
+
+    .acoes .botaoTabela {
+        padding-left: 0px;
+    }
+
+    .nav-tabs {
+        margin-left: -11px;
+        margin-top: -59px;
+    }
+
+    .nav-link {
+        font-size: 10px !important;
+    }
+
+    /* STATUS DA AFERIÇÃO */
+    .afericao h3 {
+        font-size: 1rem;
+    }
+
+    .afericao a {
+        color: #fff;
+        font-size: 9pt;
+    }
+
+    /* MAPA ORIGINAL */
+    .titulo-mapa-mobile > h1{
+        font-size: 14px;
+    }
+
+    .titulo-mapa-mobile > h4{
+        font-size: 12px;
+    }
+
+    .botoes-mobile-mapa {
+        font-size: 7px;
+    }
+
+    .table {
+        font-size: 12px;
+    }
+
+    /* NOVO LANCE */
+    .titulo-lance-mobile {
+        font-size: 9px;
+    }
+
+    /* ADUTORA */
+    .titulo-adutora-mobile {
+        font-size: 9px;
+    }
+
+    /* TELA DE BOMBEAMENTO */
+
+    .titulo-bombeamento-mobile {
+        font-size: 7px;
+    }
+
+    .titulo-bombeamento-mobile > h4{
+        margin-top: -14px;
+    }
+
+    /* TELA DE AFERIÇÃO DA VELOCIDADE */
+    .titulo-velocidade-mobile {
+        font-size: 8px;
+    }
+
+    /* TELA DE REDIMENSIONAMENTO */
+        /* GERENCIAR */
+    .titulo-redimensionamento-mobile {
+        font-size: 9px;
+    }
+
+    .cad-lance-bloqueado {
         height: 30px !important;
     }
 }

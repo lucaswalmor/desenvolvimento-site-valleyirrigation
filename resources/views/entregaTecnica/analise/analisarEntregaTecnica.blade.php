@@ -12,8 +12,8 @@
         width: 100% !important;
     }
 </style>
-@section('topo_detalhe')
 
+@section('topo_detalhe')
     <div class="container-fluid topo">
         <div class="row align-items-start">
 
@@ -35,183 +35,126 @@
                     </button>
                 </a>
 
-                @if ($entrega_tecnica_status['status'] == 4)
-                    <button type="button" data-toggle="modal" data-target="#envar_analise" disabled>
+                @if ($entrega_tecnica_status['status'] == 4 || $entrega_tecnica_status['status'] == 5)
+                    <button type="button" data-toggle="modal" data-target="#enviar_analise" disabled>
                         <span class="fa-stack fa-2x"  data-toggle="tooltip" data-placement="bottom" title="@lang("entregaTecnica.enviar")">
                             <i class="fas fa-circle fa-stack-2x"></i>
                             <i class="fas fa-share-square fa-stack-1x fa-inverse"></i>    
                         </span>
                     </button>
                 @else
-                    <button type="button" data-toggle="modal" data-target="#envar_analise" >
+                    <button type="button" id="botao_enviar_analise" data-target="#enviar_analise" onclick="dataAnalysis();">
                         <span class="fa-stack fa-2x"  data-toggle="tooltip" data-placement="bottom" title="@lang("entregaTecnica.enviar")">
                             <i class="fas fa-circle fa-stack-2x"></i>
                             <i class="fas fa-share-square fa-stack-1x fa-inverse"></i>    
                         </span>
                     </button>
                 @endif
-            </div>
+
             </div>
         </div>
+    </div>
 
     {{-- ENVIAR ANÁLISE DA ENTREGA TECNICA --}}
-    <div class="modal fade" id="envar_analise" tabindex="-1" aria-labelledby="envar_analiseLabel" aria-hidden="true">
+    <div class="modal fade" id="enviar_analise" tabindex="-1" aria-labelledby="enviar_analiseLabel" aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
+
                 <div class="modal-header">
-                    <h5 class="modal-title" id="envar_analiseLabel">@lang('entregaTecnica.enviar_analise')</h5>
+                        {{-- TITULO DA ENTREGA TECNICA REPROVADA --}}
+                        <h3 class="text-danger titulo-reprovado" style="display: none;">@lang('entregaTecnica.et_repproved')</h3>                        
+                        
+                        {{-- TITULO DA ENTREGA TECNICA APROVADA --}}
+                        <h3 class="text-success titulo-aprovado" style="display: none;">@lang('entregaTecnica.et_approved')</h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
+
                 <div class="modal-body">
                     <form action="{{ route('send_analisy_technical_delivery') }}" method="post" id="formdados">
                     @csrf
                         <input type="hidden" name="id_entrega_tecnica" value="{{ $id_entrega_tecnica }}">
+                        <input type="hidden" name="status_analise" id="status_analise" value="">
+
                         <div class="col-md-12" id="cssPreloader">
                             <div class="form-row justify-content-start">    
-                                <div class="form-group col-md-3 telo5ce">
-                                    <label for="situacao">@lang('entregaTecnica.situacao')</label>
-                                    <select name="situacao" class='form-control' id="situacao" onchange="reprovado();">
-                                        <option value="2"></option>
-                                        <option value="1">@lang('entregaTecnica.aprovada')</option>
-                                        <option value="0">@lang('entregaTecnica.reprovada')</option>
-                                    </select>
-                                </div>      
-                                <div class="form-group col-md-9 telo5ce" id="formulario_reprovada" style="display: none;">
-                                    <label for="tags">@lang('entregaTecnica.divergencia')</label>
-                                    <select class='form-control' multiple="true" name="tags[]" id="tagSelector">
-                                        <option value=""></option>
-                                        @foreach ($campos_reprovados as $campos)
-                                            <option value="{{ $campos['campo']}}" {{ $campos['campo'] == $entrega_tecnica_dados['tipo_equipamento_op1'] ? 'selected' : ''}} >{{  __('entregaTecnica.'. $campos['campo'] ) }}</option>
-                                        @endforeach
-                                    </select>
+                                <div class="form-group col-md-12 titulo-status-entrega-tecnica" id="formulario_reprovada" style="display: none;">
+                                    <div class="form-group mt-3">
+                                        <label for="divergence">@lang('entregaTecnica.detalhes_divergencia')</label>
+                                        <textarea class="form-control" name="divergence" id="divergence" rows="5" readonly></textarea>
+                                    </div>
                                 </div>   
                             </div>
+
                             <div class="form-row justify-content-start"> 
-                                <div class="form-group col-md-12">
+                                <div class="form-group col-md-12" id="formulario_aprovada" style="display: none;">
+                                </div>   
+                            </div>
+
+                            <div class="form-row justify-content-start"> 
+                                <div class="form-group col-md-12 titulo-status-entrega-tecnica">
                                     <label for="observacoes">@lang('entregaTecnica.observacoes')</label>
                                     <textarea class="form-control" id="observacoes" name="observacoes" rows="4"></textarea>
                                 </div>
                             </div>
                         </div>
+
                         <div class="row justify-content-end botaoAfericao mb-2 mr-4" id="botoesSalvar">
-                            <button type="button" class=" ml-2 etVoltar" data-dismiss="modal" aria-label="Close">
-                                @lang('unidadesAcoes.sair')
-                            </button>
+                            <button type="button" class="ml-2 etVoltar" data-dismiss="modal" aria-label="Close">@lang('unidadesAcoes.sair')</button>
                             <button class="etSalvar ml-2" name="botao" value="salvar" id="botaosalvar">@lang('entregaTecnica.enviar')</button>
                         </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-      </div>
 @endsection
 
 @section('conteudo')
     {{-- NAVTAB'S --}}
     <ul class="nav nav-tabs" id="myTab" role="tablist">
         <li class="nav-item mobile-et" role="presentation">
-            <a class="nav-link active" id="caracteristicas_gerais-tab" data-toggle="tab" href="#caracteristicas_gerais" role="tab"
-                aria-controls="caracteristicas_gerais" aria-selected="true">@lang('entregaTecnica.caracteristicas_gerais')</a>
+            <a class="nav-link active" id="principal-tab" data-toggle="tab" href="#principal" role="tab"
+                aria-controls="principal" aria-selected="true">@lang('entregaTecnica.principal')</a>
         </li>
-        <li class=" mobile-et" role="presentation">
-            <a class="nav-link" id="lances-tab" data-toggle="tab" href="#lances" role="tab"
-                aria-controls="lances" aria-selected="false">@lang('entregaTecnica.lances')
-            </a>
-        </li>
-        <li class=" mobile-et" role="presentation">
-            <a class="nav-link" id="aspersores-tab" data-toggle="tab" href="#aspersores" role="tab" aria-controls="aspersores"
-                aria-selected="false">@lang('entregaTecnica.aspersores')</a>
-        </li>
-        <li class=" mobile-et" role="presentation">
-            <a class="nav-link" id="adutora-tab" data-toggle="tab" href="#adutora" role="tab"
-                aria-controls="adutora" aria-selected="false">@lang('entregaTecnica.adutora')</a>
-        </li>
-        <li class=" mobile-et" role="presentation">
-            <a class="nav-link" id="ligacao-tab" data-toggle="tab" href="#ligacao" role="tab"
-                aria-controls="ligacao" aria-selected="false">@lang('entregaTecnica.ligacao_acessorios')</a>
-        </li>
-        <li class=" mobile-et" role="presentation">
-            <a class="nav-link" id="motobomba-tab" data-toggle="tab" href="#motobomba" role="tab"
-                aria-controls="motobomba" aria-selected="false">@lang('entregaTecnica.motobomba')</a>
-        </li>
-        <li class=" mobile-et" role="presentation">
-            <a class="nav-link" id="succao-tab" data-toggle="tab" href="#succao" role="tab"
-                aria-controls="succao" aria-selected="false">@lang('entregaTecnica.succao')</a>
-        </li>
-        <li class=" mobile-et" role="presentation">
-            <a class="nav-link" id="alimentacao_eletrica-tab" data-toggle="tab" href="#alimentacao_eletrica" role="tab"
-                aria-controls="alimentacao_eletrica" aria-selected="false">@lang('entregaTecnica.alimentacao_eletrica')</a>
-        </li>
-        <li class=" mobile-et" role="presentation">
-            <a class="nav-link" id="testes-tab" data-toggle="tab" href="#testes" role="tab"
-                aria-controls="testes" aria-selected="false">@lang('entregaTecnica.testes')</a>
-        </li>
-
-        @if (count($telemetria) > 0)
-        <li class=" mobile-et" role="presentation">
-            <a class="nav-link" id="telemetria-tab" data-toggle="tab" href="#telemetria" role="tab"
-                aria-controls="telemetria" aria-selected="false">@lang('entregaTecnica.telemetria')</a>
-        </li>
-        @endif
-
     </ul>
 
-<div id="alert">                
-    @include('_layouts._includes._alert')    
-</div>  
+    <div class="tab-content mobile-et" id="myTabContent">
 
-<div class="tab-content mobile-et" id="myTabContent">
-    @foreach ($entrega_tecnica as $item) 
-        <div class="tab-pane fade show active" id="caracteristicas_gerais" role="tabpanel" aria-labelledby="caracteristicas_gerais-tab">
-            @include('entregaTecnica.analise.abas.general_features')
-        </div>
-        
-        <div class="tab-pane fade" id="lances" role="tabpanel" aria-labelledby="lances-tab">
-            @include('entregaTecnica.analise.abas.spans')
+        <div class="tab-pane fade show active" id="principal" role="tabpanel" aria-labelledby="principal-tab">
+
+            <div class ="row justify-content-md-center mt-3">
+                <div class="col-md-11">
+                    <div id="myAlert" class="alert alert-warning alert-dismissible fade text-center" toggle="myAlert" role="alert">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <p id="messageAlert"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                @foreach ($entrega_tecnica as $item) 
+                    @include('entregaTecnica.analise.abas.content_analysis')
+                @endforeach
+            </div>
+
         </div>
 
-        <div class="tab-pane fade" id="aspersores" role="tabpanel" aria-labelledby="aspersores-tab">
-            @include('entregaTecnica.analise.abas.sprinklers')
-        </div>
-
-        <div class="tab-pane fade" id="adutora" role="tabpanel" aria-labelledby="adutora-tab">
-            @include('entregaTecnica.analise.abas.adductor')
-        </div>
-        
-        <div class="tab-pane fade" id="ligacao" role="tabpanel" aria-labelledby="ligacao-tab">
-            @include('entregaTecnica.analise.abas.connectionAndAcessories')
-        </div>
-        
-        <div class="tab-pane fade" id="motobomba" role="tabpanel" aria-labelledby="motobomba-tab">
-            @include('entregaTecnica.analise.abas.motopump')
-        </div>
-        
-        <div class="tab-pane fade" id="succao" role="tabpanel" aria-labelledby="succao-tab">
-            @include('entregaTecnica.analise.abas.sucction')
-        </div>
-        
-        <div class="tab-pane fade" id="alimentacao_eletrica" role="tabpanel" aria-labelledby="alimentacao_eletrica-tab">
-            @include('entregaTecnica.analise.abas.powerSupply')
-        </div>
-    
-        <div class="tab-pane fade" id="testes" role="tabpanel" aria-labelledby="testes-tab">
-            @include('entregaTecnica.analise.abas.tests')
-        </div>
-    
-        <div class="tab-pane fade" id="telemetria" role="tabpanel" aria-labelledby="telemetria-tab">
-            @include('entregaTecnica.analise.abas.telemetry')
-        </div>
-            @endforeach
-</div>
+    </div>
 @endsection
 
+
 @section('scripts')
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.1/js/bootstrap.min.js" integrity="sha512-UR25UO94eTnCVwjbXozyeVd6ZqpaAE9naiEUBK/A+QDbfSTQFhPGj5lOR6d8tsgbBk84Ggb5A3EkjsOgPRPcKA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         $(document).ready(function() {
+
+            $("#myAlert").hide();
+
             $('#botaosalvar').on('click', function() {            
                 $('#formdados').submit();
             });      
@@ -229,12 +172,103 @@
             });    
         });       
 
-        function reprovado() {
-            var reprovada = $('#situacao').val();
-            if (reprovada == 0) {
-                $('#formulario_reprovada').show();
-            } else if (reprovada == 1 || reprovada == 2) {
-                $('#formulario_reprovada').hide();
+        function dataAnalysis() {
+            var general_features = $("input[name='general_features']:checked").val();
+            var general_features_observacoes = $('#observacao_caracteristicas_gerais').val();
+
+            var spans = $("input[name='spans']:checked").val();
+            var spans_observacoes = $('#observacao_spans').val();
+            
+            var spiklers = $("input[name='spiklers']:checked").val();
+            var spiklers_observacoes = $('#observacao_spiklers').val();
+
+            var adductor = $("input[name='adductor']:checked").val();
+            var adductor_observacoes = $('#observacao_adductor').val();
+
+            var connection_accessories = $("input[name='connection_accessories']:checked").val();
+            var connection_accessories_observacoes = $('#observacao_LA').val();
+
+            var motopump = $("input[name='motopump']:checked").val();
+            var motopump_observacoes = $('#observacao_motoPump').val();
+
+            var suction = $("input[name='suction']:checked").val();
+            var suction_observacoes = $('#observacao_suction').val();
+
+            var powersupply = $("input[name='powersupply']:checked").val();
+            var powersupply_observacoes = $('#observacao_powersupply').val();
+
+            var tests = $("input[name='tests']:checked").val();
+            var tests_observacoes = $('#observacao_tests').val();
+
+            var telemetry = $("input[name='telemetry']:checked").val();
+            var telemetry_observacoes = $('#observacao_telemetry').val();
+
+            
+            
+            var array = [
+                {campo: '@lang('entregaTecnica.caracteristicas_gerais')', value: general_features, texto: general_features_observacoes},
+                {campo: '@lang('entregaTecnica.lances')', value: spans, texto: spans_observacoes},
+                {campo: '@lang('entregaTecnica.aspersores')', value: spiklers, texto: spiklers_observacoes},
+                {campo: '@lang('entregaTecnica.adutora')', value: adductor, texto: adductor_observacoes},
+                {campo: '@lang('entregaTecnica.ligacao_acessorios')', value: connection_accessories, texto: connection_accessories_observacoes},
+                {campo: '@lang('entregaTecnica.motobomba')', value: motopump, texto: motopump_observacoes},
+                {campo: '@lang('entregaTecnica.succao')', value: suction, texto: suction_observacoes},
+                {campo: '@lang('entregaTecnica.alimentacao_eletrica')', value: powersupply, texto: powersupply_observacoes},
+                {campo: '@lang('entregaTecnica.testes')', value: tests, texto: tests_observacoes},
+                {campo: '@lang('entregaTecnica.telemetria')', value: telemetry, texto: telemetry_observacoes},
+            ];
+
+
+            let divergencias = '';
+            let conta_rep = 0;
+            let status = 0;
+            let exist_blank = false; 
+
+
+            for(var i = 0; i < array.length; i++) {
+                if(array[i].value != 'repproved' && array[i].value != 'approved') {
+                    exist_blank = true;
+                    break;
+                }
+
+                if(array[i].value == 'repproved') {
+                    divergencias +=  array[i].campo + ': \n\t' + array[i].texto + '\n';
+                    conta_rep += 1;                    
+                }
+
+            }
+
+            if(!exist_blank) {
+                divergencias = divergencias.substring(0, (divergencias.length - 2));
+
+                if (conta_rep > 0 ) {
+                    status = 0; // Repproved
+                    $('#formulario_reprovada').show();
+                    $('#formulario_aprovada').hide();
+                    $('.titulo-reprovado').show();
+                    $('.titulo-aprovado').hide();
+
+                    document.getElementById('divergence').value = divergencias;
+                    document.getElementById('status_analise').value = status;
+                } 
+                else {
+                    status = 1; // Approved
+                    $('#formulario_aprovada').show();
+                    $('#formulario_reprovada').hide();
+                    $('.titulo-reprovado').hide();
+                    $('.titulo-aprovado').show();
+                    
+                    document.getElementById('status_analise').value = status;
+                }
+
+                $('#enviar_analise').modal('toggle');
+            } 
+            else {                
+                $('#messageAlert').html('<strong style="font-size: 1.5rem;">@lang('entregaTecnica.campos_analise')</strong>');
+
+                $('#myAlert').fadeTo(2000, 500).slideUp(500, function() {
+                    $('#myAlert').fadeOut(500);
+                })
             }
         }
     </script>

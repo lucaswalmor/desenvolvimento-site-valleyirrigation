@@ -20,7 +20,8 @@ return [
     'cdc' => 'Cost Centers',
     'proprietarios' => 'Owners',
     'bocais' => 'Nozzles',
-
+    'country' => 'Countries',
+    
     'admin' => 'Admin',
     'acoes' => 'Actions',
     'inspecao_eletrica' => 'Eletrical Inspection',

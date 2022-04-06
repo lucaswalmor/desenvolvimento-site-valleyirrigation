@@ -71,7 +71,7 @@
                                         <img src="{{ asset('img/image_none.png')}}" id="myImg" alt="none" class="img-fluid img-succao">
                                         <img src="{{ asset('img/img_succao/afogadaPb.png') }}" id="afogada" class="img-fluid img-succao abrirModal" style="display: none">
                                         <img src="{{ asset('img/img_succao/diretaPb.png') }}" id="direta" class="img-fluid img-succao abrirModal" style="display: none">
-                                        <img src="{{ asset('img/img_succao/poçosPb.png') }}" id="poços" class="img-fluid img-succao abrirModal" style="display: none">
+                                        <img src="{{ asset('img/img_succao/pocosPb.png') }}" id="pocos" class="img-fluid img-succao abrirModal" style="display: none">
                                         <img src="{{ asset('img/img_succao/balsaPb.png') }}" id="balsa" class="img-fluid img-succao abrirModal" style="display: none">
                                         <img src="{{ asset('img/img_succao/submersaPb.png') }}" id="submersa" class="img-fluid img-succao abrirModal" style="display: none">
                                     </div>
@@ -95,13 +95,20 @@
                                 </div>
                             </div>
                             
-                            <div class="form-group col-md-3 telo5ce ">
-                                <label for="medicao_succao_l">@lang('entregaTecnica.medicao_succao_l') @lang('unidadesAcoes.(m)')</label>
-                                <input type="number" id="medicao_succao_l" class="form-control mb-4" name="medicao_succao_l" maxlength="20" value="{{ $succao['medicao_succao_l'] }}">
+                            <div class="col-md-3 telo5ce no-gutters">
+                                <div class="form-group col-md-12">
+                                    <label for="medicao_succao_l">@lang('entregaTecnica.medicao_succao_l')</label>
+                                    <input type="number" id="medicao_succao_l" class="form-control mb-4" name="medicao_succao_l" maxlength="20" value="{{ $succao['medicao_succao_l'] }}">
+                                    <em class="input-unidade">@lang('unidadesAcoes._m')</em>
+                                </div>
 
-                                <label for="medicao_succao_h">@lang('entregaTecnica.medicao_succao_h') @lang('unidadesAcoes.(m)')</label>
-                                <input type="number" id="medicao_succao_h" class="form-control mb-4" name="medicao_succao_h" maxlength="20" value="{{ $succao['medicao_succao_h'] }}">
+                                <div class="form-group col-md-12">
+                                    <label for="medicao_succao_h">@lang('entregaTecnica.medicao_succao_h')</label>
+                                    <input type="number" id="medicao_succao_h" class="form-control mb-4" name="medicao_succao_h" maxlength="20" value="{{ $succao['medicao_succao_h'] }}">
+                                    <em class="input-unidade">@lang('unidadesAcoes._m')</em>
+                                </div>
 
+                                <div class="form-group col-md-12">
                                 @if (count($succao['medicao_succao_tipo']) > 0)
                                     <label for="medicao_succao_tipo">@lang('entregaTecnica.medicao_succao_tipo')</label>
                                     <select multiple="true" name="tags[]" id="tagSelector" class="form-control telo5ce">
@@ -116,21 +123,30 @@
                                         <option value="Engate Rápido">@lang('entregaTecnica.engate_rapido')</option>
                                     </select>
                                 @endif
+                                </div>
                             </div>
-                            <div class="form-group col-md-3 telo5ce">
-                                <label for="medicao_succao_e">@lang('entregaTecnica.medicao_succao_e') @lang('unidadesAcoes.(m)')</label>
-                                <input type="number" id="medicao_succao_e" class="form-control mb-4" name="medicao_succao_e" maxlength="20" value="{{ $succao['medicao_succao_e'] }}">
+                            <div class="col-md-3 telo5ce no-gutters">
+                                <div class="form-group col-md-12">
+                                    <label for="medicao_succao_e">@lang('entregaTecnica.medicao_succao_e')</label>
+                                    <input type="number" id="medicao_succao_e" class="form-control mb-4" name="medicao_succao_e" maxlength="20" value="{{ $succao['medicao_succao_e'] }}">
+                                    <em class="input-unidade">@lang('unidadesAcoes._m')</em>
+                                </div>
 
-                                <label for="medicao_succao_diametro">@lang('entregaTecnica.medicao_succao_diametro') @lang('unidadesAcoes.(pol)')</label>
-                                <input type="number" id="medicao_succao_diametro" class="form-control mb-4" name="medicao_succao_diametro" maxlength="20" value="{{ $succao['medicao_succao_diametro'] }}">
+                                <div class="form-group col-md-12">
+                                    <label for="medicao_succao_diametro">@lang('entregaTecnica.medicao_succao_diametro')</label>
+                                    <input type="number" id="medicao_succao_diametro" class="form-control mb-4" name="medicao_succao_diametro" maxlength="20" value="{{ $succao['medicao_succao_diametro'] }}">
+                                    <em class="input-unidade">@lang('unidadesAcoes._pol')</em>
+                                </div>
                                 
-                                <label for="tipo_tubo_succao">@lang('afericao.tipoCano')</label>
-                                <select name="tipo_tubo_succao" id="tipo_tubo_succao" class="form-control telo5ce">
-                                    <option value=""></option>
-                                    @foreach ($tubos as $item)
-                                        <option value="{{ $item['tipo'] }}" {{ $item['tipo'] == $succao['tipo_tubo_succao'] ? 'selected' : '' }} > {{ __('listas.' . $item['tipo'] ) }}</option>
-                                    @endforeach
-                                </select>
+                                <div class="form-group col-md-12">
+                                    <label for="tipo_tubo_succao">@lang('afericao.tipoCano')</label>
+                                    <select name="tipo_tubo_succao" id="tipo_tubo_succao" class="form-control telo5ce">
+                                        <option value=""></option>
+                                        @foreach ($tubos as $item)
+                                            <option value="{{ $item['tipo'] }}" {{ $item['tipo'] == $succao['tipo_tubo_succao'] ? 'selected' : '' }} > {{ __('listas.' . $item['tipo'] ) }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>          
@@ -196,7 +212,7 @@
                     $('#direta').show();
                     $('#myImg').hide();
                     $('#afogada').hide();
-                    $('#poços').hide();
+                    $('#pocos').hide();
                     $('#submersa').hide();
                     $('#balsa').hide();
                     break;
@@ -204,12 +220,12 @@
                     $('#afogada').show();
                     $('#myImg').hide();
                     $('#direta').hide();
-                    $('#poços').hide();
+                    $('#pocos').hide();
                     $('#submersa').hide();
                     $('#balsa').hide();
                     break;
                 case 'pocos':
-                    $('#poços').show();
+                    $('#pocos').show();
                     $('#myImg').hide();
                     $('#direta').hide();
                     $('#afogada').hide();
@@ -221,7 +237,7 @@
                     $('#balsa').hide();
                     $('#direta').hide();
                     $('#afogada').hide();
-                    $('#poços').hide();
+                    $('#pocos').hide();
                     $('#submersa').hide();                   
             }            
 
@@ -231,7 +247,7 @@
                         $('#myImg').hide();
                         $('#direta').hide();
                         $('#afogada').hide();
-                        $('#poços').hide();
+                        $('#pocos').hide();
                         $('#balsa').hide();
                         break;
                     case  'balsa': 
@@ -239,7 +255,7 @@
                         $('#myImg').hide();
                         $('#direta').hide();
                         $('#afogada').hide();
-                        $('#poços').hide();
+                        $('#pocos').hide();
                         $('#submersa').hide();
                         break;
                 }

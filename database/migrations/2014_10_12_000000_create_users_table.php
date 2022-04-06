@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->integer('configuracao_idioma');
             $table->integer('tipo_usuario');
             $table->integer('situacao')->default(1);
+            $table->unsignedBigInteger('id_country')->foreign('id_country')->references('id')->on('country');
             $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();

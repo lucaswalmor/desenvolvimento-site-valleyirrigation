@@ -47,10 +47,14 @@
     <div>
 
         {{-- NAVTAB'S --}}
-        <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item" role="presentation">
-                <a class="nav-link active" id="cadastro-tab" data-bs-toggle="tab" role="tab" aria-controls="cadastro"
-                    aria-current="page" aria-selected="true" href="#cadastro">@lang('comum.informacoes_navtabs')</a>
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="cadastro-tab" data-toggle="tab" role="tab" aria-controls="cadastro"
+                aria-selected="true" href="#cadastro">@lang('comum.informacoes_navtabs')</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="permissions-tab" data-toggle="tab" href="#permissions" role="tab" aria-controls="permissions"
+                aria-selected="false">@lang('comum.permissions')</a>
             </li>
         </ul>
 
@@ -64,8 +68,7 @@
 
         {{-- FORMULARIO DE CADASTRO --}}
         <form action="{{ route('usuario_save') }}" method="post" class="mt-3" id="formdados" autocomplete="off">
-
-            <div class=" tab-content" id="myTabContent">
+            <div class=" tab-content  small.required tab-validate" id="myTabContent">
                     @include('_layouts._includes._alert')
                 <div class="tab-pane fade show active" id="cadastro" role="tabpanel" aria-labelledby="cadastro-tab">
                     @csrf
@@ -80,8 +83,8 @@
                                 <label for="tipo_usuario">@lang('usuarios.tipo_usuario')</label><br>
                                 <select onchange="trocarDivAtivaSuperior()" name="tipo_usuario" id="tipo_usuario" required class="form-control telo5ce">
                                         <option value=""></option>
-                                    @foreach ($papeis as $papel)
-                                        <option value="{{ $papel['chave'] }}">@lang($papel['valor'])</option>
+                                    @foreach ($papeis as $datas)
+                                        <option value="{{ $datas['chave'] }}">@lang($datas['valor'])</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -91,7 +94,13 @@
                             </div>
                             <div class="form-group col-md-3 telo5ce">
                                 <label for="pais">@lang('usuarios.pais')</label><br>
-                                <input type="text" class="form-control" id="pais" name="pais" maxlength="60">
+                                <input type="hidden" name="pais" id="pais" />
+                                <select required name="id_country" id="id_country" class="form-control telo5ce">
+                                    <option value=""></option>
+                                @foreach ($countries as $datas)
+                                    <option value="{{ $datas['id_country'] }}">{{ $datas['name'] }}</option>
+                                @endforeach
+                                </select>
                             </div>
                         </div>
 
@@ -198,10 +207,60 @@
                         </div>
                     </div>
                 </div>
+
+                {{-- PERMISSIONS --}}
+                <div class="tab-pane fade" id="permissions" role="tabpanel" aria-labelledby="permissions-tab">
+                    <div class="col-md-12">
+                        <div class="table mx-auto">
+                            <div class="form-row justify-content  ml-4 mt-4 telo5ce formulario-bocais-mobile">
+                                <div class="col-md-3">
+                                    <label for="user_name">@lang('usuarios.userName')</label>
+                                    <input type="text" class="form-control telo5ce" id="user_name" name="user_name" disabled />
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="type_user">@lang('usuarios.tipo_usuario')</label>
+                                    <input type="text" class="form-control telo5ce" id="type_user" name="type_user" disabled />
+                                </div>
+            </div>
+    </div>
+
+                        <div class="table-responsive m-auto tabela">
+                            <table class="table table-striped mx-auto text-center" id="tabelaTrechos">
+                                <thead class="headertable">
+                                    <tr class="text-center">
+                                        <th scope="col-5">@lang('comum.modules')</th>
+                                        <th scope="col-5">@lang('comum.rules')</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ( $modulesLang as $datas )
+                                    <tr>
+                                        <td class="col-md-2" style="width: 40%;">
+                                            <input type="hidden" id="id_module" name="id_module[]" value="{{ $datas['id_module'] }}"/>
+                                            <h4>{{ $datas['description'] }}</h4>
+                                        </td>
+
+                                        <td class="col-md-2" style="width: 40%;">
+                                            <select class="form-control telo5ce" name="permissions[]" id="permissions">
+                                                @foreach ( $rolesList as $datas )
+                                                    <option value="{{ $datas['id'] }}">@lang($datas['role'])</option>
+                                                @endforeach
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                                <tfoot>
+                                    <td></td>
+                                    <td></td>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
         </form>
     </div>
-
 @endsection
 
 @section('scripts')
@@ -288,6 +347,21 @@
                     });
                     form.submit();
                 }
+            });
+
+            $('#nome').on('change',function() {
+                var userName = $('#nome').val();
+                $('#user_name').val(userName);
+            });
+
+            $('#tipo_usuario').on('change',function() {
+                var typeUser = $('#tipo_usuario :selected').text();
+                $('#type_user').val(typeUser);
+            });
+
+            $('#id_country').on('change',function() {
+                var country = $('#id_country :selected').text();
+                $('#pais').val(country);
             });
         });
 

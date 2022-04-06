@@ -134,15 +134,15 @@
                             @lang('entregaTecnica.lances') 
                             <i class="fas fa-edit" style="color: orange; float: right;"></i>
                         @else
-                            @lang('entregaTecnica.lances')
+                            @lang('entregaTecnica.lances') 
                             <i class="fas fa-check" style="color: green; float: right;"></i>
                         @endif
                     </h3>
                 @endif
             </div>    
             @if ($tem_pivo['tipo_equipamento'] == null)   
-                <div style="background-color: #6d97ac; color: #fff">
-                    <a class="cad-lance-bloqueado">@lang('entregaTecnica.bloqueado')</i></a>
+                <div style="background-color: #6d97ac; color: #fff" class="cad-lance-bloqueado p-2">
+                    <a href="#">@lang('entregaTecnica.bloqueado')</a>
                 </div>
             @else
                 @if ($entrega_tecnica['status_lances'] == 0)   
@@ -377,7 +377,7 @@
                 @endif
             @else
                 <div class="p-2 cad-lance-bloqueado" style="background-color: #6d97ac; color: #fff">
-                    <a href="#">@lang('entregaTecnica.bloqueado')</i></a>
+                    <a href="#">@lang('entregaTecnica.bloqueado')</a>
                 </div>
             @endif
         </div>

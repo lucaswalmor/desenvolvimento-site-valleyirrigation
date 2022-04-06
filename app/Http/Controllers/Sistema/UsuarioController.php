@@ -12,6 +12,12 @@ use App\Classes\Sistema\CentroDeCusto;
 use App\Classes\Sistema\UserSuperior;
 use App\Classes\Sistema\CdcUsuario;
 use App\Classes\Constantes\Notificacao;
+use App\Classes\Sistema\UserPermissions;
+use App\Classes\Sistema\TypeUserPermissions;
+use App\Classes\Sistema\RolesDefautPermissions;
+use App\Classes\Sistema\ModulePermissions;
+use App\Classes\Sistema\Country;
+use App\Classes\Sistema\CountryLanguage;
 
 
 class UsuarioController extends Controller
@@ -152,7 +158,8 @@ class UsuarioController extends Controller
         return view('sistema.usuarios.gerenciar', compact('listaUsuarios'));
     }
 
-    public function UserChangeStatus($id){
+    public function UserChangeStatus($id)
+    {
 
         $usuarios = user::find($id);
         $situacao = ($usuarios['situacao']) ? 0 : 1;
@@ -168,6 +175,21 @@ class UsuarioController extends Controller
         $papeis = User::getListaDePapeis();
         $idiomas = User::getListaDeIdiomas();
         $cdcs = CentroDeCusto::all();
+        $rolesList = User::getRolesList();
+        $modules = ModulePermissions::select('id', 'name')->get();
+        $typeUsers = TypeUserPermissions::select('name')->get();
+        $userLang = Auth::user()->preferencia_idioma;
+
+        if ($userLang == 'pt-br') {
+            $countries  = CountryLanguage::select('id_country', 'id_language', 'name')->where('id_language', 1)->get();
+        }
+        else if ($userLang == 'en') {
+            $countries  = CountryLanguage::select('id_country', 'id_language', 'name')->where('id_language', 2)->get();
+        }
+        else if ($userLang == 'es') {
+            $countries  = CountryLanguage::select('id_country', 'id_language', 'name')->where('id_language', 3)->get();
+        }
+
         foreach ($cdcs as $cdc) {
             $cdc['nome'] = ($cdc['codigo'] . " - " . $cdc['nome']);
         }
@@ -188,12 +210,14 @@ class UsuarioController extends Controller
                 $user->situacao = __('usuarios.ativo');
             }
         }
-        return view('sistema.usuarios.cadastrar', compact('papeis', 'idiomas', 'cdcs', 'usuarios_superiores'));
+
+        return view('sistema.usuarios.cadastrar', compact('papeis', 'idiomas', 'cdcs', 'countries', 'usuarios_superiores', 'modules', 'typeUsers', 'rolesList'));
     }
 
     public function saveUsuario(Request $req)
     {
         $dados = $req->all();
+        $token = $dados['_token'];
 
         //Medida provisória para flag de pendência de -email
         $dados['email_verified_at'] = time();
@@ -205,6 +229,17 @@ class UsuarioController extends Controller
         $dados['password'] = bcrypt($dados['password']);
 
         $id_user = User::create($dados);
+
+        for($i = 0; $i < count($dados['id_module']); $i++) {
+            $createItem = array(
+                '_token' => $token,
+                'id_user' => $id_user['id'],
+                'id_module' => $dados['id_module'][$i],
+                'permissions' => $dados['permissions'][$i]
+            );
+            UserPermissions::create($createItem);
+            unset($createItem);
+        }
 
         if ($dados['tipo_usuario'] == 2) {
             UserSuperior::inserirSuperior($id_user['id'], $dados['superior_s']);
@@ -228,7 +263,21 @@ class UsuarioController extends Controller
         $idiomas = User::getListaDeIdiomas();
         $cdcs = CentroDeCusto::all();
         $usuarios = user::find($id);
+        $rolesList = User::getRolesList();
+        $modules = ModulePermissions::select('id', 'name')->get();
+        $typeUsers = TypeUserPermissions::select('name')->where('id', $id)->get();
+        //$userPermissions = UserPermissions::select
+        $userLang = Auth::user()->preferencia_idioma;
 
+        if ($userLang == 'pt-br') {
+            $countries  = CountryLanguage::select('id_country', 'id_language', 'name')->where('id_language', 1)->get();
+        }
+        if ($userLang == 'en') {
+            $countries  = CountryLanguage::select('id_country', 'id_language', 'name')->where('id_language', 2)->get();
+        }
+        if ($userLang == 'es') {
+            $countries  = CountryLanguage::select('id_country', 'id_language', 'name')->where('id_language', 3)->get();
+        }
         foreach ($cdcs as $cdc) {
             $cdc['nome'] = ($cdc['codigo'] . " - " . $cdc['nome']);
         }
@@ -249,46 +298,70 @@ class UsuarioController extends Controller
                 $user->situacao = __('usuarios.ativo');
             }
         }
-        return view('sistema.usuarios.editar', compact('usuarios', 'papeis', 'idiomas', 'cdcs', 'usuarios_superiores'));
+        return view('sistema.usuarios.editar', compact('usuarios', 'papeis', 'idiomas', 'cdcs', 'usuarios_superiores', 'countries', 'modules', 'typeUsers', 'rolesList'));
     }
 
     public function updateUsuarios(Request $req)
     {
         $dados = $req->all();
-        if (User::validaEmail($dados['email'], $dados['id'])) {
-            if (!isset($dados['password']) || empty($dados['password'])) {
-                unset($dados['password']);
-            } else {
-                $dados['password'] = bcrypt($dados['password']);
-            }
 
-            User::find($dados['id'])->update($dados);
+        // if (User::validaEmail($dados['email'], $dados['id'])) {
+        //     if (!isset($dados['password']) || empty($dados['password'])) {
+        //         unset($dados['password']);
+        //     } else {
+        //         $dados['password'] = bcrypt($dados['password']);
+        //     }
 
-            if ($dados['tipo_usuario'] == 2) {
-                UserSuperior::inserirSuperior($dados['id'], $dados['superior_s']);
-            }
+        //     User::find($dados['id'])->update($dados);
 
-            if ($dados['tipo_usuario'] == 3) {
-                UserSuperior::inserirSuperior($dados['id'], $dados['superior_c']);
-            }
-
-            if ($dados['tipo_usuario'] == 4) {
-                UserSuperior::inserirSuperior($dados['id'], $dados['superior_a']);
-            }
-
-            if ($dados['tipo_usuario'] != 0) {
-                CdcUsuario::alterarCdcUsuario($dados['cdcs'], $dados['id']);
-            }
-            Notificacao::gerarAlert('', 'editar_usuario_sucesso', 'success');
-            return redirect()->route('usuarios_manager');
-        } else {
+        //     if ($dados['tipo_usuario'] == 2) {
+        //         UserSuperior::inserirSuperior($dados['id'], $dados['superior_s']);
+        //     }
+        //     if ($dados['tipo_usuario'] == 3) {
+        //         UserSuperior::inserirSuperior($dados['id'], $dados['superior_c']);
+        //     }
+        //     if ($dados['tipo_usuario'] == 4) {
+        //         UserSuperior::inserirSuperior($dados['id'], $dados['superior_a']);
+        //     }
+        //     if ($dados['tipo_usuario'] != 0) {
+        //         CdcUsuario::alterarCdcUsuario($dados['cdcs'], $dados['id']);
+        //     }
+        //     Notificacao::gerarAlert('', 'editar_usuario_sucesso', 'success');
+        //     return redirect()->route('usuarios_manager');
+        // } else {
+        //     Notificacao::gerarAlert("notificacao.erro", "notificacao.falhaEmail", "danger");
+        //     return redirect()->route('usuarios_manager');
+        // }
+        if (!User::validaEmail($dados['email'], $dados['id'])) {
             Notificacao::gerarAlert("notificacao.erro", "notificacao.falhaEmail", "danger");
             return redirect()->route('usuarios_manager');
+        } else {
+            User::find($dados['id'])->update($dados);
+
+            //dump(count($dados['id_module']));
+            //dump($dados['id_module']);
+            //dd($dados['permissions']);
+
+            for($i = 0; $i < count($dados['id_module']); $i++) {
+                $createItem = array(
+                    'id_user' => $dados['id'],
+                    'id_module' => $dados['id_module'][$i],
+                    'permissions' => $dados['permissions'][$i]
+                );
+                if(!UserPermissions::where('id_user', $dados['id'])->where('id_module', $dados['id_module'])->exists()){
+                    //dump('Passou if create!');
+                    UserPermissions::create($createItem);
+        } else {
+                    //dump('Passou else update');
+                    UserPermissions::where('id_user', $dados['id'])->where('id_module', $dados['id_module'])->update($createItem);
+                }
+                unset($createItem);
+                //dd('fim for ', $createItem);
         }
-        User::find($dados['id'])->update($dados);
 
         Notificacao::gerarAlert('', 'usuarios.editar_usuario_sucesso', 'success');
         return redirect()->route('usuarios_manager');
+        }
     }
 
     public function getUsuario($id)

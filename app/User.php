@@ -10,6 +10,7 @@ use App\Classes\Sistema\ModulePermissions;
 use App\Classes\Sistema\RolesDefautPermissions;
 use App\Classes\Sistema\TypeUserPermissions;
 use App\Classes\Sistema\UserPermissions;
+use App\Classes\Sistema\Language;
 use Auth;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -25,7 +26,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'nome', 'cidade', 'estado', 'pais', 'rua', 'cep', 'telefone', 'configuracao_idioma', 'tipo_usuario', 'email', 'password', 'situacao', 'email_verified_at'
+        'nome', 'cidade', 'estado', 'pais', 'rua', 'cep', 'telefone', 'configuracao_idioma', 'tipo_usuario', 'email', 'password', 'situacao', 'email_verified_at', 'id_country'
     ];
 
     /**
@@ -62,6 +63,16 @@ class User extends Authenticatable implements MustVerifyEmail
         return $papeis;
     }
 
+    public static function getTypeUser(){
+        $typeUser = [
+            ['value' => 'administrador', 'typeUser' =>' usuarios.administrador'],
+            ['value' => 'manager', 'typeUser' =>' usuarios.gerente'],
+            ['value' => 'dealer_technician', 'typeUser' =>' usuarios.supervisor'],
+            ['value' => 'consultant', 'typeUser' =>' usuarios.consultor'],
+        ];
+        return $typeUser;
+    }
+
     public static function getListaDeIdiomas()
     {
         $idiomas = [
@@ -70,6 +81,15 @@ class User extends Authenticatable implements MustVerifyEmail
             ['chave'=>'2','valor'=>'es']
         ];
         return $idiomas;
+    }
+
+    public static function getRolesList() {
+        $roles = [
+            ['id' => '0', 'value' => 'noAccess', 'description' => 'No Access', 'role' => 'comum.noAccess'],
+            ['id' => '1', 'value' => 'readOnly', 'description' => 'Read Only', 'role' => 'comum.readOnly'],
+            ['id' => '2', 'value' => 'fullAccess', 'description' => 'Full Access', 'role' => 'comum.fullAccess']
+        ];
+        return $roles;
     }
 
     public static function validaEmail($email, $id = null)
@@ -109,30 +129,32 @@ class User extends Authenticatable implements MustVerifyEmail
     public static function getListModulesPermissions()
     {
         $user_id = Auth::user()->id;
-        $userPermission = UserPermissions::select('module_permissions.name', 'user_permissions.permissions')
+        $preferenceLang = Auth::user()->preferencia_idioma;
+        $language = Language::select('id')->where('code', $preferenceLang)->get();
+
+        $userPermission = UserPermissions::select('module_permissions.name', 'user_permissions.permissions', 'module_language.description')
             ->join('module_permissions', 'module_permissions.id', '=', 'user_permissions.id_module')
+            ->join('module_language', 'module_language.id_module', '=', 'module_permissions.id')
             ->where('user_permissions.id_user', $user_id)
+            ->where('module_language.id_language', $language[0]['id'])
             ->where('user_permissions.permissions', '!=', '0')
             ->get();
-
-            // dump($user_id);
-            // dump($userPermission);
 
         $list = array();
 
         $list[] = array(
             'name' => "*",
+            'description' => "",
             'permissions' => "0"
         );
         
         for ($i = 0; $i < count($userPermission); $i++) {
             $list[] = array(
                 'name' => $userPermission[$i]['name'],
+                'description' => $userPermission[$i]['description'],
                 'permissions' => $userPermission[$i]['permissions']
             );
         }
-        //dd($list);
-
         return $list;
     }
 }
